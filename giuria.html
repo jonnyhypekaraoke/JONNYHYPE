@@ -311,18 +311,39 @@ window.entra=function(){
     return;
   }
 
-  document.getElementById("login").style.display="none";
+
+  /* PROTEZIONE REGIA */
 
   if(giudice==="REGIA"){
 
-    document.getElementById("admin").style.display="block";
-    avviaRegia();
-    return;
+    const pin=prompt("INSERISCI PIN REGIA");
 
+    if(pin!=="1208"){
+
+      alert("PIN ERRATO");
+
+      giudice="";
+
+      return;
+    }
+
+    document.getElementById("login").style.display="none";
+    document.getElementById("admin").style.display="block";
+
+    avviaRegia();
+
+    return;
   }
+
+
+  /* ACCESSO NORMALE GIURATI */
+
+  document.getElementById("login").style.display="none";
+
 
   const posizioneSalvata=
     localStorage.getItem("rsf_posizione_"+giudice);
+
 
   if(posizioneSalvata!==null){
 
@@ -341,6 +362,7 @@ window.entra=function(){
   }else{
     indice=0;
   }
+
 
   document.getElementById("voting").style.display="block";
 
@@ -395,6 +417,7 @@ window.inviaVoto=async function(){
 
   if(!conferma) return;
 
+
   try{
 
     await set(
@@ -410,14 +433,15 @@ window.inviaVoto=async function(){
       }
     );
 
+
     votoInviato=true;
 
     document.getElementById("ok").style.display="block";
 
     /*
-      Il voto può essere modificato PRIMA
-      di passare al concorrente successivo.
-      Per questo il pulsante rimane attivo.
+      Il pulsante rimane attivo:
+      il giurato può correggere il voto
+      prima di passare al concorrente successivo.
     */
 
     document.getElementById("send").disabled=false;
@@ -425,9 +449,11 @@ window.inviaVoto=async function(){
     document.getElementById("status").innerText=
       "Voto salvato online";
 
+
   }catch(e){
 
     alert("ERRORE: voto non salvato");
+
     console.error(e);
 
   }
@@ -441,11 +467,6 @@ window.inviaVoto=async function(){
 
 window.prossimo=function(){
 
-  /*
-    Impedisce di saltare un concorrente
-    senza aver prima registrato un voto.
-  */
-
   if(!votoInviato){
 
     alert(
@@ -454,6 +475,7 @@ window.prossimo=function(){
 
     return;
   }
+
 
   if(indice < baby.length-1){
 
@@ -467,11 +489,6 @@ window.prossimo=function(){
     mostra();
 
   }else{
-
-    /*
-      Manteniamo la posizione sull'ultimo Baby
-      in caso di ricaricamento accidentale.
-    */
 
     localStorage.setItem(
       "rsf_posizione_"+giudice,
@@ -493,6 +510,7 @@ function avviaRegia(){
 
   const riferimento=ref(db,"voti/BABY");
 
+
   onValue(riferimento,(snapshot)=>{
 
     const dati=snapshot.val() || {};
@@ -500,11 +518,13 @@ function avviaRegia(){
     let risultati=[];
     let totaleVoti=0;
 
+
     baby.forEach(c=>{
 
       const votiConcorrente=dati[c.n] || {};
 
       const votiValidi=[];
+
 
       for(let i=1;i<=6;i++){
 
@@ -514,22 +534,28 @@ function avviaRegia(){
           votiConcorrente[codice] &&
           !isNaN(Number(votiConcorrente[codice].voto))
         ){
+
           votiValidi.push(
             Number(votiConcorrente[codice].voto)
           );
+
         }
 
       }
 
+
       totaleVoti+=votiValidi.length;
+
 
       const totale=
         votiValidi.reduce((a,b)=>a+b,0);
+
 
       const media=
         votiValidi.length
         ? totale/votiValidi.length
         : 0;
+
 
       risultati.push({
         numero:c.n,
@@ -542,11 +568,6 @@ function avviaRegia(){
 
     });
 
-
-    /*
-      Durante la votazione ordiniamo per totale.
-      In caso di parità usiamo la media.
-    */
 
     risultati.sort((a,b)=>
       b.totale-a.totale ||
@@ -577,6 +598,7 @@ function avviaRegia(){
 
         let statoGiurati="";
 
+
         for(let g=1;g<=6;g++){
 
           const codice="G"+g;
@@ -585,14 +607,17 @@ function avviaRegia(){
             r.dati[codice] &&
             !isNaN(Number(r.dati[codice].voto));
 
+
           statoGiurati+=
             codice+" "+(presente ? "✓" : "—");
+
 
           if(g<6){
             statoGiurati+=" · ";
           }
 
         }
+
 
         return `
           <div class="rank">
