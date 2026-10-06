@@ -244,6 +244,10 @@ window.entra=function(){
    return;
  }
 
+  const posizioneSalvata = localStorage.getItem("rsf_posizione_"+giudice);
+indice = posizioneSalvata !== null ? parseInt(posizioneSalvata) : 0;
+  
+
  document.getElementById("voting").style.display="block";
  mostra();
 };
@@ -301,23 +305,14 @@ if (!conferma) return;
 
 window.prossimo=function(){
 
- if(indice < baby.length-1){
-   indice++;
-   mostra();
- }else{
-   alert("Hai completato tutti i BABY");
- }
+  if(indice < baby.length-1){
+    indice++;
+    localStorage.setItem("rsf_posizione_"+giudice, indice);
+    mostra();
+  }else{
+    alert("Hai completato tutti i BABY");
+  }
 };
-
-function avviaRegia(){
-
- const r=ref(db,"voti/BABY");
-
- onValue(r,(snap)=>{
-
-   const dati=snap.val()||{};
-   let risultati=[];
-   let totaleVoti=0;
 
    baby.forEach(c=>{
 
