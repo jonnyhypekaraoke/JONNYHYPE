@@ -14,51 +14,91 @@ body{
  color:white;
  min-height:100vh;
 }
-.wrap{max-width:600px;margin:auto;padding:24px 18px 50px}
+.wrap{max-width:640px;margin:auto;padding:24px 18px 50px}
 h1{font-size:24px;margin:0;text-align:center}
 .sub{text-align:center;color:#aeb8d0;margin:6px 0 25px}
 .card{
- background:#11182d;border:1px solid #293455;
- border-radius:18px;padding:20px;margin-bottom:16px
+ background:#11182d;
+ border:1px solid #293455;
+ border-radius:18px;
+ padding:20px;
+ margin-bottom:16px
 }
 label{display:block;color:#aeb8d0;margin-bottom:8px;font-size:14px}
 select,input,button{width:100%;font-size:18px;border-radius:12px}
 select,input{
- background:#080d1c;color:white;border:1px solid #354265;
- padding:14px;margin-bottom:15px
+ background:#080d1c;
+ color:white;
+ border:1px solid #354265;
+ padding:14px;
+ margin-bottom:15px
 }
 button{border:0;padding:16px;font-weight:800;cursor:pointer}
 .invia{background:#d1a954;color:#090b12}
 .next{margin-top:12px;background:#293455;color:white}
 .recupera{margin-top:12px;background:#18213a;color:#d7deef;border:1px solid #354265}
+.rivedi{margin-top:12px;background:#22314f;color:#ffffff;border:1px solid #42557f}
 .back{background:#293455;color:white;margin-bottom:16px}
-.chiudi{background:#8d2530;color:white;margin-top:12px}
+.stop{background:#9b2634;color:white;margin-top:12px}
 .apri{background:#176044;color:white;margin-top:12px}
 .nome{font-size:25px;font-weight:800;text-align:center;margin:6px 0 5px}
-.numero{text-align:center;color:#d1a954;font-weight:700;margin-bottom:20px}
-.voto{font-size:44px;font-weight:800;text-align:center;margin:12px 0}
+.numero{text-align:center;color:#d1a954;font-weight:700;margin-bottom:10px}
+.categoriaBadge{
+ text-align:center;
+ font-size:14px;
+ color:#aeb8d0;
+ margin-bottom:18px
+}
+.voto{font-size:46px;font-weight:800;text-align:center;margin:12px 0}
 input[type=range]{padding:0;accent-color:#d1a954}
 .ok{
- display:none;background:#123a2b;border:1px solid #1f7956;
- padding:15px;border-radius:12px;text-align:center;margin-top:15px
+ display:none;
+ background:#123a2b;
+ border:1px solid #1f7956;
+ padding:15px;
+ border-radius:12px;
+ text-align:center;
+ margin-top:15px
 }
 .small{color:#8893aa;text-align:center;font-size:12px;margin-top:20px}
-#admin,#voting,#revisione{display:none}
+#admin,#voting,#recupero,#revisione{display:none}
 .rank,.rigaConcorrente{
- display:flex;justify-content:space-between;align-items:center;
- gap:10px;padding:14px 4px;border-bottom:1px solid #293455
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ padding:14px 4px;
+ border-bottom:1px solid #293455
 }
 .rigaConcorrente{cursor:pointer}
-.votato{color:#69d29a;font-weight:800}
-.davotare{color:#d1a954;font-weight:800}
-.bloccato{color:#8893aa}
+.rigaConcorrente:last-child,.rank:last-child{border-bottom:0}
+.votato{color:#69d29a;font-weight:800;white-space:nowrap}
+.davotare{color:#d1a954;font-weight:800;white-space:nowrap}
+.bloccato{color:#8893aa;font-weight:800;white-space:nowrap}
 .badge{
- display:inline-block;padding:5px 8px;border-radius:8px;
- background:#080d1c;font-size:12px;margin-top:5px
+ display:inline-block;
+ padding:5px 8px;
+ border-radius:8px;
+ background:#080d1c;
+ font-size:12px;
+ margin-top:5px;
+ color:#d1a954
 }
 .giurati{color:#8893aa;font-size:12px;margin-top:5px}
 .adminTitle{text-align:center;font-size:22px;font-weight:800}
 .adminSub{text-align:center;color:#aeb8d0;margin-bottom:10px}
+.search{
+ margin-bottom:16px;
+ font-size:20px;
+ border:2px solid #d1a954
+}
+.modeTitle{
+ font-size:20px;
+ font-weight:900;
+ text-align:center;
+ margin-bottom:8px
+}
+.hidden{display:none!important}
 </style>
 </head>
 
@@ -88,12 +128,13 @@ input[type=range]{padding:0;accent-color:#d1a954}
 <div id="voting">
 
 <div class="card">
-<div style="text-align:center;color:#aeb8d0">CATEGORIA</div>
-<div id="categoriaTitolo" class="adminTitle">BABY</div>
+<div class="adminSub">VOTAZIONE LIVE</div>
+<div id="categoriaTitolo" class="adminTitle"></div>
 </div>
 
 <div class="card">
 <div id="numero" class="numero"></div>
+<div id="categoriaBadge" class="categoriaBadge"></div>
 <div id="nome" class="nome"></div>
 
 <div class="voto" id="votoLabel">15</div>
@@ -112,8 +153,12 @@ CONFERMA VOTO
 PROSSIMO CONCORRENTE
 </button>
 
-<button class="recupera" onclick="apriRevisione()">
-CAMBIO SCALETTA / RIVEDI VOTI
+<button class="recupera" onclick="apriRecupero()">
+CAMBIO SCALETTA / RECUPERA
+</button>
+
+<button class="rivedi" onclick="apriRevisione()">
+RIVEDI VALUTAZIONI
 </button>
 </div>
 
@@ -121,7 +166,29 @@ CAMBIO SCALETTA / RIVEDI VOTI
 </div>
 
 
-<!-- RECUPERA / REVISIONE -->
+<!-- RECUPERA ALFABETICO -->
+<div id="recupero">
+
+<button class="back" onclick="tornaVotazione()">
+← TORNA ALLA VOTAZIONE
+</button>
+
+<div class="card">
+<div class="modeTitle">CAMBIO SCALETTA / RECUPERA</div>
+<div class="small" style="margin-top:8px">
+Lista unica alfabetica di tutti i concorrenti.
+</div>
+</div>
+
+<input id="cerca" class="search" placeholder="CERCA CONCORRENTE"
+ oninput="aggiornaRecupero()">
+
+<div class="card" id="listaRecupero"></div>
+
+</div>
+
+
+<!-- RIVEDI VALUTAZIONI -->
 <div id="revisione">
 
 <button class="back" onclick="tornaVotazione()">
@@ -129,11 +196,18 @@ CAMBIO SCALETTA / RIVEDI VOTI
 </button>
 
 <div class="card">
-<div class="adminSub">CAMBIO SCALETTA / REVISIONE</div>
-<div id="revisioneCategoria" class="adminTitle"></div>
+<div class="modeTitle">RIVEDI VALUTAZIONI</div>
 <div class="small" style="margin-top:8px">
-Tocca un concorrente per votarlo o modificare il voto già assegnato.
+Qui il giurato vede solo i propri voti. Nessuna classifica.
 </div>
+
+<label style="margin-top:16px">Categoria</label>
+<select id="categoriaRevisione" onchange="aggiornaRevisione()">
+<option value="BABY">BABY</option>
+<option value="GIOVANI">GIOVANI</option>
+<option value="BIG">BIG</option>
+<option value="SENIOR">SENIOR</option>
+</select>
 </div>
 
 <div class="card" id="listaRevisione"></div>
@@ -151,16 +225,18 @@ Tocca un concorrente per votarlo o modificare il voto già assegnato.
 <select id="categoriaRegia" onchange="cambiaCategoriaRegia()">
 <option value="BABY">BABY</option>
 <option value="GIOVANI">GIOVANI</option>
+<option value="BIG">BIG</option>
+<option value="SENIOR">SENIOR</option>
 </select>
 
 <div id="statoCategoria" class="adminTitle"></div>
 
-<button class="apri" onclick="apriCategoria()">
-APRI / RIAPRI VOTAZIONE
+<button id="btnStop" class="stop" onclick="chiudiCategoria()">
+STOP VOTO
 </button>
 
-<button class="chiudi" onclick="chiudiCategoria()">
-CHIUDI DEFINITIVAMENTE CATEGORIA
+<button id="btnApri" class="apri hidden" onclick="apriCategoria()">
+RIAPRI VOTAZIONE
 </button>
 </div>
 
@@ -236,17 +312,139 @@ const categorie={
   {n:10,nome:"SOFIA RONCHI"},
   {n:11,nome:"MICHELANGELO BALDINI"},
   {n:12,nome:"ELEONORA NERI"}
+ ],
+
+ BIG:[
+  {n:1,nome:"EMILY LO PINTO"},
+  {n:2,nome:"CRISTIAN BIONDI"},
+  {n:3,nome:"GIULIA ROSSI"},
+  {n:4,nome:"FABIO RAGGINI"},
+  {n:5,nome:"VALENTINA CARINELLI"},
+  {n:6,nome:"JESSICA DOCCIOLI"},
+  {n:7,nome:"APHRODYS"},
+  {n:8,nome:"MARTINA RICCI"},
+  {n:9,nome:"MI.MA"},
+  {n:10,nome:"LILY"},
+  {n:11,nome:"SERGIO BERTUZZI"},
+  {n:12,nome:"GIU DI CORDE"},
+  {n:13,nome:"GIULIA DRADI"},
+  {n:14,nome:"GIORGIA QUITADAMO"},
+  {n:15,nome:"KEVIN FABBRI"},
+  {n:16,nome:"GIULIA GUIDI"}
+ ],
+
+ SENIOR:[
+  {n:1,nome:"RINO"},
+  {n:2,nome:"MONICA"},
+  {n:3,nome:"ANTONIO TONJ PICCININI"},
+  {n:4,nome:"PAOLO ROMBOLI"},
+  {n:5,nome:"MAURY"}
  ]
 
 };
 
 
+/*
+ ORDINE DI USCITA NORMALE.
+ I primi 33 sono l'ordine reale misto della scaletta.
+ I BABY sono inseriti dopo, nell'ordine già usato dal sistema.
+ Se i BABY vanno in un punto diverso, spostiamo solo queste 6 righe.
+*/
+
+const scalettaLive=[
+ {pos:1,cat:"GIOVANI",n:1},
+ {pos:2,cat:"GIOVANI",n:2},
+ {pos:3,cat:"GIOVANI",n:3},
+ {pos:4,cat:"GIOVANI",n:4},
+ {pos:5,cat:"GIOVANI",n:5},
+ {pos:6,cat:"GIOVANI",n:6},
+ {pos:7,cat:"GIOVANI",n:7},
+ {pos:8,cat:"GIOVANI",n:8},
+ {pos:9,cat:"GIOVANI",n:9},
+ {pos:10,cat:"GIOVANI",n:10},
+ {pos:11,cat:"GIOVANI",n:11},
+ {pos:12,cat:"GIOVANI",n:12},
+
+ {pos:13,cat:"BIG",n:1},
+ {pos:14,cat:"BIG",n:2},
+ {pos:15,cat:"BIG",n:3},
+ {pos:16,cat:"SENIOR",n:1},
+ {pos:17,cat:"BIG",n:4},
+ {pos:18,cat:"BIG",n:5},
+ {pos:19,cat:"SENIOR",n:2},
+ {pos:20,cat:"BIG",n:6},
+ {pos:21,cat:"SENIOR",n:3},
+ {pos:22,cat:"BIG",n:7},
+ {pos:23,cat:"BIG",n:8},
+ {pos:24,cat:"SENIOR",n:4},
+ {pos:25,cat:"BIG",n:9},
+ {pos:26,cat:"SENIOR",n:5},
+ {pos:27,cat:"BIG",n:10},
+ {pos:28,cat:"BIG",n:11},
+ {pos:29,cat:"BIG",n:12},
+ {pos:30,cat:"BIG",n:13},
+ {pos:31,cat:"BIG",n:14},
+ {pos:32,cat:"BIG",n:15},
+ {pos:33,cat:"BIG",n:16},
+
+ {pos:34,cat:"BABY",n:1},
+ {pos:35,cat:"BABY",n:2},
+ {pos:36,cat:"BABY",n:3},
+ {pos:37,cat:"BABY",n:4},
+ {pos:38,cat:"BABY",n:5},
+ {pos:39,cat:"BABY",n:6}
+];
+
+
+const nomiGiurati={
+ G1:"CORTESI",
+ G2:"TIRELLI",
+ G3:"BELLA",
+ G4:"RICCI",
+ G5:"MONTANARI",
+ G6:"BRAGA"
+};
+
+
 let giudice="";
-let categoria="BABY";
-let indice=0;
+let indiceLive=0;
+let corrente=null;
 let votoInviato=false;
 let categoriaChiusa=false;
+let origineRecupero=false;
+
 let unsubscribeRegia=null;
+let unsubscribeStatoRegia=null;
+
+
+/* UTILITY */
+
+function concorrenteDaRef(cat,n){
+ return categorie[cat].find(x=>x.n===n);
+}
+
+function tuttiConcorrenti(){
+
+ let arr=[];
+
+ Object.keys(categorie).forEach(cat=>{
+  categorie[cat].forEach(c=>{
+   arr.push({
+    cat:cat,
+    n:c.n,
+    nome:c.nome
+   });
+  });
+ });
+
+ arr.sort((a,b)=>a.nome.localeCompare(b.nome));
+
+ return arr;
+}
+
+function chiavePosizione(){
+ return "rsf_posizione_live_"+giudice;
+}
 
 
 /* ACCESSO */
@@ -279,25 +477,22 @@ window.entra=async function(){
 
  document.getElementById("login").style.display="none";
 
- /*
-  Per ora l'ingresso normale parte dai BABY.
-  Quando BABY è chiusa, passa automaticamente
-  ai GIOVANI.
- */
+ const salvata=localStorage.getItem(chiavePosizione());
 
- const babyChiusa=await leggiChiusura("BABY");
-
- categoria=babyChiusa ? "GIOVANI" : "BABY";
-
- caricaPosizione();
+ if(salvata!==null){
+  const p=parseInt(salvata,10);
+  if(!isNaN(p) && p>=0 && p<scalettaLive.length){
+   indiceLive=p;
+  }
+ }
 
  document.getElementById("voting").style.display="block";
 
- await mostra();
+ await mostraDaScaletta();
 };
 
 
-/* CHIUSURA CATEGORIA */
+/* CHIUSURA */
 
 async function leggiChiusura(cat){
 
@@ -310,61 +505,48 @@ async function leggiChiusura(cat){
 }
 
 
-/* POSIZIONE */
+/* MOSTRA */
 
-function chiavePosizione(){
- return "rsf_posizione_"+categoria+"_"+giudice;
-}
+async function mostraDaScaletta(){
 
-function caricaPosizione(){
+ origineRecupero=false;
 
- const salvata=localStorage.getItem(chiavePosizione());
+ const r=scalettaLive[indiceLive];
+ const c=concorrenteDaRef(r.cat,r.n);
 
- if(salvata!==null){
+ corrente={
+  cat:r.cat,
+  n:r.n,
+  pos:r.pos,
+  nome:c.nome
+ };
 
-  const p=parseInt(salvata,10);
-
-  if(!isNaN(p) && p>=0 && p<categorie[categoria].length){
-   indice=p;
-  }else{
-   indice=0;
-  }
-
- }else{
-  indice=0;
- }
+ await mostraCorrente();
 }
 
 
-/* MOSTRA CONCORRENTE */
+async function mostraCorrente(){
 
-async function mostra(){
+ categoriaChiusa=await leggiChiusura(corrente.cat);
 
- const lista=categorie[categoria];
- const c=lista[indice];
-
- categoriaChiusa=await leggiChiusura(categoria);
-
- document.getElementById("categoriaTitolo").innerText=categoria;
+ document.getElementById("categoriaTitolo").innerText=corrente.cat;
 
  document.getElementById("numero").innerText=
-  "CONCORRENTE "+c.n+" DI "+lista.length;
+  "USCITA "+corrente.pos+" DI "+scalettaLive.length;
 
- document.getElementById("nome").innerText=c.nome;
+ document.getElementById("categoriaBadge").innerText=
+  corrente.cat+" • N. "+corrente.n;
+
+ document.getElementById("nome").innerText=corrente.nome;
 
  document.getElementById("ok").style.display="none";
 
  votoInviato=false;
 
- /*
-  Se questo giurato aveva già votato
-  il concorrente, recuperiamo il suo voto.
- */
-
  try{
 
   const snap=await get(
-   ref(db,"voti/"+categoria+"/"+c.n+"/"+giudice)
+   ref(db,"voti/"+corrente.cat+"/"+corrente.n+"/"+giudice)
   );
 
   if(snap.exists()){
@@ -375,7 +557,6 @@ async function mostra(){
    document.getElementById("votoLabel").innerText=votoSalvato;
 
    votoInviato=true;
-
    document.getElementById("ok").style.display="block";
 
   }else{
@@ -396,7 +577,7 @@ async function mostra(){
 
   document.getElementById("send").disabled=true;
   document.getElementById("status").innerText=
-   "Votazione "+categoria+" CHIUSA";
+   "Votazione "+corrente.cat+" CHIUSA DALLA REGIA";
 
  }else{
 
@@ -407,27 +588,28 @@ async function mostra(){
 }
 
 
-/* INVIO / MODIFICA VOTO */
+/* INVIO VOTO */
 
 window.inviaVoto=async function(){
 
+ if(!corrente) return;
+
+ categoriaChiusa=await leggiChiusura(corrente.cat);
+
  if(categoriaChiusa){
-  alert("La votazione "+categoria+" è chiusa.");
+  alert("La votazione "+corrente.cat+" è chiusa dalla REGIA.");
+  document.getElementById("send").disabled=true;
   return;
  }
 
- const c=categorie[categoria][indice];
-
- const voto=parseFloat(
-  document.getElementById("voto").value
- );
+ const voto=parseFloat(document.getElementById("voto").value);
 
  let vecchioVoto=null;
 
  try{
 
   const precedente=await get(
-   ref(db,"voti/"+categoria+"/"+c.n+"/"+giudice)
+   ref(db,"voti/"+corrente.cat+"/"+corrente.n+"/"+giudice)
   );
 
   if(precedente.exists()){
@@ -443,7 +625,7 @@ window.inviaVoto=async function(){
 
   messaggio=
    "STAI MODIFICANDO IL VOTO\n\n"+
-   c.nome+
+   corrente.nome+
    "\n\n"+
    vecchioVoto+" → "+voto+
    "\n\nCONFERMI?";
@@ -452,21 +634,15 @@ window.inviaVoto=async function(){
 
   messaggio=
    "CONFERMI IL VOTO?\n\n"+
-   c.nome+
+   corrente.nome+
    "\n\nVOTO: "+voto;
 
  }
 
-
  if(!confirm(messaggio)) return;
 
 
- /*
-  Ricontrolliamo la chiusura immediatamente
-  prima della scrittura.
- */
-
- categoriaChiusa=await leggiChiusura(categoria);
+ categoriaChiusa=await leggiChiusura(corrente.cat);
 
  if(categoriaChiusa){
   alert("La REGIA ha chiuso la votazione.");
@@ -478,11 +654,12 @@ window.inviaVoto=async function(){
  try{
 
   await set(
-   ref(db,"voti/"+categoria+"/"+c.n+"/"+giudice),
+   ref(db,"voti/"+corrente.cat+"/"+corrente.n+"/"+giudice),
    {
     voto:voto,
-    nome:c.nome,
+    nome:corrente.nome,
     giurato:giudice,
+    categoria:corrente.cat,
     timestamp:Date.now()
    }
   );
@@ -490,8 +667,7 @@ window.inviaVoto=async function(){
   votoInviato=true;
 
   document.getElementById("ok").style.display="block";
-  document.getElementById("status").innerText=
-   "Voto salvato online";
+  document.getElementById("status").innerText="Voto salvato online";
 
  }catch(e){
 
@@ -508,56 +684,147 @@ window.prossimo=async function(){
 
  if(!votoInviato){
 
-  alert(
-   "Devi confermare il voto prima di passare al prossimo concorrente"
-  );
+  alert("Devi confermare il voto prima di passare al prossimo concorrente");
+  return;
 
+ }
+
+ if(origineRecupero){
+
+  origineRecupero=false;
+
+  document.getElementById("status").innerText=
+   "Rientrato dalla modalità recupero.";
+
+  await mostraDaScaletta();
   return;
  }
 
- const lista=categorie[categoria];
 
- if(indice < lista.length-1){
+ if(indiceLive < scalettaLive.length-1){
 
-  indice++;
+  indiceLive++;
 
-  localStorage.setItem(
-   chiavePosizione(),
-   indice
-  );
+  localStorage.setItem(chiavePosizione(),indiceLive);
 
-  await mostra();
+  await mostraDaScaletta();
 
  }else{
 
-  alert(
-   "Hai completato tutti i concorrenti "+categoria+
-   ".\n\nOra puoi usare RIVEDI VOTI per controllare le valutazioni."
-  );
-
+  alert("Hai completato tutti i concorrenti della scaletta.");
   apriRevisione();
+
  }
 };
 
 
-/* REVISIONE / CAMBIO SCALETTA */
+/* RECUPERA */
+
+window.apriRecupero=async function(){
+
+ document.getElementById("voting").style.display="none";
+ document.getElementById("revisione").style.display="none";
+ document.getElementById("recupero").style.display="block";
+
+ document.getElementById("cerca").value="";
+
+ await aggiornaRecupero();
+};
+
+
+window.aggiornaRecupero=async function(){
+
+ const filtro=document.getElementById("cerca").value.trim().toUpperCase();
+
+ const lista=tuttiConcorrenti().filter(c=>
+  c.nome.toUpperCase().includes(filtro) ||
+  c.cat.toUpperCase().includes(filtro)
+ );
+
+ let html="";
+
+ for(const c of lista){
+
+  let votoTesto="DA VOTARE";
+  let classe="davotare";
+
+  const chiusa=await leggiChiusura(c.cat);
+
+  try{
+
+   const snap=await get(
+    ref(db,"voti/"+c.cat+"/"+c.n+"/"+giudice)
+   );
+
+   if(snap.exists()){
+    votoTesto="VOTATO • "+Number(snap.val().voto);
+    classe="votato";
+   }
+
+  }catch(e){}
+
+  if(chiusa){
+   classe="bloccato";
+  }
+
+  html+=`
+   <div class="rigaConcorrente"
+        onclick="selezionaConcorrente('${c.cat}',${c.n},true)">
+    <div>
+     <b>${c.nome}</b><br>
+     <span class="badge">${c.cat}</span>
+    </div>
+    <div class="${classe}">${votoTesto}</div>
+   </div>
+  `;
+ }
+
+ document.getElementById("listaRecupero").innerHTML=
+  html || "<div class='small'>Nessun concorrente trovato</div>";
+};
+
+
+window.selezionaConcorrente=async function(cat,n,daRecupero){
+
+ const c=concorrenteDaRef(cat,n);
+
+ let posTrovata=scalettaLive.find(x=>x.cat===cat && x.n===n);
+
+ corrente={
+  cat:cat,
+  n:n,
+  pos:posTrovata ? posTrovata.pos : "-",
+  nome:c.nome
+ };
+
+ origineRecupero=!!daRecupero;
+
+ document.getElementById("recupero").style.display="none";
+ document.getElementById("revisione").style.display="none";
+ document.getElementById("voting").style.display="block";
+
+ await mostraCorrente();
+};
+
+
+/* RIVEDI VALUTAZIONI */
 
 window.apriRevisione=async function(){
 
  document.getElementById("voting").style.display="none";
+ document.getElementById("recupero").style.display="none";
  document.getElementById("revisione").style.display="block";
-
- document.getElementById("revisioneCategoria").innerText=categoria;
 
  await aggiornaRevisione();
 };
 
 
-async function aggiornaRevisione(){
+window.aggiornaRevisione=async function(){
 
- const lista=categorie[categoria];
+ const cat=document.getElementById("categoriaRevisione").value;
+ const lista=categorie[cat];
 
- categoriaChiusa=await leggiChiusura(categoria);
+ const chiusa=await leggiChiusura(cat);
 
  let html="";
 
@@ -569,77 +836,55 @@ async function aggiornaRevisione(){
   try{
 
    const snap=await get(
-    ref(db,"voti/"+categoria+"/"+c.n+"/"+giudice)
+    ref(db,"voti/"+cat+"/"+c.n+"/"+giudice)
    );
 
    if(snap.exists()){
-
     votoTesto="VOTATO • "+Number(snap.val().voto);
     classe="votato";
-
    }
 
   }catch(e){}
 
-  if(categoriaChiusa){
+  if(chiusa){
    classe="bloccato";
   }
 
   html+=`
    <div class="rigaConcorrente"
-        onclick="selezionaRecupero(${c.n})">
-
+        onclick="selezionaConcorrente('${cat}',${c.n},true)">
     <div>
-     <b>${c.n}. ${c.nome}</b>
+     <b>${c.n}. ${c.nome}</b><br>
+     <span class="badge">${cat}</span>
     </div>
-
-    <div class="${classe}">
-     ${votoTesto}
-    </div>
-
+    <div class="${classe}">${votoTesto}</div>
    </div>
   `;
  }
 
+ if(chiusa){
+  html=
+   "<div class='small' style='margin-bottom:15px'>VOTAZIONE "+
+   cat+
+   " CHIUSA DALLA REGIA. I voti sono consultabili ma non modificabili.</div>"+
+   html;
+ }
+
  document.getElementById("listaRevisione").innerHTML=html;
-}
-
-
-window.selezionaRecupero=async function(numero){
-
- indice=numero-1;
-
- /*
-  NON cambiamo la posizione della sequenza
-  salvata: questa è una deviazione volontaria
-  per cambio scaletta/revisione.
- */
-
- document.getElementById("revisione").style.display="none";
- document.getElementById("voting").style.display="block";
-
- await mostra();
 };
 
 
 window.tornaVotazione=async function(){
 
- /*
-  Torna alla posizione normale memorizzata.
- */
-
- caricaPosizione();
-
+ document.getElementById("recupero").style.display="none";
  document.getElementById("revisione").style.display="none";
  document.getElementById("voting").style.display="block";
 
- await mostra();
+ await mostraDaScaletta();
 };
 
 
-/* =========================
-   REGIA
-========================= */
+/* REGIA */
 
 window.cambiaCategoriaRegia=function(){
 
@@ -653,28 +898,31 @@ window.cambiaCategoriaRegia=function(){
 
 function avviaRegia(cat){
 
- /*
-  Se esiste già un listener REGIA,
-  lo interrompiamo prima di crearne un altro.
- */
-
  if(unsubscribeRegia){
   unsubscribeRegia();
   unsubscribeRegia=null;
  }
 
- aggiornaStatoRegia(cat);
+ if(unsubscribeStatoRegia){
+  unsubscribeStatoRegia();
+  unsubscribeStatoRegia=null;
+ }
 
- const riferimento=ref(db,"voti/"+cat);
+ unsubscribeStatoRegia=onValue(
+  ref(db,"controllo/"+cat+"/chiusa"),
+  snap=>{
+   const chiusa=snap.exists() && snap.val()===true;
+   aggiornaStatoRegia(cat,chiusa);
+  }
+ );
 
- unsubscribeRegia=onValue(riferimento,(snapshot)=>{
+ unsubscribeRegia=onValue(ref(db,"voti/"+cat),(snapshot)=>{
 
   const dati=snapshot.val() || {};
   const lista=categorie[cat];
 
   let risultati=[];
   let totaleVoti=0;
-
 
   lista.forEach(c=>{
 
@@ -689,9 +937,7 @@ function avviaRegia(cat){
      votiConcorrente[codice] &&
      !isNaN(Number(votiConcorrente[codice].voto))
     ){
-     votiValidi.push(
-      Number(votiConcorrente[codice].voto)
-     );
+     votiValidi.push(Number(votiConcorrente[codice].voto));
     }
    }
 
@@ -699,10 +945,7 @@ function avviaRegia(cat){
 
    const totale=votiValidi.reduce((a,b)=>a+b,0);
 
-   const media=
-    votiValidi.length
-    ? totale/votiValidi.length
-    : 0;
+   const media=votiValidi.length ? totale/votiValidi.length : 0;
 
    risultati.push({
     numero:c.n,
@@ -715,19 +958,16 @@ function avviaRegia(cat){
 
   });
 
-
   risultati.sort((a,b)=>
    b.totale-a.totale ||
    b.media-a.media ||
    a.numero-b.numero
   );
 
-
   const massimo=lista.length*6;
 
   document.getElementById("conteggio").innerText=
    totaleVoti+" / "+massimo;
-
 
   document.getElementById("classifica").innerHTML=
    risultati.map((r,i)=>{
@@ -742,28 +982,21 @@ function avviaRegia(cat){
       r.dati[codice] &&
       !isNaN(Number(r.dati[codice].voto));
 
-     stato+=codice+" "+(presente ? "✓" : "—");
+     stato+=nomiGiurati[codice]+" "+(presente ? "✓" : "—");
 
      if(g<6) stato+=" · ";
     }
 
     return `
      <div class="rank">
-
       <div>
        <b>${i+1}. ${r.nome}</b><br>
-
-       <span style="color:#8893aa">
-        ${r.ricevuti}/6 voti
-       </span>
-
+       <span style="color:#8893aa">${r.ricevuti}/6 voti</span>
        <div class="giurati">${stato}</div>
       </div>
-
       <div style="font-size:21px;font-weight:800">
        ${r.totale.toFixed(1)}
       </div>
-
      </div>
     `;
 
@@ -773,70 +1006,61 @@ function avviaRegia(cat){
 }
 
 
-async function aggiornaStatoRegia(cat){
-
- const chiusa=await leggiChiusura(cat);
+function aggiornaStatoRegia(cat,chiusa){
 
  const el=document.getElementById("statoCategoria");
+
+ const btnStop=document.getElementById("btnStop");
+ const btnApri=document.getElementById("btnApri");
 
  if(chiusa){
 
   el.innerText="VOTAZIONE CHIUSA";
-  document.getElementById("titoloRegia").innerText=
-   "CLASSIFICA FINALE";
+  document.getElementById("titoloRegia").innerText="CLASSIFICA FINALE";
+
+  btnStop.classList.add("hidden");
+  btnApri.classList.remove("hidden");
 
  }else{
 
   el.innerText="VOTAZIONE APERTA";
-  document.getElementById("titoloRegia").innerText=
-   "VOTAZIONE LIVE";
+  document.getElementById("titoloRegia").innerText="VOTAZIONE LIVE";
+
+  btnStop.classList.remove("hidden");
+  btnApri.classList.add("hidden");
 
  }
 }
 
-
-/* APRI CATEGORIA */
 
 window.apriCategoria=async function(){
 
  const cat=document.getElementById("categoriaRegia").value;
 
  const conferma=confirm(
-  "APRIRE / RIAPRIRE LA VOTAZIONE "+cat+"?"
+  "RIAPRIRE LA VOTAZIONE "+cat+"?\n\nI giurati potranno di nuovo modificare i voti."
  );
 
  if(!conferma) return;
 
  try{
 
-  await set(
-   ref(db,"controllo/"+cat+"/chiusa"),
-   false
-  );
+  await set(ref(db,"controllo/"+cat+"/chiusa"),false);
 
-  alert("VOTAZIONE "+cat+" APERTA");
-
-  aggiornaStatoRegia(cat);
+  alert("VOTAZIONE "+cat+" RIAPERTA");
 
  }catch(e){
 
-  alert("ERRORE: impossibile aprire la categoria");
+  alert("ERRORE: impossibile riaprire la categoria");
 
  }
 };
 
 
-/* CHIUSURA DEFINITIVA */
-
 window.chiudiCategoria=async function(){
 
  const cat=document.getElementById("categoriaRegia").value;
-
  const lista=categorie[cat];
-
- /*
-  Prima controlliamo quanti voti esistono.
- */
 
  let totale=0;
 
@@ -865,45 +1089,31 @@ window.chiudiCategoria=async function(){
 
  }catch(e){}
 
-
  const massimo=lista.length*6;
 
-
  let messaggio=
-  "ATTENZIONE\n\n"+
-  "Stai per CHIUDERE DEFINITIVAMENTE "+cat+
-  ".\n\nVoti ricevuti: "+totale+" / "+massimo+
-  "\n\nDopo la chiusura i giurati non potranno più modificare i voti.";
-
+  "STOP VOTO "+cat+"\n\n"+
+  "Voti ricevuti: "+totale+" / "+massimo+
+  "\n\nDopo lo STOP i giurati non potranno più modificare i voti.";
 
  if(totale<massimo){
-
   messaggio+=
    "\n\nATTENZIONE: NON SONO ANCORA ARRIVATI TUTTI I VOTI.";
-
  }
-
 
  if(!confirm(messaggio)) return;
 
-
  const seconda=confirm(
-  "ULTIMA CONFERMA\n\nCHIUDERE "+cat+"?"
+  "ULTIMA CONFERMA\n\nDARE STOP VOTO A "+cat+"?"
  );
 
  if(!seconda) return;
 
-
  try{
 
-  await set(
-   ref(db,"controllo/"+cat+"/chiusa"),
-   true
-  );
+  await set(ref(db,"controllo/"+cat+"/chiusa"),true);
 
-  alert("VOTAZIONE "+cat+" CHIUSA");
-
-  aggiornaStatoRegia(cat);
+  alert("STOP VOTO "+cat+" ATTIVATO");
 
  }catch(e){
 
