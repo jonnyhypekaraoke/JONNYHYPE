@@ -268,7 +268,13 @@ window.inviaVoto=async function(){
 
  const c=baby[indice];
  const voto=parseFloat(document.getElementById("voto").value);
+const conferma = confirm(
+  "CONFERMI IL VOTO?\n\n" +
+  c.nome + "\n\n" +
+  "VOTO: " + voto
+);
 
+if (!conferma) return;
  try{
 
    await set(
