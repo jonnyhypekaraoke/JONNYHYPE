@@ -1,44 +1,3512 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RSF 2026 • Giuria</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+ background:#070b18;
+ color:#fff;
+ min-height:100vh;
+}
+
+.wrap{
+ max-width:680px;
+ margin:auto;
+ padding:24px 18px 60px;
+}
+
+h1{
+ font-size:24px;
+ margin:0;
+ text-align:center;
+}
+
+.sub{
+ text-align:center;
+ color:#aeb8d0;
+ margin:6px 0 25px;
+}
+
+.card{
+ background:#11182d;
+ border:1px solid #293455;
+ border-radius:18px;
+ padding:20px;
+ margin-bottom:16px;
+}
+
+label{
+ display:block;
+ color:#aeb8d0;
+ margin-bottom:8px;
+ font-size:14px;
+}
+
+select,input,button{
+ width:100%;
+ font-size:18px;
+ border-radius:12px;
+}
+
+select,input{
+ background:#080d1c;
+ color:#fff;
+ border:1px solid #354265;
+ padding:14px;
+ margin-bottom:15px;
+}
+
+button{
+ border:0;
+ padding:16px;
+ font-weight:800;
+ cursor:pointer;
+}
+
+button:disabled{
+ opacity:.45;
+ cursor:not-allowed;
+}
+
+.invia{
+ background:#d1a954;
+ color:#090b12;
+}
+
+.next{
+ margin-top:12px;
+ background:#293455;
+ color:#fff;
+}
+
+.recupera{
+ margin-top:12px;
+ background:#18213a;
+ color:#d7deef;
+ border:1px solid #354265;
+}
+
+.rivedi{
+ margin-top:12px;
+ background:#22314f;
+ color:#fff;
+ border:1px solid #42557f;
+}
+
+.back{
+ background:#293455;
+ color:#fff;
+ margin-bottom:16px;
+}
+
+.stop{
+ background:#9b2634;
+ color:#fff;
+ margin-top:12px;
+}
+
+.apri{
+ background:#176044;
+ color:#fff;
+ margin-top:12px;
+}
+
+.compensaBtn{
+ background:#9b2634;
+ color:#fff;
+ font-size:13px;
+ padding:10px 12px;
+ width:auto;
+}
+
+.restoreBtn{
+ background:#293455;
+ color:#fff;
+ font-size:13px;
+ padding:10px 12px;
+ width:auto;
+}
+
+.nome{
+ font-size:25px;
+ font-weight:800;
+ text-align:center;
+ margin:6px 0;
+}
+
+.numero{
+ text-align:center;
+ color:#d1a954;
+ font-weight:800;
+ margin-bottom:8px;
+}
+
+.categoriaBadge{
+ text-align:center;
+ font-size:14px;
+ color:#aeb8d0;
+ margin-bottom:18px;
+}
+
+.voto{
+ font-size:46px;
+ font-weight:800;
+ text-align:center;
+ margin:12px 0;
+}
+
+input[type=range]{
+ padding:0;
+ accent-color:#d1a954;
+}
+
+.ok{
+ display:none;
+ background:#123a2b;
+ border:1px solid #1f7956;
+ padding:15px;
+ border-radius:12px;
+ text-align:center;
+ margin-top:15px;
+}
+
+.small{
+ color:#8893aa;
+ text-align:center;
+ font-size:12px;
+ margin-top:15px;
+}
+
+#admin,#voting,#recupero,#revisione{
+ display:none;
+}
+
+.rank,
+.rigaConcorrente,
+.rigaVoto{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:12px;
+ padding:14px 4px;
+ border-bottom:1px solid #293455;
+}
+
+.rank{
+ cursor:pointer;
+}
+
+.rigaConcorrente{
+ cursor:pointer;
+}
+
+.rank:last-child,
+.rigaConcorrente:last-child,
+.rigaVoto:last-child{
+ border-bottom:0;
+}
+
+.votato{
+ color:#69d29a;
+ font-weight:800;
+ white-space:nowrap;
+}
+
+.davotare{
+ color:#d1a954;
+ font-weight:800;
+ white-space:nowrap;
+}
+
+.bloccato{
+ color:#8893aa;
+ font-weight:800;
+ white-space:nowrap;
+}
+
+.compensato{
+ color:#ffca6e;
+ font-weight:900;
+}
+
+.badge{
+ display:inline-block;
+ padding:5px 8px;
+ border-radius:8px;
+ background:#080d1c;
+ font-size:12px;
+ margin-top:5px;
+ color:#d1a954;
+}
+
+.giurati{
+ color:#8893aa;
+ font-size:12px;
+ margin-top:5px;
+ line-height:1.5;
+}
+
+.adminTitle{
+ text-align:center;
+ font-size:22px;
+ font-weight:800;
+}
+
+.adminSub{
+ text-align:center;
+ color:#aeb8d0;
+ margin-bottom:10px;
+}
+
+.search{
+ margin-bottom:16px;
+ font-size:20px;
+ border:2px solid #d1a954;
+}
+
+.modeTitle{
+ font-size:20px;
+ font-weight:900;
+ text-align:center;
+ margin-bottom:8px;
+}
+
+.hidden{
+ display:none!important;
+}
+
+.statoAperta{
+ background:#123a2b;
+ border:1px solid #1f7956;
+ color:#69d29a;
+ padding:14px;
+ border-radius:14px;
+ margin-top:12px;
+}
+
+.statoChiusa{
+ background:#3a1218;
+ border:1px solid #9b2634;
+ color:#ff8f9a;
+ padding:14px;
+ border-radius:14px;
+ margin-top:12px;
+}
+
+.avvisoChiuso{
+ background:#3a1218;
+ border:1px solid #9b2634;
+ color:#ff8f9a;
+ padding:16px;
+ border-radius:14px;
+ text-align:center;
+ font-weight:900;
+ margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<h1>RAVENNA SONG FESTIVAL 2026</h1>
+<div class="sub">GIURIA • FINALE</div>
+
+
+<!-- LOGIN -->
+
+<div id="login" class="card">
+
+<label>Seleziona giurato</label>
+
+<select id="giurato">
+<option value="">— scegli —</option>
+<option value="G1">EMANUELA CORTESI</option>
+<option value="G2">MAURIZIO TIRELLI</option>
+<option value="G3">CHIARA BELLA</option>
+<option value="G4">RUGGERO RICCI</option>
+<option value="G5">MATILDE MONTANARI</option>
+<option value="G6">ALESSANDRO BRAGA</option>
+<option value="REGIA">REGIA / DIREZIONE ARTISTICA</option>
+</select>
+
+<button class="invia" onclick="entra()">ENTRA</button>
+
+</div>
+
+
+<!-- GIURATO -->
+
+<div id="voting">
+
+<div class="card">
+<div class="adminSub">VOTAZIONE LIVE</div>
+<div id="categoriaTitolo" class="adminTitle"></div>
+</div>
+
+<div class="card">
+
+<div id="numero" class="numero"></div>
+<div id="categoriaBadge" class="categoriaBadge"></div>
+
+<div id="nome" class="nome"></div>
+
+
+<div id="boxChiuso" class="avvisoChiuso hidden">
+VOTAZIONE CHIUSA DALLA REGIA
+<br><br>
+I voti di questa categoria sono stati acquisiti definitivamente.
+</div>
+
+
+<div id="boxVoto">
+
+<div class="voto" id="votoLabel">15</div>
+
+<input
+ id="voto"
+ type="range"
+ min="10"
+ max="20"
+ step="0.5"
+ value="15"
+ oninput="document.getElementById('votoLabel').innerText=this.value"
+>
+
+<button class="invia" id="send" onclick="inviaVoto()">
+CONFERMA VOTO
+</button>
+
+<div class="ok" id="ok">
+VOTO REGISTRATO
+</div>
+
+</div>
+
+
+<button class="next" onclick="prossimo()">
+PROSSIMO CONCORRENTE
+</button>
+
+<button class="recupera" onclick="apriRecupero()">
+CAMBIO SCALETTA / RECUPERA
+</button>
+
+<button class="rivedi" onclick="apriRevisione()">
+RIVEDI VALUTAZIONI
+</button>
+
+</div>
+
+<div class="small" id="status">
+Sistema pronto
+</div>
+
+</div>
+
+
+<!-- RECUPERO -->
+
+<div id="recupero">
+
+<button class="back" onclick="tornaVotazione()">
+← TORNA ALLA VOTAZIONE
+</button>
+
+<div class="card">
+
+<div class="modeTitle">
+CAMBIO SCALETTA / RECUPERA
+</div>
+
+<div class="small">
+Cerca il concorrente senza dover conoscere la categoria.
+</div>
+
+</div>
+
+<input
+ id="cerca"
+ class="search"
+ placeholder="CERCA CONCORRENTE"
+ oninput="aggiornaRecupero()"
+>
+
+<div class="card" id="listaRecupero"></div>
+
+</div>
+
+
+<!-- REVISIONE GIURATO -->
+
+<div id="revisione">
+
+<button class="back" onclick="tornaVotazione()">
+← TORNA ALLA VOTAZIONE
+</button>
+
+<div class="card">
+
+<div class="modeTitle">
+RIVEDI VALUTAZIONI
+</div>
+
+<div class="small">
+Puoi rivedere i tuoi voti solamente finché la REGIA non chiude la categoria.
+</div>
+
+<label style="margin-top:16px">
+Categoria
+</label>
+
+<select id="categoriaRevisione" onchange="aggiornaRevisione()">
+<option value="BABY">BABY</option>
+<option value="GIOVANI">GIOVANI</option>
+<option value="BIG">BIG</option>
+<option value="SENIOR">SENIOR</option>
+</select>
+
+</div>
+
+<div class="card" id="listaRevisione"></div>
+
+</div>
+
+
+<!-- REGIA -->
+
+<div id="admin">
+
+<div class="card">
+
+<div class="adminSub">
+REGIA / DIREZIONE ARTISTICA
+</div>
+
+<label>Visualizzazione</label>
+
+<select id="categoriaRegia" onchange="cambiaCategoriaRegia()">
+<option value="BABY">BABY</option>
+<option value="GIOVANI">GIOVANI</option>
+<option value="BIG">BIG</option>
+<option value="SENIOR">SENIOR</option>
+<option value="SCALETTA">SCALETTA</option>
+</select>
+
+
+<div id="statoCategoria" class="adminTitle"></div>
+
+
+<button
+ id="btnStop"
+ class="stop"
+ onclick="chiudiCategoria()"
+>
+STOP VOTO
+</button>
+
+
+<button
+ id="btnApri"
+ class="apri hidden"
+ onclick="apriCategoria()"
+>
+RIAPRI VOTAZIONE
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div id="titoloRegia" class="adminSub">
+VOTAZIONE LIVE
+</div>
+
+<div id="nomeCategoriaRegia" class="adminTitle">
+BABY
+</div>
+
+<div id="classifica"></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="adminSub">
+VOTI RICEVUTI
+</div>
+
+<div
+ id="conteggio"
+ style="text-align:center;font-size:38px;font-weight:800;margin-top:10px"
+>
+0 / 36
+</div>
+
+</div>
+
+
+<div id="dettaglioRegia" class="card hidden"></div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+import {
+ getDatabase,
+ ref,
+ set,
+ remove,
+ onValue,
+ get
+}
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
+
+const firebaseConfig={
+
+ apiKey:"AIzaSyDyQSMV8bAXOFDUsKWUPqP5RpthLPloSl8",
+
+ authDomain:"rsf-giuria-2026.firebaseapp.com",
+
+ projectId:"rsf-giuria-2026",
+
+ storageBucket:"rsf-giuria-2026.firebasestorage.app",
+
+ messagingSenderId:"108324441624",
+
+ appId:"1:108324441624:web:9cfef3eaa723dd907bbd6d",
+
+ databaseURL:
+ "https://rsf-giuria-2026-default-rtdb.europe-west1.firebasedatabase.app"
+
+};
+
+
+const app=initializeApp(firebaseConfig);
+
+const db=getDatabase(app);
+
+
+
+/* =========================
+   CONCORRENTI
+========================= */
+
+
+const categorie={
+
+
+ BABY:[
+
+  {n:1,nome:"ALESSANDRO CARUSO"},
+
+  {n:2,nome:"ANNASOLE DALMONTE"},
+
+  {n:3,nome:"ARIEL FULGENTE"},
+
+  {n:4,nome:"LUIGI DI IORIO"},
+
+  {n:5,nome:"MICHELE COMPAGNONI"},
+
+  {n:6,nome:"NATALIA MOLONE"}
+
+ ],
+
+
+ GIOVANI:[
+
+  {n:1,nome:"ELEONORA RUGGERI"},
+
+  {n:2,nome:"FRANCESCO PAOLO"},
+
+  {n:3,nome:"SOFIA PAOLINI"},
+
+  {n:4,nome:"OMAR"},
+
+  {n:5,nome:"BANCHY & FLYX"},
+
+  {n:6,nome:"SOFIA VIGGIANO"},
+
+  {n:7,nome:"IL CASO"},
+
+  {n:8,nome:"SAMUELE BERTONI"},
+
+  {n:9,nome:"SAMU"},
+
+  {n:10,nome:"SOFIA RONCHI"},
+
+  {n:11,nome:"MICHELANGELO BALDINI"},
+
+  {n:12,nome:"ELEONORA NERI"}
+
+ ],
+
+
+ BIG:[
+
+  {n:1,nome:"EMILY LO PINTO"},
+
+  {n:2,nome:"CRISTIAN BIONDI"},
+
+  {n:3,nome:"GIULIA ROSSI"},
+
+  {n:4,nome:"FABIO RAGGINI"},
+
+  {n:5,nome:"VALENTINA CARINELLI"},
+
+  {n:6,nome:"JESSICA DOCCIOLI"},
+
+  {n:7,nome:"APHRODYS"},
+
+  {n:8,nome:"MARTINA RICCI"},
+
+  {n:9,nome:"MI.MA"},
+
+  {n:10,nome:"LILY"},
+
+  {n:11,nome:"SERGIO BERTUZZI"},
+
+  {n:12,nome:"GIÙ DI CORDE"},
+
+  {n:13,nome:"GIULIA DRADI"},
+
+  {n:14,nome:"GIORGIA QUITADAMO"},
+
+  {n:15,nome:"KEVIN FABBRI"},
+
+  {n:16,nome:"GIULIA GUIDI"}
+
+ ],
+
+
+ SENIOR:[
+
+  {n:1,nome:"RINO"},
+
+  {n:2,nome:"MONICA"},
+
+  {n:3,nome:"ANTONIO TONJ PICCININI"},
+
+  {n:4,nome:"PAOLO ROMBOLI"},
+
+  {n:5,nome:"MAURY"}
+
+ ]
+
+};
+
+
+
+/* =========================
+   ORDINE LIVE
+========================= */
+
+
+/*
+ BABY RESTANO ESATTAMENTE COME PRIMA.
+
+ POI PARTE LA SCALETTA PRINCIPALE
+ DEI 33 CONCORRENTI.
+*/
+
+
 const scalettaLive=[
- {pos:1,cat:"GIOVANI",n:1},
- {pos:2,cat:"GIOVANI",n:2},
- {pos:3,cat:"GIOVANI",n:3},
- {pos:4,cat:"GIOVANI",n:4},
- {pos:5,cat:"GIOVANI",n:5},
- {pos:6,cat:"GIOVANI",n:6},
- {pos:7,cat:"GIOVANI",n:7},
- {pos:8,cat:"GIOVANI",n:8},
- {pos:9,cat:"GIOVANI",n:9},
- {pos:10,cat:"GIOVANI",n:10},
- {pos:11,cat:"GIOVANI",n:11},
- {pos:12,cat:"GIOVANI",n:12},
 
- {pos:13,cat:"BIG",n:1},
- {pos:14,cat:"BIG",n:2},
- {pos:15,cat:"BIG",n:3},
- {pos:16,cat:"SENIOR",n:1},
- {pos:17,cat:"BIG",n:4},
- {pos:18,cat:"BIG",n:5},
- {pos:19,cat:"SENIOR",n:2},
- {pos:20,cat:"BIG",n:6},
- {pos:21,cat:"SENIOR",n:3},
- {pos:22,cat:"BIG",n:7},
- {pos:23,cat:"BIG",n:8},
- {pos:24,cat:"SENIOR",n:4},
- {pos:25,cat:"BIG",n:9},
- {pos:26,cat:"SENIOR",n:5},
- {pos:27,cat:"BIG",n:10},
- {pos:28,cat:"BIG",n:11},
- {pos:29,cat:"BIG",n:12},
- {pos:30,cat:"BIG",n:13},
- {pos:31,cat:"BIG",n:14},
- {pos:32,cat:"BIG",n:15},
- {pos:33,cat:"BIG",n:16},
 
- // BABY RESTANO COME SONO
- {pos:34,cat:"BABY",n:1},
- {pos:35,cat:"BABY",n:2},
- {pos:36,cat:"BABY",n:3},
- {pos:37,cat:"BABY",n:4},
- {pos:38,cat:"BABY",n:5},
- {pos:39,cat:"BABY",n:6}
+ /* BABY */
+
+ {
+  blocco:"BABY",
+  uscita:1,
+  cat:"BABY",
+  n:1
+ },
+
+ {
+  blocco:"BABY",
+  uscita:2,
+  cat:"BABY",
+  n:2
+ },
+
+ {
+  blocco:"BABY",
+  uscita:3,
+  cat:"BABY",
+  n:3
+ },
+
+ {
+  blocco:"BABY",
+  uscita:4,
+  cat:"BABY",
+  n:4
+ },
+
+ {
+  blocco:"BABY",
+  uscita:5,
+  cat:"BABY",
+  n:5
+ },
+
+ {
+  blocco:"BABY",
+  uscita:6,
+  cat:"BABY",
+  n:6
+ },
+
+
+ /* SCALETTA PRINCIPALE 1-33 */
+
+
+ {blocco:"SCALETTA",uscita:1,cat:"GIOVANI",n:1},
+
+ {blocco:"SCALETTA",uscita:2,cat:"GIOVANI",n:2},
+
+ {blocco:"SCALETTA",uscita:3,cat:"GIOVANI",n:3},
+
+ {blocco:"SCALETTA",uscita:4,cat:"GIOVANI",n:4},
+
+ {blocco:"SCALETTA",uscita:5,cat:"GIOVANI",n:5},
+
+ {blocco:"SCALETTA",uscita:6,cat:"GIOVANI",n:6},
+
+ {blocco:"SCALETTA",uscita:7,cat:"GIOVANI",n:7},
+
+ {blocco:"SCALETTA",uscita:8,cat:"GIOVANI",n:8},
+
+ {blocco:"SCALETTA",uscita:9,cat:"GIOVANI",n:9},
+
+ {blocco:"SCALETTA",uscita:10,cat:"GIOVANI",n:10},
+
+ {blocco:"SCALETTA",uscita:11,cat:"GIOVANI",n:11},
+
+ {blocco:"SCALETTA",uscita:12,cat:"GIOVANI",n:12},
+
+ {blocco:"SCALETTA",uscita:13,cat:"BIG",n:1},
+
+ {blocco:"SCALETTA",uscita:14,cat:"BIG",n:2},
+
+ {blocco:"SCALETTA",uscita:15,cat:"BIG",n:3},
+
+ {blocco:"SCALETTA",uscita:16,cat:"SENIOR",n:1},
+
+ {blocco:"SCALETTA",uscita:17,cat:"BIG",n:4},
+
+ {blocco:"SCALETTA",uscita:18,cat:"BIG",n:5},
+
+ {blocco:"SCALETTA",uscita:19,cat:"SENIOR",n:2},
+
+ {blocco:"SCALETTA",uscita:20,cat:"BIG",n:6},
+
+ {blocco:"SCALETTA",uscita:21,cat:"SENIOR",n:3},
+
+ {blocco:"SCALETTA",uscita:22,cat:"BIG",n:7},
+
+ {blocco:"SCALETTA",uscita:23,cat:"BIG",n:8},
+
+ {blocco:"SCALETTA",uscita:24,cat:"SENIOR",n:4},
+
+ {blocco:"SCALETTA",uscita:25,cat:"BIG",n:9},
+
+ {blocco:"SCALETTA",uscita:26,cat:"SENIOR",n:5},
+
+ {blocco:"SCALETTA",uscita:27,cat:"BIG",n:10},
+
+ {blocco:"SCALETTA",uscita:28,cat:"BIG",n:11},
+
+ {blocco:"SCALETTA",uscita:29,cat:"BIG",n:12},
+
+ {blocco:"SCALETTA",uscita:30,cat:"BIG",n:13},
+
+ {blocco:"SCALETTA",uscita:31,cat:"BIG",n:14},
+
+ {blocco:"SCALETTA",uscita:32,cat:"BIG",n:15},
+
+ {blocco:"SCALETTA",uscita:33,cat:"BIG",n:16}
+
 ];
+
+
+
+/* SOLO I 33 PRINCIPALI */
+
+const scalettaPrincipale=
+ scalettaLive.filter(x=>x.blocco==="SCALETTA");
+
+
+
+const nomiGiurati={
+
+ G1:"CORTESI",
+
+ G2:"TIRELLI",
+
+ G3:"BELLA",
+
+ G4:"RICCI",
+
+ G5:"MONTANARI",
+
+ G6:"BRAGA"
+
+};
+
+
+
+let giudice="";
+
+let indiceLive=0;
+
+let corrente=null;
+
+let votoInviato=false;
+
+let categoriaChiusa=false;
+
+let origineRecupero=false;
+
+
+let unsubscribeRegia1=null;
+
+let unsubscribeRegia2=null;
+
+let unsubscribeRegia3=null;
+
+
+
+function concorrenteDaRef(cat,n){
+
+ return categorie[cat].find(x=>x.n===n);
+
+}
+
+
+
+function tuttiConcorrenti(){
+
+ let arr=[];
+
+ Object.keys(categorie).forEach(cat=>{
+
+  categorie[cat].forEach(c=>{
+
+   arr.push({
+    cat,
+    n:c.n,
+    nome:c.nome
+   });
+
+  });
+
+ });
+
+ arr.sort((a,b)=>
+  a.nome.localeCompare(b.nome)
+ );
+
+ return arr;
+
+}
+
+
+
+function chiavePosizione(){
+
+ /*
+  NUOVA CHIAVE:
+  NON PRENDE POSIZIONI VECCHIE
+  DA VERSIONI PRECEDENTI.
+ */
+
+ return "rsf_finale_v5_"+giudice;
+
+}
+
+
+
+function arrotondaMezzo(v){
+
+ return Math.round(v*2)/2;
+
+}
+
+
+
+/* =========================
+   LOGIN
+========================= */
+
+
+window.entra=async function(){
+
+ giudice=
+  document.getElementById("giurato").value;
+
+
+ if(!giudice){
+
+  alert("Seleziona il giurato");
+
+  return;
+
+ }
+
+
+ if(giudice==="REGIA"){
+
+  const pin=
+   prompt("INSERISCI PIN REGIA");
+
+
+  if(pin!=="1208"){
+
+   alert("PIN ERRATO");
+
+   giudice="";
+
+   return;
+
+  }
+
+
+  document.getElementById("login")
+   .style.display="none";
+
+
+  document.getElementById("admin")
+   .style.display="block";
+
+
+  cambiaCategoriaRegia();
+
+  return;
+
+ }
+
+
+ document.getElementById("login")
+  .style.display="none";
+
+
+ const salvata=
+  localStorage.getItem(
+   chiavePosizione()
+  );
+
+
+ if(salvata!==null){
+
+  const p=parseInt(salvata,10);
+
+
+  if(
+   !isNaN(p) &&
+   p>=0 &&
+   p<scalettaLive.length
+  ){
+
+   indiceLive=p;
+
+  }
+
+ }
+
+
+ document.getElementById("voting")
+  .style.display="block";
+
+
+ await mostraDaScaletta();
+
+};
+
+
+
+/* =========================
+   STATO CATEGORIA
+========================= */
+
+
+async function leggiChiusura(cat){
+
+ try{
+
+  const snap=
+   await get(
+    ref(
+     db,
+     "controllo/"+cat+"/chiusa"
+    )
+   );
+
+
+  return(
+   snap.exists() &&
+   snap.val()===true
+  );
+
+ }catch(e){
+
+  return false;
+
+ }
+
+}
+
+
+
+/* =========================
+   MOSTRA CONCORRENTE
+========================= */
+
+
+async function mostraDaScaletta(){
+
+ origineRecupero=false;
+
+
+ const r=
+  scalettaLive[indiceLive];
+
+
+ const c=
+  concorrenteDaRef(
+   r.cat,
+   r.n
+  );
+
+
+ corrente={
+
+  cat:r.cat,
+
+  n:r.n,
+
+  nome:c.nome,
+
+  blocco:r.blocco,
+
+  uscita:r.uscita
+
+ };
+
+
+ await mostraCorrente();
+
+}
+
+
+
+async function mostraCorrente(){
+
+ categoriaChiusa=
+  await leggiChiusura(
+   corrente.cat
+  );
+
+
+ document.getElementById(
+  "categoriaTitolo"
+ ).innerText=
+  corrente.cat;
+
+
+ if(corrente.blocco==="BABY"){
+
+  document.getElementById(
+   "numero"
+  ).innerText=
+   "BABY "+corrente.uscita+" DI 6";
+
+ }else{
+
+  document.getElementById(
+   "numero"
+  ).innerText=
+   "USCITA "+corrente.uscita+" DI 33";
+
+ }
+
+
+ document.getElementById(
+  "categoriaBadge"
+ ).innerText=
+  corrente.cat;
+
+
+ document.getElementById(
+  "nome"
+ ).innerText=
+  corrente.nome;
+
+
+ document.getElementById(
+  "ok"
+ ).style.display="none";
+
+
+ votoInviato=false;
+
+
+ /*
+  CATEGORIA CHIUSA:
+  NESSUN VOTO VISIBILE AL GIURATO.
+ */
+
+
+ if(categoriaChiusa){
+
+  document.getElementById(
+   "boxVoto"
+  ).classList.add("hidden");
+
+
+  document.getElementById(
+   "boxChiuso"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+   "status"
+  ).innerText=
+   "Votazione "+
+   corrente.cat+
+   " chiusa dalla REGIA";
+
+
+  return;
+
+ }
+
+
+ document.getElementById(
+  "boxVoto"
+ ).classList.remove("hidden");
+
+
+ document.getElementById(
+  "boxChiuso"
+ ).classList.add("hidden");
+
+
+ document.getElementById(
+  "send"
+ ).disabled=false;
+
+
+ document.getElementById(
+  "status"
+ ).innerText=
+  "Sistema pronto";
+
+
+ try{
+
+  const snap=
+   await get(
+    ref(
+     db,
+     "voti/"+
+     corrente.cat+
+     "/"+
+     corrente.n+
+     "/"+
+     giudice
+    )
+   );
+
+
+  if(snap.exists()){
+
+   const votoSalvato=
+    Number(
+     snap.val().voto
+    );
+
+
+   document.getElementById(
+    "voto"
+   ).value=
+    votoSalvato;
+
+
+   document.getElementById(
+    "votoLabel"
+   ).innerText=
+    votoSalvato;
+
+
+   votoInviato=true;
+
+
+   document.getElementById(
+    "ok"
+   ).style.display="block";
+
+  }else{
+
+   document.getElementById(
+    "voto"
+   ).value=15;
+
+
+   document.getElementById(
+    "votoLabel"
+   ).innerText="15";
+
+  }
+
+ }catch(e){
+
+  console.error(e);
+
+ }
+
+}
+
+
+
+/* =========================
+   INVIO VOTO
+========================= */
+
+
+window.inviaVoto=async function(){
+
+ if(!corrente) return;
+
+
+ categoriaChiusa=
+  await leggiChiusura(
+   corrente.cat
+  );
+
+
+ if(categoriaChiusa){
+
+  alert(
+   "La votazione "+
+   corrente.cat+
+   " è chiusa dalla REGIA."
+  );
+
+
+  await mostraCorrente();
+
+  return;
+
+ }
+
+
+ const voto=
+  parseFloat(
+   document.getElementById(
+    "voto"
+   ).value
+  );
+
+
+ let vecchioVoto=null;
+
+
+ try{
+
+  const precedente=
+   await get(
+    ref(
+     db,
+     "voti/"+
+     corrente.cat+
+     "/"+
+     corrente.n+
+     "/"+
+     giudice
+    )
+   );
+
+
+  if(precedente.exists()){
+
+   vecchioVoto=
+    Number(
+     precedente.val().voto
+    );
+
+  }
+
+ }catch(e){}
+
+
+ let messaggio;
+
+
+ if(vecchioVoto!==null){
+
+  messaggio=
+
+   "STAI MODIFICANDO IL VOTO\n\n"+
+
+   corrente.nome+
+
+   "\n\n"+
+
+   vecchioVoto+
+   " → "+
+   voto+
+
+   "\n\nCONFERMI?";
+
+ }else{
+
+  messaggio=
+
+   "CONFERMI IL VOTO?\n\n"+
+
+   corrente.nome+
+
+   "\n\nVOTO: "+
+   voto;
+
+ }
+
+
+ if(!confirm(messaggio)){
+
+  return;
+
+ }
+
+
+ categoriaChiusa=
+  await leggiChiusura(
+   corrente.cat
+  );
+
+
+ if(categoriaChiusa){
+
+  alert(
+   "La REGIA ha chiuso la votazione."
+  );
+
+
+  await mostraCorrente();
+
+  return;
+
+ }
+
+
+ try{
+
+  await set(
+
+   ref(
+    db,
+    "voti/"+
+    corrente.cat+
+    "/"+
+    corrente.n+
+    "/"+
+    giudice
+   ),
+
+   {
+
+    voto:voto,
+
+    nome:corrente.nome,
+
+    giurato:giudice,
+
+    categoria:corrente.cat,
+
+    timestamp:Date.now()
+
+   }
+
+  );
+
+
+  votoInviato=true;
+
+
+  document.getElementById(
+   "ok"
+  ).style.display="block";
+
+
+  document.getElementById(
+   "status"
+  ).innerText=
+   "Voto salvato online";
+
+ }catch(e){
+
+  alert(
+   "ERRORE: voto non salvato"
+  );
+
+  console.error(e);
+
+ }
+
+};
+
+
+
+/* =========================
+   PROSSIMO
+========================= */
+
+
+window.prossimo=async function(){
+
+
+ /*
+  Se la categoria è già chiusa,
+  il giurato può solo avanzare.
+ */
+
+
+ if(categoriaChiusa){
+
+  if(
+   indiceLive <
+   scalettaLive.length-1
+  ){
+
+   indiceLive++;
+
+
+   localStorage.setItem(
+    chiavePosizione(),
+    indiceLive
+   );
+
+
+   await mostraDaScaletta();
+
+  }
+
+
+  return;
+
+ }
+
+
+ if(!votoInviato){
+
+  alert(
+   "Devi confermare il voto prima di passare al prossimo concorrente"
+  );
+
+  return;
+
+ }
+
+
+ /*
+  Se arriviamo da RECUPERA,
+  torniamo alla posizione normale.
+ */
+
+
+ if(origineRecupero){
+
+  origineRecupero=false;
+
+  await mostraDaScaletta();
+
+  return;
+
+ }
+
+
+ if(
+  indiceLive <
+  scalettaLive.length-1
+ ){
+
+  indiceLive++;
+
+
+  localStorage.setItem(
+   chiavePosizione(),
+   indiceLive
+  );
+
+
+  await mostraDaScaletta();
+
+ }else{
+
+  alert(
+   "Hai completato la scaletta."
+  );
+
+  apriRevisione();
+
+ }
+
+};
+
+
+
+/* =========================
+   RECUPERA
+========================= */
+
+
+window.apriRecupero=
+async function(){
+
+ document.getElementById(
+  "voting"
+ ).style.display="none";
+
+
+ document.getElementById(
+  "revisione"
+ ).style.display="none";
+
+
+ document.getElementById(
+  "recupero"
+ ).style.display="block";
+
+
+ document.getElementById(
+  "cerca"
+ ).value="";
+
+
+ await aggiornaRecupero();
+
+};
+
+
+
+window.aggiornaRecupero=
+async function(){
+
+ const filtro=
+
+  document.getElementById(
+   "cerca"
+  )
+
+  .value
+
+  .trim()
+
+  .toUpperCase();
+
+
+ const lista=
+
+  tuttiConcorrenti()
+
+  .filter(c=>
+
+   c.nome
+    .toUpperCase()
+    .includes(filtro)
+
+   ||
+
+   c.cat
+    .toUpperCase()
+    .includes(filtro)
+
+  );
+
+
+ let html="";
+
+
+ for(const c of lista){
+
+
+  const chiusa=
+   await leggiChiusura(
+    c.cat
+   );
+
+
+  let votoTesto=
+   chiusa
+   ? "CHIUSA"
+   : "DA VOTARE";
+
+
+  let classe=
+   chiusa
+   ? "bloccato"
+   : "davotare";
+
+
+  /*
+   VOTO PERSONALE VISIBILE
+   SOLO SE CATEGORIA APERTA.
+  */
+
+
+  if(!chiusa){
+
+   try{
+
+    const snap=
+
+     await get(
+
+      ref(
+       db,
+       "voti/"+
+       c.cat+
+       "/"+
+       c.n+
+       "/"+
+       giudice
+      )
+
+     );
+
+
+    if(snap.exists()){
+
+     votoTesto=
+      "VOTATO • "+
+      Number(
+       snap.val().voto
+      );
+
+
+     classe=
+      "votato";
+
+    }
+
+   }catch(e){}
+
+  }
+
+
+  html+=`
+
+   <div
+    class="rigaConcorrente"
+    onclick="selezionaConcorrente('${c.cat}',${c.n},true)"
+   >
+
+    <div>
+
+     <b>
+      ${c.nome}
+     </b>
+
+     <br>
+
+     <span class="badge">
+      ${c.cat}
+     </span>
+
+    </div>
+
+    <div class="${classe}">
+     ${votoTesto}
+    </div>
+
+   </div>
+
+  `;
+
+ }
+
+
+ document.getElementById(
+  "listaRecupero"
+ ).innerHTML=
+
+  html ||
+
+  "<div class='small'>Nessun concorrente trovato</div>";
+
+};
+
+
+
+window.selezionaConcorrente=
+async function(
+ cat,
+ n,
+ daRecupero
+){
+
+ const chiusa=
+  await leggiChiusura(cat);
+
+
+ if(
+  giudice!=="REGIA" &&
+  chiusa
+ ){
+
+  alert(
+
+   "VOTAZIONE "+
+   cat+
+   " CHIUSA DALLA REGIA.\n\n"+
+   "I voti di questa categoria sono stati acquisiti definitivamente."
+
+  );
+
+  return;
+
+ }
+
+
+ const c=
+  concorrenteDaRef(
+   cat,
+   n
+  );
+
+
+ const posizione=
+  scalettaLive.find(
+   x=>
+    x.cat===cat &&
+    x.n===n
+  );
+
+
+ corrente={
+
+  cat,
+
+  n,
+
+  nome:c.nome,
+
+  blocco:
+   posizione
+   ? posizione.blocco
+   : "RECUPERA",
+
+  uscita:
+   posizione
+   ? posizione.uscita
+   : "-"
+
+ };
+
+
+ origineRecupero=
+  !!daRecupero;
+
+
+ document.getElementById(
+  "recupero"
+ ).style.display="none";
+
+
+ document.getElementById(
+  "revisione"
+ ).style.display="none";
+
+
+ document.getElementById(
+  "voting"
+ ).style.display="block";
+
+
+ await mostraCorrente();
+
+};
+
+
+
+/* =========================
+   RIVEDI VOTI
+========================= */
+
+
+window.apriRevisione=
+async function(){
+
+ document.getElementById(
+  "voting"
+ ).style.display="none";
+
+
+ document.getElementById(
+  "recupero"
+ ).style.display="none";
+
+
+ document.getElementById(
+  "revisione"
+ ).style.display="block";
+
+
+ await aggiornaRevisione();
+
+};
+
+
+
+window.aggiornaRevisione=
+async function(){
+
+
+ const cat=
+  document.getElementById(
+   "categoriaRevisione"
+  ).value;
+
+
+ const lista=
+  categorie[cat];
+
+
+ const chiusa=
+  await leggiChiusura(cat);
+
+
+ /*
+  SE CHIUSA:
+  NON MOSTRIAMO PIÙ
+  NEMMENO I VOTI PERSONALI.
+ */
+
+
+ if(chiusa){
+
+  document.getElementById(
+   "listaRevisione"
+  ).innerHTML=
+
+   "<div class='avvisoChiuso'>"+
+   "VOTAZIONE "+
+   cat+
+   " CHIUSA DALLA REGIA"+
+   "<br><br>"+
+   "I voti sono stati acquisiti definitivamente."+
+   "</div>";
+
+
+  return;
+
+ }
+
+
+ let html="";
+
+
+ for(const c of lista){
+
+
+  let testo=
+   "DA VOTARE";
+
+
+  let classe=
+   "davotare";
+
+
+  try{
+
+   const snap=
+
+    await get(
+
+     ref(
+      db,
+      "voti/"+
+      cat+
+      "/"+
+      c.n+
+      "/"+
+      giudice
+     )
+
+    );
+
+
+   if(snap.exists()){
+
+    testo=
+     "VOTATO • "+
+     Number(
+      snap.val().voto
+     );
+
+
+    classe=
+     "votato";
+
+   }
+
+  }catch(e){}
+
+
+  html+=`
+
+   <div
+    class="rigaConcorrente"
+    onclick="selezionaConcorrente('${cat}',${c.n},true)"
+   >
+
+    <div>
+
+     <b>
+      ${c.nome}
+     </b>
+
+    </div>
+
+    <div class="${classe}">
+     ${testo}
+    </div>
+
+   </div>
+
+  `;
+
+ }
+
+
+ document.getElementById(
+  "listaRevisione"
+ ).innerHTML=
+  html;
+
+};
+
+
+
+window.tornaVotazione=
+async function(){
+
+ document.getElementById(
+  "recupero"
+ ).style.display="none";
+
+
+ document.getElementById(
+  "revisione"
+ ).style.display="none";
+
+
+ document.getElementById(
+  "voting"
+ ).style.display="block";
+
+
+ await mostraDaScaletta();
+
+};
+
+
+
+/* =========================
+   REGIA
+========================= */
+
+
+function stopListenersRegia(){
+
+ if(unsubscribeRegia1){
+
+  unsubscribeRegia1();
+
+  unsubscribeRegia1=null;
+
+ }
+
+
+ if(unsubscribeRegia2){
+
+  unsubscribeRegia2();
+
+  unsubscribeRegia2=null;
+
+ }
+
+
+ if(unsubscribeRegia3){
+
+  unsubscribeRegia3();
+
+  unsubscribeRegia3=null;
+
+ }
+
+}
+
+
+
+window.cambiaCategoriaRegia=
+function(){
+
+ stopListenersRegia();
+
+
+ const cat=
+  document.getElementById(
+   "categoriaRegia"
+  ).value;
+
+
+ document.getElementById(
+  "dettaglioRegia"
+ ).classList.add(
+  "hidden"
+ );
+
+
+ if(cat==="SCALETTA"){
+
+  document.getElementById(
+   "nomeCategoriaRegia"
+  ).innerText=
+   "SCALETTA USCITA";
+
+
+  document.getElementById(
+   "titoloRegia"
+  ).innerText=
+   "CONTROLLO OPERATIVO";
+
+
+  document.getElementById(
+   "statoCategoria"
+  ).classList.add(
+   "hidden"
+  );
+
+
+  document.getElementById(
+   "btnStop"
+  ).classList.add(
+   "hidden"
+  );
+
+
+  document.getElementById(
+   "btnApri"
+  ).classList.add(
+   "hidden"
+  );
+
+
+  unsubscribeRegia1=
+   onValue(
+    ref(db,"voti"),
+    ()=>renderScalettaRegia()
+   );
+
+
+  unsubscribeRegia2=
+   onValue(
+    ref(db,"correzioni"),
+    ()=>renderScalettaRegia()
+   );
+
+
+  renderScalettaRegia();
+
+  return;
+
+ }
+
+
+ document.getElementById(
+  "statoCategoria"
+ ).classList.remove(
+  "hidden"
+ );
+
+
+ document.getElementById(
+  "nomeCategoriaRegia"
+ ).innerText=
+  cat;
+
+
+ unsubscribeRegia1=
+
+  onValue(
+
+   ref(
+    db,
+    "voti/"+cat
+   ),
+
+   ()=>renderCategoriaRegia(cat)
+
+  );
+
+
+ unsubscribeRegia2=
+
+  onValue(
+
+   ref(
+    db,
+    "correzioni/"+cat
+   ),
+
+   ()=>renderCategoriaRegia(cat)
+
+  );
+
+
+ unsubscribeRegia3=
+
+  onValue(
+
+   ref(
+    db,
+    "controllo/"+cat+"/chiusa"
+   ),
+
+   snap=>{
+
+    const chiusa=
+     snap.exists() &&
+     snap.val()===true;
+
+
+    aggiornaStatoRegia(
+     cat,
+     chiusa
+    );
+
+   }
+
+  );
+
+
+ renderCategoriaRegia(cat);
+
+};
+
+
+
+async function renderCategoriaRegia(cat){
+
+
+ const lista=
+  categorie[cat];
+
+
+ const votiSnap=
+  await get(
+   ref(
+    db,
+    "voti/"+cat
+   )
+  );
+
+
+ const corrSnap=
+  await get(
+   ref(
+    db,
+    "correzioni/"+cat
+   )
+  );
+
+
+ const dati=
+  votiSnap.val() || {};
+
+
+ const correzioni=
+  corrSnap.val() || {};
+
+
+ let risultati=[];
+
+ let totaleVoti=0;
+
+
+ lista.forEach(c=>{
+
+
+  const vc=
+   dati[c.n] || {};
+
+
+  const cc=
+   correzioni[c.n] || {};
+
+
+  let validi=[];
+
+  let compensazioni=0;
+
+
+  for(let i=1;i<=6;i++){
+
+
+   const codice=
+    "G"+i;
+
+
+   if(
+    vc[codice] &&
+    !isNaN(
+     Number(
+      vc[codice].voto
+     )
+    )
+   ){
+
+    let valore=
+     Number(
+      vc[codice].voto
+     );
+
+
+    if(
+     cc[codice] &&
+     cc[codice].attiva===true &&
+     !isNaN(
+      Number(
+       cc[codice].compensato
+      )
+     )
+    ){
+
+     valore=
+      Number(
+       cc[codice].compensato
+      );
+
+
+     compensazioni++;
+
+    }
+
+
+    validi.push(
+     valore
+    );
+
+   }
+
+  }
+
+
+  totaleVoti+=
+   validi.length;
+
+
+  const totale=
+
+   validi.reduce(
+    (a,b)=>a+b,
+    0
+   );
+
+
+  risultati.push({
+
+   n:c.n,
+
+   nome:c.nome,
+
+   totale,
+
+   ricevuti:
+    validi.length,
+
+   dati:vc,
+
+   compensazioni
+
+  });
+
+ });
+
+
+
+ risultati.sort(
+  (a,b)=>
+
+   b.totale-
+   a.totale
+
+   ||
+
+   a.n-
+   b.n
+ );
+
+
+ document.getElementById(
+  "conteggio"
+ ).innerText=
+
+  totaleVoti+
+  " / "+
+  (lista.length*6);
+
+
+ document.getElementById(
+  "classifica"
+ ).innerHTML=
+
+  risultati
+
+  .map((r,i)=>{
+
+
+   let stato="";
+
+
+   for(let g=1;g<=6;g++){
+
+
+    const codice=
+     "G"+g;
+
+
+    const presente=
+
+     r.dati[codice] &&
+     !isNaN(
+      Number(
+       r.dati[codice].voto
+      )
+     );
+
+
+    stato+=
+
+     nomiGiurati[codice]+
+     " "+
+     (presente ? "✓" : "—");
+
+
+    if(g<6){
+
+     stato+=" · ";
+
+    }
+
+   }
+
+
+   const nota=
+
+    r.compensazioni>0
+
+    ?
+
+    "<div class='compensato'>"+
+    r.compensazioni+
+    " COMPENSAZIONE DA"+
+    "</div>"
+
+    :
+
+    "";
+
+
+   return `
+
+    <div
+     class="rank"
+     onclick="apriDettaglioRegia('${cat}',${r.n})"
+    >
+
+     <div>
+
+      <b>
+       ${i+1}. ${r.nome}
+      </b>
+
+      <br>
+
+      <span style="color:#8893aa">
+       ${r.ricevuti}/6 voti
+      </span>
+
+      <div class="giurati">
+       ${stato}
+      </div>
+
+      ${nota}
+
+     </div>
+
+     <div style="font-size:21px;font-weight:800">
+      ${r.totale.toFixed(1)}
+     </div>
+
+    </div>
+
+   `;
+
+  })
+
+  .join("");
+
+}
+
+
+
+/* =========================
+   REGIA - SCALETTA
+========================= */
+
+
+async function renderScalettaRegia(){
+
+
+ const votiSnap=
+  await get(
+   ref(
+    db,
+    "voti"
+   )
+  );
+
+
+ const dati=
+  votiSnap.val() || {};
+
+
+ let html="";
+
+ let totale=0;
+
+
+ for(const r of scalettaPrincipale){
+
+
+  const c=
+   concorrenteDaRef(
+    r.cat,
+    r.n
+   );
+
+
+  const vc=
+
+   (
+    dati[r.cat] &&
+    dati[r.cat][r.n]
+   )
+
+   || {};
+
+
+  let ricevuti=0;
+
+
+  let stato="";
+
+
+  for(let g=1;g<=6;g++){
+
+
+   const codice=
+    "G"+g;
+
+
+   const presente=
+
+    vc[codice] &&
+    !isNaN(
+     Number(
+      vc[codice].voto
+     )
+    );
+
+
+   if(presente){
+
+    ricevuti++;
+
+    totale++;
+
+   }
+
+
+   stato+=
+
+    nomiGiurati[codice]+
+    " "+
+    (presente ? "✓" : "—");
+
+
+   if(g<6){
+
+    stato+=" · ";
+
+   }
+
+  }
+
+
+  html+=`
+
+   <div
+    class="rank"
+    onclick="apriDettaglioRegia('${r.cat}',${r.n})"
+   >
+
+    <div>
+
+     <b>
+      ${String(r.uscita).padStart(2,"0")} • ${c.nome}
+     </b>
+
+     <br>
+
+     <span class="badge">
+      ${r.cat}
+     </span>
+
+     <span style="color:#8893aa;font-size:12px">
+      ${ricevuti}/6
+     </span>
+
+     <div class="giurati">
+      ${stato}
+     </div>
+
+    </div>
+
+   </div>
+
+  `;
+
+ }
+
+
+ document.getElementById(
+  "classifica"
+ ).innerHTML=
+  html;
+
+
+ document.getElementById(
+  "conteggio"
+ ).innerText=
+
+  totale+
+  " / "+
+  (33*6);
+
+}
+
+
+
+/* =========================
+   STATO REGIA
+========================= */
+
+
+function aggiornaStatoRegia(
+ cat,
+ chiusa
+){
+
+ const el=
+  document.getElementById(
+   "statoCategoria"
+  );
+
+
+ const stop=
+  document.getElementById(
+   "btnStop"
+  );
+
+
+ const apri=
+  document.getElementById(
+   "btnApri"
+  );
+
+
+ if(chiusa){
+
+  el.innerText=
+   "VOTAZIONE CHIUSA";
+
+
+  el.classList.remove(
+   "statoAperta"
+  );
+
+
+  el.classList.add(
+   "statoChiusa"
+  );
+
+
+  document.getElementById(
+   "titoloRegia"
+  ).innerText=
+   "CLASSIFICA FINALE";
+
+
+  stop.classList.add(
+   "hidden"
+  );
+
+
+  apri.classList.remove(
+   "hidden"
+  );
+
+ }else{
+
+  el.innerText=
+   "VOTAZIONE APERTA";
+
+
+  el.classList.remove(
+   "statoChiusa"
+  );
+
+
+  el.classList.add(
+   "statoAperta"
+  );
+
+
+  document.getElementById(
+   "titoloRegia"
+  ).innerText=
+   "VOTAZIONE LIVE";
+
+
+  stop.classList.remove(
+   "hidden"
+  );
+
+
+  apri.classList.add(
+   "hidden"
+  );
+
+ }
+
+}
+
+
+
+/* =========================
+   DETTAGLIO VOTI REGIA
+========================= */
+
+
+window.apriDettaglioRegia=
+async function(
+ cat,
+ n
+){
+
+ const c=
+  concorrenteDaRef(
+   cat,
+   n
+  );
+
+
+ const votiSnap=
+  await get(
+   ref(
+    db,
+    "voti/"+cat+"/"+n
+   )
+  );
+
+
+ const corrSnap=
+  await get(
+   ref(
+    db,
+    "correzioni/"+cat+"/"+n
+   )
+  );
+
+
+ const voti=
+  votiSnap.val() || {};
+
+
+ const correzioni=
+  corrSnap.val() || {};
+
+
+ let html=`
+
+  <div class="adminSub">
+   DIREZIONE ARTISTICA • DETTAGLIO VOTI
+  </div>
+
+  <div class="adminTitle">
+   ${c.nome}
+  </div>
+
+  <div class="small" style="margin-bottom:15px">
+   Seleziona COMPENSA solo in caso di voto anomalo.
+   Il voto originale non viene cancellato.
+  </div>
+
+ `;
+
+
+ for(let i=1;i<=6;i++){
+
+
+  const codice=
+   "G"+i;
+
+
+  const votoOriginale=
+
+   voti[codice]
+
+   ?
+
+   Number(
+    voti[codice].voto
+   )
+
+   :
+
+   null;
+
+
+  const corr=
+   correzioni[codice];
+
+
+  if(votoOriginale===null){
+
+
+   html+=`
+
+    <div class="rigaVoto">
+
+     <div>
+      <b>${nomiGiurati[codice]}</b>
+     </div>
+
+     <div class="bloccato">
+      NON VOTATO
+     </div>
+
+    </div>
+
+   `;
+
+
+  }else if(
+   corr &&
+   corr.attiva===true
+  ){
+
+
+   html+=`
+
+    <div class="rigaVoto">
+
+     <div>
+
+      <b>
+       ${nomiGiurati[codice]}
+      </b>
+
+      <br>
+
+      <span class="compensato">
+       ${votoOriginale}
+       → 
+       ${Number(corr.compensato)}
+      </span>
+
+     </div>
+
+     <button
+      class="restoreBtn"
+      onclick="ripristinaVoto('${cat}',${n},'${codice}')"
+     >
+      RIPRISTINA
+     </button>
+
+    </div>
+
+   `;
+
+
+  }else{
+
+
+   html+=`
+
+    <div class="rigaVoto">
+
+     <div>
+
+      <b>
+       ${nomiGiurati[codice]}
+      </b>
+
+      <br>
+
+      <span class="votato">
+       VOTO ${votoOriginale}
+      </span>
+
+     </div>
+
+     <button
+      class="compensaBtn"
+      onclick="compensaVoto('${cat}',${n},'${codice}')"
+     >
+      COMPENSA
+     </button>
+
+    </div>
+
+   `;
+
+  }
+
+ }
+
+
+ const box=
+  document.getElementById(
+   "dettaglioRegia"
+  );
+
+
+ box.innerHTML=
+  html;
+
+
+ box.classList.remove(
+  "hidden"
+ );
+
+
+ box.scrollIntoView({
+  behavior:"smooth"
+ });
+
+};
+
+
+
+/* =========================
+   COMPENSAZIONE
+========================= */
+
+
+window.compensaVoto=
+async function(
+ cat,
+ n,
+ codice
+){
+
+ const c=
+  concorrenteDaRef(
+   cat,
+   n
+  );
+
+
+ const votiSnap=
+  await get(
+   ref(
+    db,
+    "voti/"+cat+"/"+n
+   )
+  );
+
+
+ const corrSnap=
+  await get(
+   ref(
+    db,
+    "correzioni/"+cat+"/"+n
+   )
+  );
+
+
+ const voti=
+  votiSnap.val() || {};
+
+
+ const correzioni=
+  corrSnap.val() || {};
+
+
+ if(!voti[codice]){
+
+  alert(
+   "Questo giurato non ha votato."
+  );
+
+  return;
+
+ }
+
+
+ const originale=
+  Number(
+   voti[codice].voto
+  );
+
+
+ let altri=[];
+
+
+ /*
+  MEDIA DEGLI ALTRI GIURATI
+  USANDO IL VALORE ATTUALMENTE
+  VALIDO IN CLASSIFICA.
+ */
+
+
+ for(let i=1;i<=6;i++){
+
+
+  const g=
+   "G"+i;
+
+
+  if(
+   g===codice ||
+   !voti[g]
+  ){
+
+   continue;
+
+  }
+
+
+  let valore=
+   Number(
+    voti[g].voto
+   );
+
+
+  if(
+   correzioni[g] &&
+   correzioni[g].attiva===true &&
+   !isNaN(
+    Number(
+     correzioni[g].compensato
+    )
+   )
+  ){
+
+   valore=
+    Number(
+     correzioni[g].compensato
+    );
+
+  }
+
+
+  altri.push(
+   valore
+  );
+
+ }
+
+
+ if(altri.length===0){
+
+  alert(
+   "Non ci sono abbastanza voti per calcolare la compensazione."
+  );
+
+  return;
+
+ }
+
+
+ const media=
+
+  altri.reduce(
+   (a,b)=>a+b,
+   0
+  )
+
+  /
+
+  altri.length;
+
+
+ const compensato=
+  arrotondaMezzo(
+   media
+  );
+
+
+ const conferma=
+  confirm(
+
+   "COMPENSAZIONE DIREZIONE ARTISTICA\n\n"+
+
+   c.nome+
+
+   "\n\n"+
+
+   nomiGiurati[codice]+
+
+   "\n\nVOTO ORIGINALE: "+
+   originale+
+
+   "\nMEDIA ALTRI GIURATI: "+
+   media.toFixed(2)+
+
+   "\nVOTO COMPENSATO: "+
+   compensato+
+
+   "\n\nIl voto originale resterà salvato."+
+
+   "\n\nCONFERMI?"
+
+  );
+
+
+ if(!conferma){
+
+  return;
+
+ }
+
+
+ const seconda=
+  confirm(
+
+   "ULTIMA CONFERMA\n\n"+
+
+   "Applicare la compensazione a "+
+
+   c.nome+
+   "?"
+
+  );
+
+
+ if(!seconda){
+
+  return;
+
+ }
+
+
+ await set(
+
+  ref(
+   db,
+   "correzioni/"+
+   cat+
+   "/"+
+   n+
+   "/"+
+   codice
+  ),
+
+  {
+
+   attiva:true,
+
+   concorrente:c.nome,
+
+   categoria:cat,
+
+   giurato:codice,
+
+   nomeGiurato:
+    nomiGiurati[codice],
+
+   originale:originale,
+
+   mediaAltri:
+    media,
+
+   compensato:
+    compensato,
+
+   motivo:
+    "Voto anomalo compensato da Direzione Artistica",
+
+   timestamp:
+    Date.now()
+
+  }
+
+ );
+
+
+ alert(
+  "COMPENSAZIONE APPLICATA"
+ );
+
+
+ await apriDettaglioRegia(
+  cat,
+  n
+ );
+
+
+ const vista=
+  document.getElementById(
+   "categoriaRegia"
+  ).value;
+
+
+ if(vista==="SCALETTA"){
+
+  renderScalettaRegia();
+
+ }else{
+
+  renderCategoriaRegia(
+   vista
+  );
+
+ }
+
+};
+
+
+
+/* =========================
+   RIPRISTINA
+========================= */
+
+
+window.ripristinaVoto=
+async function(
+ cat,
+ n,
+ codice
+){
+
+ const ok=
+  confirm(
+
+   "RIPRISTINARE IL VOTO ORIGINALE DI "+
+
+   nomiGiurati[codice]+
+
+   "?"
+
+  );
+
+
+ if(!ok){
+
+  return;
+
+ }
+
+
+ await remove(
+
+  ref(
+   db,
+   "correzioni/"+
+   cat+
+   "/"+
+   n+
+   "/"+
+   codice
+  )
+
+ );
+
+
+ alert(
+  "VOTO ORIGINALE RIPRISTINATO"
+ );
+
+
+ await apriDettaglioRegia(
+  cat,
+  n
+ );
+
+
+ const vista=
+  document.getElementById(
+   "categoriaRegia"
+  ).value;
+
+
+ if(vista==="SCALETTA"){
+
+  renderScalettaRegia();
+
+ }else{
+
+  renderCategoriaRegia(
+   vista
+  );
+
+ }
+
+};
+
+
+
+/* =========================
+   RIAPRI
+========================= */
+
+
+window.apriCategoria=
+async function(){
+
+ const cat=
+  document.getElementById(
+   "categoriaRegia"
+  ).value;
+
+
+ if(cat==="SCALETTA"){
+
+  return;
+
+ }
+
+
+ const ok=
+  confirm(
+
+   "RIAPRIRE LA VOTAZIONE "+
+
+   cat+
+
+   "?\n\n"+
+
+   "I giurati potranno nuovamente vedere e modificare i propri voti."
+
+  );
+
+
+ if(!ok){
+
+  return;
+
+ }
+
+
+ await set(
+
+  ref(
+   db,
+   "controllo/"+
+   cat+
+   "/chiusa"
+  ),
+
+  false
+
+ );
+
+
+ alert(
+  "VOTAZIONE "+
+  cat+
+  " RIAPERTA"
+ );
+
+};
+
+
+
+/* =========================
+   STOP VOTO
+========================= */
+
+
+window.chiudiCategoria=
+async function(){
+
+ const cat=
+  document.getElementById(
+   "categoriaRegia"
+  ).value;
+
+
+ if(cat==="SCALETTA"){
+
+  return;
+
+ }
+
+
+ const lista=
+  categorie[cat];
+
+
+ let totale=0;
+
+
+ const snap=
+  await get(
+   ref(
+    db,
+    "voti/"+cat
+   )
+  );
+
+
+ const dati=
+  snap.val() || {};
+
+
+ lista.forEach(c=>{
+
+
+  const vc=
+   dati[c.n] || {};
+
+
+  for(let g=1;g<=6;g++){
+
+
+   const codice=
+    "G"+g;
+
+
+   if(
+    vc[codice] &&
+    !isNaN(
+     Number(
+      vc[codice].voto
+     )
+    )
+   ){
+
+    totale++;
+
+   }
+
+  }
+
+ });
+
+
+ const massimo=
+  lista.length*6;
+
+
+ let testo=
+
+  "STOP VOTO "+
+
+  cat+
+
+  "\n\nVoti ricevuti: "+
+
+  totale+
+  " / "+
+  massimo+
+
+  "\n\nDopo lo STOP i giurati non potranno più vedere né modificare i propri voti di questa categoria.";
+
+
+ if(totale<massimo){
+
+  testo+=
+
+   "\n\nATTENZIONE: NON SONO ANCORA ARRIVATI TUTTI I VOTI.";
+
+ }
+
+
+ if(!confirm(testo)){
+
+  return;
+
+ }
+
+
+ if(
+
+  !confirm(
+
+   "ULTIMA CONFERMA\n\n"+
+
+   "DARE STOP VOTO A "+
+
+   cat+
+
+   "?"
+
+  )
+
+ ){
+
+  return;
+
+ }
+
+
+ await set(
+
+  ref(
+   db,
+   "controllo/"+
+   cat+
+   "/chiusa"
+  ),
+
+  true
+
+ );
+
+
+ alert(
+  "STOP VOTO "+
+  cat+
+  " ATTIVATO"
+ );
+
+};
+
+</script>
+
+</body>
+</html>
