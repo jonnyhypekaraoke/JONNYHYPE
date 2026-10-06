@@ -7,158 +7,69 @@
 
 <style>
 *{box-sizing:border-box}
-
 body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:#070b18;
-  color:white;
-  min-height:100vh;
+ margin:0;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+ background:#070b18;
+ color:white;
+ min-height:100vh;
 }
-
-.wrap{
-  max-width:600px;
-  margin:auto;
-  padding:24px 18px 50px;
-}
-
-h1{
-  font-size:24px;
-  margin:0;
-  text-align:center;
-}
-
-.sub{
-  text-align:center;
-  color:#aeb8d0;
-  margin:6px 0 25px;
-}
-
+.wrap{max-width:600px;margin:auto;padding:24px 18px 50px}
+h1{font-size:24px;margin:0;text-align:center}
+.sub{text-align:center;color:#aeb8d0;margin:6px 0 25px}
 .card{
-  background:#11182d;
-  border:1px solid #293455;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:16px;
+ background:#11182d;border:1px solid #293455;
+ border-radius:18px;padding:20px;margin-bottom:16px
 }
-
-label{
-  display:block;
-  color:#aeb8d0;
-  margin-bottom:8px;
-  font-size:14px;
-}
-
-select,input,button{
-  width:100%;
-  font-size:18px;
-  border-radius:12px;
-}
-
+label{display:block;color:#aeb8d0;margin-bottom:8px;font-size:14px}
+select,input,button{width:100%;font-size:18px;border-radius:12px}
 select,input{
-  background:#080d1c;
-  color:white;
-  border:1px solid #354265;
-  padding:14px;
-  margin-bottom:15px;
+ background:#080d1c;color:white;border:1px solid #354265;
+ padding:14px;margin-bottom:15px
 }
-
-.nome{
-  font-size:25px;
-  font-weight:800;
-  text-align:center;
-  margin:6px 0 5px;
-}
-
-.numero{
-  text-align:center;
-  color:#d1a954;
-  font-weight:700;
-  margin-bottom:20px;
-}
-
-.voto{
-  font-size:44px;
-  font-weight:800;
-  text-align:center;
-  margin:12px 0;
-}
-
-input[type=range]{
-  padding:0;
-  accent-color:#d1a954;
-}
-
-button{
-  border:0;
-  padding:16px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-.invia{
-  background:#d1a954;
-  color:#090b12;
-}
-
-.invia:disabled{
-  opacity:.55;
-}
-
-.next{
-  margin-top:12px;
-  background:#293455;
-  color:white;
-}
-
+button{border:0;padding:16px;font-weight:800;cursor:pointer}
+.invia{background:#d1a954;color:#090b12}
+.next{margin-top:12px;background:#293455;color:white}
+.recupera{margin-top:12px;background:#18213a;color:#d7deef;border:1px solid #354265}
+.back{background:#293455;color:white;margin-bottom:16px}
+.chiudi{background:#8d2530;color:white;margin-top:12px}
+.apri{background:#176044;color:white;margin-top:12px}
+.nome{font-size:25px;font-weight:800;text-align:center;margin:6px 0 5px}
+.numero{text-align:center;color:#d1a954;font-weight:700;margin-bottom:20px}
+.voto{font-size:44px;font-weight:800;text-align:center;margin:12px 0}
+input[type=range]{padding:0;accent-color:#d1a954}
 .ok{
-  display:none;
-  background:#123a2b;
-  border:1px solid #1f7956;
-  padding:15px;
-  border-radius:12px;
-  text-align:center;
-  margin-top:15px;
+ display:none;background:#123a2b;border:1px solid #1f7956;
+ padding:15px;border-radius:12px;text-align:center;margin-top:15px
 }
-
-.small{
-  color:#8893aa;
-  text-align:center;
-  font-size:12px;
-  margin-top:20px;
+.small{color:#8893aa;text-align:center;font-size:12px;margin-top:20px}
+#admin,#voting,#revisione{display:none}
+.rank,.rigaConcorrente{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:10px;padding:14px 4px;border-bottom:1px solid #293455
 }
-
-#admin{
-  display:none;
+.rigaConcorrente{cursor:pointer}
+.votato{color:#69d29a;font-weight:800}
+.davotare{color:#d1a954;font-weight:800}
+.bloccato{color:#8893aa}
+.badge{
+ display:inline-block;padding:5px 8px;border-radius:8px;
+ background:#080d1c;font-size:12px;margin-top:5px
 }
-
-.rank{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:13px 4px;
-  border-bottom:1px solid #293455;
-}
-
-.giurati{
-  color:#8893aa;
-  font-size:12px;
-  margin-top:5px;
-}
+.giurati{color:#8893aa;font-size:12px;margin-top:5px}
+.adminTitle{text-align:center;font-size:22px;font-weight:800}
+.adminSub{text-align:center;color:#aeb8d0;margin-bottom:10px}
 </style>
 </head>
 
 <body>
-
 <div class="wrap">
 
 <h1>RAVENNA SONG FESTIVAL 2026</h1>
 <div class="sub">GIURIA • FINALE</div>
 
 <div id="login" class="card">
-
 <label>Seleziona giurato</label>
-
 <select id="giurato">
 <option value="">— scegli —</option>
 <option value="G1">EMANUELA CORTESI</option>
@@ -169,84 +80,102 @@ button{
 <option value="G6">ALESSANDRO BRAGA</option>
 <option value="REGIA">REGIA / DIREZIONE ARTISTICA</option>
 </select>
-
 <button class="invia" onclick="entra()">ENTRA</button>
-
 </div>
 
 
-<div id="voting" style="display:none">
+<!-- VOTAZIONE NORMALE -->
+<div id="voting">
 
 <div class="card">
 <div style="text-align:center;color:#aeb8d0">CATEGORIA</div>
-<div style="text-align:center;font-size:22px;font-weight:800">BABY</div>
+<div id="categoriaTitolo" class="adminTitle">BABY</div>
 </div>
 
 <div class="card">
-
 <div id="numero" class="numero"></div>
 <div id="nome" class="nome"></div>
 
 <div class="voto" id="votoLabel">15</div>
 
-<input
- id="voto"
- type="range"
- min="10"
- max="20"
- step="0.5"
- value="15"
- oninput="document.getElementById('votoLabel').innerText=this.value"
->
+<input id="voto" type="range"
+ min="10" max="20" step="0.5" value="15"
+ oninput="document.getElementById('votoLabel').innerText=this.value">
 
 <button class="invia" id="send" onclick="inviaVoto()">
 CONFERMA VOTO
 </button>
 
-<div class="ok" id="ok">
-VOTO REGISTRATO
-</div>
+<div class="ok" id="ok">VOTO REGISTRATO</div>
 
 <button class="next" onclick="prossimo()">
 PROSSIMO CONCORRENTE
 </button>
 
+<button class="recupera" onclick="apriRevisione()">
+CAMBIO SCALETTA / RIVEDI VOTI
+</button>
 </div>
 
-<div class="small" id="status">Connessione...</div>
+<div class="small" id="status">Sistema pronto</div>
+</div>
+
+
+<!-- RECUPERA / REVISIONE -->
+<div id="revisione">
+
+<button class="back" onclick="tornaVotazione()">
+← TORNA ALLA VOTAZIONE
+</button>
+
+<div class="card">
+<div class="adminSub">CAMBIO SCALETTA / REVISIONE</div>
+<div id="revisioneCategoria" class="adminTitle"></div>
+<div class="small" style="margin-top:8px">
+Tocca un concorrente per votarlo o modificare il voto già assegnato.
+</div>
+</div>
+
+<div class="card" id="listaRevisione"></div>
 
 </div>
 
 
+<!-- REGIA -->
 <div id="admin">
 
 <div class="card">
+<div class="adminSub">REGIA / DIREZIONE ARTISTICA</div>
 
-<div id="titoloRegia"
- style="text-align:center;color:#aeb8d0">
-VOTAZIONE LIVE
+<label>Categoria da controllare</label>
+<select id="categoriaRegia" onchange="cambiaCategoriaRegia()">
+<option value="BABY">BABY</option>
+<option value="GIOVANI">GIOVANI</option>
+</select>
+
+<div id="statoCategoria" class="adminTitle"></div>
+
+<button class="apri" onclick="apriCategoria()">
+APRI / RIAPRI VOTAZIONE
+</button>
+
+<button class="chiudi" onclick="chiudiCategoria()">
+CHIUDI DEFINITIVAMENTE CATEGORIA
+</button>
 </div>
-
-<div style="text-align:center;font-size:22px;font-weight:800">
-BABY
-</div>
-
-<div id="classifica"></div>
-
-</div>
-
 
 <div class="card">
-
-<div style="text-align:center;color:#aeb8d0">
-VOTI RICEVUTI
+<div id="titoloRegia" class="adminSub">VOTAZIONE LIVE</div>
+<div id="nomeCategoriaRegia" class="adminTitle">BABY</div>
+<div id="classifica"></div>
 </div>
 
+<div class="card">
+<div class="adminSub">VOTI RICEVUTI</div>
 <div id="conteggio"
  style="text-align:center;font-size:38px;font-weight:800;margin-top:10px">
 0 / 36
 </div>
-
 </div>
 
 </div>
@@ -260,245 +189,451 @@ import { initializeApp } from
 "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 
 import {
-  getDatabase,
-  ref,
-  set,
-  onValue
+ getDatabase,
+ ref,
+ set,
+ onValue,
+ get
 } from
 "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
 
 
-const firebaseConfig = {
-  apiKey:"AIzaSyDyQSMV8bAXOFDUsKWUPqP5RpthLPloSl8",
-  authDomain:"rsf-giuria-2026.firebaseapp.com",
-  projectId:"rsf-giuria-2026",
-  storageBucket:"rsf-giuria-2026.firebasestorage.app",
-  messagingSenderId:"108324441624",
-  appId:"1:108324441624:web:9cfef3eaa723dd907bbd6d",
-  databaseURL:"https://rsf-giuria-2026-default-rtdb.europe-west1.firebasedatabase.app"
+const firebaseConfig={
+ apiKey:"AIzaSyDyQSMV8bAXOFDUsKWUPqP5RpthLPloSl8",
+ authDomain:"rsf-giuria-2026.firebaseapp.com",
+ projectId:"rsf-giuria-2026",
+ storageBucket:"rsf-giuria-2026.firebasestorage.app",
+ messagingSenderId:"108324441624",
+ appId:"1:108324441624:web:9cfef3eaa723dd907bbd6d",
+ databaseURL:"https://rsf-giuria-2026-default-rtdb.europe-west1.firebasedatabase.app"
 };
-
 
 const app=initializeApp(firebaseConfig);
 const db=getDatabase(app);
 
 
-const baby=[
+const categorie={
+
+ BABY:[
   {n:1,nome:"ALESSANDRO CARUSO"},
   {n:2,nome:"ANNASOLE DALMONTE"},
   {n:3,nome:"ARIEL FULGENTE"},
   {n:4,nome:"LUIGI DI IORIO"},
   {n:5,nome:"MICHELE COMPAGNONI"},
   {n:6,nome:"NATALIA MOLONE"}
-];
+ ],
 
-
-let giudice="";
-let indice=0;
-let votoInviato=false;
-
-
-/* =========================
-   ACCESSO
-========================= */
-
-window.entra=function(){
-
-  giudice=document.getElementById("giurato").value;
-
-  if(!giudice){
-    alert("Seleziona il giurato");
-    return;
-  }
-
-
-  /* PROTEZIONE REGIA */
-
-  if(giudice==="REGIA"){
-
-    const pin=prompt("INSERISCI PIN REGIA");
-
-    if(pin!=="1208"){
-
-      alert("PIN ERRATO");
-
-      giudice="";
-
-      return;
-    }
-
-    document.getElementById("login").style.display="none";
-    document.getElementById("admin").style.display="block";
-
-    avviaRegia();
-
-    return;
-  }
-
-
-  /* ACCESSO NORMALE GIURATI */
-
-  document.getElementById("login").style.display="none";
-
-
-  const posizioneSalvata=
-    localStorage.getItem("rsf_posizione_"+giudice);
-
-
-  if(posizioneSalvata!==null){
-
-    const posizione=parseInt(posizioneSalvata,10);
-
-    if(
-      !isNaN(posizione) &&
-      posizione>=0 &&
-      posizione<baby.length
-    ){
-      indice=posizione;
-    }else{
-      indice=0;
-    }
-
-  }else{
-    indice=0;
-  }
-
-
-  document.getElementById("voting").style.display="block";
-
-  mostra();
+ GIOVANI:[
+  {n:1,nome:"ELEONORA RUGGERI"},
+  {n:2,nome:"FRANCESCO PAOLO"},
+  {n:3,nome:"SOFIA PAOLINI"},
+  {n:4,nome:"OMAR"},
+  {n:5,nome:"BANCHY & FLYX"},
+  {n:6,nome:"SOFIA VIGGIANO"},
+  {n:7,nome:"IL CASO"},
+  {n:8,nome:"SAMUELE BERTONI"},
+  {n:9,nome:"SAMU"},
+  {n:10,nome:"SOFIA RONCHI"},
+  {n:11,nome:"MICHELANGELO BALDINI"},
+  {n:12,nome:"ELEONORA NERI"}
+ ]
 
 };
 
 
-/* =========================
-   MOSTRA CONCORRENTE
-========================= */
+let giudice="";
+let categoria="BABY";
+let indice=0;
+let votoInviato=false;
+let categoriaChiusa=false;
+let unsubscribeRegia=null;
 
-function mostra(){
 
-  const c=baby[indice];
+/* ACCESSO */
 
-  document.getElementById("numero").innerText=
-    "CONCORRENTE "+c.n+" DI "+baby.length;
+window.entra=async function(){
 
-  document.getElementById("nome").innerText=c.nome;
+ giudice=document.getElementById("giurato").value;
+
+ if(!giudice){
+  alert("Seleziona il giurato");
+  return;
+ }
+
+ if(giudice==="REGIA"){
+
+  const pin=prompt("INSERISCI PIN REGIA");
+
+  if(pin!=="1208"){
+   alert("PIN ERRATO");
+   giudice="";
+   return;
+  }
+
+  document.getElementById("login").style.display="none";
+  document.getElementById("admin").style.display="block";
+
+  cambiaCategoriaRegia();
+  return;
+ }
+
+ document.getElementById("login").style.display="none";
+
+ /*
+  Per ora l'ingresso normale parte dai BABY.
+  Quando BABY è chiusa, passa automaticamente
+  ai GIOVANI.
+ */
+
+ const babyChiusa=await leggiChiusura("BABY");
+
+ categoria=babyChiusa ? "GIOVANI" : "BABY";
+
+ caricaPosizione();
+
+ document.getElementById("voting").style.display="block";
+
+ await mostra();
+};
+
+
+/* CHIUSURA CATEGORIA */
+
+async function leggiChiusura(cat){
+
+ try{
+  const snap=await get(ref(db,"controllo/"+cat+"/chiusa"));
+  return snap.exists() && snap.val()===true;
+ }catch(e){
+  return false;
+ }
+}
+
+
+/* POSIZIONE */
+
+function chiavePosizione(){
+ return "rsf_posizione_"+categoria+"_"+giudice;
+}
+
+function caricaPosizione(){
+
+ const salvata=localStorage.getItem(chiavePosizione());
+
+ if(salvata!==null){
+
+  const p=parseInt(salvata,10);
+
+  if(!isNaN(p) && p>=0 && p<categorie[categoria].length){
+   indice=p;
+  }else{
+   indice=0;
+  }
+
+ }else{
+  indice=0;
+ }
+}
+
+
+/* MOSTRA CONCORRENTE */
+
+async function mostra(){
+
+ const lista=categorie[categoria];
+ const c=lista[indice];
+
+ categoriaChiusa=await leggiChiusura(categoria);
+
+ document.getElementById("categoriaTitolo").innerText=categoria;
+
+ document.getElementById("numero").innerText=
+  "CONCORRENTE "+c.n+" DI "+lista.length;
+
+ document.getElementById("nome").innerText=c.nome;
+
+ document.getElementById("ok").style.display="none";
+
+ votoInviato=false;
+
+ /*
+  Se questo giurato aveva già votato
+  il concorrente, recuperiamo il suo voto.
+ */
+
+ try{
+
+  const snap=await get(
+   ref(db,"voti/"+categoria+"/"+c.n+"/"+giudice)
+  );
+
+  if(snap.exists()){
+
+   const votoSalvato=Number(snap.val().voto);
+
+   document.getElementById("voto").value=votoSalvato;
+   document.getElementById("votoLabel").innerText=votoSalvato;
+
+   votoInviato=true;
+
+   document.getElementById("ok").style.display="block";
+
+  }else{
+
+   document.getElementById("voto").value=15;
+   document.getElementById("votoLabel").innerText="15";
+
+  }
+
+ }catch(e){
 
   document.getElementById("voto").value=15;
   document.getElementById("votoLabel").innerText="15";
 
-  document.getElementById("ok").style.display="none";
-  document.getElementById("send").disabled=false;
+ }
 
+ if(categoriaChiusa){
+
+  document.getElementById("send").disabled=true;
   document.getElementById("status").innerText=
-    "Sistema pronto";
+   "Votazione "+categoria+" CHIUSA";
 
-  votoInviato=false;
+ }else{
 
+  document.getElementById("send").disabled=false;
+  document.getElementById("status").innerText="Sistema pronto";
+
+ }
 }
 
 
-/* =========================
-   INVIO VOTO
-========================= */
+/* INVIO / MODIFICA VOTO */
 
 window.inviaVoto=async function(){
 
-  const c=baby[indice];
+ if(categoriaChiusa){
+  alert("La votazione "+categoria+" è chiusa.");
+  return;
+ }
 
-  const voto=
-    parseFloat(document.getElementById("voto").value);
+ const c=categorie[categoria][indice];
 
-  const conferma=confirm(
-    "CONFERMI IL VOTO?\n\n"+
-    c.nome+
-    "\n\nVOTO: "+voto
+ const voto=parseFloat(
+  document.getElementById("voto").value
+ );
+
+ let vecchioVoto=null;
+
+ try{
+
+  const precedente=await get(
+   ref(db,"voti/"+categoria+"/"+c.n+"/"+giudice)
   );
 
-  if(!conferma) return;
-
-
-  try{
-
-    await set(
-      ref(
-        db,
-        "voti/BABY/"+c.n+"/"+giudice
-      ),
-      {
-        voto:voto,
-        nome:c.nome,
-        giurato:giudice,
-        timestamp:Date.now()
-      }
-    );
-
-
-    votoInviato=true;
-
-    document.getElementById("ok").style.display="block";
-
-    /*
-      Il pulsante rimane attivo:
-      il giurato può correggere il voto
-      prima di passare al concorrente successivo.
-    */
-
-    document.getElementById("send").disabled=false;
-
-    document.getElementById("status").innerText=
-      "Voto salvato online";
-
-
-  }catch(e){
-
-    alert("ERRORE: voto non salvato");
-
-    console.error(e);
-
+  if(precedente.exists()){
+   vecchioVoto=Number(precedente.val().voto);
   }
 
+ }catch(e){}
+
+
+ let messaggio;
+
+ if(vecchioVoto!==null){
+
+  messaggio=
+   "STAI MODIFICANDO IL VOTO\n\n"+
+   c.nome+
+   "\n\n"+
+   vecchioVoto+" → "+voto+
+   "\n\nCONFERMI?";
+
+ }else{
+
+  messaggio=
+   "CONFERMI IL VOTO?\n\n"+
+   c.nome+
+   "\n\nVOTO: "+voto;
+
+ }
+
+
+ if(!confirm(messaggio)) return;
+
+
+ /*
+  Ricontrolliamo la chiusura immediatamente
+  prima della scrittura.
+ */
+
+ categoriaChiusa=await leggiChiusura(categoria);
+
+ if(categoriaChiusa){
+  alert("La REGIA ha chiuso la votazione.");
+  document.getElementById("send").disabled=true;
+  return;
+ }
+
+
+ try{
+
+  await set(
+   ref(db,"voti/"+categoria+"/"+c.n+"/"+giudice),
+   {
+    voto:voto,
+    nome:c.nome,
+    giurato:giudice,
+    timestamp:Date.now()
+   }
+  );
+
+  votoInviato=true;
+
+  document.getElementById("ok").style.display="block";
+  document.getElementById("status").innerText=
+   "Voto salvato online";
+
+ }catch(e){
+
+  alert("ERRORE: voto non salvato");
+  console.error(e);
+
+ }
 };
 
 
-/* =========================
-   PROSSIMO CONCORRENTE
-========================= */
+/* PROSSIMO */
 
-window.prossimo=function(){
+window.prossimo=async function(){
 
-  if(!votoInviato){
+ if(!votoInviato){
 
-    alert(
-      "Devi confermare il voto prima di passare al prossimo concorrente"
-    );
+  alert(
+   "Devi confermare il voto prima di passare al prossimo concorrente"
+  );
 
-    return;
+  return;
+ }
+
+ const lista=categorie[categoria];
+
+ if(indice < lista.length-1){
+
+  indice++;
+
+  localStorage.setItem(
+   chiavePosizione(),
+   indice
+  );
+
+  await mostra();
+
+ }else{
+
+  alert(
+   "Hai completato tutti i concorrenti "+categoria+
+   ".\n\nOra puoi usare RIVEDI VOTI per controllare le valutazioni."
+  );
+
+  apriRevisione();
+ }
+};
+
+
+/* REVISIONE / CAMBIO SCALETTA */
+
+window.apriRevisione=async function(){
+
+ document.getElementById("voting").style.display="none";
+ document.getElementById("revisione").style.display="block";
+
+ document.getElementById("revisioneCategoria").innerText=categoria;
+
+ await aggiornaRevisione();
+};
+
+
+async function aggiornaRevisione(){
+
+ const lista=categorie[categoria];
+
+ categoriaChiusa=await leggiChiusura(categoria);
+
+ let html="";
+
+ for(const c of lista){
+
+  let votoTesto="DA VOTARE";
+  let classe="davotare";
+
+  try{
+
+   const snap=await get(
+    ref(db,"voti/"+categoria+"/"+c.n+"/"+giudice)
+   );
+
+   if(snap.exists()){
+
+    votoTesto="VOTATO • "+Number(snap.val().voto);
+    classe="votato";
+
+   }
+
+  }catch(e){}
+
+  if(categoriaChiusa){
+   classe="bloccato";
   }
 
+  html+=`
+   <div class="rigaConcorrente"
+        onclick="selezionaRecupero(${c.n})">
 
-  if(indice < baby.length-1){
+    <div>
+     <b>${c.n}. ${c.nome}</b>
+    </div>
 
-    indice++;
+    <div class="${classe}">
+     ${votoTesto}
+    </div>
 
-    localStorage.setItem(
-      "rsf_posizione_"+giudice,
-      indice
-    );
+   </div>
+  `;
+ }
 
-    mostra();
+ document.getElementById("listaRevisione").innerHTML=html;
+}
 
-  }else{
 
-    localStorage.setItem(
-      "rsf_posizione_"+giudice,
-      indice
-    );
+window.selezionaRecupero=async function(numero){
 
-    alert("Hai completato tutti i BABY");
+ indice=numero-1;
 
-  }
+ /*
+  NON cambiamo la posizione della sequenza
+  salvata: questa è una deviazione volontaria
+  per cambio scaletta/revisione.
+ */
 
+ document.getElementById("revisione").style.display="none";
+ document.getElementById("voting").style.display="block";
+
+ await mostra();
+};
+
+
+window.tornaVotazione=async function(){
+
+ /*
+  Torna alla posizione normale memorizzata.
+ */
+
+ caricaPosizione();
+
+ document.getElementById("revisione").style.display="none";
+ document.getElementById("voting").style.display="block";
+
+ await mostra();
 };
 
 
@@ -506,152 +641,276 @@ window.prossimo=function(){
    REGIA
 ========================= */
 
-function avviaRegia(){
+window.cambiaCategoriaRegia=function(){
 
-  const riferimento=ref(db,"voti/BABY");
+ const cat=document.getElementById("categoriaRegia").value;
 
+ document.getElementById("nomeCategoriaRegia").innerText=cat;
 
-  onValue(riferimento,(snapshot)=>{
-
-    const dati=snapshot.val() || {};
-
-    let risultati=[];
-    let totaleVoti=0;
+ avviaRegia(cat);
+};
 
 
-    baby.forEach(c=>{
+function avviaRegia(cat){
 
-      const votiConcorrente=dati[c.n] || {};
+ /*
+  Se esiste già un listener REGIA,
+  lo interrompiamo prima di crearne un altro.
+ */
 
-      const votiValidi=[];
+ if(unsubscribeRegia){
+  unsubscribeRegia();
+  unsubscribeRegia=null;
+ }
 
+ aggiornaStatoRegia(cat);
 
-      for(let i=1;i<=6;i++){
+ const riferimento=ref(db,"voti/"+cat);
 
-        const codice="G"+i;
+ unsubscribeRegia=onValue(riferimento,(snapshot)=>{
 
-        if(
-          votiConcorrente[codice] &&
-          !isNaN(Number(votiConcorrente[codice].voto))
-        ){
+  const dati=snapshot.val() || {};
+  const lista=categorie[cat];
 
-          votiValidi.push(
-            Number(votiConcorrente[codice].voto)
-          );
-
-        }
-
-      }
-
-
-      totaleVoti+=votiValidi.length;
+  let risultati=[];
+  let totaleVoti=0;
 
 
-      const totale=
-        votiValidi.reduce((a,b)=>a+b,0);
+  lista.forEach(c=>{
 
+   const votiConcorrente=dati[c.n] || {};
+   const votiValidi=[];
 
-      const media=
-        votiValidi.length
-        ? totale/votiValidi.length
-        : 0;
+   for(let i=1;i<=6;i++){
 
+    const codice="G"+i;
 
-      risultati.push({
-        numero:c.n,
-        nome:c.nome,
-        totale:totale,
-        media:media,
-        ricevuti:votiValidi.length,
-        dati:votiConcorrente
-      });
-
-    });
-
-
-    risultati.sort((a,b)=>
-      b.totale-a.totale ||
-      b.media-a.media ||
-      a.numero-b.numero
-    );
-
-
-    document.getElementById("conteggio").innerText=
-      totaleVoti+" / 36";
-
-
-    if(totaleVoti===36){
-
-      document.getElementById("titoloRegia").innerText=
-        "CLASSIFICA FINALE";
-
-    }else{
-
-      document.getElementById("titoloRegia").innerText=
-        "VOTAZIONE LIVE";
-
+    if(
+     votiConcorrente[codice] &&
+     !isNaN(Number(votiConcorrente[codice].voto))
+    ){
+     votiValidi.push(
+      Number(votiConcorrente[codice].voto)
+     );
     }
+   }
 
+   totaleVoti+=votiValidi.length;
 
-    document.getElementById("classifica").innerHTML=
-      risultati.map((r,i)=>{
+   const totale=votiValidi.reduce((a,b)=>a+b,0);
 
-        let statoGiurati="";
+   const media=
+    votiValidi.length
+    ? totale/votiValidi.length
+    : 0;
 
-
-        for(let g=1;g<=6;g++){
-
-          const codice="G"+g;
-
-          const presente=
-            r.dati[codice] &&
-            !isNaN(Number(r.dati[codice].voto));
-
-
-          statoGiurati+=
-            codice+" "+(presente ? "✓" : "—");
-
-
-          if(g<6){
-            statoGiurati+=" · ";
-          }
-
-        }
-
-
-        return `
-          <div class="rank">
-
-            <div>
-
-              <b>${i+1}. ${r.nome}</b><br>
-
-              <span style="color:#8893aa">
-                ${r.ricevuti}/6 voti
-              </span>
-
-              <div class="giurati">
-                ${statoGiurati}
-              </div>
-
-            </div>
-
-            <div style="font-size:21px;font-weight:800">
-              ${r.totale.toFixed(1)}
-            </div>
-
-          </div>
-        `;
-
-      }).join("");
+   risultati.push({
+    numero:c.n,
+    nome:c.nome,
+    totale,
+    media,
+    ricevuti:votiValidi.length,
+    dati:votiConcorrente
+   });
 
   });
 
+
+  risultati.sort((a,b)=>
+   b.totale-a.totale ||
+   b.media-a.media ||
+   a.numero-b.numero
+  );
+
+
+  const massimo=lista.length*6;
+
+  document.getElementById("conteggio").innerText=
+   totaleVoti+" / "+massimo;
+
+
+  document.getElementById("classifica").innerHTML=
+   risultati.map((r,i)=>{
+
+    let stato="";
+
+    for(let g=1;g<=6;g++){
+
+     const codice="G"+g;
+
+     const presente=
+      r.dati[codice] &&
+      !isNaN(Number(r.dati[codice].voto));
+
+     stato+=codice+" "+(presente ? "✓" : "—");
+
+     if(g<6) stato+=" · ";
+    }
+
+    return `
+     <div class="rank">
+
+      <div>
+       <b>${i+1}. ${r.nome}</b><br>
+
+       <span style="color:#8893aa">
+        ${r.ricevuti}/6 voti
+       </span>
+
+       <div class="giurati">${stato}</div>
+      </div>
+
+      <div style="font-size:21px;font-weight:800">
+       ${r.totale.toFixed(1)}
+      </div>
+
+     </div>
+    `;
+
+   }).join("");
+
+ });
 }
 
 
-document.getElementById("status").innerText=
-  "Sistema pronto";
+async function aggiornaStatoRegia(cat){
+
+ const chiusa=await leggiChiusura(cat);
+
+ const el=document.getElementById("statoCategoria");
+
+ if(chiusa){
+
+  el.innerText="VOTAZIONE CHIUSA";
+  document.getElementById("titoloRegia").innerText=
+   "CLASSIFICA FINALE";
+
+ }else{
+
+  el.innerText="VOTAZIONE APERTA";
+  document.getElementById("titoloRegia").innerText=
+   "VOTAZIONE LIVE";
+
+ }
+}
+
+
+/* APRI CATEGORIA */
+
+window.apriCategoria=async function(){
+
+ const cat=document.getElementById("categoriaRegia").value;
+
+ const conferma=confirm(
+  "APRIRE / RIAPRIRE LA VOTAZIONE "+cat+"?"
+ );
+
+ if(!conferma) return;
+
+ try{
+
+  await set(
+   ref(db,"controllo/"+cat+"/chiusa"),
+   false
+  );
+
+  alert("VOTAZIONE "+cat+" APERTA");
+
+  aggiornaStatoRegia(cat);
+
+ }catch(e){
+
+  alert("ERRORE: impossibile aprire la categoria");
+
+ }
+};
+
+
+/* CHIUSURA DEFINITIVA */
+
+window.chiudiCategoria=async function(){
+
+ const cat=document.getElementById("categoriaRegia").value;
+
+ const lista=categorie[cat];
+
+ /*
+  Prima controlliamo quanti voti esistono.
+ */
+
+ let totale=0;
+
+ try{
+
+  const snap=await get(ref(db,"voti/"+cat));
+  const dati=snap.val() || {};
+
+  lista.forEach(c=>{
+
+   const vc=dati[c.n] || {};
+
+   for(let g=1;g<=6;g++){
+
+    const codice="G"+g;
+
+    if(
+     vc[codice] &&
+     !isNaN(Number(vc[codice].voto))
+    ){
+     totale++;
+    }
+   }
+
+  });
+
+ }catch(e){}
+
+
+ const massimo=lista.length*6;
+
+
+ let messaggio=
+  "ATTENZIONE\n\n"+
+  "Stai per CHIUDERE DEFINITIVAMENTE "+cat+
+  ".\n\nVoti ricevuti: "+totale+" / "+massimo+
+  "\n\nDopo la chiusura i giurati non potranno più modificare i voti.";
+
+
+ if(totale<massimo){
+
+  messaggio+=
+   "\n\nATTENZIONE: NON SONO ANCORA ARRIVATI TUTTI I VOTI.";
+
+ }
+
+
+ if(!confirm(messaggio)) return;
+
+
+ const seconda=confirm(
+  "ULTIMA CONFERMA\n\nCHIUDERE "+cat+"?"
+ );
+
+ if(!seconda) return;
+
+
+ try{
+
+  await set(
+   ref(db,"controllo/"+cat+"/chiusa"),
+   true
+  );
+
+  alert("VOTAZIONE "+cat+" CHIUSA");
+
+  aggiornaStatoRegia(cat);
+
+ }catch(e){
+
+  alert("ERRORE: impossibile chiudere la categoria");
+
+ }
+};
 
 </script>
 
