@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RSF 2026 • Giuria</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:#070b18;
+  color:white;
+  min-height:100vh;
+}
+.wrap{
+  max-width:600px;
+  margin:auto;
+  padding:24px 18px 50px;
+}
+h1{
+  font-size:24px;
+  margin:0;
+  text-align:center;
+}
+.sub{
+  text-align:center;
+  color:#aeb8d0;
+  margin:6px 0 25px;
+}
+.card{
+  background:#11182d;
+  border:1px solid #293455;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:16px;
+}
+label{
+  display:block;
+  color:#aeb8d0;
+  margin-bottom:8px;
+  font-size:14px;
+}
+select,input,button{
+  width:100%;
+  font-size:18px;
+  border-radius:12px;
+}
+select,input{
+  background:#080d1c;
+  color:white;
+  border:1px solid #354265;
+  padding:14px;
+  margin-bottom:15px;
+}
+.nome{
+  font-size:25px;
+  font-weight:800;
+  text-align:center;
+  margin:6px 0 5px;
+}
+.numero{
+  text-align:center;
+  color:#d1a954;
+  font-weight:700;
+  margin-bottom:20px;
+}
+.voto{
+  font-size:44px;
+  font-weight:800;
+  text-align:center;
+  margin:12px 0;
+}
+input[type=range]{
+  padding:0;
+  accent-color:#d1a954;
+}
+button{
+  border:0;
+  padding:16px;
+  font-weight:800;
+  cursor:pointer;
+}
+.invia{
+  background:#d1a954;
+  color:#090b12;
+}
+.next{
+  margin-top:12px;
+  background:#293455;
+  color:white;
+}
+.ok{
+  display:none;
+  background:#123a2b;
+  border:1px solid #1f7956;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  margin-top:15px;
+}
+.small{
+  color:#8893aa;
+  text-align:center;
+  font-size:12px;
+  margin-top:20px;
+}
+#admin{
+  display:none;
+}
+.rank{
+  display:flex;
+  justify-content:space-between;
+  padding:13px 4px;
+  border-bottom:1px solid #293455;
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<h1>RAVENNA SONG FESTIVAL 2026</h1>
+<div class="sub">GIURIA • FINALE</div>
+
+<div id="login" class="card">
+<label>Seleziona giurato</label>
+<select id="giurato">
+<option value="">— scegli —</option>
+<option value="G1">GIURATO 1</option>
+<option value="G2">GIURATO 2</option>
+<option value="G3">GIURATO 3</option>
+<option value="G4">GIURATO 4</option>
+<option value="G5">GIURATO 5</option>
+<option value="G6">GIURATO 6</option>
+<option value="REGIA">REGIA / DIREZIONE ARTISTICA</option>
+</select>
+<button class="invia" onclick="entra()">ENTRA</button>
+</div>
+
+<div id="voting" style="display:none">
+
+<div class="card">
+<div style="text-align:center;color:#aeb8d0">CATEGORIA</div>
+<div style="text-align:center;font-size:22px;font-weight:800">BABY</div>
+</div>
+
+<div class="card">
+<div id="numero" class="numero"></div>
+<div id="nome" class="nome"></div>
+
+<div class="voto" id="votoLabel">15</div>
+
+<input id="voto" type="range"
+ min="10" max="20" step="0.5" value="15"
+ oninput="document.getElementById('votoLabel').innerText=this.value">
+
+<button class="invia" id="send" onclick="inviaVoto()">
+CONFERMA VOTO
+</button>
+
+<div class="ok" id="ok">
+VOTO REGISTRATO
+</div>
+
+<button class="next" onclick="prossimo()">
+PROSSIMO CONCORRENTE
+</button>
+</div>
+
+<div class="small" id="status">Connessione...</div>
+</div>
+
+<div id="admin">
+<div class="card">
+<div style="text-align:center;color:#aeb8d0">CLASSIFICA LIVE</div>
+<div style="text-align:center;font-size:22px;font-weight:800">BABY</div>
+<div id="classifica"></div>
+</div>
+
+<div class="card">
+<div style="text-align:center;color:#aeb8d0">VOTI RICEVUTI</div>
+<div id="conteggio" style="text-align:center;font-size:38px;font-weight:800;margin-top:10px">
+0 / 36
+</div>
+</div>
+</div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+import {
+ getDatabase,
+ ref,
+ set,
+ onValue
+} from
+"https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
+const firebaseConfig = {
+ apiKey:"AIzaSyDyQSMV8bAXOFDUsKWUPqP5RpthLPloSl8",
+ authDomain:"rsf-giuria-2026.firebaseapp.com",
+ projectId:"rsf-giuria-2026",
+ storageBucket:"rsf-giuria-2026.firebasestorage.app",
+ messagingSenderId:"108324441624",
+ appId:"1:108324441624:web:9cfef3eaa723dd907bbd6d",
+ databaseURL:"https://rsf-giuria-2026-default-rtdb.europe-west1.firebasedatabase.app"
+};
+
+const app=initializeApp(firebaseConfig);
+const db=getDatabase(app);
+
+const baby=[
+ {n:1,nome:"ALESSANDRO CARUSO"},
+ {n:2,nome:"ANNASOLE DALMONTE"},
+ {n:3,nome:"ARIEL FULGENTE"},
+ {n:4,nome:"LUIGI DI IORIO"},
+ {n:5,nome:"MICHELE COMPAGNONI"},
+ {n:6,nome:"NATALIA MOLONE"}
+];
+
+let giudice="";
+let indice=0;
+
+window.entra=function(){
+
+ giudice=document.getElementById("giurato").value;
+
+ if(!giudice){
+   alert("Seleziona il giurato");
+   return;
+ }
+
+ document.getElementById("login").style.display="none";
+
+ if(giudice==="REGIA"){
+   document.getElementById("admin").style.display="block";
+   avviaRegia();
+   return;
+ }
+
+ document.getElementById("voting").style.display="block";
+ mostra();
+};
+
+function mostra(){
+
+ const c=baby[indice];
+
+ document.getElementById("numero").innerText=
+ "CONCORRENTE "+c.n+" DI "+baby.length;
+
+ document.getElementById("nome").innerText=c.nome;
+
+ document.getElementById("voto").value=15;
+ document.getElementById("votoLabel").innerText="15";
+
+ document.getElementById("ok").style.display="none";
+ document.getElementById("send").disabled=false;
+}
+
+window.inviaVoto=async function(){
+
+ const c=baby[indice];
+ const voto=parseFloat(document.getElementById("voto").value);
+
+ try{
+
+   await set(
+     ref(db,"voti/BABY/"+c.n+"/"+giudice),
+     {
+       voto:voto,
+       nome:c.nome,
+       giurato:giudice,
+       timestamp:Date.now()
+     }
+   );
+
+   document.getElementById("ok").style.display="block";
+   document.getElementById("send").disabled=true;
+   document.getElementById("status").innerText="Voto salvato online";
+
+ }catch(e){
+
+   alert("ERRORE: voto non salvato");
+   console.error(e);
+
+ }
+};
+
+window.prossimo=function(){
+
+ if(indice < baby.length-1){
+   indice++;
+   mostra();
+ }else{
+   alert("Hai completato tutti i BABY");
+ }
+};
+
+function avviaRegia(){
+
+ const r=ref(db,"voti/BABY");
+
+ onValue(r,(snap)=>{
+
+   const dati=snap.val()||{};
+   let risultati=[];
+   let totaleVoti=0;
+
+   baby.forEach(c=>{
+
+     const votiConcorrente=dati[c.n]||{};
+     const voti=Object.values(votiConcorrente)
+       .map(x=>Number(x.voto))
+       .filter(x=>!isNaN(x));
+
+     totaleVoti+=voti.length;
+
+     const totale=voti.reduce((a,b)=>a+b,0);
+     const media=voti.length ? totale/voti.length : 0;
+
+     risultati.push({
+       nome:c.nome,
+       totale:totale,
+       media:media,
+       ricevuti:voti.length
+     });
+
+   });
+
+   risultati.sort((a,b)=>
+     b.totale-a.totale || b.media-a.media
+   );
+
+   document.getElementById("conteggio").innerText=
+   totaleVoti+" / 36";
+
+   document.getElementById("classifica").innerHTML=
+   risultati.map((r,i)=>`
+     <div class="rank">
+       <div>
+         <b>${i+1}. ${r.nome}</b><br>
+         <span style="color:#8893aa">
+           ${r.ricevuti}/6 voti
+         </span>
+       </div>
+       <div style="font-size:21px;font-weight:800">
+         ${r.totale.toFixed(1)}
+       </div>
+     </div>
+   `).join("");
+
+ });
+
+}
+
+document.getElementById("status").innerText="Sistema pronto";
+
+</script>
+
+</body>
+</html>
