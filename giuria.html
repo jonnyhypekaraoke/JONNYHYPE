@@ -7,6 +7,7 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
@@ -14,21 +15,25 @@ body{
   color:white;
   min-height:100vh;
 }
+
 .wrap{
   max-width:600px;
   margin:auto;
   padding:24px 18px 50px;
 }
+
 h1{
   font-size:24px;
   margin:0;
   text-align:center;
 }
+
 .sub{
   text-align:center;
   color:#aeb8d0;
   margin:6px 0 25px;
 }
+
 .card{
   background:#11182d;
   border:1px solid #293455;
@@ -36,17 +41,20 @@ h1{
   padding:20px;
   margin-bottom:16px;
 }
+
 label{
   display:block;
   color:#aeb8d0;
   margin-bottom:8px;
   font-size:14px;
 }
+
 select,input,button{
   width:100%;
   font-size:18px;
   border-radius:12px;
 }
+
 select,input{
   background:#080d1c;
   color:white;
@@ -54,43 +62,55 @@ select,input{
   padding:14px;
   margin-bottom:15px;
 }
+
 .nome{
   font-size:25px;
   font-weight:800;
   text-align:center;
   margin:6px 0 5px;
 }
+
 .numero{
   text-align:center;
   color:#d1a954;
   font-weight:700;
   margin-bottom:20px;
 }
+
 .voto{
   font-size:44px;
   font-weight:800;
   text-align:center;
   margin:12px 0;
 }
+
 input[type=range]{
   padding:0;
   accent-color:#d1a954;
 }
+
 button{
   border:0;
   padding:16px;
   font-weight:800;
   cursor:pointer;
 }
+
 .invia{
   background:#d1a954;
   color:#090b12;
 }
+
+.invia:disabled{
+  opacity:.55;
+}
+
 .next{
   margin-top:12px;
   background:#293455;
   color:white;
 }
+
 .ok{
   display:none;
   background:#123a2b;
@@ -100,32 +120,45 @@ button{
   text-align:center;
   margin-top:15px;
 }
+
 .small{
   color:#8893aa;
   text-align:center;
   font-size:12px;
   margin-top:20px;
 }
+
 #admin{
   display:none;
 }
+
 .rank{
   display:flex;
   justify-content:space-between;
+  gap:10px;
   padding:13px 4px;
   border-bottom:1px solid #293455;
+}
+
+.giurati{
+  color:#8893aa;
+  font-size:12px;
+  margin-top:5px;
 }
 </style>
 </head>
 
 <body>
+
 <div class="wrap">
 
 <h1>RAVENNA SONG FESTIVAL 2026</h1>
 <div class="sub">GIURIA • FINALE</div>
 
 <div id="login" class="card">
+
 <label>Seleziona giurato</label>
+
 <select id="giurato">
 <option value="">— scegli —</option>
 <option value="G1">EMANUELA CORTESI</option>
@@ -136,8 +169,11 @@ button{
 <option value="G6">ALESSANDRO BRAGA</option>
 <option value="REGIA">REGIA / DIREZIONE ARTISTICA</option>
 </select>
+
 <button class="invia" onclick="entra()">ENTRA</button>
+
 </div>
+
 
 <div id="voting" style="display:none">
 
@@ -147,14 +183,21 @@ button{
 </div>
 
 <div class="card">
+
 <div id="numero" class="numero"></div>
 <div id="nome" class="nome"></div>
 
 <div class="voto" id="votoLabel">15</div>
 
-<input id="voto" type="range"
- min="10" max="20" step="0.5" value="15"
- oninput="document.getElementById('votoLabel').innerText=this.value">
+<input
+ id="voto"
+ type="range"
+ min="10"
+ max="20"
+ step="0.5"
+ value="15"
+ oninput="document.getElementById('votoLabel').innerText=this.value"
+>
 
 <button class="invia" id="send" onclick="inviaVoto()">
 CONFERMA VOTO
@@ -167,27 +210,49 @@ VOTO REGISTRATO
 <button class="next" onclick="prossimo()">
 PROSSIMO CONCORRENTE
 </button>
+
 </div>
 
 <div class="small" id="status">Connessione...</div>
+
 </div>
+
 
 <div id="admin">
-<div class="card">
-<div style="text-align:center;color:#aeb8d0">CLASSIFICA LIVE</div>
-<div style="text-align:center;font-size:22px;font-weight:800">BABY</div>
-<div id="classifica"></div>
-</div>
 
 <div class="card">
-<div style="text-align:center;color:#aeb8d0">VOTI RICEVUTI</div>
-<div id="conteggio" style="text-align:center;font-size:38px;font-weight:800;margin-top:10px">
+
+<div id="titoloRegia"
+ style="text-align:center;color:#aeb8d0">
+VOTAZIONE LIVE
+</div>
+
+<div style="text-align:center;font-size:22px;font-weight:800">
+BABY
+</div>
+
+<div id="classifica"></div>
+
+</div>
+
+
+<div class="card">
+
+<div style="text-align:center;color:#aeb8d0">
+VOTI RICEVUTI
+</div>
+
+<div id="conteggio"
+ style="text-align:center;font-size:38px;font-weight:800;margin-top:10px">
 0 / 36
 </div>
-</div>
+
 </div>
 
 </div>
+
+</div>
+
 
 <script type="module">
 
@@ -195,173 +260,373 @@ import { initializeApp } from
 "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 
 import {
- getDatabase,
- ref,
- set,
- onValue
+  getDatabase,
+  ref,
+  set,
+  onValue
 } from
 "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
 
+
 const firebaseConfig = {
- apiKey:"AIzaSyDyQSMV8bAXOFDUsKWUPqP5RpthLPloSl8",
- authDomain:"rsf-giuria-2026.firebaseapp.com",
- projectId:"rsf-giuria-2026",
- storageBucket:"rsf-giuria-2026.firebasestorage.app",
- messagingSenderId:"108324441624",
- appId:"1:108324441624:web:9cfef3eaa723dd907bbd6d",
- databaseURL:"https://rsf-giuria-2026-default-rtdb.europe-west1.firebasedatabase.app"
+  apiKey:"AIzaSyDyQSMV8bAXOFDUsKWUPqP5RpthLPloSl8",
+  authDomain:"rsf-giuria-2026.firebaseapp.com",
+  projectId:"rsf-giuria-2026",
+  storageBucket:"rsf-giuria-2026.firebasestorage.app",
+  messagingSenderId:"108324441624",
+  appId:"1:108324441624:web:9cfef3eaa723dd907bbd6d",
+  databaseURL:"https://rsf-giuria-2026-default-rtdb.europe-west1.firebasedatabase.app"
 };
+
 
 const app=initializeApp(firebaseConfig);
 const db=getDatabase(app);
 
+
 const baby=[
- {n:1,nome:"ALESSANDRO CARUSO"},
- {n:2,nome:"ANNASOLE DALMONTE"},
- {n:3,nome:"ARIEL FULGENTE"},
- {n:4,nome:"LUIGI DI IORIO"},
- {n:5,nome:"MICHELE COMPAGNONI"},
- {n:6,nome:"NATALIA MOLONE"}
+  {n:1,nome:"ALESSANDRO CARUSO"},
+  {n:2,nome:"ANNASOLE DALMONTE"},
+  {n:3,nome:"ARIEL FULGENTE"},
+  {n:4,nome:"LUIGI DI IORIO"},
+  {n:5,nome:"MICHELE COMPAGNONI"},
+  {n:6,nome:"NATALIA MOLONE"}
 ];
+
 
 let giudice="";
 let indice=0;
+let votoInviato=false;
+
+
+/* =========================
+   ACCESSO
+========================= */
 
 window.entra=function(){
 
- giudice=document.getElementById("giurato").value;
+  giudice=document.getElementById("giurato").value;
 
- if(!giudice){
-   alert("Seleziona il giurato");
-   return;
- }
+  if(!giudice){
+    alert("Seleziona il giurato");
+    return;
+  }
 
- document.getElementById("login").style.display="none";
+  document.getElementById("login").style.display="none";
 
- if(giudice==="REGIA"){
-   document.getElementById("admin").style.display="block";
-   avviaRegia();
-   return;
- }
+  if(giudice==="REGIA"){
 
-  const posizioneSalvata = localStorage.getItem("rsf_posizione_"+giudice);
-indice = posizioneSalvata !== null ? parseInt(posizioneSalvata) : 0;
-  
+    document.getElementById("admin").style.display="block";
+    avviaRegia();
+    return;
 
- document.getElementById("voting").style.display="block";
- mostra();
+  }
+
+  const posizioneSalvata=
+    localStorage.getItem("rsf_posizione_"+giudice);
+
+  if(posizioneSalvata!==null){
+
+    const posizione=parseInt(posizioneSalvata,10);
+
+    if(
+      !isNaN(posizione) &&
+      posizione>=0 &&
+      posizione<baby.length
+    ){
+      indice=posizione;
+    }else{
+      indice=0;
+    }
+
+  }else{
+    indice=0;
+  }
+
+  document.getElementById("voting").style.display="block";
+
+  mostra();
+
 };
+
+
+/* =========================
+   MOSTRA CONCORRENTE
+========================= */
 
 function mostra(){
 
- const c=baby[indice];
+  const c=baby[indice];
 
- document.getElementById("numero").innerText=
- "CONCORRENTE "+c.n+" DI "+baby.length;
+  document.getElementById("numero").innerText=
+    "CONCORRENTE "+c.n+" DI "+baby.length;
 
- document.getElementById("nome").innerText=c.nome;
+  document.getElementById("nome").innerText=c.nome;
 
- document.getElementById("voto").value=15;
- document.getElementById("votoLabel").innerText="15";
+  document.getElementById("voto").value=15;
+  document.getElementById("votoLabel").innerText="15";
 
- document.getElementById("ok").style.display="none";
- document.getElementById("send").disabled=false;
+  document.getElementById("ok").style.display="none";
+  document.getElementById("send").disabled=false;
+
+  document.getElementById("status").innerText=
+    "Sistema pronto";
+
+  votoInviato=false;
+
 }
+
+
+/* =========================
+   INVIO VOTO
+========================= */
 
 window.inviaVoto=async function(){
 
- const c=baby[indice];
- const voto=parseFloat(document.getElementById("voto").value);
-const conferma = confirm(
-  "CONFERMI IL VOTO?\n\n" +
-  c.nome + "\n\n" +
-  "VOTO: " + voto
-);
+  const c=baby[indice];
 
-if (!conferma) return;
- try{
+  const voto=
+    parseFloat(document.getElementById("voto").value);
 
-   await set(
-     ref(db,"voti/BABY/"+c.n+"/"+giudice),
-     {
-       voto:voto,
-       nome:c.nome,
-       giurato:giudice,
-       timestamp:Date.now()
-     }
-   );
+  const conferma=confirm(
+    "CONFERMI IL VOTO?\n\n"+
+    c.nome+
+    "\n\nVOTO: "+voto
+  );
 
-   document.getElementById("ok").style.display="block";
-   document.getElementById("send").disabled=true;
-   document.getElementById("status").innerText="Voto salvato online";
+  if(!conferma) return;
 
- }catch(e){
+  try{
 
-   alert("ERRORE: voto non salvato");
-   console.error(e);
+    await set(
+      ref(
+        db,
+        "voti/BABY/"+c.n+"/"+giudice
+      ),
+      {
+        voto:voto,
+        nome:c.nome,
+        giurato:giudice,
+        timestamp:Date.now()
+      }
+    );
 
- }
+    votoInviato=true;
+
+    document.getElementById("ok").style.display="block";
+
+    /*
+      Il voto può essere modificato PRIMA
+      di passare al concorrente successivo.
+      Per questo il pulsante rimane attivo.
+    */
+
+    document.getElementById("send").disabled=false;
+
+    document.getElementById("status").innerText=
+      "Voto salvato online";
+
+  }catch(e){
+
+    alert("ERRORE: voto non salvato");
+    console.error(e);
+
+  }
+
 };
+
+
+/* =========================
+   PROSSIMO CONCORRENTE
+========================= */
 
 window.prossimo=function(){
 
-  if(indice < baby.length-1){
-    indice++;
-    localStorage.setItem("rsf_posizione_"+giudice, indice);
-    mostra();
-  }else{
-    alert("Hai completato tutti i BABY");
+  /*
+    Impedisce di saltare un concorrente
+    senza aver prima registrato un voto.
+  */
+
+  if(!votoInviato){
+
+    alert(
+      "Devi confermare il voto prima di passare al prossimo concorrente"
+    );
+
+    return;
   }
+
+  if(indice < baby.length-1){
+
+    indice++;
+
+    localStorage.setItem(
+      "rsf_posizione_"+giudice,
+      indice
+    );
+
+    mostra();
+
+  }else{
+
+    /*
+      Manteniamo la posizione sull'ultimo Baby
+      in caso di ricaricamento accidentale.
+    */
+
+    localStorage.setItem(
+      "rsf_posizione_"+giudice,
+      indice
+    );
+
+    alert("Hai completato tutti i BABY");
+
+  }
+
 };
 
-   baby.forEach(c=>{
 
-     const votiConcorrente=dati[c.n]||{};
-     const voti=Object.values(votiConcorrente)
-       .map(x=>Number(x.voto))
-       .filter(x=>!isNaN(x));
+/* =========================
+   REGIA
+========================= */
 
-     totaleVoti+=voti.length;
+function avviaRegia(){
 
-     const totale=voti.reduce((a,b)=>a+b,0);
-     const media=voti.length ? totale/voti.length : 0;
+  const riferimento=ref(db,"voti/BABY");
 
-     risultati.push({
-       nome:c.nome,
-       totale:totale,
-       media:media,
-       ricevuti:voti.length
-     });
+  onValue(riferimento,(snapshot)=>{
 
-   });
+    const dati=snapshot.val() || {};
 
-   risultati.sort((a,b)=>
-     b.totale-a.totale || b.media-a.media
-   );
+    let risultati=[];
+    let totaleVoti=0;
 
-   document.getElementById("conteggio").innerText=
-   totaleVoti+" / 36";
+    baby.forEach(c=>{
 
-   document.getElementById("classifica").innerHTML=
-   risultati.map((r,i)=>`
-     <div class="rank">
-       <div>
-         <b>${i+1}. ${r.nome}</b><br>
-         <span style="color:#8893aa">
-           ${r.ricevuti}/6 voti
-         </span>
-       </div>
-       <div style="font-size:21px;font-weight:800">
-         ${r.totale.toFixed(1)}
-       </div>
-     </div>
-   `).join("");
+      const votiConcorrente=dati[c.n] || {};
 
- });
+      const votiValidi=[];
+
+      for(let i=1;i<=6;i++){
+
+        const codice="G"+i;
+
+        if(
+          votiConcorrente[codice] &&
+          !isNaN(Number(votiConcorrente[codice].voto))
+        ){
+          votiValidi.push(
+            Number(votiConcorrente[codice].voto)
+          );
+        }
+
+      }
+
+      totaleVoti+=votiValidi.length;
+
+      const totale=
+        votiValidi.reduce((a,b)=>a+b,0);
+
+      const media=
+        votiValidi.length
+        ? totale/votiValidi.length
+        : 0;
+
+      risultati.push({
+        numero:c.n,
+        nome:c.nome,
+        totale:totale,
+        media:media,
+        ricevuti:votiValidi.length,
+        dati:votiConcorrente
+      });
+
+    });
+
+
+    /*
+      Durante la votazione ordiniamo per totale.
+      In caso di parità usiamo la media.
+    */
+
+    risultati.sort((a,b)=>
+      b.totale-a.totale ||
+      b.media-a.media ||
+      a.numero-b.numero
+    );
+
+
+    document.getElementById("conteggio").innerText=
+      totaleVoti+" / 36";
+
+
+    if(totaleVoti===36){
+
+      document.getElementById("titoloRegia").innerText=
+        "CLASSIFICA FINALE";
+
+    }else{
+
+      document.getElementById("titoloRegia").innerText=
+        "VOTAZIONE LIVE";
+
+    }
+
+
+    document.getElementById("classifica").innerHTML=
+      risultati.map((r,i)=>{
+
+        let statoGiurati="";
+
+        for(let g=1;g<=6;g++){
+
+          const codice="G"+g;
+
+          const presente=
+            r.dati[codice] &&
+            !isNaN(Number(r.dati[codice].voto));
+
+          statoGiurati+=
+            codice+" "+(presente ? "✓" : "—");
+
+          if(g<6){
+            statoGiurati+=" · ";
+          }
+
+        }
+
+        return `
+          <div class="rank">
+
+            <div>
+
+              <b>${i+1}. ${r.nome}</b><br>
+
+              <span style="color:#8893aa">
+                ${r.ricevuti}/6 voti
+              </span>
+
+              <div class="giurati">
+                ${statoGiurati}
+              </div>
+
+            </div>
+
+            <div style="font-size:21px;font-weight:800">
+              ${r.totale.toFixed(1)}
+            </div>
+
+          </div>
+        `;
+
+      }).join("");
+
+  });
 
 }
 
-document.getElementById("status").innerText="Sistema pronto";
+
+document.getElementById("status").innerText=
+  "Sistema pronto";
 
 </script>
 
