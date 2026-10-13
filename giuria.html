@@ -972,30 +972,24 @@ window.entra=async function(){
  }
 
 
- if(giudice==="REGIA"){
+if(giudice==="REGIA"){
 
-  const pin = prompt(“INSERISCI PIN REGIA”);
+  const pin = prompt("INSERISCI PIN REGIA");
 
-if (pin !== “1208”) {
-alert(“PIN ERRATO”);
-giudice = “”;
-return;
-}
+  if(pin !== "1208"){
+    alert("PIN ERRATO");
+    giudice = "";
+    return;
+  }
 
+  document.getElementById("login").style.display="none";
 
-  document.getElementById("login")
-   .style.display="none";
-
-
-  document.getElementById("admin")
-   .style.display="block";
-
+  document.getElementById("admin").style.display="block";
 
   cambiaCategoriaRegia();
 
   return;
-
- }
+}
 
 
  document.getElementById("login")
