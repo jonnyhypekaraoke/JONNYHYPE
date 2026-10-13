@@ -13,7 +13,7 @@ html,body{margin:0;padding:0;background:#050507;color:#fff;font-family:Arial,Hel
 .photo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.02) 42%,rgba(5,5,7,.45) 72%,#050507 100%),url("jonnyhype-portrait.jpg") center top/cover no-repeat}
 .content{position:relative;z-index:2;width:min(640px,88vw);margin:0 auto;padding:0 0 4.5vh;text-align:center}
 .logo{display:block;width:min(360px,76vw);height:auto;margin:0 auto 15px;filter:drop-shadow(0 5px 16px rgba(0,0,0,.75))}
-.tag{margin:0 0 18px;font-size:13px;font-weight:700;letter-spacing:.28em;text-shadow:0 2px 10px rgba(0,0,0,.9)}
+.tag{margin:0 0 18px;font-size:11px;font-weight:700;letter-spacing:.10em;white-space:nowrap;text-shadow:0 2px 10px rgba(0,0,0,.9)}
 .links{display:grid;gap:11px}
 .btn{min-height:55px;display:flex;align-items:center;justify-content:center;border-radius:17px;text-decoration:none;font-size:14px;font-weight:800;letter-spacing:.18em}
 .spotify{color:#111;background:linear-gradient(135deg,#fff0c8,#d8b36a)}
@@ -42,7 +42,7 @@ footer{padding:30px 20px;text-align:center;color:#777;font-size:11px;letter-spac
 @media(max-width:600px){
 .content{width:88vw;padding-bottom:3.2vh}
 .logo{width:70vw;margin-bottom:13px}
-.tag{font-size:11px;letter-spacing:.24em;margin-bottom:15px}
+.tag{font-size:clamp(8px,2.5vw,11px);letter-spacing:.08em;margin-bottom:15px;white-space:nowrap}
 .btn{min-height:53px;border-radius:16px}
 .festival{padding-top:58px}
 .festival-logo{width:76vw;margin-bottom:24px}.patronage{margin-bottom:25px}.patronage-label{font-size:9px;letter-spacing:.15em;line-height:1.5}.patronage img{width:82vw;max-height:110px}
