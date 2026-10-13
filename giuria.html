@@ -974,19 +974,13 @@ window.entra=async function(){
 
  if(giudice==="REGIA"){
 
-  const pin=
-   prompt("INSERISCI PIN REGIA");
+  const pin = prompt(“INSERISCI PIN REGIA”);
 
-
-  if(pin!=="1208"){
-
-   alert("PIN ERRATO");
-
-   giudice="";
-
-   return;
-
-  }
+if (pin === null || pin.trim() !== “1208”) {
+alert(“PIN ERRATO”);
+giudice = “”;
+return;
+}
 
 
   document.getElementById("login")
