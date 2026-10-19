@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "JONNYHYPE",
+  "short_name": "JONNYHYPE",
+  "description": "DJ Set, Karaoke, Eventi e Music Production",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#050507",
+  "theme_color": "#050507",
+  "icons": [
+    {
+      "src": "/jonnyhype-logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
