@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#050507">
+<link rel="manifest" href="/manifest.webmanifest">
 <meta name="description" content="JONNYHYPE — DJ SET · KARAOKE · EVENTS · MUSIC PRODUCTION">
 <title>DJ SET · KARAOKE · EVENTS & MUSIC PRODUCTION</title>
 <style>
@@ -100,7 +101,7 @@ footer{padding:30px 20px;text-align:center;color:#777;font-size:11px;letter-spac
 <body>
 
 <section class="hero">
-<div class="photo"><a class="btn home-cta" href="#aggiungi-home">AGGIUNGI ALLA HOME?</a></div>
+<div class="photo"><button class="btn home-cta" id="install-app" type="button">AGGIUNGI AD HOME</button></div>
 <div class="content">
 <img class="logo" src="jonnyhype-logo.png" alt="JONNYHYPE">
 <div class="tag">DJ SET · KARAOKE · EVENTS & MUSIC PRODUCTION</div>
@@ -127,8 +128,8 @@ footer{padding:30px 20px;text-align:center;color:#777;font-size:11px;letter-spac
 </section>
 
 <section class="home-guide" id="aggiungi-home">
-<h2>AGGIUNGI IL SITO ALLA SCHERMATA HOME</h2>
-<p>Il pulsante qui sopra apre queste istruzioni: non installa il sito automaticamente.<br><br><strong>iPhone:</strong> apri <strong>jonnyhype.it in Safari</strong> → tocca <strong>Condividi</strong> → <strong>Aggiungi alla schermata Home</strong>.<br><strong>Android:</strong> apri <strong>jonnyhype.it</strong> → menu del browser → <strong>Aggiungi alla schermata Home</strong> o <strong>Installa app</strong>, se disponibile.</p>
+<h2>AGGIUNGI JONNYHYPE ALLA HOME</h2>
+<p id="install-status">Su Android, premi il pulsante <strong>AGGIUNGI AD HOME</strong>: se il browser consente l’installazione, si aprirà la richiesta. Se non compare, usa il menu di Chrome.<br><br><strong>Android (Chrome):</strong> apri jonnyhype.it → menu <strong>⋮</strong> in alto → <strong>Installa app</strong> oppure <strong>Aggiungi a schermata Home</strong> → conferma.<br><br><strong>iPhone (Safari):</strong> premi <strong>Condividi</strong> → <strong>Aggiungi alla schermata Home</strong>.</p>
 </section>
 
 <section class="karaoke" id="prenota-canzone">
@@ -234,6 +235,32 @@ Ideato e diretto artisticamente da Jonathan Paladini. Media partner: Radio Studi
       button.disabled = false;
     }
   });
+})();
+</script>
+<script>
+(() => {
+  let installPrompt = null;
+  const button = document.getElementById('install-app');
+  const status = document.getElementById('install-status');
+  window.addEventListener('beforeinstallprompt', event => {
+    event.preventDefault();
+    installPrompt = event;
+  });
+  button.addEventListener('click', async () => {
+    if (installPrompt) {
+      installPrompt.prompt();
+      const choice = await installPrompt.userChoice;
+      installPrompt = null;
+      if (status) status.textContent = choice.outcome === 'accepted'
+        ? 'Installazione avviata. Cerca JONNYHYPE nella schermata Home.'
+        : 'Installazione annullata. Puoi riprovare dal menu di Chrome.';
+      return;
+    }
+    document.getElementById('aggiungi-home').scrollIntoView({behavior:'smooth'});
+  });
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js').catch(() => {}));
+  }
 })();
 </script>
 </body>
