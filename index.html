@@ -15,6 +15,17 @@ html,body{margin:0;padding:0;background:#050507;color:#fff;font-family:Arial,Hel
 .logo{display:block;width:min(360px,76vw);height:auto;margin:0 auto 15px;filter:drop-shadow(0 5px 16px rgba(0,0,0,.75))}
 .tag{margin:0 0 18px;font-size:11px;font-weight:700;letter-spacing:.10em;white-space:nowrap;text-shadow:0 2px 10px rgba(0,0,0,.9)}
 .links{display:grid;gap:11px}
+
+.home-cta{margin:0 auto 18px;width:100%;color:#111;background:linear-gradient(135deg,#fff0c8,#d8b36a);border:1px solid rgba(255,255,255,.35);font-size:12px;letter-spacing:.11em}
+.home-guide{padding:35px 7vw;text-align:center;background:#08080b;border-top:1px solid rgba(216,179,106,.25)}
+.home-guide h2{font-size:18px;letter-spacing:.1em;margin:0 0 12px}
+.home-guide p{max-width:620px;margin:0 auto;color:#ddd;line-height:1.7;font-size:14px}
+.home-guide strong{color:#d8b36a}
+.events-project{padding:54px 7vw;text-align:center;background:#07070a;border-top:1px solid rgba(255,255,255,.08)}
+.events-project h2{font-size:clamp(22px,5vw,32px);letter-spacing:.1em;margin:0 0 15px}
+.events-project p{max-width:640px;margin:0 auto 22px;color:#ddd;line-height:1.7}
+.events-project a{display:inline-flex;min-height:48px;padding:0 24px;align-items:center;justify-content:center;border-radius:14px;text-decoration:none;background:linear-gradient(135deg,#fff0c8,#d8b36a);color:#111;font-weight:800;font-size:13px;letter-spacing:.1em}
+
 .btn{min-height:55px;display:flex;align-items:center;justify-content:center;border-radius:17px;text-decoration:none;font-size:14px;font-weight:800;letter-spacing:.18em}
 .spotify{color:#111;background:linear-gradient(135deg,#fff0c8,#d8b36a)}
 .social{color:#fff;background:rgba(5,5,7,.70);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px)}
@@ -90,12 +101,28 @@ footer{padding:30px 20px;text-align:center;color:#777;font-size:11px;letter-spac
 <div class="content">
 <img class="logo" src="jonnyhype-logo.png" alt="JONNYHYPE">
 <div class="tag">DJ SET · KARAOKE · EVENTS & MUSIC PRODUCTION</div>
+<a class="btn home-cta" href="#aggiungi-home">＋ AGGIUNGI JONNYHYPE ALLA HOME</a>
 <div class="links">
-<a class="btn spotify" href="https://open.spotify.com/artist/084BcwC4P7NKvnPsv7lIJW" target="_blank" rel="noopener">SPOTIFY</a>
+<a class="btn spotify" href="#prenota-canzone">DEDICHE · RICHIESTE · KARAOKE</a>
 <a class="btn social" href="https://www.instagram.com/jonnyhype.official/" target="_blank" rel="noopener">INSTAGRAM</a>
+<a class="btn social" href="#prossimi-appuntamenti">PROSSIMI APPUNTAMENTI</a>
+<a class="btn social" href="#ravenna-song-festival">RAVENNA SONG FESTIVAL</a>
+<a class="btn social" href="#events">EVENTS</a>
+<a class="btn social" href="https://open.spotify.com/artist/084BcwC4P7NKvnPsv7lIJW" target="_blank" rel="noopener">SPOTIFY</a>
 <a class="btn social" href="https://youtube.com/@jonnyhype.official" target="_blank" rel="noopener">YOUTUBE</a>
 </div>
 </div>
+</section>
+
+<section class="events-project" id="events">
+<h2>EVENTS</h2>
+<p>Format, serate speciali e progetti firmati JONNYHYPE. <strong>KARAOKE LEGENDS</strong>: cinque DJ del karaoke insieme, da un’idea di Jonathan Paladini.</p>
+<a href="#prossimi-appuntamenti">SCOPRI GLI APPUNTAMENTI</a>
+</section>
+
+<section class="home-guide" id="aggiungi-home">
+<h2>AGGIUNGI JONNYHYPE ALLA HOME</h2>
+<p><strong>iPhone:</strong> apri questo sito in Safari, tocca il pulsante Condividi e scegli “Aggiungi alla schermata Home”.<br><strong>Android:</strong> apri il menu del browser e scegli “Aggiungi a schermata Home” o “Installa app”, se disponibile.</p>
 </section>
 
 <section class="karaoke" id="prenota-canzone">
@@ -129,7 +156,7 @@ footer{padding:30px 20px;text-align:center;color:#777;font-size:11px;letter-spac
 </div>
 </section>
 
-<section class="festival">
+<section class="festival" id="ravenna-song-festival">
 <img class="festival-logo" src="ravenna-song-festival-2026.png" alt="Ravenna Song Festival 2026">
 <div class="patronage">
 <div class="patronage-label">CON IL PATROCINIO DEL COMUNE DI RAVENNA</div>
