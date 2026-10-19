@@ -17,7 +17,7 @@ html,body{margin:0;padding:0;background:#050507;color:#fff;font-family:Arial,Hel
 .tag{margin:0 0 18px;font-size:11px;font-weight:700;letter-spacing:.10em;white-space:nowrap;text-shadow:0 2px 10px rgba(0,0,0,.9)}
 .links{display:grid;gap:11px}
 .social-icons{display:flex;justify-content:center;align-items:center;gap:14px;margin:20px auto 0}
-.social-icons a img{display:block;width:22px;height:22px;object-fit:contain}.festival-signup select{display:block;width:100%;margin-top:7px;padding:13px 14px;border:1px solid rgba(229,185,75,.42);border-radius:8px;background:#111;color:#fff;font:inherit}.festival-signup .booking-form{max-width:560px;margin:24px auto 0}.festival-signup #festival-signup-status{font-size:13px;line-height:1.5;color:#e5b94b}
+.social-icons a img{display:block;width:22px;height:22px;object-fit:contain}.festival-signup{padding:clamp(44px,7vw,82px) 20px;background:linear-gradient(180deg,#101010 0%,#050505 100%);border-top:1px solid rgba(229,185,75,.25)}.festival-signup h2{max-width:720px;margin:0 auto 18px;font-size:clamp(25px,5vw,38px);line-height:1.18;letter-spacing:.08em}.festival-signup>p{max-width:620px;margin:0 auto 12px;color:#d2d2d2;line-height:1.65}.festival-signup .festival-signup-note{font-size:13px;color:#b6a47b}.festival-form-card{max-width:590px;margin:28px auto 0;padding:clamp(20px,5vw,34px);border:1px solid rgba(229,185,75,.38);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));box-shadow:0 18px 55px rgba(0,0,0,.25)}.festival-form-heading{margin-bottom:24px;color:#e5b94b;font-size:12px;font-weight:800;letter-spacing:.2em}.festival-signup .booking-form{display:grid;gap:17px;max-width:100%;margin:0;text-align:left}.festival-signup .booking-form label{display:block;margin:0;color:#eee;font-size:12px;font-weight:700;letter-spacing:.12em;line-height:1.5}.festival-signup .booking-form input,.festival-signup select{box-sizing:border-box;display:block;width:100%;min-width:0;min-height:49px;margin-top:8px;padding:13px 14px;border:1px solid #454545;border-radius:10px;background:#111317;color:#fff;font:16px/1.35 inherit;letter-spacing:normal}.festival-signup .booking-form input:focus,.festival-signup select:focus{outline:2px solid rgba(229,185,75,.65);outline-offset:2px;border-color:#e5b94b}.festival-signup .booking-form button{width:100%;min-height:52px;margin-top:8px;border-radius:10px}.festival-signup #festival-signup-status{font-size:13px;line-height:1.5;color:#e5b94b}.festival-signup .booking-form input[type=date]{color-scheme:dark}
 .social-icons a{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(216,179,106,.65);border-radius:50%;color:#d8b36a;background:rgba(216,179,106,.07);text-decoration:none;transition:background .2s ease,color .2s ease}
 .social-icons a:focus-visible{outline:2px solid #fff0c8;outline-offset:3px}
 .social-icons svg{width:21px;height:21px;display:block;fill:currentColor}
@@ -200,8 +200,8 @@ Ideato e diretto artisticamente da Jonathan Paladini. Media partner: Radio Studi
 
 <section class="karaoke festival-signup" id="iscrizioni-festival-2027">
 <h2>ISCRIZIONI · RAVENNA SONG FESTIVAL 2027</h2>
-<p>Vuoi partecipare alla prossima edizione? Compila i dati per preparare la tua candidatura. L’invio ufficiale sarà attivato quando sarà pronta la Regia Festival.</p>
-<form class="booking-form" id="festival-signup-form">
+<p>Vuoi salire sul palco del Ravenna Song Festival 2027? Compila il modulo con i tuoi dati e i tre brani che proponi.</p><p class="festival-signup-note">La compilazione del modulo non equivale ancora all’iscrizione ufficiale. Le modalità di conferma saranno comunicate dall’organizzazione.</p>
+<div class="festival-form-card"><div class="festival-form-heading">LA TUA CANDIDATURA</div><form class="booking-form" id="festival-signup-form">
 <label>NOME E COGNOME<input name="nome" autocomplete="name" maxlength="120" required></label>
 <label>NOME D’ARTE (FACOLTATIVO)<input name="nome_arte" maxlength="100"></label>
 <label>DATA DI NASCITA<input name="data_nascita" type="date" required></label>
@@ -211,7 +211,7 @@ Ideato e diretto artisticamente da Jonathan Paladini. Media partner: Radio Studi
 <label>BRANO 1<input name="brano1" maxlength="160" required></label>
 <label>BRANO 2<input name="brano2" maxlength="160" required></label>
 <label>BRANO 3<input name="brano3" maxlength="160" required></label>
-<button class="btn karaoke-cta" type="submit">PREPARA LA CANDIDATURA</button><p id="festival-signup-status" role="status" aria-live="polite"></p></form>
+<button class="btn karaoke-cta" type="submit">PREPARA LA CANDIDATURA</button><p id="festival-signup-status" role="status" aria-live="polite"></p></form></div>
 </section>
 
 <section class="partners">
