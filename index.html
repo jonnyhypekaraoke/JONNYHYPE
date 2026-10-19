@@ -17,11 +17,6 @@ html,body{margin:0;padding:0;background:#050507;color:#fff;font-family:Arial,Hel
 .tag{margin:0 0 18px;font-size:11px;font-weight:700;letter-spacing:.10em;white-space:nowrap;text-shadow:0 2px 10px rgba(0,0,0,.9)}
 .links{display:grid;gap:11px}
 
-.home-cta{position:absolute;top:14px;right:14px;z-index:6;min-height:30px;padding:0 10px;border-radius:5px;color:#111;background:linear-gradient(135deg,#fff0c8,#d8b36a);border:1px solid rgba(255,231,177,.85);font-size:9px;letter-spacing:.045em;font-weight:800;backdrop-filter:blur(8px);white-space:nowrap}
-.home-guide{padding:35px 7vw;text-align:center;background:#08080b;border-top:1px solid rgba(216,179,106,.25)}
-.home-guide h2{font-size:18px;letter-spacing:.1em;margin:0 0 12px}
-.home-guide p{max-width:620px;margin:0 auto;color:#ddd;line-height:1.7;font-size:14px}
-.home-guide strong{color:#d8b36a}
 .events-project{padding:54px 7vw;text-align:center;background:#07070a;border-top:1px solid rgba(255,255,255,.08)}
 .events-project h2{font-size:clamp(22px,5vw,32px);letter-spacing:.08em;margin:0 0 15px}.format-card{max-width:600px;margin:0 auto 25px;padding:22px 18px;border:1px solid rgba(216,179,106,.38);border-radius:16px;background:rgba(255,255,255,.025)}.format-card h3{margin:0 0 12px;color:#d8b36a;font-size:20px;letter-spacing:.08em}.format-card p{margin:0;color:#ddd;line-height:1.7}.events-project>a{max-width:100%;white-space:normal;text-align:center;line-height:1.35;padding:12px 22px}.format-card strong{color:#fff}
 .events-project p{max-width:640px;margin:0 auto 22px;color:#ddd;line-height:1.7}
@@ -101,7 +96,7 @@ footer{padding:30px 20px;text-align:center;color:#777;font-size:11px;letter-spac
 <body>
 
 <section class="hero">
-<div class="photo"><button class="btn home-cta" id="install-app" type="button">AGGIUNGI AD HOME</button></div>
+<div class="photo"></div>
 <div class="content">
 <img class="logo" src="jonnyhype-logo.png" alt="JONNYHYPE">
 <div class="tag">DJ SET · KARAOKE · EVENTS & MUSIC PRODUCTION</div>
@@ -125,11 +120,6 @@ footer{padding:30px 20px;text-align:center;color:#777;font-size:11px;letter-spac
 <p><strong>Cinque DJ del karaoke, un unico palco.</strong><br>Un progetto ideato da Jonathan Paladini che riunisce cinque protagonisti del karaoke in una serata speciale.</p>
 </div>
 <a href="#prossimi-appuntamenti">CALENDARIO DI TUTTI GLI EVENTI</a>
-</section>
-
-<section class="home-guide" id="aggiungi-home">
-<h2>AGGIUNGI JONNYHYPE ALLA HOME</h2>
-<p id="install-status">Su Android, premi il pulsante <strong>AGGIUNGI AD HOME</strong>: se il browser consente l’installazione, si aprirà la richiesta. Se non compare, usa il menu di Chrome.<br><br><strong>Android (Chrome):</strong> apri jonnyhype.it → menu <strong>⋮</strong> in alto → <strong>Installa app</strong> oppure <strong>Aggiungi a schermata Home</strong> → conferma.<br><br><strong>iPhone (Safari):</strong> premi <strong>Condividi</strong> → <strong>Aggiungi alla schermata Home</strong>.</p>
 </section>
 
 <section class="karaoke" id="prenota-canzone">
@@ -238,30 +228,9 @@ Ideato e diretto artisticamente da Jonathan Paladini. Media partner: Radio Studi
 })();
 </script>
 <script>
-(() => {
-  let installPrompt = null;
-  const button = document.getElementById('install-app');
-  const status = document.getElementById('install-status');
-  window.addEventListener('beforeinstallprompt', event => {
-    event.preventDefault();
-    installPrompt = event;
-  });
-  button.addEventListener('click', async () => {
-    if (installPrompt) {
-      installPrompt.prompt();
-      const choice = await installPrompt.userChoice;
-      installPrompt = null;
-      if (status) status.textContent = choice.outcome === 'accepted'
-        ? 'Installazione avviata. Cerca JONNYHYPE nella schermata Home.'
-        : 'Installazione annullata. Puoi riprovare dal menu di Chrome.';
-      return;
-    }
-    document.getElementById('aggiungi-home').scrollIntoView({behavior:'smooth'});
-  });
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js').catch(() => {}));
-  }
-})();
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js').catch(() => {}));
+}
 </script>
 </body>
 </html>
