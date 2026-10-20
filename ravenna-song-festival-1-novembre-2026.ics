@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//JONNYHYPE//Calendario Eventi//IT
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:rsf-vecchia-napoli-20261101@jonnyhype.it
+DTSTAMP:20261020T051500Z
+DTSTART;TZID=Europe/Rome:20261101T124500
+DTEND;TZID=Europe/Rome:20261101T230000
+SUMMARY:Speciale Ravenna Song Festival - La Vecchia Napoli
+DESCRIPTION:Ospiti i finalisti della seconda edizione. Karaoke, DJ set e apericena.
+LOCATION:Piazza Baccarini 11, Russi
+URL:https://jonnyhype.it/eventi.html
+END:VEVENT
+END:VCALENDAR
