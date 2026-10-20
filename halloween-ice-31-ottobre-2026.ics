@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//JONNYHYPE//Calendario Eventi//IT
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:halloween-ice-20261031@jonnyhype.it
+DTSTAMP:20261020T051500Z
+DTSTART;TZID=Europe/Rome:20261031T210000
+DTEND;TZID=Europe/Rome:20261031T235900
+SUMMARY:Halloween - The Dark Night
+DESCRIPTION:Karaoke, DJ set e momenti di paura
+LOCATION:ICE Marina Club, Viale delle Nazioni 196, Marina di Ravenna
+URL:https://jonnyhype.it/eventi.html
+END:VEVENT
+END:VCALENDAR
