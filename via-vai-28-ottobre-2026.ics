@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//JONNYHYPE//Calendario Eventi//IT
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:viavai-20261028@jonnyhype.it
+DTSTAMP:20261020T051500Z
+DTSTART;TZID=Europe/Rome:20261028T180000
+DTEND;TZID=Europe/Rome:20261028T220000
+SUMMARY:Via Vai Café - Apericena
+DESCRIPTION:Apericena con buffet illimitato + drink - €10
+LOCATION:Ravenna
+URL:https://jonnyhype.it/eventi.html
+END:VEVENT
+END:VCALENDAR
