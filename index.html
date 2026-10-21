@@ -347,6 +347,16 @@ input::placeholder,textarea::placeholder{color:#92929b!important}
 .jh-rsf-banner-dates{display:inline-flex;align-items:center;gap:10px;color:#f02d98;text-decoration:none;font-size:11px;font-weight:900;letter-spacing:.1em}
 .jh-rsf-banner-dates span{font-size:19px;font-weight:400}
 .jh-rsf-banner-link:hover .jh-rsf-banner-discover{color:#ff83c8}
+.jh-rsf-date-list{margin-top:18px;border-top:1px solid #39323b}
+.jh-rsf-date-list>a{display:flex;align-items:center;gap:13px;padding:14px 0;color:#fff;text-decoration:none;border-bottom:1px solid #39323b}
+.jh-rsf-date-list time{width:43px;flex:0 0 43px;display:flex;flex-direction:column;align-items:center;line-height:1}
+.jh-rsf-date-list time strong,.jh-rsf-date-list time small{font-size:9px;letter-spacing:.08em;color:#f02d98}
+.jh-rsf-date-list time b{font-size:23px;line-height:1.15;color:#fff}
+.jh-rsf-date-list>a>span:nth-child(2){display:flex;flex:1;min-width:0;flex-direction:column;gap:5px}
+.jh-rsf-date-list>a>span:nth-child(2)>strong{font-size:11px;letter-spacing:.04em}
+.jh-rsf-date-list>a>span:nth-child(2)>small{font-size:11px;color:#bcb8c0;line-height:1.4}
+.jh-rsf-date-arrow{font-size:19px;color:#f02d98}
+.jh-rsf-date-list>a:hover>span:nth-child(2)>strong{color:#ff83c8}
 @media(max-width:460px){.jh-rsf-home-banner{width:calc(100% - 24px);margin:23px auto}.jh-rsf-banner-heading{display:block}.jh-rsf-banner-discover{margin-top:13px;font-size:10px}.jh-rsf-banner-link{padding:20px 17px}.jh-rsf-banner-details{padding:18px 17px 20px}.jh-rsf-home-banner h2{font-size:clamp(19px,5.2vw,24px)!important}}
 </style></head>
 <body>
@@ -361,7 +371,7 @@ input::placeholder,textarea::placeholder{color:#92929b!important}
 <a class="btn social" href="/eventi.html">PROSSIMI EVENTI <span class="home-arrow" aria-hidden="true">→</span></a>
 </div>
 <section class="jh-rsf-home-banner" aria-labelledby="jh-rsf-home-title">
-<a class="jh-rsf-banner-link" href="/eventi.html#speciale-ravenna-song-festival" aria-label="Scopri le date di JONNYHYPE Speciale Ravenna Song Festival">
+<a class="jh-rsf-banner-link" href="/eventi.html" aria-label="Scopri le date di JONNYHYPE Speciale Ravenna Song Festival">
 <div class="jh-rsf-banner-heading">
 <h2 id="jh-rsf-home-title">JONNYHYPE SPECIALE<br><strong>RAVENNA SONG FESTIVAL</strong></h2>
 <span class="jh-rsf-banner-discover">SCOPRI LE DATE <b aria-hidden="true">→</b></span>
@@ -369,7 +379,11 @@ input::placeholder,textarea::placeholder{color:#92929b!important}
 </a>
 <div class="jh-rsf-banner-details">
 <p>Le serate JONNYHYPE di sempre — DJ set, karaoke e dediche — con la partecipazione dal vivo dei cantanti del Ravenna Song Festival.</p>
-<a class="jh-rsf-banner-dates" href="/eventi.html#speciale-ravenna-song-festival">DATE E LOCALI <span aria-hidden="true">→</span></a>
+<a class="jh-rsf-banner-dates" href="/eventi.html">TUTTI GLI EVENTI <span aria-hidden="true">→</span></a>
+<div class="jh-rsf-date-list" aria-label="Prossime date speciali">
+<a href="/eventi.html"><time datetime="2026-10-25"><strong>DOM</strong><b>25</b><small>OTT</small></time><span><strong>ICE MARINA CLUB</strong><small>Marina di Ravenna · 12:45–15:45</small></span><span class="jh-rsf-date-arrow" aria-hidden="true">→</span></a>
+<a href="/eventi.html"><time datetime="2026-11-01"><strong>DOM</strong><b>01</b><small>NOV</small></time><span><strong>LA VECCHIA NAPOLI</strong><small>Russi · dalle 12:45</small></span><span class="jh-rsf-date-arrow" aria-hidden="true">→</span></a>
+</div>
 </div>
 </section>
 <nav class="home-nav" aria-label="Esplora il sito">
