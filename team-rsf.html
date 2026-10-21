@@ -24,7 +24,7 @@ body{margin:0;background:#08080a;color:#fff;font-family:Manrope,Arial,sans-serif
 .hero p{max-width:650px;color:#c7c3ca;line-height:1.65;font-size:15px;margin:18px 0 0}
 .artists{margin:10px 0 55px}
 .artist-list{display:grid;grid-template-columns:1fr;gap:28px;max-width:760px;margin:0 auto}
-.artist{min-width:0;overflow:hidden;border:1px solid #39313c;border-radius:30px;background:#050506}
+.artist{min-width:0;overflow:hidden;border:1px solid #39313c;border-radius:24px;background:#050506}.artist.has-poster{border:0;border-radius:0;background:transparent;overflow:visible}.poster{display:block;width:100%;height:auto;border-radius:18px}
 .artist-photo{position:relative;width:100%;aspect-ratio:.88;overflow:hidden;background:radial-gradient(ellipse at 70% 20%,rgba(240,45,152,.38),transparent 43%),radial-gradient(ellipse at 15% 80%,rgba(34,106,255,.32),transparent 50%),linear-gradient(145deg,#21152b,#09090b 72%);display:flex;align-items:stretch;justify-content:stretch}
 .artist-photo:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 25%,rgba(255,255,255,.035) 25.2%,transparent 25.8%,transparent 49%,rgba(240,45,152,.09) 49.3%,transparent 50%);pointer-events:none}
 .artist-photo>img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center}
@@ -41,8 +41,8 @@ body{margin:0;background:#08080a;color:#fff;font-family:Manrope,Arial,sans-serif
 .artist:nth-child(8) .artist-photo{background:radial-gradient(ellipse at 70% 20%,rgba(34,106,255,.42),transparent 43%),radial-gradient(ellipse at 15% 82%,rgba(240,45,152,.28),transparent 48%),linear-gradient(145deg,#111a30,#09090b 72%)}
 .artist:nth-child(9) .artist-photo{background:radial-gradient(ellipse at 70% 20%,rgba(240,45,152,.38),transparent 43%),radial-gradient(ellipse at 15% 82%,rgba(255,116,37,.25),transparent 48%),linear-gradient(145deg,#25151e,#09090b 72%)}
 .artist:nth-child(10) .artist-photo{background:radial-gradient(ellipse at 70% 20%,rgba(137,58,255,.4),transparent 43%),radial-gradient(ellipse at 15% 82%,rgba(240,45,152,.3),transparent 48%),linear-gradient(145deg,#21152b,#09090b 72%)}
-.foot{padding:25px 0 35px;border-top:1px solid #28252b;color:#85818a;font-size:11px;letter-spacing:.06em;text-align:center}
-@media(max-width:430px){.wrap{width:calc(100% - 32px)}.hero{padding:28px 0 22px}.hero h1{font-size:clamp(38px,9vw,48px)}.artist-list{gap:20px}.artist{border-radius:25px}.artist-photo{aspect-ratio:.82}.artist-info{padding:24px 20px}.artist-info h2{font-size:clamp(32px,9vw,43px)}.artist-info p{font-size:11px;letter-spacing:.09em;margin-top:13px}}
+.artist:not(.has-poster) .artist-photo{aspect-ratio:auto;min-height:0;padding:26px 24px;background:linear-gradient(135deg,#21152b,#09090b 72%);}.artist:not(.has-poster) .artist-info{position:static;inset:auto;padding:0;background:none}.artist:not(.has-poster) .artist-info h2{font-size:clamp(28px,6vw,44px)}.artist:not(.has-poster) .artist-info p{margin-top:9px}.foot{padding:25px 0 35px;border-top:1px solid #28252b;color:#85818a;font-size:11px;letter-spacing:.06em;text-align:center}
+@media(max-width:430px){.wrap{width:calc(100% - 32px)}.hero{padding:28px 0 22px}.hero h1{font-size:clamp(38px,9vw,48px)}.artist-list{gap:20px}.artist{border-radius:20px}.artist.has-poster{border-radius:0}.poster{border-radius:14px}.artist-photo{aspect-ratio:.82}.artist-info{padding:24px 20px}.artist-info h2{font-size:clamp(32px,9vw,43px)}.artist-info p{font-size:11px;letter-spacing:.09em;margin-top:13px}}
 </style>
 </head>
 <body>
@@ -52,16 +52,16 @@ body{margin:0;background:#08080a;color:#fff;font-family:Manrope,Arial,sans-serif
 <section class="hero"><h1>IL TEAM <span>RSF</span></h1><p>I cantanti ospiti del Ravenna Song Festival incontrano il pubblico della Romagna negli eventi JONNYHYPE: musica, DJ set e karaoke, con gli artisti del festival dal vivo.</p></section>
 <section class="artists" aria-label="Cantanti ospiti del Ravenna Song Festival">
 <div class="artist-list">
-<article class="artist"><div class="artist-photo"><div class="artist-info"><h2>VALENTINA <span class="pink">CARINELLI</span></h2><p>NAPOLI · RAVENNA</p></div></div></article>
-<article class="artist"><div class="artist-photo"><div class="artist-info"><h2>LIZZY <span class="pink">PRINCE</span></h2><p>FORLÌ</p></div></div></article>
-<article class="artist"><div class="artist-photo"><div class="artist-info"><h2>GIULIA <span class="pink">DRADI</span></h2><p>OSPITE RSF</p></div></div></article>
+<article class="artist has-poster"><img class="poster" src="images/ospiti/valentina-carinelli.jpg.PNG" alt="VALENTINA CARINELLI" loading="lazy"></article>
+<article class="artist has-poster"><img class="poster" src="images/ospiti/lizzy-prince.jpg.jpg" alt="LIZZY PRINCE" loading="lazy"></article>
+<article class="artist has-poster"><img class="poster" src="images/ospiti/giulia-dradi.jpg.PNG" alt="GIULIA DRADI" loading="lazy"></article>
 <article class="artist"><div class="artist-photo"><div class="artist-info"><h2><span class="pink">MILLY</span></h2><p>ALFONSINE</p></div></div></article>
 <article class="artist"><div class="artist-photo"><div class="artist-info"><h2>ANNA SOLE <span class="pink">DALMONTE</span></h2><p>OSPITE RSF</p></div></div></article>
-<article class="artist"><div class="artist-photo"><div class="artist-info"><h2><span class="pink">ILCASO</span></h2><p>OSPITE RSF</p></div></div></article>
+<article class="artist has-poster"><img class="poster" src="images/ospiti/ilcaso.jpg.PNG" alt="ILCASO" loading="lazy"></article>
 <article class="artist"><div class="artist-photo"><div class="artist-info"><h2>SERGIO <span class="pink">BERTUZZI</span></h2><p>RAVENNA</p></div></div></article>
 <article class="artist"><div class="artist-photo"><div class="artist-info"><h2><span class="pink">CATY</span></h2><p>RAVENNA</p></div></div></article>
-<article class="artist"><div class="artist-photo"><div class="artist-info"><h2>SMILING <span class="pink">BRIGHT O.</span></h2><p>OSPITE RSF</p></div></div></article>
-<article class="artist"><div class="artist-photo"><div class="artist-info"><h2>JESSICA <span class="pink">DOCCIOLI</span></h2><p>RAVENNA</p></div></div></article>
+<article class="artist has-poster"><img class="poster" src="images/ospiti/smiling-bright-o.jpg.PNG" alt="SMILING BRIGHT O." loading="lazy"></article>
+<article class="artist has-poster"><img class="poster" src="images/ospiti/jessica-doccioli.jpg.PNG" alt="JESSICA DOCCIOLI" loading="lazy"></article>
 </div>
 </section>
 </main>
