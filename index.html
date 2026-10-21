@@ -398,6 +398,17 @@ input::placeholder,textarea::placeholder{color:#92929b!important}
 .jh-rsf-actions{display:grid;grid-template-columns:1fr;gap:12px;margin:0 0 8px}
 .jh-rsf-actions .jh-rsf-banner-dates{margin:0!important;min-height:58px!important;font-size:clamp(13px,3.3vw,17px)!important;white-space:nowrap}
 @media(max-width:460px){.jh-rsf-actions{grid-template-columns:1fr 1fr;gap:9px}.jh-rsf-actions .jh-rsf-banner-dates{padding:12px 8px!important;min-height:55px!important;font-size:clamp(11px,3.25vw,14px)!important;letter-spacing:.065em!important}.jh-rsf-actions .jh-rsf-banner-dates span{font-size:19px!important}}
+</style><style id="jh-home-event-date-style">
+.jh-rsf-date-list>a{display:grid!important;grid-template-columns:74px minmax(0,1fr) 38px!important;align-items:center!important;gap:13px!important;padding:17px 0!important}
+.jh-rsf-date-list .jh-home-date{width:74px!important;flex:initial!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;padding:7px 4px!important;border-right:1px solid #3a303d!important;line-height:1!important}
+.jh-rsf-date-list .jh-home-date strong,.jh-rsf-date-list .jh-home-date small{font-size:9px!important;letter-spacing:.1em!important;color:#f02d98!important;font-weight:800!important}
+.jh-rsf-date-list .jh-home-date b{font-size:34px!important;line-height:1.02!important;color:#fff!important;font-weight:900!important}
+.jh-rsf-date-list .jh-home-event-detail{display:flex!important;min-width:0!important;flex-direction:column!important;gap:4px!important}
+.jh-rsf-date-list .jh-home-event-detail strong{font-size:clamp(14px,3.5vw,18px)!important;line-height:1.2!important;letter-spacing:.025em!important;color:#fff!important;font-weight:900!important}
+.jh-rsf-date-list .jh-home-event-detail small{font-size:11px!important;color:#c7c3cc!important;letter-spacing:.06em!important;font-weight:700!important}
+.jh-rsf-date-list .jh-home-event-detail em{font-size:13px!important;color:#f02d98!important;font-style:normal!important;font-weight:800!important;line-height:1.3!important}
+.jh-rsf-date-list .jh-rsf-date-arrow{display:flex!important;align-items:center!important;justify-content:center!important;width:36px!important;height:36px!important;border:1px solid rgba(240,45,152,.4)!important;border-radius:50%!important;color:#f02d98!important;font-size:22px!important}
+@media(max-width:460px){.jh-rsf-date-list>a{grid-template-columns:64px minmax(0,1fr) 34px!important;gap:9px!important;padding:15px 0!important}.jh-rsf-date-list .jh-home-date{width:64px!important}.jh-rsf-date-list .jh-home-date b{font-size:31px!important}.jh-rsf-date-list .jh-home-event-detail strong{font-size:13px!important}.jh-rsf-date-list .jh-home-event-detail small{font-size:10px!important}.jh-rsf-date-list .jh-home-event-detail em{font-size:12px!important}.jh-rsf-date-list .jh-rsf-date-arrow{width:32px!important;height:32px!important}}
 </style></style></head>
 <body>
 <div class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel" aria-label="Menu principale"><a href="/">HOME</a><a href="/karaoke.html">KARAOKE</a><a href="/eventi.html">EVENTI</a><a href="/ravenna-song-festival.html">RAVENNA SONG FESTIVAL</a><a href="/musica.html">MUSICA E PROGETTI</a><a href="/galleria.html">GALLERIA</a></nav></details></div>
@@ -421,9 +432,17 @@ input::placeholder,textarea::placeholder{color:#92929b!important}
 <div class="jh-rsf-actions" aria-label="Team del Ravenna Song Festival">
 <a class="jh-rsf-banner-dates" href="/team-rsf.html">IL TEAM RSF <span aria-hidden="true">→</span></a>
 </div>
-<div class="jh-rsf-date-list" aria-label="Prossime date speciali">
-<a href="/eventi.html"><time datetime="2026-10-25"><strong>DOM</strong><b>25</b><small>OTT</small></time><span><strong>ICE MARINA CLUB</strong><small>Marina di Ravenna · 12:45–15:45</small></span><span class="jh-rsf-date-arrow" aria-hidden="true">→</span></a>
-<a href="/eventi.html"><time datetime="2026-11-01"><strong>DOM</strong><b>01</b><small>NOV</small></time><span><strong>LA VECCHIA NAPOLI</strong><small>Russi · 12:45–23:00</small></span><span class="jh-rsf-date-arrow" aria-hidden="true">→</span></a>
+<div class="jh-rsf-date-list" aria-label="Prossimi eventi JONNYHYPE">
+<a href="/eventi.html" aria-label="Dettagli evento ICE Marina Club">
+<time datetime="2026-10-25" class="jh-home-date"><strong>DOMENICA</strong><b>25</b><small>OTTOBRE</small></time>
+<span class="jh-home-event-detail"><strong>ICE MARINA CLUB</strong><small>MARINA DI RAVENNA</small><em>12:45–15:45</em></span>
+<span class="jh-rsf-date-arrow" aria-hidden="true">→</span>
+</a>
+<a href="/flyer-vecchia-napoli-russi-2026-11-01.jpg.JPG" target="_blank" rel="noopener noreferrer" aria-label="Apri la locandina dello Speciale Ravenna Song Festival alla Vecchia Napoli">
+<time datetime="2026-11-01" class="jh-home-date"><strong>DOMENICA</strong><b>01</b><small>NOVEMBRE</small></time>
+<span class="jh-home-event-detail"><strong>LA VECCHIA NAPOLI</strong><small>RUSSI</small><em>12:45–23:00</em></span>
+<span class="jh-rsf-date-arrow" aria-hidden="true">→</span>
+</a>
 </div>
 </div>
 </section>
