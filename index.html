@@ -283,6 +283,24 @@ img{max-width:100%}
 .calendar-top-btn{width:min(100% - 32px,380px)!important}
 .social-icons.brand-socials a{width:43px!important;height:43px!important}
 }
+</style><style id="jh-home-pink-button-system">
+/* Homepage: one consistent hot-pink and white CTA system */
+.hero .links{display:grid!important;grid-template-columns:1fr;gap:14px!important;width:100%;max-width:680px;margin:26px auto 24px!important}
+.hero .links .btn,.hero .links .btn.spotify,.hero .links .btn.social{box-sizing:border-box!important;width:100%!important;min-height:82px!important;padding:16px 20px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:16px!important;border:1px solid #f02d98!important;border-radius:18px!important;background:#f02d98!important;color:#fff!important;letter-spacing:.07em!important;text-decoration:none!important;box-shadow:0 8px 22px rgba(240,45,152,.15)!important}
+.hero .links .song-request-banner{justify-content:space-between!important;text-align:left!important;min-height:112px!important;padding:18px 20px!important;gap:14px!important}
+.song-request-icon{display:flex;flex:0 0 58px;width:58px;height:58px}
+.song-request-icon svg{display:block;width:100%;height:100%}
+.song-request-copy{display:flex;flex:1;min-width:0;flex-direction:column;align-items:flex-start;gap:4px}
+.song-request-copy strong{font-size:clamp(17px,4.4vw,25px);font-weight:850;line-height:1.16;letter-spacing:-.025em;color:#fff}
+.song-request-copy strong span{white-space:nowrap}
+.song-request-copy small{font-size:clamp(13px,3.5vw,17px);font-weight:500;line-height:1.35;letter-spacing:0;color:#fff}
+.song-request-arrow{display:flex;align-items:center;justify-content:center;flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:rgba(145,0,77,.32);color:#fff;font-size:31px;line-height:1}
+.hero .links .btn.social{justify-content:space-between!important;text-align:left!important;padding:17px 22px!important;font-size:clamp(15px,3.8vw,20px)!important;font-weight:850!important;letter-spacing:.055em!important}
+.home-arrow{font-size:30px;line-height:1;font-weight:400}
+.hero .links .btn:hover{background:#ff43ad!important;border-color:#ff43ad!important;transform:translateY(-1px)}
+.hero .links .btn:focus-visible{outline:3px solid #fff!important;outline-offset:3px}
+@media(min-width:700px){.hero .links{max-width:700px}.hero .links .song-request-banner{min-height:116px!important}}
+@media(max-width:420px){.hero .links .song-request-banner{padding:15px 14px!important;gap:10px!important}.song-request-icon{flex-basis:48px;width:48px;height:48px}.song-request-arrow{flex-basis:36px;width:36px;height:36px;font-size:27px}.song-request-copy strong{font-size:17px}.song-request-copy small{font-size:13px}.hero .links .btn.social{min-height:76px!important;padding:15px 17px!important}}
 </style></head>
 <body>
 <div class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel" aria-label="Menu principale"><a href="/">HOME</a><a href="/karaoke.html">KARAOKE</a><a href="/eventi.html">EVENTI</a><a href="/ravenna-song-festival.html">RAVENNA SONG FESTIVAL</a><a href="/musica.html">MUSICA E PROGETTI</a><a href="/galleria.html">GALLERIA</a></nav></details></div>
@@ -292,8 +310,8 @@ img{max-width:100%}
 <a href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a>
 <div class="tag">DJ SET · KARAOKE · EVENTS &amp; MUSIC PRODUCTION</div>
 <div class="links">
-<a class="btn spotify" href="/karaoke.html">DEDICHE · RICHIESTE · KARAOKE</a>
-<a class="btn social" href="/eventi.html">PROSSIMI EVENTI</a>
+<a class="btn song-request-banner" href="/karaoke.html"><span class="song-request-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#fff"/><path d="M38 15v25.5a8.5 8.5 0 1 1-4-7.2V22l16-4v18.5a8.5 8.5 0 1 1-4-7.2V12z" fill="#f02d98" transform="translate(-4 3) scale(.92)"/></svg></span><span class="song-request-copy"><strong>RICHIEDI UNA CANZONE <span>LIVE</span></strong><small>Prenota ora, la canti sul palco</small></span><span class="song-request-arrow" aria-hidden="true">→</span></a>
+<a class="btn social" href="/eventi.html">PROSSIMI EVENTI <span class="home-arrow" aria-hidden="true">→</span></a>
 </div>
 <nav class="home-nav" aria-label="Esplora il sito">
 <a href="/ravenna-song-festival.html">RAVENNA SONG FESTIVAL</a>
