@@ -37,6 +37,54 @@ p{line-height:1.7}
 footer{border-top:1px solid var(--jh-line)!important}
 a:focus-visible,button:focus-visible{outline:2px solid var(--jh-gold-light);outline-offset:3px}
 @media(max-width:600px){.social-icons.brand-socials{gap:9px}.social-icons.brand-socials a{width:43px;height:43px}.social-icons.brand-socials img{width:20px;height:20px}.event-description{padding:10px 12px;font-size:13px}}
+</style><style id="jh-layout-refinement">
+:root{--jh-rose:#d9468f;--jh-rose-soft:#f08abb;--jh-bg:#08090b;--jh-panel:#111216;--jh-border:#303036;--jh-white:#f7f7f8;--jh-muted:#a7a7ad}
+.site-header{padding:18px clamp(18px,4vw,42px) 20px!important;background:rgba(8,9,11,.98)!important;border-bottom:1px solid #24242a!important}
+.site-header>a{display:flex;align-items:center;justify-content:flex-start;width:min(100%,1040px);margin:0 auto 18px}
+.site-header .logo{width:clamp(215px,30vw,285px)!important;max-width:75vw;height:auto;margin:0!important;filter:none!important;object-fit:contain;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+.site-nav{max-width:1040px!important;gap:8px!important}
+.site-nav a{min-height:43px!important;padding:10px 15px!important;border:1px solid #303036!important;border-radius:10px!important;background:#111216!important;color:#f4f4f5!important;font-size:11px!important;letter-spacing:.075em!important;box-shadow:none!important}
+.site-nav a:hover{border-color:var(--jh-rose)!important;background:#19151a!important}
+.social-icons.brand-socials{margin:18px auto 0!important;gap:10px!important}
+.social-icons.brand-socials a{width:43px!important;height:43px!important;border:1px solid #33333a!important;border-radius:12px!important;background:#111216!important}
+.social-icons.brand-socials a:hover{border-color:var(--jh-rose)!important;background:#19151a!important}
+.event-list{max-width:740px!important;gap:18px!important}
+.event-card{position:relative;display:grid!important;grid-template-columns:92px minmax(0,1fr)!important;align-items:start!important;gap:0 18px!important;padding:18px!important;border:1px solid #2b2b31!important;border-radius:16px!important;background:linear-gradient(145deg,#131418,#0c0d10)!important;box-shadow:0 8px 22px rgba(0,0,0,.18)!important}
+.event-card.event-feature{display:grid!important;grid-template-columns:92px minmax(0,1fr)!important;align-items:start!important}
+.event-card .flyer-link{grid-column:1/-1!important;grid-row:auto!important;width:min(100%,440px)!important;max-width:440px!important;margin:0 auto 18px!important;border:1px solid #303036!important;border-radius:12px!important;background:#08090b!important}
+.event-card .event-date{grid-column:1!important;grid-row:auto!important;display:flex!important;align-self:start!important;flex-direction:column!important;justify-content:center!important;gap:5px!important;min-height:108px!important;margin:0!important;padding:12px 5px!important;border:1px solid rgba(217,70,143,.55)!important;border-radius:12px!important;background:linear-gradient(160deg,rgba(217,70,143,.12),rgba(217,70,143,.035))!important;color:#f08abb!important;text-align:center!important}
+.event-date .date-stack{display:flex!important;flex-direction:column!important;align-items:center!important;gap:5px!important}
+.event-date .date-stack span{font-size:10px!important;line-height:1.2!important;font-weight:800!important;letter-spacing:.1em!important;color:#c9c9ce!important}
+.event-date .date-stack strong,.event-date strong{font-size:clamp(35px,8vw,46px)!important;line-height:1!important;font-weight:800!important;letter-spacing:-.055em!important;color:#f08abb!important}
+.event-card .event-detail{grid-column:2!important;grid-row:auto!important;min-width:0!important;padding:2px 0 0!important;text-align:left!important;color:#c7c7cc!important;font-size:14px!important;line-height:1.55!important}
+.event-detail>strong{margin:0 0 8px!important;font-size:clamp(17px,4.2vw,22px)!important;line-height:1.22!important;font-weight:800!important;letter-spacing:-.025em!important;color:#fafafa!important}
+.event-detail .time{display:inline-flex!important;align-items:center!important;margin:0 0 10px!important;padding:5px 9px!important;border:1px solid #34343a!important;border-radius:6px!important;background:#090a0c!important;color:#f08abb!important;font-size:13px!important;font-weight:800!important}
+.event-detail .venue,.event-detail .venue-link{display:block!important;margin:0 0 8px!important;color:#eeeef0!important;font-size:13px!important;font-weight:700!important;line-height:1.55!important}
+.venue-link .map-label{color:#f08abb!important;font-size:11px!important;letter-spacing:.055em!important}
+.event-detail .event-description{display:block!important;margin:12px 0!important;padding:10px 12px!important;border:1px solid #3a3037!important;border-left:3px solid var(--jh-rose)!important;border-radius:8px!important;background:#101013!important;color:#f2dce7!important;font-size:13px!important;line-height:1.55!important;font-weight:700!important;text-align:left!important}
+.event-actions{grid-column:1/-1!important;width:100%!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;margin-top:16px!important}
+.event-actions .event-cta,.event-detail .event-cta{min-height:48px!important;padding:11px 12px!important;border:1px solid #38383f!important;border-radius:9px!important;background:#141519!important;color:#f6f6f7!important;font-size:12px!important;font-weight:800!important;line-height:1.35!important;letter-spacing:.025em!important;white-space:normal!important;text-align:center!important}
+.event-actions .whatsapp-cta,.event-detail .whatsapp-cta{border-color:var(--jh-rose)!important;background:var(--jh-rose)!important;color:#fff!important}
+.event-actions .event-cta:hover{filter:brightness(1.1)!important}
+.page-intro h1,.events h2,.karaoke h2{letter-spacing:-.035em!important}
+@media(max-width:520px){
+.site-header{padding:15px 14px 17px!important}
+.site-header>a{margin-bottom:15px!important}
+.site-header .logo{width:220px!important;max-width:72vw!important}
+.site-nav{gap:7px!important}
+.site-nav a{padding:9px 10px!important;font-size:10px!important;min-height:40px!important}
+.event-list{gap:15px!important}
+.event-card,.event-card.event-feature{grid-template-columns:76px minmax(0,1fr)!important;gap:0 13px!important;padding:13px!important}
+.event-card .flyer-link{margin-bottom:14px!important}
+.event-card .event-date{min-height:96px!important;padding:10px 3px!important}
+.event-date .date-stack span{font-size:9px!important}
+.event-date .date-stack strong,.event-date strong{font-size:36px!important}
+.event-detail>strong{font-size:17px!important}
+.event-card .event-detail{font-size:13px!important}
+.event-detail .venue,.event-detail .venue-link{font-size:12px!important}
+.event-actions{grid-template-columns:1fr!important;gap:8px!important;margin-top:14px!important}
+.event-actions .event-cta{min-height:45px!important}
+}
 </style></head><body><header class="site-header"><a href="/" aria-label="JONNYHYPE Home"><img class="logo" src="/jonnyhype-logo.png" alt="JONNYHYPE"></a><nav class="site-nav" aria-label="Menu principale"><a href="/">HOME</a><a href="/karaoke.html">KARAOKE</a><a href="/eventi.html">EVENTI</a><a href="/ravenna-song-festival.html">RAVENNA SONG FESTIVAL</a><a href="/musica.html">MUSICA E PROGETTI</a><a href="/galleria.html">GALLERIA</a></nav><nav class="social-icons brand-socials" aria-label="Seguimi sui social">
 <a href="https://www.instagram.com/jonnyhype.official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt=""></a>
 <a href="https://youtube.com/@jonnyhype.official" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/FF0033" alt=""></a>
