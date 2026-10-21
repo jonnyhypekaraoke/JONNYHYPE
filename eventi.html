@@ -85,7 +85,28 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--jh-gold-light);outl
 .event-actions{grid-template-columns:1fr!important;gap:8px!important;margin-top:14px!important}
 .event-actions .event-cta{min-height:45px!important}
 }
-</style></head><body><header class="site-header"><a href="/" aria-label="JONNYHYPE Home"><img class="logo" src="/jonnyhype-logo.png" alt="JONNYHYPE"></a><nav class="site-nav" aria-label="Menu principale"><a href="/">HOME</a><a href="/karaoke.html">KARAOKE</a><a href="/eventi.html">EVENTI</a><a href="/ravenna-song-festival.html">RAVENNA SONG FESTIVAL</a><a href="/musica.html">MUSICA E PROGETTI</a><a href="/galleria.html">GALLERIA</a></nav><nav class="social-icons brand-socials" aria-label="Seguimi sui social">
+</style><style id="jh-topbar-menu">
+.jh-topbar{position:relative;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px clamp(18px,4vw,42px);background:#08090b;border-bottom:1px solid #28282f}
+.jh-topbar .jh-logo-link{display:flex;align-items:center;min-width:0}
+.jh-topbar .jh-logo{display:block;width:clamp(240px,34vw,340px);max-width:70vw;height:auto;object-fit:contain}
+.jh-menu{position:relative;flex:0 0 auto}
+.jh-menu summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:52px;height:52px;border:1px solid #383840;border-radius:50%;background:#111216;color:#fff}
+.jh-menu summary::-webkit-details-marker{display:none}
+.jh-menu summary .jh-burger,.jh-menu summary .jh-burger:before,.jh-menu summary .jh-burger:after{display:block;width:22px;height:2px;background:#fff;border-radius:3px;position:relative;content:"";transition:transform .18s}
+.jh-menu summary .jh-burger:before{position:absolute;top:-7px}
+.jh-menu summary .jh-burger:after{position:absolute;top:7px}
+.jh-menu[open] summary .jh-burger{background:transparent}
+.jh-menu[open] summary .jh-burger:before{top:0;transform:rotate(45deg)}
+.jh-menu[open] summary .jh-burger:after{top:0;transform:rotate(-45deg)}
+.jh-menu-panel{position:absolute;right:0;top:62px;width:min(330px,calc(100vw - 36px));padding:10px;border:1px solid #36363d;border-radius:16px;background:#101115;box-shadow:0 18px 45px rgba(0,0,0,.65);display:grid;gap:6px}
+.jh-menu-panel a{display:flex;align-items:center;min-height:46px;padding:12px 14px;border:1px solid #292930;border-radius:9px;background:#15161b;color:#f7f7f8;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:.075em}
+.jh-menu-panel a:hover,.jh-menu-panel a:focus-visible{border-color:#d9468f;background:#1c151b;outline:none}
+.site-header{padding:0!important;text-align:initial!important;background:#08090b!important;border-bottom:1px solid #28282f!important}
+.site-header>.jh-topbar{border-bottom:0}
+.site-header .social-icons{padding:0 14px 16px;margin:0 auto!important}
+.site-header .social-icons a{border-radius:12px!important;border-color:#34343a!important;background:#111216!important}
+@media(max-width:520px){.jh-topbar{padding:13px 15px;gap:12px}.jh-topbar .jh-logo{width:clamp(220px,63vw,270px);max-width:72vw}.jh-menu summary{width:46px;height:46px}.jh-menu-panel{top:55px}}
+</style></head><body><header class="site-header"><div class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><img class="jh-logo" src="/jonnyhype-logo.png" alt="JONNYHYPE"></a><details class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel" aria-label="Menu principale"><a href="/">HOME</a><a href="/karaoke.html">KARAOKE</a><a href="/eventi.html">EVENTI</a><a href="/ravenna-song-festival.html">RAVENNA SONG FESTIVAL</a><a href="/musica.html">MUSICA E PROGETTI</a><a href="/galleria.html">GALLERIA</a></nav></details></div><nav class="social-icons brand-socials" aria-label="Seguimi sui social">
 <a href="https://www.instagram.com/jonnyhype.official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt=""></a>
 <a href="https://youtube.com/@jonnyhype.official" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/FF0033" alt=""></a>
 <a href="https://open.spotify.com/artist/084BcwC4P7NKvnPsv7lIJW" target="_blank" rel="noopener noreferrer" aria-label="Spotify" title="Spotify"><img src="https://cdn.simpleicons.org/spotify/1DB954" alt=""></a>
