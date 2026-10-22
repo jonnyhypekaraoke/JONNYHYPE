@@ -461,17 +461,25 @@ letter-spacing:-.045em!important;
 </div>
 <div class="jh-rsf-promo-line">DJ SET · KARAOKE · DIVERTIMENTO<br><strong>E OSPITI DEL RAVENNA SONG FESTIVAL</strong></div>
 <div class="jh-rsf-banner-details">
-<div class="jh-rsf-date-list" aria-label="Prossimi eventi JONNYHYPE">
-<a href="/images/eventi/ice-marina-club-2026-10-25.jpg.PNG" target="_blank" rel="noopener noreferrer" aria-label="Apri il flyer ICE Marina Club del 25 ottobre">
+<div class="jh-rsf-date-list jh-rsf-event-cards" aria-label="Prossimi eventi JONNYHYPE">
+<article class="jh-rsf-event-card">
+<a class="jh-rsf-event-main" href="/images/eventi/ice-marina-club-2026-10-25.jpg.PNG" target="_blank" rel="noopener noreferrer" aria-label="Apri il flyer ICE Marina Club del 25 ottobre">
 <time datetime="2026-10-25" class="jh-home-date"><strong>DOMENICA</strong><b>25</b><small>OTTOBRE</small></time>
 <span class="jh-home-event-detail"><strong>ICE MARINA CLUB</strong><small>MARINA DI RAVENNA</small><em>12:45–15:45</em></span>
 <span class="jh-rsf-date-arrow" aria-hidden="true">→</span>
 </a>
-<a href="/flyer-vecchia-napoli-russi-2026-11-01.jpg.JPG" target="_blank" rel="noopener noreferrer" aria-label="Apri la locandina dello Speciale Ravenna Song Festival alla Vecchia Napoli">
+<a class="jh-rsf-event-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=JONNYHYPE%20Speciale%20Ravenna%20Song%20Festival%20%E2%80%93%20ICE%20Marina%20Club&dates=20261025T104500Z/20261025T134500Z&location=ICE%20Marina%20Club%2C%20Marina%20di%20Ravenna" target="_blank" rel="noopener noreferrer">AGGIUNGI AL CALENDARIO</a>
+<a class="jh-rsf-event-book" href="https://wa.me/393791112344?text=Ciao%20Jonny%2C%20vorrei%20prenotare%20per%20l%27evento%20ICE%20Marina%20Club%20del%2025%20ottobre." target="_blank" rel="noopener noreferrer">PRENOTA ORA · WHATSAPP · 379 111 2344</a>
+</article>
+<article class="jh-rsf-event-card">
+<a class="jh-rsf-event-main" href="/flyer-vecchia-napoli-russi-2026-11-01.jpg.JPG" target="_blank" rel="noopener noreferrer" aria-label="Apri la locandina dello Speciale Ravenna Song Festival alla Vecchia Napoli">
 <time datetime="2026-11-01" class="jh-home-date"><strong>DOMENICA</strong><b>01</b><small>NOVEMBRE</small></time>
 <span class="jh-home-event-detail"><strong>LA VECCHIA NAPOLI</strong><small>RUSSI</small><em>12:45–23:00</em></span>
 <span class="jh-rsf-date-arrow" aria-hidden="true">→</span>
 </a>
+<a class="jh-rsf-event-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=JONNYHYPE%20Speciale%20Ravenna%20Song%20Festival%20%E2%80%93%20La%20Vecchia%20Napoli&dates=20261101T114500Z/20261101T220000Z&location=La%20Vecchia%20Napoli%2C%20Russi" target="_blank" rel="noopener noreferrer">AGGIUNGI AL CALENDARIO</a>
+<a class="jh-rsf-event-book" href="https://wa.me/393791112344?text=Ciao%20Jonny%2C%20vorrei%20prenotare%20per%20l%27evento%20La%20Vecchia%20Napoli%20del%201%20novembre." target="_blank" rel="noopener noreferrer">PRENOTA ORA · WHATSAPP · 379 111 2344</a>
+</article>
 </div>
 <div class="jh-rsf-actions" aria-label="Team del Ravenna Song Festival">
 <a class="jh-rsf-banner-dates" href="/team-rsf.html">IL TEAM RSF <span aria-hidden="true">→</span></a>
@@ -496,6 +504,20 @@ letter-spacing:-.045em!important;
 </section>
 <footer>JONNYHYPE · DJ SET · KARAOKE · EVENTS &amp; MUSIC PRODUCTION</footer>
 <script>if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js').catch(() => {})); }</script>
+
+<style id="jh-rsf-events-match-site-cards">
+.jh-rsf-home-banner .jh-rsf-event-cards{display:grid!important;gap:14px!important;margin-top:20px!important;border-top:0!important}
+.jh-rsf-home-banner .jh-rsf-event-card{min-width:0;padding:16px;border:1px solid #303036;border-radius:16px;background:linear-gradient(145deg,#121317,#0e0e11)}
+.jh-rsf-home-banner .jh-rsf-event-main{display:grid!important;grid-template-columns:74px minmax(0,1fr) 34px!important;align-items:center!important;gap:12px!important;padding:0 0 14px!important;border:0!important}
+.jh-rsf-home-banner .jh-rsf-event-main .jh-home-date{width:74px!important;min-height:94px;padding:8px 4px!important;border:1px solid rgba(240,45,152,.45)!important;border-radius:12px!important;border-right:1px solid rgba(240,45,152,.45)!important}
+.jh-rsf-home-banner .jh-rsf-event-main .jh-home-date b{font-size:32px!important;color:#f08abb!important}
+.jh-rsf-home-banner .jh-rsf-event-main .jh-home-event-detail strong{font-size:clamp(14px,3.5vw,18px)!important}
+.jh-rsf-home-banner .jh-rsf-event-main .jh-rsf-date-arrow{width:34px!important;height:34px!important}
+.jh-rsf-home-banner .jh-rsf-event-calendar,.jh-rsf-home-banner .jh-rsf-event-book{display:flex!important;width:100%!important;min-height:48px!important;align-items:center!important;justify-content:center!important;margin:10px 0 0!important;padding:12px 10px!important;border:1px solid #38383f!important;border-radius:12px!important;background:#17181d!important;color:#f6f5f3!important;text-align:center!important;text-decoration:none!important;font-size:clamp(10px,2.8vw,13px)!important;font-weight:800!important;letter-spacing:.025em!important;line-height:1.35!important;white-space:normal!important}
+.jh-rsf-home-banner .jh-rsf-event-book{border-color:#f02d98!important;background:#f02d98!important;color:#fff!important}
+@media(max-width:460px){.jh-rsf-home-banner .jh-rsf-event-card{padding:12px!important}.jh-rsf-home-banner .jh-rsf-event-main{grid-template-columns:64px minmax(0,1fr) 30px!important;gap:9px!important}.jh-rsf-home-banner .jh-rsf-event-main .jh-home-date{width:64px!important;min-height:88px!important}.jh-rsf-home-banner .jh-rsf-event-main .jh-home-date b{font-size:29px!important}.jh-rsf-home-banner .jh-rsf-event-main .jh-home-event-detail strong{font-size:13px!important}.jh-rsf-home-banner .jh-rsf-event-main .jh-home-event-detail small{font-size:10px!important}.jh-rsf-home-banner .jh-rsf-event-main .jh-home-event-detail em{font-size:12px!important}.jh-rsf-home-banner .jh-rsf-event-main .jh-rsf-date-arrow{width:29px!important;height:29px!important}}
+</style>
+
 </body>
 </html>
 
