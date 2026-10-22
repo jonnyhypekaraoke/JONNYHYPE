@@ -213,9 +213,10 @@ input::placeholder,textarea::placeholder{color:#92929b!important}
 <div class="festival-dates"><strong>EDIZIONE CONCLUSA · 6 OTTOBRE 2026</strong></div>
 <div class="market-logo-space"><img src="mercato-coperto-ravenna.png" alt="Mercato Coperto Ravenna"></div>
 <div class="festival-info"><strong>MERCATO COPERTO · RAVENNA</strong></div>
-<div class="description">
+<div class="description rsf-intro-copy">
 <strong>UNA SERATA DI MUSICA, TALENTO ED EMOZIONI</strong><br><br>
-114 iscritti, 39 finalisti e quasi 200 persone presenti per la seconda edizione del Ravenna Song Festival.<br><br>
+114 iscritti, 39 finalisti e quasi 200 persone presenti per la seconda edizione del Ravenna Song Festival.
+</div>
 <div class="rsf-winners">
 <h2 class="rsf-winners-title">I VINCITORI</h2>
 <div class="rsf-winner-grid">
@@ -246,4 +247,36 @@ input::placeholder,textarea::placeholder{color:#92929b!important}
 <label>BRANO 2<input name="brano2" maxlength="160" required></label>
 <label>BRANO 3<input name="brano3" maxlength="160" required></label>
 <p class="festival-signup-note">Il sito non invia automaticamente i dati. Premendo il pulsante si prepara un messaggio WhatsApp che potrai controllare e inviare tu. Per i candidati minorenni, la candidatura deve essere gestita con il consenso di un genitore o tutore.</p><button class="btn karaoke-cta" type="submit">PREPARA LA CANDIDATURA SU WHATSAPP</button><p id="festival-signup-status" role="status" aria-live="polite"></p></form></div>
-</section></main><footer>JONNYHYPE · DJ SET · KARAOKE · EVENTS &amp; MUSIC PRODUCTION</footer><script>(()=>{const form=document.getElementById('festival-signup-form');if(!form)return;const status=document.getElementById('festival-signup-status');form.addEventListener('submit',event=>{event.preventDefault();if(!form.reportValidity())return;const d=Object.fromEntries(new FormData(form));const message=['Candidatura Ravenna Song Festival 2027','Nome e cognome: '+d.nome,'Nome d’arte: '+(d.nome_arte||'Non indicato'),'Data di nascita: '+d.data_nascita,'Telefono: '+d.telefono,'Email: '+d.email,'Categoria: '+d.categoria,'Brano 1: '+d.brano1,'Brano 2: '+d.brano2,'Brano 3: '+d.brano3].join('\n');const url='https://wa.me/393791112344?text='+encodeURIComponent(message);status.textContent='Si sta aprendo WhatsApp. Controlla tutti i dati nel messaggio e premi INVIA per trasmettere la candidatura.';window.open(url,'_blank','noopener,noreferrer');});})();if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script></body></html>
+</section></main><footer>JONNYHYPE · DJ SET · KARAOKE · EVENTS &amp; MUSIC PRODUCTION</footer><script>(()=>{const form=document.getElementById('festival-signup-form');if(!form)return;const status=document.getElementById('festival-signup-status');form.addEventListener('submit',event=>{event.preventDefault();if(!form.reportValidity())return;const d=Object.fromEntries(new FormData(form));const message=['Candidatura Ravenna Song Festival 2027','Nome e cognome: '+d.nome,'Nome d’arte: '+(d.nome_arte||'Non indicato'),'Data di nascita: '+d.data_nascita,'Telefono: '+d.telefono,'Email: '+d.email,'Categoria: '+d.categoria,'Brano 1: '+d.brano1,'Brano 2: '+d.brano2,'Brano 3: '+d.brano3].join('\n');const url='https://wa.me/393791112344?text='+encodeURIComponent(message);status.textContent='Si sta aprendo WhatsApp. Controlla tutti i dati nel messaggio e premi INVIA per trasmettere la candidatura.';window.open(url,'_blank','noopener,noreferrer');});})();if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script>
+<style id="rsf-page-layout-cleanup">
+/* Layout pulito della pagina Ravenna Song Festival */
+.festival#ravenna-song-festival{max-width:1000px;margin:0 auto 28px;padding:clamp(22px,5vw,48px)!important;border:1px solid #292930!important;border-radius:22px!important;background:linear-gradient(160deg,#101014,#08090c)!important;overflow:hidden}
+.festival-logo{width:min(300px,72vw)!important;margin:0 auto 20px!important}
+.festival-title{display:inline-block;margin:0 auto 18px!important;padding:9px 14px;border:1px solid rgba(240,45,152,.42);border-radius:999px;background:#151117;color:#ff5ab4;font-size:12px!important;letter-spacing:.1em!important}
+.festival-dates{margin:0 auto 22px!important;color:#fff;font-size:14px;line-height:1.5}
+.market-logo-space{height:auto;min-height:76px;margin:0 auto 14px!important}
+.market-logo-space img{max-width:min(230px,75vw);max-height:78px}
+.festival-info{margin:0 auto 20px!important;color:#e9e9ed;font-size:13px;letter-spacing:.08em}
+.rsf-intro-copy{max-width:680px!important;margin:0 auto 26px!important;padding:18px 20px;border:1px solid #303038;border-radius:12px;background:#0d0e11;text-align:center!important;font-size:15px!important;line-height:1.7!important}
+.rsf-intro-copy strong{color:#fff;letter-spacing:.045em}
+.rsf-winners{max-width:760px;margin:0 auto 26px!important}
+.rsf-winners-title{margin-bottom:14px!important}
+.rsf-winner-grid{gap:12px!important}
+.rsf-winner-card{background:linear-gradient(145deg,#17171c,#0d0d11)!important}
+.rsf-credit{max-width:680px;margin:0 auto 18px!important}
+.rsf-next-edition{max-width:680px;margin:18px auto 0!important}
+.festival-actions{max-width:680px!important;margin:18px auto!important}
+.festival-actions .festival-btn{width:100%;min-height:50px;justify-content:center}
+.festival-gallery-note{margin:10px auto 0!important}
+@media(max-width:600px){
+.festival#ravenna-song-festival{width:calc(100% - 20px);padding:20px 14px!important;border-radius:18px!important}
+.rsf-intro-copy{padding:15px 13px!important;font-size:14px!important}
+.rsf-winner-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+.rsf-winner-card h3{font-size:12px!important;padding:11px 5px!important}
+.rsf-winner-card ol{padding:8px!important}
+.rsf-winner-card li{font-size:12px!important;gap:5px!important}
+.rsf-winner-card li:before{flex-basis:17px!important;font-size:11px!important}
+}
+</style>
+
+</body></html>
