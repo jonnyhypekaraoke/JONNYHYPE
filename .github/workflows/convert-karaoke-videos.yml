@@ -1,0 +1,43 @@
+name: Convert Karaoke Legends videos for Android
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/convert-karaoke-videos.yml'
+      - 'images/galleria/karaoke-legends/*.mov'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      - name: Convert MOV videos to MP4 H.264/AAC
+        shell: bash
+        run: |
+          shopt -s nullglob
+          for input in images/galleria/karaoke-legends/*.mov; do
+            output="${input%.mov}.mp4"
+            echo "Converting $input -> $output"
+            ffmpeg -y -i "$input" -map 0:v:0 -map '0:a?' -c:v libx264 -preset fast -crf 22 -pix_fmt yuv420p -c:a aac -b:a 128k -movflags +faststart "$output"
+          done
+      - name: Commit converted videos
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/galleria/karaoke-legends/*.mp4
+          if git diff --cached --quiet; then
+            echo "No converted files to commit"
+          else
+            git commit -m "Convert Karaoke Legends videos to Android-compatible MP4"
+            git push
+          fi
