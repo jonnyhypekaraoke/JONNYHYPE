@@ -25,3 +25,27 @@ input,textarea,select{background:#111113!important;color:#fff!important;border:1
 footer{background:#080809!important;border-top:1px solid #222227!important;color:#777780!important}
 img{max-width:100%}
 @media(max-width:650px){.site-header{padding:14px 16px!important;justify-content:space-between}.site-nav{width:100%;gap:6px!important}.site-nav a{flex:1 1 auto;font-size:10px!important;padding:9px 10px!important}.site-header>a:first-child:after{font-size:25px}.social-icons{margin:12px auto 0}}
+
+/* JONNYHYPE — tipografia titoli unificata su tutte le pagine */
+h1,h2,h3,h4,.page-title,.section-title,.page-intro h1,.page-intro h2,.section-heading{
+  font-family:"Space Grotesk","Manrope",Arial,sans-serif!important;
+  font-weight:900!important;
+  text-transform:uppercase;
+  letter-spacing:-.055em!important;
+  line-height:1.02;
+  color:#fff!important;
+  text-wrap:balance;
+}
+h1,.page-title,.page-intro h1{font-size:clamp(38px,6.2vw,76px)!important}
+h2,.section-title,.page-intro h2,.section-heading{font-size:clamp(28px,4.4vw,48px)!important}
+h3,h4{font-size:clamp(21px,3vw,32px)!important}
+h1 .accent,h2 .accent,h3 .accent,h4 .accent,
+h1 .highlight,h2 .highlight,h3 .highlight,
+.page-title .accent,.section-title .accent,.section-heading .accent,
+.display-heading .accent{color:#f02d98!important}
+.display-heading{font-family:"Space Grotesk","Manrope",Arial,sans-serif!important;font-weight:900!important;letter-spacing:-.065em!important;text-transform:uppercase}
+@media(max-width:600px){
+  h1,.page-title,.page-intro h1{font-size:clamp(36px,10vw,58px)!important}
+  h2,.section-title,.page-intro h2,.section-heading{font-size:clamp(26px,7vw,36px)!important}
+  h3,h4{font-size:clamp(20px,5.5vw,27px)!important}
+}
