@@ -178,6 +178,17 @@ input::placeholder,textarea::placeholder{color:#92929b!important}
     }
     if(scroll)requestAnimationFrame(()=>target.scrollIntoView({behavior:'smooth',block:'start'}));
   }
+  function openAlbumFromHash(){
+    const id=decodeURIComponent(location.hash.slice(1));
+    if(!id)return;
+    const target=document.getElementById(id);
+    if(target && target.classList.contains('gallery-album')){
+      openAlbum(target,false);
+      requestAnimationFrame(()=>requestAnimationFrame(()=>target.scrollIntoView({behavior:'auto',block:'start'})));
+    }
+  }
+  window.addEventListener('load',openAlbumFromHash);
+  window.addEventListener('hashchange',openAlbumFromHash);
   categories.forEach(card=>{
     card.addEventListener('click',event=>{
       event.preventDefault();
