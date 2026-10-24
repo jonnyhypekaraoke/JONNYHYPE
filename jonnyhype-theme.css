@@ -54,3 +54,29 @@ h1 .highlight,h2 .highlight,h3 .highlight,
 /* Menu principale: bordi fucsia sottili con alone fluo discreto */
 .jh-menu-panel a{border:1px solid rgba(242,11,145,.72)!important;box-shadow:0 0 5px rgba(242,11,145,.12),inset 0 0 4px rgba(242,11,145,.035)!important}
 .jh-menu-panel a:hover,.jh-menu-panel a:focus-visible{border-color:#f02d98!important;box-shadow:0 0 7px rgba(240,45,152,.32),inset 0 0 5px rgba(240,45,152,.07)!important}
+
+/* MENU UNIFICATO: pannelli neri con bordo fucsia fluo discreto */
+.site-nav a,
+.home-nav a,
+.jh-menu-panel a{
+  background:#141416!important;
+  color:#faf9fb!important;
+  border:1px solid rgba(242,11,145,.68)!important;
+  box-shadow:0 0 5px rgba(242,11,145,.12),inset 0 0 4px rgba(242,11,145,.035)!important;
+}
+.site-nav a:hover,.site-nav a:focus-visible,
+.home-nav a:hover,.home-nav a:focus-visible,
+.jh-menu-panel a:hover,.jh-menu-panel a:focus-visible{
+  background:#19151a!important;
+  border-color:#f02d98!important;
+  box-shadow:0 0 7px rgba(240,45,152,.28),inset 0 0 5px rgba(240,45,152,.06)!important;
+  outline:none;
+}
+/* Niente riquadro sotto/sopra il wordmark JONNYHYPE nella testata */
+.jh-topbar .jh-logo-link{
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  padding:0!important;
+}
