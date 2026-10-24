@@ -80,3 +80,13 @@ h1 .highlight,h2 .highlight,h3 .highlight,
   box-shadow:none!important;
   padding:0!important;
 }
+
+/* FONT MASTER DEL MENU: uniforme su tutte le pagine */
+.jh-menu-panel a{
+  font-family:"Space Grotesk","Manrope",Arial,sans-serif!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  letter-spacing:.045em!important;
+  line-height:1.25!important;
+  text-transform:uppercase!important;
+}
