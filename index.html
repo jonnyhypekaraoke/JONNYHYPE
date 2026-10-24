@@ -815,6 +815,8 @@ letter-spacing:-.045em!important;
 .formats p,.format-card p{font-size:clamp(16px,4.2vw,20px)!important;line-height:1.65!important;overflow-wrap:normal;word-break:normal}
 @media(max-width:600px){.formats h2,.formats h3,.format-card h2,.format-card h3{font-size:clamp(24px,6.2vw,34px)!important}.formats p,.format-card p{font-size:17px!important;line-height:1.6!important}}
 </style>
-</body>
+<script id="jh-menu-dismiss-outside">
+(()=>{const menus=()=>document.querySelectorAll('details.jh-menu[open]');document.addEventListener('pointerdown',e=>{menus().forEach(menu=>{if(!menu.contains(e.target))menu.removeAttribute('open')})},true);document.addEventListener('click',e=>{const link=e.target.closest('details.jh-menu a');if(link)menus().forEach(menu=>menu.removeAttribute('open'))},true)})();
+</script></body>
 </html>
 
