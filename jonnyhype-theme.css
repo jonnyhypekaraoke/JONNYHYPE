@@ -49,3 +49,8 @@ h1 .highlight,h2 .highlight,h3 .highlight,
   h2,.section-title,.page-intro h2,.section-heading{font-size:clamp(26px,7vw,36px)!important}
   h3,h4{font-size:clamp(20px,5.5vw,27px)!important}
 }
+
+
+/* Menu principale: bordi fucsia sottili con alone fluo discreto */
+.jh-menu-panel a{border:1px solid rgba(242,11,145,.72)!important;box-shadow:0 0 5px rgba(242,11,145,.12),inset 0 0 4px rgba(242,11,145,.035)!important}
+.jh-menu-panel a:hover,.jh-menu-panel a:focus-visible{border-color:#f02d98!important;box-shadow:0 0 7px rgba(240,45,152,.32),inset 0 0 5px rgba(240,45,152,.07)!important}
