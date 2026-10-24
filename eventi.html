@@ -312,4 +312,6 @@ h1,h2,h3,h4,.page-intro h1.display-heading,.events h2,.format-card h3{font-famil
 .event-description{font-size:15px!important;line-height:1.55!important;letter-spacing:0!important;overflow-wrap:normal;word-break:normal}
 @media(max-width:600px){.event-card{grid-template-columns:70px minmax(0,1fr)!important;gap:12px!important;padding:14px!important}.event-detail{font-size:14px!important}.event-detail strong{font-size:16px!important}.page-intro h1.display-heading{font-size:clamp(43px,11vw,64px)!important}}
 </style>
-</body></html>
+<script id="jh-menu-dismiss-outside">
+(()=>{const menus=()=>document.querySelectorAll('details.jh-menu[open]');document.addEventListener('pointerdown',e=>{menus().forEach(menu=>{if(!menu.contains(e.target))menu.removeAttribute('open')})},true);document.addEventListener('click',e=>{const link=e.target.closest('details.jh-menu a');if(link)menus().forEach(menu=>menu.removeAttribute('open'))},true)})();
+</script></body></html>
