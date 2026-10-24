@@ -803,6 +803,14 @@ letter-spacing:-.045em!important;
 .jh-rsf-home-banner .jh-rsf-title-link{position:relative;display:inline-block;padding-right:clamp(28px,6vw,42px);color:inherit!important;text-decoration:none!important}
 .jh-rsf-home-banner .jh-rsf-title-link::after{content:"";position:absolute;right:0;top:.46em;width:clamp(24px,5vw,34px);height:10px;border-top:2px solid #fff;border-right:2px solid #fff;transform:scale(.72) rotate(45deg);transform-origin:center;filter:drop-shadow(0 0 4px rgba(240,45,152,.9))}.jh-rsf-home-banner .jh-rsf-title-link::before{content:"";position:absolute;right:0;top:.92em;width:clamp(28px,5.5vw,38px);height:2px;background:#f02d98;box-shadow:0 0 7px rgba(240,45,152,.9)}
 .jh-rsf-home-banner .jh-rsf-title-link:focus-visible{outline:2px solid #f02d98;outline-offset:4px;border-radius:3px}
-</style></body>
+</style>
+<style id="jh-home-format-font-correction">
+/* Uniforma la tipografia dei formati senza alterare struttura, colori o spaziature del master */
+.formats,.formats *,.format-card,.format-card p,.format-card a{font-family:"Manrope",Arial,sans-serif!important}
+.formats h2,.formats h3,.format-card h2,.format-card h3{font-family:"Montserrat","Manrope",Arial,sans-serif!important;font-weight:800!important;letter-spacing:-.035em!important;line-height:1.15!important;text-wrap:balance}
+.formats p,.format-card p{font-size:clamp(16px,4.2vw,20px)!important;line-height:1.65!important;overflow-wrap:normal;word-break:normal}
+@media(max-width:600px){.formats h2,.formats h3,.format-card h2,.format-card h3{font-size:clamp(24px,6.2vw,34px)!important}.formats p,.format-card p{font-size:17px!important;line-height:1.6!important}}
+</style>
+</body>
 </html>
 
