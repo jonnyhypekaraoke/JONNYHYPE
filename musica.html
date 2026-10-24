@@ -179,4 +179,6 @@ main{width:min(1200px,calc(100% - 64px));margin:0 auto}
 <p><strong>Cinque DJ del karaoke, un unico palco.</strong><br>Un progetto ideato da Jonathan Paladini che riunisce cinque protagonisti del karaoke in una serata speciale.</p>
 </div>
 <a href="/eventi.html">CALENDARIO DI TUTTI GLI EVENTI</a>
-</section></main><footer>JONNYHYPE · DJ SET · KARAOKE · EVENTS &amp; MUSIC PRODUCTION</footer><script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script></body></html>
+</section></main><footer>JONNYHYPE · DJ SET · KARAOKE · EVENTS &amp; MUSIC PRODUCTION</footer><script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script><script id="jh-menu-dismiss-outside">
+(()=>{const menus=()=>document.querySelectorAll('details.jh-menu[open]');document.addEventListener('pointerdown',e=>{menus().forEach(menu=>{if(!menu.contains(e.target))menu.removeAttribute('open')})},true);document.addEventListener('click',e=>{const link=e.target.closest('details.jh-menu a');if(link)menus().forEach(menu=>menu.removeAttribute('open'))},true)})();
+</script></body></html>
