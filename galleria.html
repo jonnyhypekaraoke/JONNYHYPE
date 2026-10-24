@@ -262,8 +262,11 @@ h1,h2,h3,h4,.gallery-category strong,.rsf-final-folder strong{font-family:"Space
   window.addEventListener('hashchange',openAlbumFromHash);
   categories.forEach(card=>{
     card.addEventListener('click',event=>{
+      const href=card.getAttribute('href')||'';
+      // Le schede che puntano a pagine dedicate devono navigare normalmente.
+      if(!href.startsWith('#')) return;
       event.preventDefault();
-      const target=document.getElementById(card.getAttribute('href').slice(1));
+      const target=document.getElementById(href.slice(1));
       const wasOpen=target && !target.classList.contains('album-collapsed');
       if(wasOpen){
         closeAlbums();
