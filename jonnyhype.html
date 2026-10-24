@@ -73,5 +73,7 @@ footer{padding:26px 12px;text-align:center;border-top:1px solid #24242a;color:#7
 </section>
 </main>
 <footer>JONNYHYPE · DJ SET · KARAOKE · EVENTS &amp; MUSIC PRODUCTION</footer>
-</body>
+<script id="jh-menu-dismiss-outside">
+(()=>{const menus=()=>document.querySelectorAll('details.jh-menu[open]');document.addEventListener('pointerdown',e=>{menus().forEach(menu=>{if(!menu.contains(e.target))menu.removeAttribute('open')})},true);document.addEventListener('click',e=>{const link=e.target.closest('details.jh-menu a');if(link)menus().forEach(menu=>menu.removeAttribute('open'))},true)})();
+</script></body>
 </html>
