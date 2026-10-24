@@ -299,4 +299,17 @@ main{width:min(1200px,calc(100% - 64px));margin:0 auto}
 </main>
 <footer>JONNYHYPE · DJ SET · KARAOKE · EVENTS &amp; MUSIC PRODUCTION</footer><script>
 (()=>{const counter=document.querySelector('.jh-437-number[data-count-target]');if(!counter)return;const target=Number(counter.dataset.countTarget)||438;let started=false;const run=()=>{if(started)return;started=true;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){counter.textContent=String(target);return;}const duration=1900,start=performance.now();const tick=now=>{const p=Math.min((now-start)/duration,1);const eased=1-Math.pow(1-p,4);counter.textContent=String(Math.round(target*eased));if(p<1)requestAnimationFrame(tick);else counter.textContent=String(target);};requestAnimationFrame(tick);};if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){run();observer.disconnect();}},{threshold:.35});observer.observe(counter);}else{run();}})();
-</script><script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script></body></html>
+</script><script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script>
+<style id="jh-events-calendar-font-correction">
+/* Calendario: una sola famiglia per date, titoli, descrizioni e pulsanti */
+body,.site-nav a,.page-intro,.page-intro p,.events,.events-intro,.event-list,.event-card,.event-date,.event-date strong,.event-detail,.event-detail strong,.event-description,.event-cta,.calendar-top-btn,.event-booking,.event-booking *,.format-card,.format-card *,.events-project,.events-project * ,footer{font-family:"Manrope",Arial,sans-serif!important}
+h1,h2,h3,h4,.page-intro h1.display-heading,.events h2,.format-card h3{font-family:"Montserrat","Manrope",Arial,sans-serif!important;font-weight:800!important}
+.page-intro h1.display-heading{line-height:.98!important;text-wrap:balance}
+.event-detail{font-size:15px!important;line-height:1.65!important;letter-spacing:0!important}
+.event-detail strong{font-size:17px!important;line-height:1.35!important;letter-spacing:-.02em!important}
+.event-date{font-size:13px!important;letter-spacing:.04em!important}
+.event-date strong{font-size:30px!important;line-height:1.15!important}
+.event-description{font-size:15px!important;line-height:1.55!important;letter-spacing:0!important;overflow-wrap:normal;word-break:normal}
+@media(max-width:600px){.event-card{grid-template-columns:70px minmax(0,1fr)!important;gap:12px!important;padding:14px!important}.event-detail{font-size:14px!important}.event-detail strong{font-size:16px!important}.page-intro h1.display-heading{font-size:clamp(43px,11vw,64px)!important}}
+</style>
+</body></html>
