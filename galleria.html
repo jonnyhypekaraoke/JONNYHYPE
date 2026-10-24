@@ -256,6 +256,12 @@ h1,h2,h3,h4,.gallery-category strong,.rsf-final-folder strong{font-family:"Space
     if(target && target.classList.contains('gallery-album')){
       openAlbum(target,false);
       requestAnimationFrame(()=>requestAnimationFrame(()=>target.scrollIntoView({behavior:'auto',block:'start'})));
+      return;
+    }
+    if(target && target.classList.contains('rsf-final-subfolder')){
+      document.querySelectorAll('.rsf-final-subfolder').forEach(section=>section.classList.add('album-collapsed'));
+      target.classList.remove('album-collapsed');
+      requestAnimationFrame(()=>requestAnimationFrame(()=>target.scrollIntoView({behavior:'auto',block:'start'})));
     }
   }
   window.addEventListener('load',openAlbumFromHash);
@@ -282,6 +288,11 @@ h1,h2,h3,h4,.gallery-category strong,.rsf-final-folder strong{font-family:"Space
     if(!id)return;
     const target=document.getElementById(id);
     if(target && target.classList.contains('gallery-album'))openAlbum(target,true);
+    else if(target && target.classList.contains('rsf-final-subfolder')){
+      document.querySelectorAll('.rsf-final-subfolder').forEach(section=>section.classList.add('album-collapsed'));
+      target.classList.remove('album-collapsed');
+      target.scrollIntoView({behavior:'smooth',block:'start'});
+    }
   }
   window.addEventListener('hashchange',openFromHash);
   if(location.hash)window.addEventListener('load',()=>setTimeout(openFromHash,80),{once:true});
