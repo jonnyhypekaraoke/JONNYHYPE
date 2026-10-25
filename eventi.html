@@ -414,4 +414,26 @@ h1,h2,h3,h4,.page-intro h1.display-heading,.events h2,.format-card h3{font-famil
 </style>
 <script id="jh-menu-dismiss-outside">
 (()=>{const menus=()=>document.querySelectorAll('details.jh-menu[open]');document.addEventListener('pointerdown',e=>{menus().forEach(menu=>{if(!menu.contains(e.target))menu.removeAttribute('open')})},true);document.addEventListener('click',e=>{const link=e.target.closest('details.jh-menu a');if(link)menus().forEach(menu=>menu.removeAttribute('open'))},true)})();
-</script></body></html>
+</script>
+<style id="jh-whatsapp-single-line-final-fix">
+/* Fix definitivo: il pulsante WhatsApp del calendario resta su una sola riga anche su iPhone */
+.event-actions .whatsapp-cta,
+.event-detail .whatsapp-cta,
+.event-card .whatsapp-cta{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  white-space:nowrap!important;
+  overflow-wrap:normal!important;
+  word-break:keep-all!important;
+  min-width:0!important;
+  width:100%!important;
+  padding-left:4px!important;
+  padding-right:4px!important;
+  font-size:clamp(9px,2.65vw,12px)!important;
+  letter-spacing:-.025em!important;
+  line-height:1.2!important;
+}
+.event-card .whatsapp-cta{gap:0!important}
+</style>
+</body></html>
