@@ -12,58 +12,12 @@
 </style>
 </head>
 <body>
-<header class="top"><a class="wordmark" href="/" aria-label="JONNYHYPE home">JONNY<span>HYPE</span></a><a class="back" href="/">TORNA AL SITO</a></header>
-<main class="wrap">
-<section class="hero"><div class="eyebrow">MUSICA · KARAOKE · ROMAGNA</div><h1>JONNYHYPE <span>COMMUNITY</span></h1><p>Un posto per conoscere altri appassionati, scoprire locali dove fare karaoke, parlare di musica e condividere idee sulle prossime serate.</p></section>
-<div id="setup-alert" class="status">La community è in fase di configurazione. La registrazione sarà attivata dopo il collegamento e la verifica di Supabase, delle autorizzazioni e degli strumenti di moderazione. Useremo email e password: non è richiesto un numero di telefono né un servizio SMS.</div>
-<section id="auth-card" class="card">
-<h2>Entra nella community</h2><p class="muted">Registrati con email, password e username. L’email resta privata: gli altri utenti vedranno soltanto il tuo username.</p>
-<form id="signup-form" class="form"><label>EMAIL<input id="signup-email" type="email" autocomplete="email" required></label><label>PASSWORD<input id="signup-password" type="password" autocomplete="new-password" minlength="8" required></label><button type="submit" id="signup-button" disabled>CREA ACCOUNT</button></form>
-<form id="login-form" class="form"><label>EMAIL<input id="login-email" type="email" autocomplete="email" required></label><label>PASSWORD<input id="login-password" type="password" autocomplete="current-password" required></label><button type="submit" id="login-button" disabled>ACCEDI</button></form>
-<form id="username-form" class="form hidden"><label>SCEGLI IL TUO USERNAME<input id="username" minlength="3" maxlength="20" pattern="[A-Za-z0-9_.-]{3,20}" autocomplete="nickname" placeholder="Es. LUCA90" required></label><button type="submit">ENTRA IN COMMUNITY</button></form>
-<p id="auth-status" class="notice" role="status" aria-live="polite"></p>
-<p class="small">L’email viene usata solo per l’account e non viene mostrata nei profili o nei messaggi pubblici. Prima dell’attivazione saranno pubblicate l’informativa privacy e le condizioni d’uso.</p>
+<main class="wrap" style="max-width:760px;margin:10vh auto 0;padding:24px;text-align:center">
+<section class="card" style="padding:32px 24px">
+<h1>JONNYHYPE COMMUNITY</h1>
+<h2>Community momentaneamente in standby</h2>
+<p class="muted">Stiamo aggiornando il sistema di accesso e i profili. La community tornerà disponibile dopo le modifiche.</p>
+<p class="small">I profili e i messaggi esistenti non vengono cancellati durante questa pausa.</p>
 </section>
-<section id="chat-card" class="card hidden">
-<div class="chat-head"><div><h2>Chat pubblica</h2><p class="muted">Rispetta le persone. Niente insulti, minacce, discriminazioni, spam o dati personali.</p></div><button class="quiet-btn" id="logout">ESCI</button></div>
-<div id="profile-area" class="hidden"><form id="profile-form" class="form"><label>USERNAME<input id="profile-username" minlength="3" maxlength="20" pattern="[A-Za-z0-9_.-]{3,20}" required></label><button type="submit">SALVA USERNAME</button></form></div>
-<div id="message-list" class="chat-list" aria-live="polite"></div>
-<form id="message-form" class="form" style="max-width:none"><label>IL TUO MESSAGGIO<textarea id="message" maxlength="500" rows="3" placeholder="Parliamo di karaoke, musica e serate..." required></textarea></label><button type="submit">PUBBLICA MESSAGGIO</button><p class="small">I messaggi riconosciuti come offensivi vengono bloccati e inviati alla coda privata di moderazione. Non saranno pubblicati.</p></form>
-</section>
-<div class="columns">
-<section class="card"><h2>Regole della community</h2><ul class="rules"><li>Usa uno username rispettoso e non impersonare altre persone.</li><li>Niente insulti, minacce, discriminazioni o contenuti osceni.</li><li>Non pubblicare numeri di telefono, indirizzi o dati personali, tuoi o altrui.</li><li>Niente spam, pubblicità ripetuta o link sospetti.</li><li>Le violazioni possono comportare rimozione del messaggio, sospensione o blocco dell'account.</li></ul></section>
-<section class="card"><h2>Moderazione attiva</h2><p class="muted">I messaggi vengono controllati prima della pubblicazione. Se un contenuto supera il filtro, puoi segnalarlo. L'amministratore può rimuovere messaggi e sospendere o bloccare gli account.</p><div class="status">La moderazione automatica non è infallibile: le segnalazioni vengono esaminate e le decisioni più severe restano sotto controllo umano.</div></section>
-</div>
-<p class="footer">JONNYHYPE COMMUNITY · Chat pubblica in configurazione<br>Non condividere informazioni private con persone che non conosci.</p>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/community-config.js"></script>
-<script>
-(function(){
-const $=id=>document.getElementById(id);
-const setStatus=(id,msg)=>$(id).textContent=msg;
-const configured=window.JH_COMMUNITY_CONFIG&&window.JH_COMMUNITY_CONFIG.url&&window.JH_COMMUNITY_CONFIG.anonKey&&window.JH_COMMUNITY_CONFIG.url.startsWith('https://')&&!window.JH_COMMUNITY_CONFIG.anonKey.includes('INSERISCI');
-let sb=null,user=null,profile=null;
-if(configured&&window.supabase){sb=window.supabase.createClient(window.JH_COMMUNITY_CONFIG.url,window.JH_COMMUNITY_CONFIG.anonKey);$('setup-alert').classList.add('hidden');$('signup-button').disabled=false;$('login-button').disabled=false;init();}
-$('signup-form').addEventListener('submit',async e=>{e.preventDefault();if(!sb)return;const email=$('signup-email').value.trim();const password=$('signup-password').value;setStatus('auth-status','Creazione account in corso…');const {data,error}=await sb.auth.signUp({email,password});if(error){setStatus('auth-status','Registrazione non riuscita: '+(error.message||'errore non specificato')+'.');return;}if(data.session){user=data.user;setStatus('auth-status','Account creato. Scegli il tuo username.');await init();}else{setStatus('auth-status','Account creato. Controlla la tua email e conferma la registrazione; poi torna qui e accedi.');$('login-email').value=email;$('login-password').value=password;}});
-$('login-form').addEventListener('submit',async e=>{e.preventDefault();if(!sb)return;setStatus('auth-status','Accesso in corso…');const {data,error}=await sb.auth.signInWithPassword({email:$('login-email').value.trim(),password:$('login-password').value});if(error){setStatus('auth-status','Accesso non riuscito. Verifica email e password e, se richiesto, conferma prima l’email.');return;}user=data.user;await init();});
-$('username-form').addEventListener('submit',async e=>{e.preventDefault();if(!sb||!user)return;const username=$('username').value.trim();const {data,error}=await sb.rpc('community_set_username',{p_username:username});if(error){setStatus('auth-status',error.message.includes('taken')?'Questo username è già utilizzato. Scegline un altro.':'Non è stato possibile salvare lo username.');return;}await init();});
-$('profile-form').addEventListener('submit',async e=>{e.preventDefault();if(!sb)return;const {error}=await sb.rpc('community_set_username',{p_username:$('profile-username').value.trim()});setStatus('auth-status',error?'Non è stato possibile aggiornare lo username.':'Username aggiornato.');if(!error)await init();});
-$('message-form').addEventListener('submit',async e=>{e.preventDefault();if(!sb)return;const body=$('message').value.trim();if(!body)return;const {data,error}=await sb.rpc('community_post_message',{p_body:body});if(error){setStatus('auth-status','Messaggio non inviato. Potresti essere sospeso oppure la connessione non è disponibile.');return;}$('message').value='';if(data&&data.status==='blocked')setStatus('auth-status','Messaggio non pubblicato: è stato inviato alla moderazione.');else setStatus('auth-status','Messaggio pubblicato.');await loadMessages();});
-$('logout').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();location.reload();});
-async function init(){if(!sb)return;const {data}=await sb.auth.getSession();user=data.session&&data.session.user;if(!user){$('auth-card').classList.remove('hidden');$('chat-card').classList.add('hidden');return;}
-$('signup-form').classList.add('hidden');$('login-form').classList.add('hidden');$('auth-card').classList.remove('hidden');
-const {data:p,error}=await sb.from('community_profiles').select('username').eq('user_id',user.id).maybeSingle();
-if(error){$('signup-form').classList.remove('hidden');$('login-form').classList.remove('hidden');$('username-form').classList.add('hidden');setStatus('auth-status','Errore database ('+(error.code||'senza codice')+'): '+(error.message||'richiesta non riuscita')+'. Le funzioni sono state riattivate per consentire un nuovo accesso.');return;}
-if(!p){$('username-form').classList.remove('hidden');$('chat-card').classList.add('hidden');setStatus('auth-status','Verifica completata. Scegli uno username pubblico.');return;}
-profile=p;$('username-form').classList.add('hidden');$('chat-card').classList.remove('hidden');$('auth-card').classList.add('hidden');$('profile-username').value=p.username;
-await loadMessages();
-}
-// Aggiorna la chat senza richiedere all’utente di ricaricare la pagina.
-let refreshBusy=false;
-setInterval(async()=>{if(!sb||!user||$('chat-card').classList.contains('hidden')||refreshBusy)return;refreshBusy=true;try{await loadMessages();}finally{refreshBusy=false;}},15000);
-async function loadMessages(){if(!sb)return;const {data,error}=await sb.from('community_messages').select('id,user_id,body,created_at,community_profiles(username)').eq('status','published').order('created_at',{ascending:true}).limit(100);if(error)return;const list=$('message-list');list.replaceChildren();(data||[]).forEach(m=>{const box=document.createElement('article');box.className='msg';const meta=document.createElement('div');meta.className='meta';const name=document.createElement('strong');name.textContent=m.community_profiles?.username||'UTENTE';const time=document.createElement('time');time.textContent=new Date(m.created_at).toLocaleString('it-IT',{dateStyle:'short',timeStyle:'short'});const text=document.createElement('p');text.textContent=m.body;meta.append(name,time);box.append(meta,text);if(m.user_id!==user.id){const actions=document.createElement('div');actions.className='msg-actions';const report=document.createElement('button');report.textContent='SEGNALA';report.addEventListener('click',async()=>{const reason=prompt('Motivo della segnalazione:');if(!reason)return;const {error}=await sb.rpc('community_report_message',{p_message_id:m.id,p_reason:reason.slice(0,250)});alert(error?'Non è stato possibile inviare la segnalazione.':'Segnalazione inviata all’amministratore.');});actions.append(report);box.append(actions);}list.append(box);});}
-async function loadQueue(){const out=$('admin-queue');out.replaceChildren();const [blocked,reports]=await Promise.all([sb.rpc('community_admin_moderation_queue'),sb.rpc('community_admin_reports')]);if(blocked.error||reports.error){out.textContent='Coda moderazione non disponibile. Verifica che lo schema SQL aggiornato sia stato eseguito.';return;}const sections=[{title:'MESSAGGI BLOCCATI AUTOMATICAMENTE',rows:blocked.data||[],type:'blocked'},{title:'SEGNALAZIONI DEGLI UTENTI',rows:reports.data||[],type:'report'}];let any=false;sections.forEach(section=>{const heading=document.createElement('h3');heading.textContent=section.title;out.append(heading);if(!section.rows.length){const empty=document.createElement('p');empty.className='small';empty.textContent='Nessun elemento in attesa.';out.append(empty);return;}any=true;section.rows.forEach(item=>{const box=document.createElement('article');box.className='msg';const title=document.createElement('strong');title.textContent=section.type==='blocked'?'Messaggio bloccato automaticamente':'Messaggio segnalato da un utente';const body=document.createElement('p');body.textContent=item.body;const reason=document.createElement('p');reason.className='small';reason.textContent='Motivo: '+item.reason;const actions=document.createElement('div');actions.className='admin-actions';const remove=document.createElement('button');remove.textContent='ARCHIVIA';remove.onclick=async()=>{const rpc=section.type==='blocked'?'community_admin_resolve_moderation_item':'community_admin_resolve_report';const params=section.type==='blocked'?{p_item_id:item.id}:{p_report_id:item.id};const {error}=await sb.rpc(rpc,params);if(error)alert('Non è stato possibile archiviare.');await loadQueue();};actions.append(remove);box.append(title,body,reason,actions);out.append(box);});});if(!any){/* empty-state already shown in each section */}}
-})();
-</script>
 </body></html>
