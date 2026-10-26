@@ -1,4 +1,4 @@
-const CACHE_NAME = "jonnyhype-site-v6";
+const CACHE_NAME = "jonnyhype-site-v7";
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -17,6 +17,11 @@ self.addEventListener("activate", event => {
 });
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET" || new URL(event.request.url).origin !== self.location.origin) return;
+  // Keep community backend configuration network-only so old public config is never stuck in cache.
+  if (new URL(event.request.url).pathname === "/community-config.js") {
+    event.respondWith(fetch(event.request, { cache: "no-store" }));
+    return;
+  }
   const url = new URL(event.request.url);
   if (event.request.mode === "navigate" || url.pathname === "/" || url.pathname.endsWith(".html")) {
     event.respondWith(fetch(event.request).then(response => {
