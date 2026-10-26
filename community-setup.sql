@@ -86,8 +86,11 @@ begin
   if not exists(select 1 from public.community_profiles where user_id=auth.uid()) then raise exception 'username required'; end if;
   if exists(select 1 from public.community_bans where user_id=auth.uid() and (banned_until is null or banned_until > now())) then raise exception 'account blocked'; end if;
   if char_length(v_body)<1 or char_length(v_body)>500 then raise exception 'message length invalid'; end if;
-  select max(created_at) into v_last from public.community_messages where user_id=auth.uid();
-  if v_last is not null and v_last > now()-interval '3 seconds' then raise exception 'slow down'; end if;
+  select greatest(
+    coalesce((select max(created_at) from public.community_messages where user_id=auth.uid()), '-infinity'::timestamptz),
+    coalesce((select max(created_at) from public.community_moderation_queue where user_id=auth.uid()), '-infinity'::timestamptz)
+  ) into v_last;
+  if v_last > now()-interval '10 seconds' then raise exception 'slow down'; end if;
   if v_body ~* '(https?://|www\.)' then v_reason := 'Link non consentito'; end if;
   if v_body ~* '\m(coglione|coglioni|stronzo|stronzi|vaffanculo|puttana|bastardo|bastardi|merda|troia|pezzo di merda)\M' then v_reason := coalesce(v_reason||'; ','')||'Linguaggio potenzialmente offensivo'; end if;
   if v_body ~* '(odio tutti i|ucciditi|ti ammazzo|ti uccido)' then v_reason := coalesce(v_reason||'; ','')||'Minaccia o contenuto aggressivo'; end if;
