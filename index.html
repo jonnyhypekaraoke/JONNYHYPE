@@ -105,7 +105,23 @@ footer{display:block;width:100%;padding:30px 8px;text-align:center;color:#777;fo
 .jh-home-community-icon{flex:0 0 38px;width:38px;height:38px;border-radius:12px;background:#f02d98;color:#080809;display:grid;place-items:center;font-size:24px;font-weight:900}
 .jh-home-community-copy{flex:1;min-width:0}.jh-home-community-copy strong{display:block;font-size:clamp(14px,3.5vw,18px);line-height:1.2}.jh-home-community-copy small{display:block;margin-top:5px;color:#d0cdd3;font-size:12px;line-height:1.35}
 .jh-home-community-cta{flex:0 0 auto;padding:11px 12px;border-radius:11px;background:#f02d98;color:#080809;font-size:10px;font-weight:900;text-align:center;line-height:1.25}
-.jh-home-team{padding:14px 0 8px;background:transparent;overflow:hidden;border-top:0;width:100%;margin:0 auto}.jh-home-team-head{width:100%;padding:0 14px}.jh-team-track{padding-left:14px;padding-right:14px}.jh-team-person img{object-position:center 10%;}.jh-home-team-head{width:min(640px,88vw);margin:0 auto 14px;display:flex;align-items:end;justify-content:space-between;gap:10px}.jh-home-team-head h2{font-size:clamp(20px,5vw,28px);margin:0;line-height:1.1}.jh-home-team-head h2 span{color:#f02d98}.jh-home-team-head a{font-size:11px;font-weight:800;color:#fff;text-decoration:none;border:1px solid #f02d98;border-radius:20px;padding:9px 11px;white-space:nowrap}
+.jh-home-team{padding:18px 0 14px;background:transparent;overflow:hidden;width:100%;margin:0 auto;border:0;box-shadow:none}
+.jh-home-team-head{width:100%;padding:0 16px;margin:0 auto 7px;display:block;text-align:left}
+.jh-home-team-head h2{font-family:"Space Grotesk","Manrope",inherit;font-size:clamp(16px,4.2vw,21px);font-weight:900;letter-spacing:-.025em;line-height:1.2;margin:0 0 6px}
+.jh-home-team-head h2 span{color:#f02d98}
+.jh-home-team-intro{padding:0 16px;margin:0 0 14px;color:#d0cdd2;font-family:inherit;font-size:12px;line-height:1.45;text-align:left}
+.jh-team-viewport{position:relative;overflow:hidden;width:100%;padding:0 28px}
+.jh-team-track{display:flex;gap:9px;width:max-content;padding:2px 0 8px;animation:jhTeamScroll 44s linear infinite}
+.jh-home-team:hover .jh-team-track,.jh-home-team:focus-within .jh-team-track{animation-play-state:paused}
+.jh-team-person{display:block;width:98px;flex:0 0 98px;color:#fff;text-align:center;text-decoration:none;font-family:inherit}
+.jh-team-person img{display:block;width:88px;height:88px;object-fit:cover;object-position:center 12%;border-radius:50%;border:2px solid #f02d98;margin:0 auto 7px;background:#15151b}
+.jh-team-person span{display:block;font-family:inherit;font-size:10px;font-weight:900;line-height:1.2;letter-spacing:0;text-transform:uppercase}
+.jh-team-person small{display:block;color:#f02d98;font-family:inherit;font-size:9px;font-weight:800;margin-top:3px}
+.jh-team-arrow{position:absolute;z-index:2;top:28px;width:32px;height:40px;border:1px solid #f02d98;border-radius:22px;background:#080809;color:#fff;font-size:23px;line-height:1;display:grid;place-items:center;cursor:pointer}
+.jh-team-arrow.prev{left:3px}.jh-team-arrow.next{right:3px}
+.jh-team-all{display:block;width:max-content;max-width:calc(100% - 32px);margin:12px auto 4px;padding:10px 18px;border:1.5px solid #f02d98;border-radius:24px;color:#fff;text-align:center;text-decoration:none;font-family:inherit;font-size:11px;font-weight:900;letter-spacing:.015em}
+@media(max-width:390px){.jh-home-team{padding-top:14px}.jh-team-viewport{padding:0 24px}.jh-team-person{width:88px;flex-basis:88px}.jh-team-person img{width:78px;height:78px}.jh-team-arrow{top:22px;width:29px;height:36px}}
+.jh-home-team-head{width:min(640px,88vw);margin:0 auto 14px;display:flex;align-items:end;justify-content:space-between;gap:10px}.jh-home-team-head h2{font-size:clamp(20px,5vw,28px);margin:0;line-height:1.1}.jh-home-team-head h2 span{color:#f02d98}.jh-home-team-head a{font-size:11px;font-weight:800;color:#fff;text-decoration:none;border:1px solid #f02d98;border-radius:20px;padding:9px 11px;white-space:nowrap}
 .jh-team-track{display:flex;gap:13px;width:max-content;padding:3px 18px 14px;animation:jhTeamScroll 48s linear infinite}.jh-home-team:hover .jh-team-track,.jh-home-team:focus-within .jh-team-track{animation-play-state:paused}.jh-team-person{display:block;width:126px;flex:0 0 126px;color:#fff;text-align:center;text-decoration:none}.jh-team-person img{display:block;width:116px;height:116px;object-fit:cover;object-position:center 10%;border-radius:50%;border:2px solid #f02d98;margin:0 auto 9px;background:#15151b}.jh-team-person span{display:block;font-family:inherit;font-size:11px;font-weight:900;line-height:1.3;letter-spacing:.02em}.jh-team-person small{display:block;color:#bcbac3;font-size:10px;margin-top:4px}
 @keyframes jhTeamScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.jh-team-track{animation:none;flex-wrap:wrap;width:100%;justify-content:center}.jh-home-community{flex-wrap:wrap}.jh-home-community-cta{margin-left:50px}}
@@ -750,8 +766,9 @@ letter-spacing:-.045em!important;
 </div>
 <div class="jh-rsf-promo-line">DJ SET · KARAOKE · DIVERTIMENTO<br><strong>E OSPITI DEL RAVENNA SONG FESTIVAL</strong></div>
 <section class="jh-home-team" aria-label="Il Team Ravenna Song Festival">
-<div class="jh-home-team-head"><h2>I RAGAZZI DEL <span>RSF</span></h2><a href="/team-rsf.html">TUTTO IL TEAM →</a></div>
-<div class="jh-team-track" aria-label="Foto degli ospiti del Ravenna Song Festival che scorrono automaticamente">
+<div class="jh-home-team-head"><h2>I RAGAZZI DEL <span>RAVENNA SONG FESTIVAL</span></h2></div>
+<p class="jh-home-team-intro">Li hai visti sul palco del Festival. Ora tornano ospiti nelle mie serate.</p>
+<div class="jh-team-viewport"><button class="jh-team-arrow prev" type="button" aria-label="Foto precedenti">‹</button><div class="jh-team-track" aria-label="Foto degli ospiti del Ravenna Song Festival che scorrono automaticamente">
 <a class="jh-team-person" href="/team-rsf.html"><img src="/images/ospiti/valentina-carinelli.jpg.PNG" alt="VALENTINA CARINELLI" loading="lazy"><span>VALENTINA CARINELLI</span><small>OSPITE RSF</small></a>
 <a class="jh-team-person" href="/team-rsf.html"><img src="/images/ospiti/lizzy-prince.jpg.jpg" alt="LIZZY PRINCE" loading="lazy"><span>LIZZY PRINCE</span><small>OSPITE RSF</small></a>
 <a class="jh-team-person" href="/team-rsf.html"><img src="/images/ospiti/giulia-dradi.jpg.PNG" alt="GIULIA DRADI" loading="lazy"><span>GIULIA DRADI</span><small>OSPITE RSF</small></a>
@@ -781,7 +798,7 @@ letter-spacing:-.045em!important;
 <a class="jh-team-person" href="/team-rsf.html"><img src="/images/ospiti/jessica-doccioli.jpg.PNG" alt="JESSICA DOCCIOLI" loading="lazy"><span>JESSICA DOCCIOLI</span><small>OSPITE RSF</small></a>
 <a class="jh-team-person" href="/team-rsf.html"><img src="/images/ospiti/gioiacimatti.jpg.PNG" alt="GIOIA CIMATTI" loading="lazy"><span>GIOIA CIMATTI</span><small>OSPITE RSF</small></a>
 <a class="jh-team-person" href="/team-rsf.html"><img src="/images/ospiti/aphrodys.jpg.PNG" alt="APHRODYS" loading="lazy"><span>APHRODYS</span><small>OSPITE RSF</small></a>
-</div></section>
+</div><button class="jh-team-arrow next" type="button" aria-label="Foto successive">›</button></div><a class="jh-team-all" href="/team-rsf.html">VEDI TUTTI I RAGAZZI E LE LORO FOTO →</a></section>
 <div class="jh-rsf-banner-details">
 <div class="jh-rsf-date-list jh-rsf-event-cards" aria-label="Prossimi eventi JONNYHYPE">
 
@@ -919,6 +936,10 @@ letter-spacing:-.045em!important;
 </style>
 <script id="jh-menu-dismiss-outside">
 (()=>{const menus=()=>document.querySelectorAll('details.jh-menu[open]');document.addEventListener('pointerdown',e=>{menus().forEach(menu=>{if(!menu.contains(e.target))menu.removeAttribute('open')})},true);document.addEventListener('click',e=>{const link=e.target.closest('details.jh-menu a');if(link)menus().forEach(menu=>menu.removeAttribute('open'))},true)})();
-</script></body>
+</script>
+<script>
+document.querySelectorAll('.jh-home-team').forEach(function(section){var track=section.querySelector('.jh-team-track');var prev=section.querySelector('.jh-team-arrow.prev');var next=section.querySelector('.jh-team-arrow.next');if(!track)return;function move(dir){track.style.animationPlayState='paused';track.scrollIntoView({block:'nearest',inline:'nearest'});var viewport=section.querySelector('.jh-team-viewport');if(viewport){viewport.scrollBy({left:dir*210,behavior:'smooth'});}}if(prev)prev.addEventListener('click',function(){move(-1)});if(next)next.addEventListener('click',function(){move(1)});});
+</script>
+</body>
 </html>
 
