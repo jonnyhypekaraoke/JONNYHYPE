@@ -282,7 +282,7 @@ begin
   end if;
   v_code := upper(substr(replace(gen_random_uuid()::text,'-',''),1,12));
   insert into public.community_whatsapp_invites(username,phone,code_hash)
-    values(v_username,v_phone,encode(digest(v_code,'sha256'),'hex'))
+    values(v_username,v_phone,encode(sha256(convert_to(v_code,'UTF8')),'hex'))
     returning id into invite_id;
   username := v_username; phone := v_phone; access_code := v_code;
   return next;
@@ -322,7 +322,7 @@ begin
   end if;
   select * into v_invite from public.community_whatsapp_invites
    where lower(username)=lower(trim(p_username))
-     and code_hash=encode(digest(upper(trim(p_code)),'sha256'),'hex')
+     and code_hash=encode(sha256(convert_to(upper(trim(p_code)),'UTF8')),'hex')
      and status='in_attesa'
    for update;
   if not found then raise exception 'invalid_or_used_code'; end if;
