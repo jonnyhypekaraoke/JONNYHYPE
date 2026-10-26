@@ -50,7 +50,7 @@ alter table public.community_reports enable row level security;
 drop policy if exists "public profiles readable by signed-in members" on public.community_profiles;
 create policy "public profiles readable by signed-in members" on public.community_profiles for select to authenticated using (true);
 drop policy if exists "published messages readable by members" on public.community_messages;
-create policy "published messages readable by members" on public.community_messages for select to authenticated using (status='published' or exists(select 1 from public.community_admins a where a.user_id=auth.uid()));
+create policy "published messages readable by members" on public.community_messages for select to authenticated using (status='published' or public.community_is_admin());
 -- No client-side INSERT/UPDATE/DELETE policies for messages, bans, moderation queue or reports.
 -- All writes pass through the security-definer RPCs below.
 
@@ -133,13 +133,25 @@ begin
  return query select q.id,q.user_id,q.body,q.reason,q.created_at from public.community_moderation_queue q where not q.resolved order by q.created_at desc limit 100;
 end; $$;
 
+create or replace function public.community_admin_reports()
+returns table(id bigint,message_id bigint,body text,reason text,created_at timestamptz)
+language plpgsql security definer set search_path=public
+as $$
+begin
+ if not public.community_is_admin() then raise exception 'admin only'; end if;
+ return query
+ select r.id,r.message_id,coalesce(m.body,'[messaggio non disponibile]'),r.reason,r.created_at
+ from public.community_reports r left join public.community_messages m on m.id=r.message_id
+ where not r.resolved order by r.created_at desc limit 100;
+end; $$;
+
 create or replace function public.community_admin_resolve_report(p_report_id bigint) returns boolean
 language plpgsql security definer set search_path=public
 as $$
 begin
  if not public.community_is_admin() then raise exception 'admin only'; end if;
- update public.community_moderation_queue set resolved=true where id=p_report_id;
  update public.community_reports set resolved=true where id=p_report_id;
+ update public.community_moderation_queue set resolved=true where id=p_report_id;
  return true;
 end; $$;
 
@@ -150,5 +162,6 @@ grant execute on function public.community_report_message(bigint,text) to authen
 grant execute on function public.community_admin_delete_message(bigint) to authenticated;
 grant execute on function public.community_admin_ban_user(uuid,text) to authenticated;
 grant execute on function public.community_admin_moderation_queue() to authenticated;
+grant execute on function public.community_admin_reports() to authenticated;
 grant execute on function public.community_admin_resolve_report(bigint) to authenticated;
 grant select on public.community_profiles,public.community_messages to authenticated;
