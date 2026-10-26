@@ -17,6 +17,14 @@ create table if not exists public.community_messages (
   status text not null default 'published' check (status in ('published','removed')),
   created_at timestamptz not null default now()
 );
+-- Allinea anche un database in cui la tabella messaggi era stata creata prima
+-- della correzione: il join dei messaggi deve puntare al profilo pubblico.
+alter table public.community_messages
+  drop constraint if exists community_messages_user_id_fkey;
+alter table public.community_messages
+  add constraint community_messages_user_id_fkey
+  foreign key (user_id) references public.community_profiles(user_id) on delete cascade;
+
 create table if not exists public.community_admins (
   user_id uuid primary key references auth.users(id) on delete cascade,
   created_at timestamptz not null default now()
