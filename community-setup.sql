@@ -50,6 +50,11 @@ alter table public.community_bans enable row level security;
 alter table public.community_moderation_queue enable row level security;
 alter table public.community_reports enable row level security;
 
+-- Definita prima della policy che la richiama.
+create or replace function public.community_is_admin() returns boolean
+language sql stable security definer set search_path = public, pg_temp
+as $ select exists(select 1 from public.community_admins where user_id=auth.uid()); $;
+
 drop policy if exists "public profiles readable by signed-in members" on public.community_profiles;
 create policy "public profiles readable by signed-in members" on public.community_profiles for select to authenticated using (true);
 drop policy if exists "published messages readable by members" on public.community_messages;
