@@ -235,3 +235,72 @@ revoke all on table public.community_reports from PUBLIC, anon, authenticated;
 
 -- I membri autenticati possono soltanto leggere profili e messaggi; RLS limita le righe visibili.
 grant select on public.community_profiles, public.community_messages to authenticated;
+
+
+-- REGISTRAZIONI WHATSAPP: elenco admin e codici personali (fase di invito).
+create extension if not exists pgcrypto;
+
+create table if not exists public.community_whatsapp_invites (
+  id bigint generated always as identity primary key,
+  username text not null,
+  phone text not null,
+  code_hash text not null unique,
+  status text not null default 'in_attesa' check (status in ('in_attesa','attivato','revocato')),
+  created_at timestamptz not null default now(),
+  activated_at timestamptz,
+  constraint community_whatsapp_invites_username_format check (username ~ '^[A-Za-z0-9_.-]{3,20}$')
+);
+create unique index if not exists community_whatsapp_invites_username_lower_uidx
+  on public.community_whatsapp_invites (lower(username))
+  where status <> 'revocato';
+
+alter table public.community_whatsapp_invites enable row level security;
+revoke all on table public.community_whatsapp_invites from public, anon, authenticated;
+
+create or replace function public.community_admin_list_whatsapp_invites()
+returns table(id bigint, username text, phone text, status text, created_at timestamptz, activated_at timestamptz)
+language plpgsql security definer set search_path = public, pg_temp
+as $$
+begin
+  if not public.community_is_admin() then raise exception 'admin only'; end if;
+  return query select i.id,i.username,i.phone,i.status,i.created_at,i.activated_at
+  from public.community_whatsapp_invites i order by i.created_at desc limit 500;
+end; $$;
+
+create or replace function public.community_admin_create_whatsapp_invite(p_username text,p_phone text)
+returns table(invite_id bigint, username text, phone text, access_code text)
+language plpgsql security definer set search_path = public, pg_temp
+as $$
+declare v_username text := trim(p_username); v_phone text := trim(p_phone); v_code text;
+begin
+  if not public.community_is_admin() then raise exception 'admin only'; end if;
+  if v_username !~ '^[A-Za-z0-9_.-]{3,20}$' then raise exception 'username_format_invalid'; end if;
+  if length(regexp_replace(v_phone,'[^0-9+]','','g')) < 8 then raise exception 'phone_invalid'; end if;
+  if exists(select 1 from public.community_profiles p where lower(p.username)=lower(v_username))
+     or exists(select 1 from public.community_whatsapp_invites i where lower(i.username)=lower(v_username) and i.status <> 'revocato') then
+    raise exception 'username_taken';
+  end if;
+  v_code := upper(encode(gen_random_bytes(4),'hex'));
+  insert into public.community_whatsapp_invites(username,phone,code_hash)
+    values(v_username,v_phone,encode(digest(v_code,'sha256'),'hex'))
+    returning id into invite_id;
+  username := v_username; phone := v_phone; access_code := v_code;
+  return next;
+end; $$;
+
+create or replace function public.community_admin_revoke_whatsapp_invite(p_invite_id bigint)
+returns boolean language plpgsql security definer set search_path = public, pg_temp
+as $$
+begin
+  if not public.community_is_admin() then raise exception 'admin only'; end if;
+  update public.community_whatsapp_invites set status='revocato'
+   where id=p_invite_id and status='in_attesa';
+  return found;
+end; $$;
+
+revoke all on function public.community_admin_list_whatsapp_invites() from public, anon;
+revoke all on function public.community_admin_create_whatsapp_invite(text,text) from public, anon;
+revoke all on function public.community_admin_revoke_whatsapp_invite(bigint) from public, anon;
+grant execute on function public.community_admin_list_whatsapp_invites() to authenticated;
+grant execute on function public.community_admin_create_whatsapp_invite(text,text) to authenticated;
+grant execute on function public.community_admin_revoke_whatsapp_invite(bigint) to authenticated;
