@@ -156,11 +156,12 @@ $suspend$;
 create or replace function public.community_admin_moderation_queue()
 returns table(id bigint,user_id uuid,body text,reason text,created_at timestamptz)
 language plpgsql security definer set search_path = public, pg_temp
-as $
+as $queue$
 begin
  if not public.community_is_admin() then raise exception 'admin only'; end if;
  return query select q.id,q.user_id,q.body,q.reason,q.created_at from public.community_moderation_queue q where not q.resolved order by q.created_at desc limit 100;
-end; $$;
+end;
+$queue$;
 
 create or replace function public.community_admin_resolve_moderation_item(p_item_id bigint) returns boolean
 language plpgsql security definer set search_path = public, pg_temp
