@@ -304,3 +304,46 @@ revoke all on function public.community_admin_revoke_whatsapp_invite(bigint) fro
 grant execute on function public.community_admin_list_whatsapp_invites() to authenticated;
 grant execute on function public.community_admin_create_whatsapp_invite(text,text) to authenticated;
 grant execute on function public.community_admin_revoke_whatsapp_invite(bigint) to authenticated;
+
+
+-- ACCESSO COMMUNITY SENZA EMAIL: attivazione con codice WhatsApp su sessione anonima Supabase.
+alter table public.community_whatsapp_invites
+  add column if not exists user_id uuid references auth.users(id) on delete set null;
+
+create or replace function public.community_activate_whatsapp_code(p_username text,p_code text)
+returns boolean
+language plpgsql security definer set search_path = public, pg_temp
+as $$
+declare v_user uuid := auth.uid(); v_invite public.community_whatsapp_invites%rowtype;
+begin
+  if v_user is null then raise exception 'session_required'; end if;
+  if coalesce(auth.jwt()->>'is_anonymous','false') <> 'true' then
+    raise exception 'anonymous_session_required';
+  end if;
+  select * into v_invite from public.community_whatsapp_invites
+   where lower(username)=lower(trim(p_username))
+     and code_hash=encode(digest(upper(trim(p_code)),'sha256'),'hex')
+     and status='in_attesa'
+   for update;
+  if not found then raise exception 'invalid_or_used_code'; end if;
+  if exists(select 1 from public.community_profiles where lower(username)=lower(v_invite.username)) then
+    raise exception 'username_taken';
+  end if;
+  insert into public.community_profiles(user_id,username) values(v_user,v_invite.username);
+  update public.community_whatsapp_invites set status='attivato',activated_at=now(),user_id=v_user where id=v_invite.id;
+  return true;
+end; $$;
+
+create or replace function public.community_my_whatsapp_profile()
+returns table(username text)
+language plpgsql security definer set search_path = public, pg_temp
+as $$
+begin
+ if auth.uid() is null then raise exception 'session_required'; end if;
+ return query select p.username from public.community_profiles p where p.user_id=auth.uid() limit 1;
+end; $$;
+
+revoke all on function public.community_activate_whatsapp_code(text,text) from public, anon;
+revoke all on function public.community_my_whatsapp_profile() from public, anon;
+grant execute on function public.community_activate_whatsapp_code(text,text) to authenticated;
+grant execute on function public.community_my_whatsapp_profile() to authenticated;
