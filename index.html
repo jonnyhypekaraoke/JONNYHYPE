@@ -806,6 +806,24 @@ letter-spacing:-.045em!important;
 .jh-rsf-home-banner .jh-home-team-head h2{font-size:clamp(15px,4.1vw,20px)!important}
 </style>
 
+
+<style id="jh-rsf-photos-in-closed-card">
+.jh-rsf-disclosure:not([open]) .jh-rsf-home-banner{display:none!important}
+.jh-rsf-square-cta{display:flex!important;flex-direction:column!important;align-items:stretch!important}
+.jh-rsf-square-title{font-size:clamp(23px,6.3vw,34px)!important;line-height:1.02!important;letter-spacing:-.04em!important}
+.jh-rsf-disclosure .jh-home-team{display:block!important;width:100%!important;margin:10px 0 0!important;padding:8px 0!important;overflow:hidden!important}
+.jh-rsf-disclosure .jh-home-team-head{display:none!important}
+.jh-rsf-disclosure .jh-home-team-intro{margin:0 0 8px!important;padding:0!important;text-align:left!important;font-size:12px!important;line-height:1.35!important}
+.jh-rsf-disclosure .jh-team-viewport{width:100%!important;padding:0 24px!important;overflow:hidden!important;box-sizing:border-box!important}
+.jh-rsf-disclosure .jh-team-track{animation-duration:90s!important;gap:10px!important}
+.jh-rsf-disclosure .jh-team-person{flex:0 0 clamp(70px,19vw,86px)!important;width:clamp(70px,19vw,86px)!important}
+.jh-rsf-disclosure .jh-team-person img{width:clamp(66px,18vw,78px)!important;height:clamp(66px,18vw,78px)!important;object-position:50% 10%!important}
+.jh-rsf-disclosure .jh-rsf-team-all-cta{display:block!important;width:100%!important;box-sizing:border-box!important;margin:8px 0 10px!important;padding:12px 14px!important;border-radius:12px!important;background:#f02d98!important;color:#080809!important;text-align:center!important;text-decoration:none!important;font-family:"Space Grotesk","Manrope",Arial,sans-serif!important;font-size:clamp(11px,3vw,14px)!important;line-height:1.25!important;font-weight:900!important;letter-spacing:0!important}
+.jh-rsf-disclosure .jh-rsf-team-all-cta span{margin-left:6px}
+.jh-rsf-disclosure .jh-rsf-square-bottom{margin-top:0!important}
+.jh-rsf-disclosure .jh-rsf-square-bottom .jh-rsf-team-banner{display:none!important}
+</style>
+
 </head>
 <body>
 <div class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel" aria-label="Menu principale"><a href="/">HOME</a><a href="/jonnyhype.html">JONNYHYPE</a><a href="/karaoke.html">RICHIESTE LIVE</a><a href="/eventi.html">EVENTI</a><a href="/ravenna-song-festival.html">RAVENNA SONG FESTIVAL</a><a href="/musica.html">MUSICA E PROGETTI</a><a href="/galleria.html#album-karaoke-legends">KARAOKE LEGENDS</a><a href="/galleria.html">GALLERIA FOTO E VIDEO</a><a href="/community.html">JONNYHYPE COMMUNITY</a></nav></details></div>
@@ -822,18 +840,11 @@ letter-spacing:-.045em!important;
 <a class="jh-home-community" href="/community.html" aria-label="Entra nella JONNYHYPE Community">
 <span class="jh-home-community-icon" aria-hidden="true">▰</span><span class="jh-home-community-copy"><strong>JONNYHYPE COMMUNITY</strong><small>LA CHAT DI CHI SEGUE JONNYHYPE. CHIACCHIERE E CONSIGLI SU EVENTI KARAOKE IN ROMAGNA</small></span><span class="jh-home-community-cta">ENTRA NELLA<br>CHAT GRATIS →</span>
 </a>
-<details class="jh-rsf-disclosure" open>
+<details class="jh-rsf-disclosure">
 <summary class="jh-rsf-square-cta" aria-label="Apri le informazioni, i due eventi e il Team del Ravenna Song Festival">
   <span class="jh-rsf-square-kicker">JONNYHYPE PRESENTA</span>
   <span class="jh-rsf-square-title">SPECIALE<br><strong>RAVENNA<br>SONG FESTIVAL</strong></span>
-  <span class="jh-rsf-square-bottom"><a class="jh-rsf-team-banner" href="/team-rsf.html">IL TEAM RSF <span aria-hidden="true">→</span></a><span class="jh-rsf-bottom-info">DOVE E QUANDO · INFO <b aria-hidden="true">＋</b></span></span>
-</summary>
-<section class="jh-rsf-home-banner" aria-labelledby="jh-rsf-home-title">
-<div class="jh-rsf-banner-link">
-<div class="jh-rsf-banner-heading">
-<h2 id="jh-rsf-home-title">JONNYHYPE PRESENTA<br><span class="jh-rsf-compact-special">SPECIALE</span><br><strong><a class="jh-rsf-title-link" href="/ravenna-song-festival.html" aria-label="Vai alla pagina Ravenna Song Festival">RAVENNA SONG FESTIVAL</a></strong></h2>
-</div>
-<section class="jh-home-team" aria-label="Il Team Ravenna Song Festival">
+  <section class="jh-home-team" aria-label="Il Team Ravenna Song Festival">
 <div class="jh-home-team-head"><h2>I RAGAZZI DEL <span>RAVENNA SONG FESTIVAL</span></h2></div>
 <p class="jh-home-team-intro">Li hai visti sul palco del Festival. Ora tornano ospiti nelle mie serate.</p>
 <div class="jh-team-viewport"><button class="jh-team-arrow prev" type="button" aria-label="Foto precedenti">‹</button><div class="jh-team-track" aria-label="Foto degli ospiti del Ravenna Song Festival che scorrono automaticamente">
@@ -868,6 +879,15 @@ letter-spacing:-.045em!important;
 <a class="jh-team-person" href="/team-rsf.html"><img src="/images/ospiti/gioiacimatti.jpg.PNG" alt="GIOIA CIMATTI" loading="lazy"><span>GIOIA CIMATTI</span><small>OSPITE RSF</small></a>
 <a class="jh-team-person" href="/team-rsf.html"><img src="/images/ospiti/aphrodys.jpg.PNG" alt="APHRODYS" loading="lazy"><span>APHRODYS</span><small>OSPITE RSF</small></a>
 </div><a class="jh-team-all" href="/team-rsf.html">VEDI TUTTI I RAGAZZI E LE LORO FOTO →</a></section>
+<a class="jh-rsf-team-banner jh-rsf-team-all-cta" href="/team-rsf.html">VEDI TUTTI I RAGAZZI DEL TEAM RAVENNA SONG FESTIVAL <span aria-hidden="true">→</span></a>
+<span class="jh-rsf-square-bottom"><span class="jh-rsf-bottom-info">DOVE E QUANDO · INFO <b aria-hidden="true">＋</b></span></span>
+</summary>
+<section class="jh-rsf-home-banner" aria-labelledby="jh-rsf-home-title">
+<div class="jh-rsf-banner-link">
+<div class="jh-rsf-banner-heading">
+<h2 id="jh-rsf-home-title">JONNYHYPE PRESENTA<br><span class="jh-rsf-compact-special">SPECIALE</span><br><strong><a class="jh-rsf-title-link" href="/ravenna-song-festival.html" aria-label="Vai alla pagina Ravenna Song Festival">RAVENNA SONG FESTIVAL</a></strong></h2>
+</div>
+
 <div class="jh-rsf-promo-line">DJ SET · KARAOKE · DIVERTIMENTO<br><strong>E OSPITI DEL RAVENNA SONG FESTIVAL</strong></div>
 
 <div class="jh-rsf-banner-details">
