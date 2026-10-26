@@ -105,8 +105,8 @@ footer{display:block;width:100%;padding:30px 8px;text-align:center;color:#777;fo
 .jh-home-community-icon{flex:0 0 38px;width:38px;height:38px;border-radius:12px;background:#f02d98;color:#080809;display:grid;place-items:center;font-size:24px;font-weight:900}
 .jh-home-community-copy{flex:1;min-width:0}.jh-home-community-copy strong{display:block;font-size:clamp(14px,3.5vw,18px);line-height:1.2}.jh-home-community-copy small{display:block;margin-top:5px;color:#d0cdd3;font-size:12px;line-height:1.35}
 .jh-home-community-cta{flex:0 0 auto;padding:11px 12px;border-radius:11px;background:#f02d98;color:#080809;font-size:10px;font-weight:900;text-align:center;line-height:1.25}
-.jh-home-team{padding:16px 0 8px;background:#050507;overflow:hidden;border-top:1px solid rgba(240,45,152,.22)}.jh-home-team-head{width:min(640px,88vw);margin:0 auto 14px;display:flex;align-items:end;justify-content:space-between;gap:10px}.jh-home-team-head h2{font-size:clamp(20px,5vw,28px);margin:0;line-height:1.1}.jh-home-team-head h2 span{color:#f02d98}.jh-home-team-head a{font-size:11px;font-weight:800;color:#fff;text-decoration:none;border:1px solid #f02d98;border-radius:20px;padding:9px 11px;white-space:nowrap}
-.jh-team-track{display:flex;gap:13px;width:max-content;padding:3px 18px 14px;animation:jhTeamScroll 48s linear infinite}.jh-home-team:hover .jh-team-track,.jh-home-team:focus-within .jh-team-track{animation-play-state:paused}.jh-team-person{display:block;width:126px;flex:0 0 126px;color:#fff;text-align:center;text-decoration:none}.jh-team-person img{display:block;width:116px;height:116px;object-fit:cover;object-position:center 18%;border-radius:50%;border:2px solid #f02d98;margin:0 auto 9px;background:#15151b}.jh-team-person span{display:block;font-family:inherit;font-size:11px;font-weight:900;line-height:1.3;letter-spacing:.02em}.jh-team-person small{display:block;color:#bcbac3;font-size:10px;margin-top:4px}
+.jh-home-team{padding:14px 0 8px;background:transparent;overflow:hidden;border-top:0;width:100%;margin:0 auto}.jh-home-team-head{width:100%;padding:0 14px}.jh-team-track{padding-left:14px;padding-right:14px}.jh-team-person img{object-position:center 10%;}.jh-home-team-head{width:min(640px,88vw);margin:0 auto 14px;display:flex;align-items:end;justify-content:space-between;gap:10px}.jh-home-team-head h2{font-size:clamp(20px,5vw,28px);margin:0;line-height:1.1}.jh-home-team-head h2 span{color:#f02d98}.jh-home-team-head a{font-size:11px;font-weight:800;color:#fff;text-decoration:none;border:1px solid #f02d98;border-radius:20px;padding:9px 11px;white-space:nowrap}
+.jh-team-track{display:flex;gap:13px;width:max-content;padding:3px 18px 14px;animation:jhTeamScroll 48s linear infinite}.jh-home-team:hover .jh-team-track,.jh-home-team:focus-within .jh-team-track{animation-play-state:paused}.jh-team-person{display:block;width:126px;flex:0 0 126px;color:#fff;text-align:center;text-decoration:none}.jh-team-person img{display:block;width:116px;height:116px;object-fit:cover;object-position:center 10%;border-radius:50%;border:2px solid #f02d98;margin:0 auto 9px;background:#15151b}.jh-team-person span{display:block;font-family:inherit;font-size:11px;font-weight:900;line-height:1.3;letter-spacing:.02em}.jh-team-person small{display:block;color:#bcbac3;font-size:10px;margin-top:4px}
 @keyframes jhTeamScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.jh-team-track{animation:none;flex-wrap:wrap;width:100%;justify-content:center}.jh-home-community{flex-wrap:wrap}.jh-home-community-cta{margin-left:50px}}
 @media(max-width:390px){.jh-home-community{gap:8px;padding:12px}.jh-home-community-icon{flex-basis:32px;width:32px;height:32px}.jh-home-community-cta{font-size:9px;padding:10px 8px}.jh-team-person{width:108px;flex-basis:108px}.jh-team-person img{width:98px;height:98px}}
@@ -737,7 +737,7 @@ letter-spacing:-.045em!important;
 <a class="jh-home-community" href="/community.html" aria-label="Entra nella JONNYHYPE Community">
 <span class="jh-home-community-icon" aria-hidden="true">▰</span><span class="jh-home-community-copy"><strong>JONNYHYPE COMMUNITY</strong><small>La chat di chi mi segue. Anteprime, scalette e chiacchiere prima degli eventi.</small></span><span class="jh-home-community-cta">ENTRA NELLA<br>CHAT GRATIS →</span>
 </a>
-<details class="jh-rsf-disclosure">
+<details class="jh-rsf-disclosure" open>
 <summary class="jh-rsf-square-cta" aria-label="Apri le informazioni, i due eventi e il Team del Ravenna Song Festival">
   <span class="jh-rsf-square-kicker">JONNYHYPE PRESENTA</span>
   <span class="jh-rsf-square-title">SPECIALE<br><strong>RAVENNA<br>SONG FESTIVAL</strong></span>
@@ -749,27 +749,6 @@ letter-spacing:-.045em!important;
 <h2 id="jh-rsf-home-title">JONNYHYPE<br>SPECIALE<br><strong><a class="jh-rsf-title-link" href="/ravenna-song-festival.html" aria-label="Vai alla pagina Ravenna Song Festival">RAVENNA SONG<br>FESTIVAL</a></strong></h2>
 </div>
 <div class="jh-rsf-promo-line">DJ SET · KARAOKE · DIVERTIMENTO<br><strong>E OSPITI DEL RAVENNA SONG FESTIVAL</strong></div>
-<div class="jh-rsf-banner-details">
-<div class="jh-rsf-date-list jh-rsf-event-cards" aria-label="Prossimi eventi JONNYHYPE">
-
-
-<article class="jh-rsf-event-card">
-<a class="jh-rsf-event-main" href="/flyer-vecchia-napoli-russi-2026-11-01.jpg" aria-label="Dettagli e locandina dello Speciale Ravenna Song Festival alla Vecchia Napoli">
-<time datetime="2026-11-01" class="jh-home-date"><strong>DOMENICA</strong><b>01</b><small>NOVEMBRE</small></time>
-<span class="jh-home-event-detail"><strong>LA VECCHIA NAPOLI</strong><small>RUSSI</small><em>12:45–23:00</em></span>
-<span class="jh-rsf-date-arrow" aria-hidden="true">→</span>
-</a>
-<a class="jh-rsf-event-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=JONNYHYPE%20Speciale%20Ravenna%20Song%20Festival%20%E2%80%93%20La%20Vecchia%20Napoli&amp;dates=20261101T114500Z/20261101T220000Z&amp;location=La%20Vecchia%20Napoli%2C%20Russi" target="_blank" rel="noopener noreferrer">AGGIUNGI AL CALENDARIO</a>
-<a class="jh-rsf-event-book" href="https://wa.me/393791112344?text=Ciao%20Jonny%2C%20vorrei%20prenotare%20per%20l%27evento%20La%20Vecchia%20Napoli%20del%201%20novembre." target="_blank" rel="noopener noreferrer">PRENOTA ORA · WHATSAPP · <span class="jh-phone-nowrap">379 111 2344</span></a>
-</article>
-</div>
-</div>
-</section>
-</details>
-
-
-
-
 <section class="jh-home-team" aria-label="Il Team Ravenna Song Festival">
 <div class="jh-home-team-head"><h2>I RAGAZZI DEL <span>RSF</span></h2><a href="/team-rsf.html">TUTTO IL TEAM →</a></div>
 <div class="jh-team-track" aria-label="Foto degli ospiti del Ravenna Song Festival che scorrono automaticamente">
@@ -803,6 +782,28 @@ letter-spacing:-.045em!important;
 <a class="jh-team-person" href="/team-rsf.html"><img src="/images/ospiti/gioiacimatti.jpg.PNG" alt="GIOIA CIMATTI" loading="lazy"><span>GIOIA CIMATTI</span><small>OSPITE RSF</small></a>
 <a class="jh-team-person" href="/team-rsf.html"><img src="/images/ospiti/aphrodys.jpg.PNG" alt="APHRODYS" loading="lazy"><span>APHRODYS</span><small>OSPITE RSF</small></a>
 </div></section>
+<div class="jh-rsf-banner-details">
+<div class="jh-rsf-date-list jh-rsf-event-cards" aria-label="Prossimi eventi JONNYHYPE">
+
+
+<article class="jh-rsf-event-card">
+<a class="jh-rsf-event-main" href="/flyer-vecchia-napoli-russi-2026-11-01.jpg" aria-label="Dettagli e locandina dello Speciale Ravenna Song Festival alla Vecchia Napoli">
+<time datetime="2026-11-01" class="jh-home-date"><strong>DOMENICA</strong><b>01</b><small>NOVEMBRE</small></time>
+<span class="jh-home-event-detail"><strong>LA VECCHIA NAPOLI</strong><small>RUSSI</small><em>12:45–23:00</em></span>
+<span class="jh-rsf-date-arrow" aria-hidden="true">→</span>
+</a>
+<a class="jh-rsf-event-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=JONNYHYPE%20Speciale%20Ravenna%20Song%20Festival%20%E2%80%93%20La%20Vecchia%20Napoli&amp;dates=20261101T114500Z/20261101T220000Z&amp;location=La%20Vecchia%20Napoli%2C%20Russi" target="_blank" rel="noopener noreferrer">AGGIUNGI AL CALENDARIO</a>
+<a class="jh-rsf-event-book" href="https://wa.me/393791112344?text=Ciao%20Jonny%2C%20vorrei%20prenotare%20per%20l%27evento%20La%20Vecchia%20Napoli%20del%201%20novembre." target="_blank" rel="noopener noreferrer">PRENOTA ORA · WHATSAPP · <span class="jh-phone-nowrap">379 111 2344</span></a>
+</article>
+</div>
+</div>
+</section>
+</details>
+
+
+
+
+
 <nav class="home-nav" aria-label="Esplora il sito">
 <a href="/team-rsf.html">JONNYHYPE SPECIALE · RAVENNA SONG FESTIVAL</a>
 <a href="/ravenna-song-festival.html">RAVENNA SONG FESTIVAL</a>
