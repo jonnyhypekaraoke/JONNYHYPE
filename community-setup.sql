@@ -209,4 +209,13 @@ grant execute on function public.community_admin_moderation_queue() to authentic
 grant execute on function public.community_admin_reports() to authenticated;
 grant execute on function public.community_admin_resolve_moderation_item(bigint) to authenticated;
 grant execute on function public.community_admin_resolve_report(bigint) to authenticated;
-grant select on public.community_profiles,public.community_messages to authenticated;
+-- Permessi minimi espliciti: nessun accesso anonimo diretto alle tabelle della community.
+revoke all on table public.community_profiles from anon, authenticated;
+revoke all on table public.community_messages from anon, authenticated;
+revoke all on table public.community_admins from anon, authenticated;
+revoke all on table public.community_bans from anon, authenticated;
+revoke all on table public.community_moderation_queue from anon, authenticated;
+revoke all on table public.community_reports from anon, authenticated;
+
+-- I membri autenticati possono soltanto leggere profili e messaggi; RLS limita le righe visibili.
+grant select on public.community_profiles, public.community_messages to authenticated;
