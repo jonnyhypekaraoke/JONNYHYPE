@@ -1,5 +1,5 @@
 -- JONNYHYPE COMMUNITY - schema iniziale Supabase
--- Eseguire nel SQL Editor del progetto Supabase DOPO aver configurato l'autenticazione telefonica SMS.
+-- Eseguire nel SQL Editor del progetto Supabase dopo aver scelto e configurato l'autenticazione email/password.
 -- Non inserire mai service_role keys nel sito pubblico.
 
 create table if not exists public.community_profiles (
