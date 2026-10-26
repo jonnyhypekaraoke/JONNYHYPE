@@ -55,7 +55,7 @@ $('logout').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();loc
 async function init(){if(!sb)return;const {data}=await sb.auth.getSession();user=data.session&&data.session.user;if(!user){$('auth-card').classList.remove('hidden');$('chat-card').classList.add('hidden');return;}
 $('signup-form').classList.add('hidden');$('login-form').classList.add('hidden');$('auth-card').classList.remove('hidden');
 const {data:p,error}=await sb.from('community_profiles').select('username').eq('user_id',user.id).maybeSingle();
-if(error){setStatus('auth-status','Configurazione del database incompleta. La community non è ancora attiva.');return;}
+if(error){$('signup-form').classList.remove('hidden');$('login-form').classList.remove('hidden');$('username-form').classList.add('hidden');setStatus('auth-status','Errore database ('+(error.code||'senza codice')+'): '+(error.message||'richiesta non riuscita')+'. Le funzioni sono state riattivate per consentire un nuovo accesso.');return;}
 if(!p){$('username-form').classList.remove('hidden');$('chat-card').classList.add('hidden');setStatus('auth-status','Verifica completata. Scegli uno username pubblico.');return;}
 profile=p;$('username-form').classList.add('hidden');$('chat-card').classList.remove('hidden');$('auth-card').classList.add('hidden');$('profile-username').value=p.username;
 const {data:a}=await sb.rpc('community_is_admin');admin=!!a;if(admin){$('admin-card').classList.remove('hidden');await loadQueue();}
