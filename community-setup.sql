@@ -1,4 +1,4 @@
--- JONNYHYPE COMMUNITY - schema iniziale Supabase
+-- JONNYHYPE COMMUNITY - schema iniziale Supabase (revisione sicurezza)
 -- Eseguire nel SQL Editor del progetto Supabase dopo aver scelto e configurato l'autenticazione email/password.
 -- Non inserire mai service_role keys nel sito pubblico.
 
@@ -58,15 +58,16 @@ create policy "published messages readable by members" on public.community_messa
 -- All writes pass through the security-definer RPCs below.
 
 create or replace function public.community_is_admin() returns boolean
-language sql stable security definer set search_path=public
+language sql stable security definer set search_path = public, pg_temp
 as $$ select exists(select 1 from public.community_admins where user_id=auth.uid()); $$;
 
 create or replace function public.community_set_username(p_username text) returns boolean
-language plpgsql security definer set search_path=public
+language plpgsql security definer set search_path = public, pg_temp
 as $$
 declare v_username text := trim(p_username);
 begin
   if auth.uid() is null then raise exception 'authentication required'; end if;
+  if exists(select 1 from public.community_bans where user_id=auth.uid() and (banned_until is null or banned_until > now())) then raise exception 'account blocked'; end if;
   if v_username !~ '^[A-Za-z0-9_.-]{3,20}$' then raise exception 'username format invalid'; end if;
   if lower(v_username) in ('admin','administrator','moderatore','moderator','jonnyhype','support','staff') then raise exception 'username unavailable'; end if;
   insert into public.community_profiles(user_id,username) values(auth.uid(),v_username)
@@ -76,7 +77,7 @@ exception when unique_violation then raise exception 'username taken';
 end; $$;
 
 create or replace function public.community_post_message(p_body text) returns jsonb
-language plpgsql security definer set search_path=public
+language plpgsql security definer set search_path = public, pg_temp
 as $$
 declare v_body text := trim(p_body); v_reason text; v_last timestamptz;
 begin
@@ -98,17 +99,19 @@ begin
 end; $$;
 
 create or replace function public.community_report_message(p_message_id bigint,p_reason text) returns boolean
-language plpgsql security definer set search_path=public
+language plpgsql security definer set search_path = public, pg_temp
 as $$
 begin
  if auth.uid() is null then raise exception 'authentication required'; end if;
+ if exists(select 1 from public.community_bans where user_id=auth.uid() and (banned_until is null or banned_until > now())) then raise exception 'account blocked'; end if;
  if not exists(select 1 from public.community_messages where id=p_message_id and status='published') then raise exception 'message unavailable'; end if;
+ if length(trim(coalesce(p_reason,''))) < 3 then raise exception 'report reason required'; end if;
  insert into public.community_reports(message_id,reporter_id,reason) values(p_message_id,auth.uid(),left(trim(p_reason),250));
  return true;
 end; $$;
 
 create or replace function public.community_admin_delete_message(p_message_id bigint) returns boolean
-language plpgsql security definer set search_path=public
+language plpgsql security definer set search_path = public, pg_temp
 as $$
 begin
  if not public.community_is_admin() then raise exception 'admin only'; end if;
@@ -117,7 +120,7 @@ begin
 end; $$;
 
 create or replace function public.community_admin_ban_user(p_user_id uuid,p_reason text default 'Violazione del regolamento') returns boolean
-language plpgsql security definer set search_path=public
+language plpgsql security definer set search_path = public, pg_temp
 as $$
 begin
  if not public.community_is_admin() then raise exception 'admin only'; end if;
@@ -132,7 +135,7 @@ create or replace function public.community_admin_suspend_user(
   p_hours integer default 24,
   p_reason text default 'Sospensione temporanea per violazione del regolamento'
 ) returns boolean
-language plpgsql security definer set search_path=public
+language plpgsql security definer set search_path = public, pg_temp
 as $suspend$
 begin
  if not public.community_is_admin() then raise exception 'admin only'; end if;
@@ -148,15 +151,15 @@ $suspend$;
 
 create or replace function public.community_admin_moderation_queue()
 returns table(id bigint,user_id uuid,body text,reason text,created_at timestamptz)
-language plpgsql security definer set search_path=public
-as $$
+language plpgsql security definer set search_path = public, pg_temp
+as $
 begin
  if not public.community_is_admin() then raise exception 'admin only'; end if;
  return query select q.id,q.user_id,q.body,q.reason,q.created_at from public.community_moderation_queue q where not q.resolved order by q.created_at desc limit 100;
 end; $$;
 
 create or replace function public.community_admin_resolve_moderation_item(p_item_id bigint) returns boolean
-language plpgsql security definer set search_path=public
+language plpgsql security definer set search_path = public, pg_temp
 as $func$
 begin
  if not public.community_is_admin() then raise exception 'admin only'; end if;
