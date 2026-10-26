@@ -133,6 +133,15 @@ begin
  return query select q.id,q.user_id,q.body,q.reason,q.created_at from public.community_moderation_queue q where not q.resolved order by q.created_at desc limit 100;
 end; $$;
 
+create or replace function public.community_admin_resolve_moderation_item(p_item_id bigint) returns boolean
+language plpgsql security definer set search_path=public
+as $
+begin
+ if not public.community_is_admin() then raise exception 'admin only'; end if;
+ update public.community_moderation_queue set resolved=true where id=p_item_id;
+ return true;
+end; $;
+
 create or replace function public.community_admin_reports()
 returns table(id bigint,message_id bigint,body text,reason text,created_at timestamptz)
 language plpgsql security definer set search_path=public
@@ -163,5 +172,6 @@ grant execute on function public.community_admin_delete_message(bigint) to authe
 grant execute on function public.community_admin_ban_user(uuid,text) to authenticated;
 grant execute on function public.community_admin_moderation_queue() to authenticated;
 grant execute on function public.community_admin_reports() to authenticated;
+grant execute on function public.community_admin_resolve_moderation_item(bigint) to authenticated;
 grant execute on function public.community_admin_resolve_report(bigint) to authenticated;
 grant select on public.community_profiles,public.community_messages to authenticated;
