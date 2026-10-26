@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080809">
+<title>JONNYHYPE COMMUNITY · ADMIN</title>
+<style>
+:root{--bg:#080809;--panel:#131316;--line:#303038;--pink:#f02d98;--muted:#b7b7bf}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,rgba(240,45,152,.13),transparent 48%),var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px clamp(14px,4vw,36px);border-bottom:1px solid #292930;background:#09090b}.wordmark{font-weight:1000;font-size:clamp(25px,5vw,38px);letter-spacing:-.08em;text-decoration:none;color:white}.wordmark span{color:var(--pink)}a{color:inherit}.back,.quiet,.btn,button{border:1px solid #44444d;border-radius:10px;padding:11px 13px;background:#17171c;color:#fff;font-size:12px;font-weight:800;cursor:pointer}.wrap{width:min(1000px,calc(100% - 24px));margin:24px auto 50px}.hero{text-align:center;margin:25px 0}.eyebrow{color:var(--pink);font-size:11px;font-weight:900;letter-spacing:.22em}.hero h1{font-size:clamp(30px,6vw,48px);margin:12px 0}.hero h1 span{color:var(--pink)}.muted,.status{color:var(--muted);line-height:1.65;font-size:14px}.card{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025);padding:clamp(16px,4vw,25px);margin:15px 0}.card h2{margin:0 0 12px;font-size:20px}.form{display:grid;gap:12px;max-width:520px}.form label{display:grid;gap:7px;font-size:12px;font-weight:800}.form input{width:100%;min-height:46px;border:1px solid #414149;border-radius:10px;padding:12px;background:#0d0d10;color:white;font:inherit;font-size:16px}.form button,.primary{background:var(--pink);border-color:var(--pink);color:#100810;min-height:46px}.hidden{display:none!important}.status{margin-top:12px;overflow-wrap:anywhere}.msg{padding:13px;margin:10px 0;background:#0d0d10;border:1px solid #292930;border-radius:12px;overflow-wrap:anywhere}.msg strong{color:var(--pink)}.msg p{white-space:pre-wrap;line-height:1.5}.meta{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}.meta time{font-size:11px;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{font-size:11px}.danger{border-color:#b53b63;color:#ffd5e5}.statusbox{padding:12px;border:1px solid rgba(240,45,152,.4);border-radius:10px;background:rgba(240,45,152,.07)}.footer{text-align:center;color:#777780;font-size:11px;margin-top:30px}
+</style>
+</head>
+<body>
+<header class="top"><a class="wordmark" href="/" aria-label="JONNYHYPE home">JONNY<span>HYPE</span></a><a class="back" href="/community.html">TORNA ALLA COMMUNITY</a></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">AREA RISERVATA</div><h1>COMMUNITY <span>ADMIN</span></h1><p class="muted">Gestione privata dei messaggi, delle segnalazioni e degli account.</p></section>
+<section id="login-card" class="card"><h2>Accesso amministratore</h2><p class="muted">Accedi con il tuo account verificato. Solo gli account autorizzati nel database possono usare questi strumenti.</p>
+<form id="login-form" class="form"><label>EMAIL<input id="email" type="email" autocomplete="username" required></label><label>PASSWORD<input id="password" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">ACCEDI</button></form><p id="status" class="status" role="status" aria-live="polite"></p></section>
+<section id="denied-card" class="card hidden"><h2>Accesso non autorizzato</h2><p class="statusbox">Questo account non risulta amministratore. Non sono disponibili comandi di moderazione.</p><button id="signout-denied">ESCI</button></section>
+<section id="admin-tools" class="hidden">
+<section class="card"><div class="meta" style="justify-content:space-between"><h2>Messaggi pubblicati</h2><button id="refresh" type="button">AGGIORNA</button></div><p class="muted">Puoi rimuovere un messaggio dalla chat pubblica o bloccare l'account che lo ha pubblicato.</p><div id="messages"></div></section>
+<section class="card"><h2>Messaggi bloccati automaticamente</h2><div id="queue"></div></section>
+<section class="card"><h2>Segnalazioni degli utenti</h2><div id="reports"></div></section>
+<div class="card"><button id="logout" class="danger">ESCI DALL'AREA AMMINISTRATIVA</button><p id="admin-status" class="status" role="status" aria-live="polite"></p></div>
+</section>
+<p class="footer">JONNYHYPE COMMUNITY · Pannello riservato</p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/community-config.js"></script>
+<script>
+(function(){
+const $=id=>document.getElementById(id);let sb=null,user=null;
+const say=t=>{$('status').textContent=t};
+const cfg=window.JH_COMMUNITY_CONFIG;
+if(cfg&&cfg.url&&cfg.anonKey&&!cfg.anonKey.includes('INSERISCI')&&window.supabase){sb=window.supabase.createClient(cfg.url,cfg.anonKey);checkSession();}
+else say('Configurazione Supabase incompleta.');
+$('login-form').addEventListener('submit',async e=>{e.preventDefault();if(!sb)return;say('Accesso in corso…');const {data,error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){say('Accesso non riuscito. Verifica email, password e conferma email.');return;}user=data.user;await checkAdmin();});
+async function checkSession(){if(!sb)return;const {data}=await sb.auth.getSession();user=data.session&&data.session.user;if(user)await checkAdmin();}
+async function checkAdmin(){if(!user)return;const {data,error}=await sb.rpc('community_is_admin');if(error||data!==true){$('login-card').classList.add('hidden');$('admin-tools').classList.add('hidden');$('denied-card').classList.remove('hidden');return;}$('login-card').classList.add('hidden');$('denied-card').classList.add('hidden');$('admin-tools').classList.remove('hidden');await refreshAll();}
+$('signout-denied').onclick=async()=>{if(sb)await sb.auth.signOut();user=null;$('denied-card').classList.add('hidden');$('login-card').classList.remove('hidden');};
+$('logout').onclick=async()=>{if(sb)await sb.auth.signOut();location.reload();};
+$('refresh').onclick=refreshAll;
+async function refreshAll(){if(!sb)return;await Promise.all([loadMessages(),loadQueue(),loadReports()]);}
+function empty(el,msg){el.replaceChildren();const p=document.createElement('p');p.className='muted';p.textContent=msg;el.append(p);}
+async function loadMessages(){const el=$('messages');const {data,error}=await sb.from('community_messages').select('id,user_id,body,created_at,community_profiles(username)').eq('status','published').order('created_at',{ascending:false}).limit(100);if(error){empty(el,'Impossibile caricare i messaggi.');return;}el.replaceChildren();if(!data||!data.length){empty(el,'Nessun messaggio pubblicato.');return;}data.forEach(m=>{const box=document.createElement('article');box.className='msg';const meta=document.createElement('div');meta.className='meta';const name=document.createElement('strong');name.textContent=m.community_profiles?.username||'UTENTE';const time=document.createElement('time');time.textContent=new Date(m.created_at).toLocaleString('it-IT');meta.append(name,time);const body=document.createElement('p');body.textContent=m.body;const actions=document.createElement('div');actions.className='actions';const del=document.createElement('button');del.className='danger';del.textContent='ELIMINA MESSAGGIO';del.onclick=async()=>{if(!confirm('Eliminare questo messaggio dalla chat?'))return;const {error}=await sb.rpc('community_admin_delete_message',{p_message_id:m.id});if(error){alert('Eliminazione non riuscita.');return;}await loadMessages();};const ban=document.createElement('button');ban.className='danger';ban.textContent='BLOCCA UTENTE';ban.onclick=async()=>{if(!confirm('Bloccare definitivamente questo account?'))return;const {error}=await sb.rpc('community_admin_ban_user',{p_user_id:m.user_id,p_reason:'Violazione del regolamento'});if(error){alert('Blocco non riuscito.');return;}alert('Account bloccato.');};actions.append(del,ban);box.append(meta,body,actions);el.append(box);});}
+async function loadQueue(){const el=$('queue');const {data,error}=await sb.rpc('community_admin_moderation_queue');if(error){empty(el,'Coda non disponibile. Verifica la configurazione SQL.');return;}el.replaceChildren();if(!data||!data.length){empty(el,'Nessun messaggio in attesa.');return;}data.forEach(item=>{const box=document.createElement('article');box.className='msg';const body=document.createElement('p');body.textContent=item.body;const reason=document.createElement('p');reason.className='muted';reason.textContent='Motivo: '+item.reason;const btn=document.createElement('button');btn.textContent='ARCHIVIA';btn.onclick=async()=>{const {error}=await sb.rpc('community_admin_resolve_moderation_item',{p_item_id:item.id});if(error)alert('Non è stato possibile archiviare.');await loadQueue();};box.append(body,reason,btn);el.append(box);});}
+async function loadReports(){const el=$('reports');const {data,error}=await sb.rpc('community_admin_reports');if(error){empty(el,'Segnalazioni non disponibili. Verifica la configurazione SQL.');return;}el.replaceChildren();if(!data||!data.length){empty(el,'Nessuna segnalazione in attesa.');return;}data.forEach(item=>{const box=document.createElement('article');box.className='msg';const body=document.createElement('p');body.textContent=item.body;const reason=document.createElement('p');reason.className='muted';reason.textContent='Motivo della segnalazione: '+item.reason;const btn=document.createElement('button');btn.textContent='ARCHIVIA SEGNALAZIONE';btn.onclick=async()=>{const {error}=await sb.rpc('community_admin_resolve_report',{p_report_id:item.id});if(error)alert('Non è stato possibile archiviare.');await loadReports();};box.append(body,reason,btn);el.append(box);});}
+})();
+</script>
+</body></html>
