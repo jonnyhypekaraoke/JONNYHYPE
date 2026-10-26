@@ -7,6 +7,9 @@ create table if not exists public.community_profiles (
   username text not null unique check (username ~ '^[A-Za-z0-9_.-]{3,20}$'),
   created_at timestamptz not null default now()
 );
+create unique index if not exists community_profiles_username_lower_uidx
+  on public.community_profiles (lower(username));
+
 create table if not exists public.community_messages (
   id bigint generated always as identity primary key,
   user_id uuid not null references auth.users(id) on delete cascade,
