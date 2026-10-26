@@ -53,7 +53,7 @@ alter table public.community_reports enable row level security;
 -- Definita prima della policy che la richiama.
 create or replace function public.community_is_admin() returns boolean
 language sql stable security definer set search_path = public, pg_temp
-as $ select exists(select 1 from public.community_admins where user_id=auth.uid()); $;
+as $$ select exists(select 1 from public.community_admins where user_id=auth.uid()); $$;
 
 drop policy if exists "public profiles readable by signed-in members" on public.community_profiles;
 create policy "public profiles readable by signed-in members" on public.community_profiles for select to authenticated using (true);
@@ -61,10 +61,6 @@ drop policy if exists "published messages readable by members" on public.communi
 create policy "published messages readable by members" on public.community_messages for select to authenticated using (status='published' or public.community_is_admin());
 -- No client-side INSERT/UPDATE/DELETE policies for messages, bans, moderation queue or reports.
 -- All writes pass through the security-definer RPCs below.
-
-create or replace function public.community_is_admin() returns boolean
-language sql stable security definer set search_path = public, pg_temp
-as $$ select exists(select 1 from public.community_admins where user_id=auth.uid()); $$;
 
 create or replace function public.community_set_username(p_username text) returns boolean
 language plpgsql security definer set search_path = public, pg_temp
