@@ -170,7 +170,7 @@ $func$;
 
 create or replace function public.community_admin_reports()
 returns table(id bigint,message_id bigint,body text,reason text,created_at timestamptz)
-language plpgsql security definer set search_path=public
+language plpgsql security definer set search_path = public, pg_temp
 as $$
 begin
  if not public.community_is_admin() then raise exception 'admin only'; end if;
@@ -181,7 +181,7 @@ begin
 end; $$;
 
 create or replace function public.community_admin_resolve_report(p_report_id bigint) returns boolean
-language plpgsql security definer set search_path=public
+language plpgsql security definer set search_path = public, pg_temp
 as $$
 begin
  if not public.community_is_admin() then raise exception 'admin only'; end if;
