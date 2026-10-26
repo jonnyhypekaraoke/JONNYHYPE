@@ -12,7 +12,7 @@ create unique index if not exists community_profiles_username_lower_uidx
 
 create table if not exists public.community_messages (
   id bigint generated always as identity primary key,
-  user_id uuid not null references auth.users(id) on delete cascade,
+  user_id uuid not null references public.community_profiles(user_id) on delete cascade,
   body text not null check (char_length(body) between 1 and 500),
   status text not null default 'published' check (status in ('published','removed')),
   created_at timestamptz not null default now()
