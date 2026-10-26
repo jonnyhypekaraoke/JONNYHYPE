@@ -139,12 +139,13 @@ end; $$;
 
 create or replace function public.community_admin_resolve_moderation_item(p_item_id bigint) returns boolean
 language plpgsql security definer set search_path=public
-as $
+as $func$
 begin
  if not public.community_is_admin() then raise exception 'admin only'; end if;
  update public.community_moderation_queue set resolved=true where id=p_item_id;
  return true;
-end; $;
+end;
+$func$;
 
 create or replace function public.community_admin_reports()
 returns table(id bigint,message_id bigint,body text,reason text,created_at timestamptz)
@@ -164,7 +165,6 @@ as $$
 begin
  if not public.community_is_admin() then raise exception 'admin only'; end if;
  update public.community_reports set resolved=true where id=p_report_id;
- update public.community_moderation_queue set resolved=true where id=p_report_id;
  return true;
 end; $$;
 
