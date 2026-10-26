@@ -280,7 +280,7 @@ begin
      or exists(select 1 from public.community_whatsapp_invites i where lower(i.username)=lower(v_username) and i.status <> 'revocato') then
     raise exception 'username_taken';
   end if;
-  v_code := upper(encode(gen_random_bytes(4),'hex'));
+  v_code := upper(encode(gen_random_bytes(6),'hex'));
   insert into public.community_whatsapp_invites(username,phone,code_hash)
     values(v_username,v_phone,encode(digest(v_code,'sha256'),'hex'))
     returning id into invite_id;
