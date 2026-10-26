@@ -47,10 +47,6 @@ alter table public.community_bans enable row level security;
 alter table public.community_moderation_queue enable row level security;
 alter table public.community_reports enable row level security;
 
-create or replace function public.community_is_admin() returns boolean
-language sql stable security definer set search_path=public
-as $ select exists(select 1 from public.community_admins where user_id=auth.uid()); $;
-
 drop policy if exists "public profiles readable by signed-in members" on public.community_profiles;
 create policy "public profiles readable by signed-in members" on public.community_profiles for select to authenticated using (true);
 drop policy if exists "published messages readable by members" on public.community_messages;
@@ -128,6 +124,25 @@ begin
  return true;
 end; $$;
 
+create or replace function public.community_admin_suspend_user(
+  p_user_id uuid,
+  p_hours integer default 24,
+  p_reason text default 'Sospensione temporanea per violazione del regolamento'
+) returns boolean
+language plpgsql security definer set search_path=public
+as $suspend$
+begin
+ if not public.community_is_admin() then raise exception 'admin only'; end if;
+ if p_user_id=auth.uid() then raise exception 'cannot suspend self'; end if;
+ if p_hours is null or p_hours < 1 or p_hours > 720 then raise exception 'suspension duration must be between 1 and 720 hours'; end if;
+ insert into public.community_bans(user_id,reason,banned_until)
+ values(p_user_id,left(coalesce(p_reason,'Violazione del regolamento'),250),now() + make_interval(hours => p_hours))
+ on conflict(user_id) do update
+ set reason=excluded.reason,banned_until=excluded.banned_until,created_at=now();
+ return true;
+end;
+$suspend$;
+
 create or replace function public.community_admin_moderation_queue()
 returns table(id bigint,user_id uuid,body text,reason text,created_at timestamptz)
 language plpgsql security definer set search_path=public
@@ -168,12 +183,25 @@ begin
  return true;
 end; $$;
 
+revoke all on function public.community_is_admin() from public, anon;
+revoke all on function public.community_set_username(text) from public, anon;
+revoke all on function public.community_post_message(text) from public, anon;
+revoke all on function public.community_report_message(bigint,text) from public, anon;
+revoke all on function public.community_admin_delete_message(bigint) from public, anon;
+revoke all on function public.community_admin_ban_user(uuid,text) from public, anon;
+revoke all on function public.community_admin_suspend_user(uuid,integer,text) from public, anon;
+revoke all on function public.community_admin_moderation_queue() from public, anon;
+revoke all on function public.community_admin_reports() from public, anon;
+revoke all on function public.community_admin_resolve_moderation_item(bigint) from public, anon;
+revoke all on function public.community_admin_resolve_report(bigint) from public, anon;
+
 grant execute on function public.community_is_admin() to authenticated;
 grant execute on function public.community_set_username(text) to authenticated;
 grant execute on function public.community_post_message(text) to authenticated;
 grant execute on function public.community_report_message(bigint,text) to authenticated;
 grant execute on function public.community_admin_delete_message(bigint) to authenticated;
 grant execute on function public.community_admin_ban_user(uuid,text) to authenticated;
+grant execute on function public.community_admin_suspend_user(uuid,integer,text) to authenticated;
 grant execute on function public.community_admin_moderation_queue() to authenticated;
 grant execute on function public.community_admin_reports() to authenticated;
 grant execute on function public.community_admin_resolve_moderation_item(bigint) to authenticated;
