@@ -1369,20 +1369,32 @@ html body .jh-topbar details.jh-menu[open]>summary .jh-burger:after{top:0!import
 }
 </style>
 <style id="jh-home-menu-font-size-final">
-/* Home: riallinea la dimensione dei caratteri al menu di Galleria Foto e Video, con un leggero incremento. */
-html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered a,
-html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-label{
- font-size:clamp(21px,5.7vw,30px)!important;
+/* Home: stessi valori numerici del menu master in Galleria Foto e Video. */
+html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered a{
+ font-size:clamp(19px,5.2vw,28px)!important;
 }
 html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{
- font-size:clamp(18px,4.7vw,24px)!important;
+ font-size:clamp(17px,4.5vw,23px)!important;
+}
+html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-label{
+ font-family:'Oswald','Arial Narrow',sans-serif!important;font-weight:600!important;
+ letter-spacing:-.025em!important;line-height:1!important;
 }
 @media(max-width:390px){
- html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered a,
- html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-label{
-  font-size:clamp(20px,5.6vw,25px)!important;
+ html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered a{
+  font-size:clamp(18px,5.1vw,23px)!important;
  }
- html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{font-size:18px!important}
+ html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{
+  font-size:17px!important;
+ }
+}
+@media(max-height:740px){
+ html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered a{
+  font-size:clamp(19px,5.7vw,29px)!important;
+ }
+ html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{
+  font-size:17px!important;
+ }
 }
 </style>
 </body>
