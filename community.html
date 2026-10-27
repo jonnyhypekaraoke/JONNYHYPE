@@ -11,12 +11,12 @@
 <main class="wrap">
 <section class="hero"><div class="eyebrow">MUSICA · KARAOKE · EVENTI · AMICIZIA</div><h1>JONNYHYPE <span>COMMUNITY</span></h1><p>IL PUNTO D’INCONTRO PER CHATTARE, CONOSCERE NUOVI AMICI E SCOPRIRE GLI EVENTI KARAOKE IN ROMAGNA.</p></section>
 <section id="loading" class="card"><h2>COMMUNITY IN CARICAMENTO</h2><p id="load-status" class="muted">Connessione in corso…</p></section>
-<section id="activate-card" class="card hidden"><h2>ENTRA NELLA COMMUNITY</h2><p class="muted">Scegli un nome utente e inizia subito a partecipare. Non servono email, password o codici WhatsApp.</p>
+<section id="activate-card" class="card hidden"><h2>ENTRA SENZA ISCRIZIONE</h2><p class="muted">SCRIVI IL TUO NOME O UNO PSEUDONIMO ED INIZIA A CHATTARE</p>
 <form id="activate-form" class="form" style="margin-top:16px"><label>IL TUO USERNAME<input id="activate-username" minlength="3" maxlength="20" pattern="[A-Za-z0-9_.-]{3,20}" autocomplete="username" placeholder="Es. LUCA90" required></label><button type="submit">ENTRA IN CHAT</button></form><p id="activate-status" class="status" role="status" aria-live="polite"></p><p class="small">Usa un nome di 3–20 caratteri: lettere, numeri, punto, trattino o underscore. Evita di inserire dati personali.</p></section>
 <section id="chat-card" class="card hidden"><div class="chat-head"><div><h2>CHAT PUBBLICA</h2><p class="muted">CIAO, <strong id="current-username"></strong>. RISPETTA GLI ALTRI E NON CONDIVIDERE DATI PERSONALI.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="quiet" id="refresh" type="button">AGGIORNA</button><button class="quiet" id="exit" type="button">ESCI</button></div></div><div id="message-list" class="chat-list" aria-live="polite"></div><form id="message-form" class="form" style="max-width:none"><label>IL TUO MESSAGGIO<textarea id="message" maxlength="500" rows="3" placeholder="Scrivi qui…" required></textarea></label><button type="submit">INVIA MESSAGGIO</button></form><p id="chat-status" class="status" role="status" aria-live="polite"></p></section>
 <footer class="footer">JONNYHYPE COMMUNITY · MUSICA, AMICIZIA E DIVERTIMENTO</footer>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/community-config.js?v=16"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/community-config.js?v=17"></script>
 <script>
 (function(){
 const $=id=>document.getElementById(id);let sb=null,user=null,profile=null,busy=false;
