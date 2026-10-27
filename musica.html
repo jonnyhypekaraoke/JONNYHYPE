@@ -301,4 +301,17 @@ html,body{font-family:"Manrope",Arial,sans-serif!important}
 <a href="/eventi.html">CALENDARIO DI TUTTI GLI EVENTI</a>
 </section></main><footer>JONNYHYPE · DJ SET · KARAOKE · EVENTS &amp; MUSIC PRODUCTION</footer><script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script><script id="jh-menu-dismiss-outside">
 (()=>{const menus=()=>document.querySelectorAll('details.jh-menu[open]');document.addEventListener('pointerdown',e=>{menus().forEach(menu=>{if(!menu.contains(e.target))menu.removeAttribute('open')})},true);document.addEventListener('click',e=>{const link=e.target.closest('details.jh-menu a');if(link)menus().forEach(menu=>menu.removeAttribute('open'))},true)})();
-</script></body></html>
+</script><style id="jh-menu-one-line-final">
+/* Menu interno: voci più compatte per restare su una sola riga. */
+.jh-menu .jh-menu-panel a,.jh-menu-panel a{
+  font-size:clamp(10px,2.8vw,12px)!important;
+  letter-spacing:.015em!important;
+  white-space:nowrap!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+}
+@media(max-width:390px){
+ .jh-menu .jh-menu-panel a,.jh-menu-panel a{font-size:10px!important;padding-left:9px!important;padding-right:9px!important}
+}
+</style>
+</body></html>
