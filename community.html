@@ -38,4 +38,5 @@ async function loadMessages(){if(!sb||!profile)return;const {data,error}=await s
 $('message-form').addEventListener('submit',async e=>{e.preventDefault();const body=$('message').value.trim();if(!body)return;const {data,error}=await sb.rpc('community_post_message',{p_body:body});if(error){status('chat-status',errorText(error));return;}if(data?.status==='blocked'){status('chat-status','MESSAGGIO IN ATTESA DI MODERAZIONE.');}else status('chat-status','MESSAGGIO INVIATO.');$('message').value='';await loadMessages();});
 $('refresh').onclick=loadMessages;$('exit').onclick=()=>{if(!confirm('Vuoi tornare al sito? Il tuo username e il profilo resteranno salvati su questo dispositivo.'))return;location.href='/';};setInterval(()=>{if(profile&&!busy)loadMessages();},20000);start().catch(e=>status('load-status','ERRORE: '+((e&&e.message)||'connessione non riuscita')+'. Controlla la connessione e riprova.'));
 })();
-</script></body></html>
+</script><style id="jh-title-font-master">h1,h2,h3,h4,h5,h6,.subtitle,.sub-title,.section-subtitle,.section-subtitle *,.page-subtitle,.page-intro h1,.page-intro h2,.eyebrow,.kicker,.section-kicker,.jh-about-values-title{font-family:"Montserrat","Manrope",Arial,sans-serif!important}</style>
+</body></html>
