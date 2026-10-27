@@ -80,18 +80,21 @@ footer{padding:26px 12px;text-align:center;border-top:1px solid #24242a;color:#7
 <style id="jh-about-title-mobile-fit">
 /* Solo titolo iniziale: stesso font Montserrat, dimensionato per non uscire dallo schermo */
 @media(max-width:600px){
+  .jh-about-wrap{width:calc(100% - 30px)!important;max-width:100%!important}
+  .jh-about-hero{width:100%;overflow:visible}
   .jh-about-hero h1{
-    max-width:100%;
-    font-size:clamp(36px,10vw,48px)!important;
-    letter-spacing:-.045em!important;
-    line-height:1.02!important;
-    overflow-wrap:normal;
+    width:100%!important;max-width:100%!important;
+    font-size:clamp(30px,8.2vw,40px)!important;
+    letter-spacing:-.04em!important;
+    line-height:1.04!important;
+    overflow-wrap:normal;word-break:normal;
   }
   .jh-about-hero h1 span{
-    display:block;
+    display:block;width:100%;max-width:100%;
     white-space:nowrap;
-    font-size:clamp(29px,8.8vw,42px)!important;
+    font-size:clamp(25px,7.2vw,34px)!important;
     letter-spacing:-.045em!important;
+    transform:none!important;
   }
 }
 </style></head>
