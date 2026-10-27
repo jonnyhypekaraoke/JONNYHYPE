@@ -1368,6 +1368,23 @@ html body .jh-topbar details.jh-menu[open]>summary .jh-burger:after{top:0!import
  html body .jh-topbar details.jh-menu>summary:after{font-size:14px!important}
 }
 </style>
+<style id="jh-home-menu-font-size-final">
+/* Home: riallinea la dimensione dei caratteri al menu di Galleria Foto e Video, con un leggero incremento. */
+html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered a,
+html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-label{
+ font-size:clamp(21px,5.7vw,30px)!important;
+}
+html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{
+ font-size:clamp(18px,4.7vw,24px)!important;
+}
+@media(max-width:390px){
+ html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered a,
+ html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-label{
+  font-size:clamp(20px,5.6vw,25px)!important;
+ }
+ html body .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{font-size:18px!important}
+}
+</style>
 </body>
 </html>
 
