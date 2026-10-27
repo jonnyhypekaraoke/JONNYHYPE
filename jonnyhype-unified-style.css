@@ -15,3 +15,9 @@ button,.btn,.site-nav a,.jh-menu-panel a,.category-open,.rsf-album-nav a,.rsf-fi
 .event-card,.format-card,.festival-form-card,.gallery-card{border-radius:15px}
 .event-detail strong,.event-name,.venue{font-size:clamp(16px,2.2vw,21px);line-height:1.25}
 @media(max-width:600px){h1{line-height:1.08}.event-card{gap:12px}.event-detail{font-size:14px}.gallery-category{padding:16px 18px!important}}
+
+/* JONNYHYPE MASTER TYPOGRAPHY — reference: KARAOKE LEGENDS title.
+   Original JONNYHYPE logo is never targeted by these rules. */
+body,p,li,label,input,textarea,select,.intro,.description,.muted{font-family:'Manrope',Arial,sans-serif!important}
+h1,h2,h3,h4,.page-title,.display-heading,.jh-gallery-main-title,.jh-bicolor-title,.festival-title,.event-detail strong,.event-title,.gallery-category strong,.rsf-final-folder strong,.format-card h3,.event-card h2,.event-card h3,.event-name,.section-title,.folder strong,.gallery-category,.folder{font-family:'Montserrat',Arial,sans-serif!important;font-weight:800!important;letter-spacing:-.035em!important}
+h1{font-weight:900!important;line-height:1.08!important}
