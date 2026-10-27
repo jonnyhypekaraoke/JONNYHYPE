@@ -1415,6 +1415,44 @@ html body .jh-rsf-bottom-info{
  letter-spacing:-.025em!important;
 }
 </style>
+<!-- FIX DEFINITIVO FONT PROTAGONISTI HOME: caricato in coda e riapplicato dopo gli script --> 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+<style id="jh-home-font-fix-last">
+html body .jh-home-team a.jh-team-all,
+html body .jh-home-team a.jh-team-all *,
+html body .jh-home-team a.jh-team-person,
+html body .jh-home-team a.jh-team-person *,
+html body .jh-rsf-square-bottom,
+html body .jh-rsf-square-bottom * {
+  font-family:"Montserrat",Arial,sans-serif!important;
+  font-stretch:normal!important;
+  font-variant:normal!important;
+  letter-spacing:-.025em!important;
+}
+html body .jh-home-team a.jh-team-person span,
+html body .jh-home-team a.jh-team-all,
+html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
+  font-weight:800!important;
+}
+</style>
+<script id="jh-home-font-fix-runtime">
+(function(){
+ const selector='.jh-home-team a.jh-team-all, .jh-home-team a.jh-team-all *, .jh-home-team a.jh-team-person, .jh-home-team a.jh-team-person *, .jh-rsf-square-bottom, .jh-rsf-square-bottom *';
+ function enforce(){
+   document.querySelectorAll(selector).forEach(function(el){
+     el.style.setProperty('font-family','Montserrat, Arial, sans-serif','important');
+     el.style.setProperty('font-stretch','normal','important');
+     el.style.setProperty('font-variant','normal','important');
+     el.style.setProperty('letter-spacing','-.025em','important');
+   });
+ }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',enforce,{once:true}); else enforce();
+ new MutationObserver(enforce).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class','style']});
+ if(document.fonts&&document.fonts.ready) document.fonts.ready.then(enforce);
+})();
+</script>
 </body>
 </html>
 
