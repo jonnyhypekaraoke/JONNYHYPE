@@ -1,4 +1,4 @@
-const CACHE_NAME = "jonnyhype-site-v15";
+const CACHE_NAME = "jonnyhype-site-v16";
 const CORE_ASSETS = [
   "/",
   "/index.html",
