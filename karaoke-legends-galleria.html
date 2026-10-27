@@ -34,7 +34,7 @@ h1{font-weight:900!important;line-height:1.08!important}
 <style id="jh-sponsor-carousel-interactions">
 .jh-sponsor-logos{display:block!important;position:relative;overflow:hidden!important;overflow-y:hidden!important;margin-top:10px;padding:2px 0 12px;scrollbar-width:none!important;touch-action:pan-y;cursor:grab}
 .jh-sponsor-logos::-webkit-scrollbar{display:none!important}
-.jh-sponsor-track{display:flex;align-items:stretch;gap:12px;width:max-content;max-width:none;will-change:transform;animation:jhSponsorFlow 48s linear infinite}
+.jh-sponsor-track{display:flex;align-items:stretch;gap:12px;width:max-content;max-width:none;will-change:transform;animation:jhSponsorFlow 48s linear infinite;animation-delay:0s!important;animation-play-state:running!important}
 .jh-sponsor-slot{display:flex;align-items:center;justify-content:center;flex:0 0 180px!important;width:180px;min-width:180px;aspect-ratio:1/1;text-decoration:none!important;cursor:zoom-in;scroll-snap-align:none;padding:8px;border:1px solid rgba(255,255,255,.18);border-radius:10px;background:#fff;overflow:hidden}
 .jh-sponsor-slot img{display:block;pointer-events:none;width:100%;height:100%;object-fit:contain;object-position:center}
 .jh-sponsor-track.is-paused{animation-play-state:paused}
@@ -43,7 +43,7 @@ h1{font-weight:900!important;line-height:1.08!important}
 .jh-sponsor-lightbox img{display:block;max-width:min(92vw,1000px);max-height:82vh;width:auto;height:auto;object-fit:contain;background:#fff;border-radius:8px}
 .jh-sponsor-close{position:absolute;top:18px;right:18px;width:46px;height:46px;border:1px solid #f02d98;border-radius:50%;background:#111;color:#fff;font-size:32px;line-height:1;cursor:pointer}
 @keyframes jhSponsorFlow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(max-width:520px){.jh-sponsor-track{gap:10px;animation-duration:42s}.jh-sponsor-slot{flex-basis:42vw!important;width:42vw;min-width:42vw}}
+@media(max-width:520px){.jh-sponsor-track{gap:10px;animation-duration:42s;animation-delay:0s!important;animation-play-state:running!important}.jh-sponsor-slot{flex-basis:42vw!important;width:42vw;min-width:42vw}}
 @media(prefers-reduced-motion:reduce){.jh-sponsor-track{animation-duration:65s}}
 </style>
 <script id="jh-sponsor-carousel-script">
