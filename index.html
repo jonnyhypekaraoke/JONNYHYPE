@@ -1261,6 +1261,32 @@ document.querySelectorAll('.jh-home-team').forEach(function(section){var track=s
 }
 </style>
 
+
+<style id="jh-menu-labels-one-line-final">
+/* Menu principale: voci leggermente più piccole per restare su una sola riga. */
+.jh-menu .jh-menu-panel.jh-menu-numbered a{
+  gap:clamp(9px,2.8vw,15px)!important;
+  font-size:clamp(15px,4.5vw,20px)!important;
+}
+.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-label{
+  white-space:nowrap!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+  min-width:0!important;
+}
+@media(max-width:390px){
+  .jh-menu .jh-menu-panel.jh-menu-numbered a{
+    gap:9px!important;
+    font-size:clamp(14px,4.6vw,18px)!important;
+  }
+  .jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{
+    width:38px!important;
+    flex-basis:38px!important;
+    height:38px!important;
+  }
+}
+</style>
+
 </body>
 </html>
 
