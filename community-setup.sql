@@ -79,8 +79,14 @@ begin
   if exists(select 1 from public.community_bans where user_id=auth.uid() and (banned_until is null or banned_until > now())) then raise exception 'account blocked'; end if;
   if v_username !~ '^[A-Za-z0-9_.-]{3,20}$' then raise exception 'username format invalid'; end if;
   if lower(v_username) in ('admin','administrator','moderatore','moderator','jonnyhype','support','staff') then raise exception 'username unavailable'; end if;
-  insert into public.community_profiles(user_id,username) values(auth.uid(),v_username)
-  on conflict(user_id) do update set username=excluded.username;
+  -- Lo username viene scelto una sola volta: non consentire modifiche successive.
+  if exists(select 1 from public.community_profiles where user_id=auth.uid()) then
+    if exists(select 1 from public.community_profiles where user_id=auth.uid() and username=v_username) then
+      return true;
+    end if;
+    raise exception 'username_locked';
+  end if;
+  insert into public.community_profiles(user_id,username) values(auth.uid(),v_username);
   return true;
 exception when unique_violation then raise exception 'username taken';
 end; $$;
