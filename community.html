@@ -21,7 +21,9 @@
 (function(){
 const $=id=>document.getElementById(id);let sb=null,user=null,profile=null,busy=false;
 function status(id,msg){$(id).textContent=msg;}
-const nameColors=['#38bdf8','#f472b6','#a78bfa','#4ade80','#fb923c','#2dd4bf','#facc15','#c084fc','#f87171','#60a5fa','#e879f9','#a3e635'];\nfunction colorFor(id){let h=2166136261;for(const ch of String(id||'')){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return nameColors[(h>>>0)%nameColors.length];}\nfunction colorName(el,id){el.style.color=colorFor(id);el.classList.add('name-color');}
+const nameColors=['#38bdf8','#f472b6','#a78bfa','#4ade80','#fb923c','#2dd4bf','#facc15','#c084fc','#f87171','#60a5fa','#e879f9','#a3e635'];
+function colorFor(id){let h=2166136261;for(const ch of String(id||'')){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return nameColors[(h>>>0)%nameColors.length];}
+function colorName(el,id){el.style.color=colorFor(id);el.classList.add('name-color');}
 function show(id){$(id).classList.remove('hidden');}
 function hide(id){$(id).classList.add('hidden');}
 function errorText(e){const m=(e&&e.message)||'';if(m.includes('username format invalid'))return 'USERNAME NON VALIDO: USA 3–20 CARATTERI TRA LETTERE, NUMERI, PUNTO, TRATTINO O UNDERSCORE.';if(m.includes('username unavailable'))return 'QUESTO USERNAME NON È DISPONIBILE. SCEGLINE UN ALTRO.';if(m.includes('username_locked'))return 'HAI GIÀ SCELTO UNO USERNAME: NON PUÒ ESSERE CAMBIATO. Premi ESCI e rientra con il dispositivo che hai già usato.';if(m.includes('username_taken'))return 'QUESTO USERNAME È GIÀ IN USO. Se era il tuo, rientra dalla sessione/dispositivo originale; non crearne un secondo.';if(m.includes('anonymous_session_required'))return 'SESSIONE NON VALIDA. RICARICA LA PAGINA.';if(m.includes('account blocked'))return 'IL PROFILO È BLOCCATO. CONTATTA L’AMMINISTRATORE.';return 'OPERAZIONE NON RIUSCITA: '+m;}
