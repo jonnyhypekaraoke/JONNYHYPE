@@ -76,7 +76,25 @@ footer{padding:26px 12px;text-align:center;border-top:1px solid #24242a;color:#7
   outline:none!important;
 }
 </style>
-<link rel="stylesheet" href="/jonnyhype-unified-style.css?v=1"></head>
+<link rel="stylesheet" href="/jonnyhype-unified-style.css?v=1">
+<style id="jh-about-title-mobile-fit">
+/* Solo titolo iniziale: stesso font Montserrat, dimensionato per non uscire dallo schermo */
+@media(max-width:600px){
+  .jh-about-hero h1{
+    max-width:100%;
+    font-size:clamp(36px,10vw,48px)!important;
+    letter-spacing:-.045em!important;
+    line-height:1.02!important;
+    overflow-wrap:normal;
+  }
+  .jh-about-hero h1 span{
+    display:block;
+    white-space:nowrap;
+    font-size:clamp(29px,8.8vw,42px)!important;
+    letter-spacing:-.045em!important;
+  }
+}
+</style></head>
 <body>
 <header class="jh-topbar">
 <a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a>
