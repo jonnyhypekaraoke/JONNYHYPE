@@ -21,3 +21,63 @@ button,.btn,.site-nav a,.jh-menu-panel a,.category-open,.rsf-album-nav a,.rsf-fi
 body,p,li,label,input,textarea,select,.intro,.description,.muted{font-family:'Manrope',Arial,sans-serif!important}
 h1,h2,h3,h4,.page-title,.display-heading,.jh-gallery-main-title,.jh-bicolor-title,.festival-title,.event-detail strong,.event-title,.gallery-category strong,.rsf-final-folder strong,.format-card h3,.event-card h2,.event-card h3,.event-name,.section-title,.folder strong,.gallery-category,.folder{font-family:'Montserrat',Arial,sans-serif!important;font-weight:800!important;letter-spacing:-.035em!important}
 h1{font-weight:900!important;line-height:1.08!important}
+
+
+/* MENU MOBILE — righe compatte, lettering condensato e peso meno pesante.
+   Tutte le 8 voci devono restare visibili sullo schermo senza scorrimento verticale. */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
+.jh-menu .jh-menu-panel.jh-menu-numbered{
+  box-sizing:border-box!important;
+  width:min(390px,calc(100vw - 24px))!important;
+  max-height:calc(100dvh - 104px)!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain!important;
+  padding:5px 9px!important;
+  gap:0!important;
+}
+.jh-menu .jh-menu-panel.jh-menu-numbered a{
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:clamp(13px,4vw,24px)!important;
+  min-height:0!important;
+  height:clamp(58px,8.2dvh,76px)!important;
+  padding:7px clamp(9px,2.8vw,16px)!important;
+  border:0!important;
+  border-bottom:1px solid #303030!important;
+  border-radius:0!important;
+  background:transparent!important;
+  font-family:'Oswald','Arial Narrow',sans-serif!important;
+  font-size:clamp(22px,6.4vw,34px)!important;
+  font-weight:600!important;
+  letter-spacing:-.025em!important;
+  line-height:1!important;
+}
+.jh-menu .jh-menu-panel.jh-menu-numbered a:last-child{border-bottom:0!important}
+.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{
+  flex:0 0 clamp(42px,8.2vw,56px)!important;
+  width:clamp(42px,8.2vw,56px)!important;
+  height:clamp(42px,8.2vw,56px)!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:50%!important;
+  background:#f02d98!important;
+  color:#fff!important;
+  font-family:'Oswald','Arial Narrow',sans-serif!important;
+  font-size:clamp(17px,4.5vw,23px)!important;
+  font-weight:600!important;
+  letter-spacing:0!important;
+  line-height:1!important;
+}
+.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-label{
+  min-width:0!important;
+  font-family:'Oswald','Arial Narrow',sans-serif!important;
+  font-weight:600!important;
+  letter-spacing:-.025em!important;
+  line-height:1!important;
+}
+@media(max-height:740px){
+ .jh-menu .jh-menu-panel.jh-menu-numbered a{height:clamp(49px,7.4dvh,61px)!important;font-size:clamp(19px,5.7vw,29px)!important}
+ .jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{width:40px!important;height:40px!important;flex-basis:40px!important;font-size:17px!important}
+}
