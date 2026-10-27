@@ -424,4 +424,17 @@ h1{font-weight:900!important;line-height:1.08!important}
 @media(max-width:480px){.rsf-media-feature{padding:20px 12px!important}.rsf-media-feature .rsf-partner-logos{gap:10px!important}.rsf-media-feature .rsf-partner-logos a{min-height:82px!important;padding:8px!important}.rsf-media-feature .rsf-partner-logos img{height:58px!important}.rsf-next-edition{padding:20px 16px 20px 20px!important}.rsf-presignup-cta{padding:20px 16px!important}.festival-actions:not(.rsf-presignup-cta){padding:20px 16px!important}}
 </style><script id="jh-menu-dismiss-outside">
 (()=>{const menus=()=>document.querySelectorAll('details.jh-menu[open]');document.addEventListener('pointerdown',e=>{menus().forEach(menu=>{if(!menu.contains(e.target))menu.removeAttribute('open')})},true);document.addEventListener('click',e=>{const link=e.target.closest('details.jh-menu a');if(link)menus().forEach(menu=>menu.removeAttribute('open'))},true)})();
-</script><style id="jh-menu-larger-global">.jh-menu summary{min-width:118px!important;width:118px!important;height:56px!important;gap:12px!important}.jh-menu summary:after{font-size:15px!important;letter-spacing:.14em!important}.jh-menu summary .jh-burger,.jh-menu summary .jh-burger:before,.jh-menu summary .jh-burger:after{width:23px!important;height:2.5px!important}.jh-menu summary .jh-burger:before{top:-8px!important}.jh-menu summary .jh-burger:after{top:8px!important}.jh-menu-panel a{min-height:54px!important;padding:15px 17px!important;font-size:14px!important;font-family:Manrope,Arial,sans-serif!important;font-weight:800!important}@media(max-width:520px){.jh-menu summary{min-width:106px!important;width:106px!important;height:52px!important;gap:9px!important}.jh-menu summary:after{font-size:14px!important}.jh-menu-panel{width:min(350px,calc(100vw - 28px))!important}.jh-menu-panel a{min-height:52px!important;font-size:13px!important}}</style></body></html>
+</script><style id="jh-menu-larger-global">.jh-menu summary{min-width:118px!important;width:118px!important;height:56px!important;gap:12px!important}.jh-menu summary:after{font-size:15px!important;letter-spacing:.14em!important}.jh-menu summary .jh-burger,.jh-menu summary .jh-burger:before,.jh-menu summary .jh-burger:after{width:23px!important;height:2.5px!important}.jh-menu summary .jh-burger:before{top:-8px!important}.jh-menu summary .jh-burger:after{top:8px!important}.jh-menu-panel a{min-height:54px!important;padding:15px 17px!important;font-size:14px!important;font-family:Manrope,Arial,sans-serif!important;font-weight:800!important}@media(max-width:520px){.jh-menu summary{min-width:106px!important;width:106px!important;height:52px!important;gap:9px!important}.jh-menu summary:after{font-size:14px!important}.jh-menu-panel{width:min(350px,calc(100vw - 28px))!important}.jh-menu-panel a{min-height:52px!important;font-size:13px!important}}</style><style id="jh-menu-one-line-final">
+/* Menu interno: voci più compatte per restare su una sola riga. */
+.jh-menu .jh-menu-panel a,.jh-menu-panel a{
+  font-size:clamp(10px,2.8vw,12px)!important;
+  letter-spacing:.015em!important;
+  white-space:nowrap!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+}
+@media(max-width:390px){
+ .jh-menu .jh-menu-panel a,.jh-menu-panel a{font-size:10px!important;padding-left:9px!important;padding-right:9px!important}
+}
+</style>
+</body></html>
