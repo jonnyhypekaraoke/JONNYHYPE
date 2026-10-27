@@ -1223,6 +1223,44 @@ document.querySelectorAll('.jh-home-team').forEach(function(section){var track=s
 .jh-rsf-home-banner .jh-team-carousel,
 .jh-rsf-home-banner .jh-home-team-carousel{margin-bottom:8px!important}
 </style>
+
+<style id="jh-protagonisti-cta-one-line-final">
+/* CTA protagonisti: testo e freccia su una sola riga; ingombro ridotto su mobile. */
+.jh-rsf-disclosure .jh-team-all.jh-master-protagonisti,
+.jh-rsf-disclosure .jh-team-all{
+  display:inline-flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  width:max-content!important;
+  max-width:100%!important;
+  min-width:0!important;
+  white-space:nowrap!important;
+  margin:7px auto 1px!important;
+  padding:8px 12px!important;
+  box-sizing:border-box!important;
+  font-size:clamp(10px,2.55vw,12px)!important;
+  line-height:1.1!important;
+  letter-spacing:-.025em!important;
+  text-align:center!important;
+}
+.jh-rsf-disclosure .jh-team-all span{
+  display:inline!important;
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:1!important;
+  font-size:1.15em!important;
+}
+.jh-rsf-disclosure .jh-home-team{padding-bottom:0!important;margin-bottom:0!important}
+.jh-rsf-disclosure .jh-team-track{padding-bottom:2px!important}
+@media(max-width:380px){
+ .jh-rsf-disclosure .jh-team-all{gap:5px!important;padding:7px 9px!important;font-size:10px!important}
+}
+</style>
+
 </body>
 </html>
 
