@@ -18,8 +18,6 @@
 <form id="login-form" class="form"><label>EMAIL<input id="email" type="email" autocomplete="username" required></label><label>PASSWORD<input id="password" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">ACCEDI</button></form><p id="status" class="status" role="status" aria-live="polite"></p></section>
 <section id="denied-card" class="card hidden"><h2>Accesso non autorizzato</h2><p class="statusbox">Questo account non risulta amministratore. Non sono disponibili comandi di moderazione.</p><button id="signout-denied">ESCI</button></section>
 <section id="admin-tools" class="hidden">
-<section class="card"><h2>GESTIONE COMMUNITY</h2><p class="muted">Gli utenti entrano direttamente dalla pagina Community scegliendo uno username. Non servono inviti, numeri di telefono o codici WhatsApp.</p><p class="statusbox">La procedura di generazione codici è stata rimossa dal pannello. Usa il registro iscritti e gli strumenti di moderazione qui sotto.</p></section>
-<section class="card"><div class="meta" style="justify-content:space-between"><h2>REGISTRO ISCRITTI / INVITI</h2><button id="refresh-invites" type="button">AGGIORNA ELENCO</button></div><p class="muted">Qui trovi username, telefono e stato delle richieste registrate.</p><div id="invite-list"></div></section>
 <section class="card"><div class="meta" style="justify-content:space-between"><h2>Messaggi pubblicati</h2><button id="refresh" type="button">AGGIORNA</button></div><p class="muted">Puoi rimuovere un messaggio dalla chat pubblica o bloccare l'account che lo ha pubblicato.</p><div id="messages"></div></section>
 <section class="card"><h2>Messaggi bloccati automaticamente</h2><div id="queue"></div></section>
 <section class="card"><h2>Segnalazioni degli utenti</h2><div id="reports"></div></section>
@@ -28,7 +26,7 @@
 <p class="footer">JONNYHYPE COMMUNITY · Pannello riservato</p>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/community-config.js"></script>
+<script src="/community-config.js?v=10"></script>
 <script>
 (function(){
 const $=id=>document.getElementById(id);let sb=null,user=null;
@@ -42,8 +40,6 @@ async function checkAdmin(){if(!user)return;const {data,error}=await sb.rpc('com
 $('signout-denied').onclick=async()=>{if(sb)await sb.auth.signOut();user=null;$('denied-card').classList.add('hidden');$('login-card').classList.remove('hidden');};
 $('logout').onclick=async()=>{if(sb)await sb.auth.signOut();location.reload();};
 $('refresh').onclick=refreshAll;
-$('refresh-invites').onclick=loadInvites;
-async function loadInvites(){const el=$('invite-list');const {data,error}=await sb.rpc('community_admin_list_whatsapp_invites');if(error){empty(el,'Registro non disponibile. Esegui prima lo script SQL aggiornato community-setup.sql nel progetto Supabase.');return;}el.replaceChildren();if(!data||!data.length){empty(el,'Nessuna iscrizione registrata.');return;}data.forEach(i=>{const box=document.createElement('article');box.className='msg';const strong=document.createElement('strong');strong.textContent=i.username;const p=document.createElement('p');p.textContent='WhatsApp: '+i.phone+' · Stato: '+i.status.toUpperCase();const time=document.createElement('p');time.className='muted';time.textContent='Richiesto: '+new Date(i.created_at).toLocaleString('it-IT');box.append(strong,p,time);if(i.status==='in_attesa'){const btn=document.createElement('button');btn.className='danger';btn.textContent='REVOCA INVITO';btn.onclick=async()=>{if(!confirm('Revocare il codice per '+i.username+'?'))return;const {error}=await sb.rpc('community_admin_revoke_whatsapp_invite',{p_invite_id:i.id});if(error){alert('Revoca non riuscita.');return;}await loadInvites();};box.append(btn);}el.append(box);});}
 
 async function refreshAll(){if(!sb)return;await Promise.all([loadMessages(),loadQueue(),loadReports()]);}
 function empty(el,msg){el.replaceChildren();const p=document.createElement('p');p.className='muted';p.textContent=msg;el.append(p);}
