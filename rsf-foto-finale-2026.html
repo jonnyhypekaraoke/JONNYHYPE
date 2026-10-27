@@ -40,7 +40,7 @@ const albums={BABY:["1DX25920.jpg","1DX25921.jpg","1DX25922.jpg","1DX25923.jpg",
 const gallery=document.getElementById("photo-gallery"),heading=document.getElementById("gallery-heading");
 const lightbox=document.getElementById("photo-lightbox"),lbImage=document.getElementById("lb-image"),lbTitle=document.getElementById("lb-title"),lbCount=document.getElementById("lb-count");
 let currentCategory="BABY",currentIndex=0,returnFocus=null,touchStartX=0,touchStartY=0;
-function photoUrl(cat,index){return root+encodeURIComponent(cat)+"/"+encodeURIComponent(albums[cat][index]);}
+function photoUrl(cat,index){const folder=cat==="SENIOR"?"/images/galleria/ravenna-song-festival/SENIOR/":root+encodeURIComponent(cat)+"/";return folder+encodeURIComponent(albums[cat][index]);}
 function showPhoto(index){const files=albums[currentCategory];if(!files||!files.length)return;currentIndex=(index+files.length)%files.length;lbImage.src=photoUrl(currentCategory,currentIndex);lbImage.alt="Ravenna Song Festival 2026 — "+currentCategory+" — foto "+(currentIndex+1);lbTitle.textContent=currentCategory+" · FOTO "+(currentIndex+1);lbCount.textContent=(currentIndex+1)+" / "+files.length;}
 function openPhoto(cat,index,trigger){currentCategory=cat;returnFocus=trigger;showPhoto(index);lightbox.classList.add("is-open");lightbox.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";lightbox.querySelector(".lb-close").focus();}
 function closePhoto(){lightbox.classList.remove("is-open");lightbox.setAttribute("aria-hidden","true");lbImage.removeAttribute("src");document.body.style.overflow="";if(returnFocus&&returnFocus.isConnected)returnFocus.focus();}
