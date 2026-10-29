@@ -1032,6 +1032,48 @@ h1{font-weight:900!important;line-height:1.08!important}
 <a class="btn social" href="/eventi.html">PROSSIMI EVENTI <span class="home-arrow" aria-hidden="true">→</span></a>
 </div>
 
+<section class="jh-home-upcoming" aria-labelledby="jh-home-upcoming-title">
+  <div class="jh-home-upcoming-heading">
+    <h2 id="jh-home-upcoming-title"><span>PROSSIMI</span> <strong>EVENTI</strong></h2>
+    <a href="/eventi.html">VEDI TUTTI <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="jh-home-upcoming-grid">
+    <article class="jh-home-upcoming-card">
+      <a class="jh-home-upcoming-image" href="/eventi.html" aria-label="Dettagli evento iGinGini, 30 ottobre">
+        <img src="/Flyer_iGinGini_ognivenerdi.WEBP" alt="iGinGini, cena e karaoke" loading="lazy">
+      </a>
+      <div class="jh-home-upcoming-info">
+        <p class="jh-home-upcoming-date"><span>VENERDÌ</span><strong>30</strong><span>OTT</span></p>
+        <h3>IGINGINI</h3><p class="jh-home-upcoming-sub">CENA E KARAOKE</p>
+        <p class="jh-home-upcoming-place">RAVENNA</p>
+        <a class="jh-home-upcoming-cta" href="/eventi.html">SCOPRI L’EVENTO <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+    <article class="jh-home-upcoming-card">
+      <a class="jh-home-upcoming-image" href="/eventi.html" aria-label="Dettagli Halloween The Dark Night all'ICE Marina Club, 31 ottobre">
+        <img src="/flyer-halloween-ice-marina-2026-10-31.jpg.JPG" alt="Halloween The Dark Night, ICE Marina Club" loading="lazy">
+      </a>
+      <div class="jh-home-upcoming-info">
+        <p class="jh-home-upcoming-date"><span>SABATO</span><strong>31</strong><span>OTT</span></p>
+        <h3>ICE MARINA CLUB</h3><p class="jh-home-upcoming-sub">HALLOWEEN THE DARK NIGHT</p>
+        <p class="jh-home-upcoming-place">MARINA DI RAVENNA</p>
+        <a class="jh-home-upcoming-cta" href="/eventi.html">SCOPRI L’EVENTO <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+    <article class="jh-home-upcoming-card">
+      <a class="jh-home-upcoming-image" href="/eventi.html" aria-label="Dettagli Speciale Ravenna Song Festival alla Vecchia Napoli, 1 novembre">
+        <img src="/VECCHIA1new.JPG" alt="Speciale Ravenna Song Festival, La Vecchia Napoli" loading="lazy">
+      </a>
+      <div class="jh-home-upcoming-info">
+        <p class="jh-home-upcoming-date"><span>DOMENICA</span><strong>1</strong><span>NOV</span></p>
+        <h3>LA VECCHIA NAPOLI</h3><p class="jh-home-upcoming-sub">SPECIALE RAVENNA SONG FESTIVAL</p>
+        <p class="jh-home-upcoming-place">RUSSI</p>
+        <a class="jh-home-upcoming-cta" href="/eventi.html">SCOPRI L’EVENTO <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+  </div>
+</section>
+
 <details class="jh-rsf-disclosure">
 <summary class="jh-rsf-square-cta" aria-label="Apri le informazioni, i due eventi e il Team del Ravenna Song Festival">
   <span class="jh-rsf-square-kicker">JONNYHYPE PRESENTA</span>
@@ -1461,6 +1503,30 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(enforce);
 })();
 </script>
+
+<style id="jh-home-upcoming-events-master">
+/* Sezione eventi homepage: griglia compatta, fondo nero e tipografia master. */
+.jh-home-upcoming{width:min(100% - 24px,760px);margin:18px auto 24px;padding:0;color:#fff;text-align:left}
+.jh-home-upcoming-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px}
+.jh-home-upcoming-heading h2{margin:0;font-family:'Montserrat',Arial,sans-serif!important;font-size:clamp(19px,5vw,30px);font-weight:900;letter-spacing:-.04em;line-height:1.05}
+.jh-home-upcoming-heading h2 span{color:#fff}.jh-home-upcoming-heading h2 strong{color:#f02d98}
+.jh-home-upcoming-heading>a{flex:0 0 auto;padding:9px 10px;border:1px solid #f02d98;border-radius:9px;color:#fff;font-family:'Montserrat',Arial,sans-serif;font-size:10px;font-weight:800;text-decoration:none;white-space:nowrap}
+.jh-home-upcoming-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.jh-home-upcoming-card{min-width:0;overflow:hidden;border:1px solid #f02d98;border-radius:12px;background:#050507}
+.jh-home-upcoming-image{display:block;aspect-ratio:4/3;overflow:hidden;background:#111}
+.jh-home-upcoming-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.jh-home-upcoming-info{padding:8px 7px 9px}
+.jh-home-upcoming-date{display:flex;align-items:baseline;justify-content:center;gap:4px;margin:0 0 7px;font-family:'Montserrat',Arial,sans-serif;font-size:9px;font-weight:800;line-height:1;color:#fff}
+.jh-home-upcoming-date strong{font-size:clamp(18px,4.4vw,26px);color:#f02d98}
+.jh-home-upcoming-info h3{margin:0 0 3px;font-family:'Montserrat',Arial,sans-serif!important;font-size:clamp(10px,2.8vw,14px);font-weight:900;letter-spacing:-.03em;line-height:1.12;overflow-wrap:anywhere}
+.jh-home-upcoming-sub{min-height:2.4em;margin:0 0 7px;color:#e8e5e9;font-family:'Montserrat',Arial,sans-serif;font-size:clamp(8px,2.1vw,10px);font-weight:700;line-height:1.2}
+.jh-home-upcoming-place{margin:0 0 9px;color:#f02d98;font-family:'Manrope',Arial,sans-serif;font-size:9px;font-weight:800;line-height:1.2}
+.jh-home-upcoming-cta{display:flex;align-items:center;justify-content:center;gap:3px;min-height:30px;padding:5px 3px;border:1px solid #fff;border-radius:7px;color:#fff;font-family:'Montserrat',Arial,sans-serif;font-size:clamp(7px,1.8vw,9px);font-weight:800;line-height:1.1;text-align:center;text-decoration:none}
+.jh-home-upcoming-cta span{color:#f02d98}
+.hero .content>.links .btn{font-family:'Montserrat',Arial,sans-serif!important;font-style:normal!important}
+.hero .content>.links .btn.social{background:#050507!important;border:1px solid #f02d98!important;color:#fff!important}
+@media(max-width:380px){.jh-home-upcoming-grid{gap:6px}.jh-home-upcoming-info{padding:7px 5px}.jh-home-upcoming-heading>a{font-size:9px;padding:8px 7px}.jh-home-upcoming-cta{font-size:7px}}
+</style>
 </body>
 </html>
 
