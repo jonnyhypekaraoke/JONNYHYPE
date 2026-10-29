@@ -1034,7 +1034,7 @@ h1{font-weight:900!important;line-height:1.08!important}
   <div class="jh-home-upcoming-track" role="region" aria-label="Scorri i prossimi eventi" tabindex="0">
     <article class="jh-home-upcoming-card">
       <div class="jh-home-upcoming-details">
-        <div class="jh-home-upcoming-date"><span>GIOVEDÌ</span><strong>29</strong><span>OTTOBRE · 20:45</span></div>
+        <div class="jh-home-upcoming-date"><span>GIOVEDÌ</span><strong>29 OTTOBRE</strong><span>20:45</span></div>
         <h3>CASABLANCA</h3><p class="jh-home-upcoming-kind">KARAOKE E MUSICA</p>
         <p class="jh-home-upcoming-address">VILLANOVA DI BAGNACAVALLO (RA)</p>
       </div>
@@ -1042,7 +1042,7 @@ h1{font-weight:900!important;line-height:1.08!important}
     </article>
     <article class="jh-home-upcoming-card">
       <div class="jh-home-upcoming-details">
-        <div class="jh-home-upcoming-date"><span>VENERDÌ</span><strong>30</strong><span>OTTOBRE · 20:00</span></div>
+        <div class="jh-home-upcoming-date"><span>VENERDÌ</span><strong>30 OTTOBRE</strong><span>20:00</span></div>
         <h3>IGINGINI</h3><p class="jh-home-upcoming-kind">CENA E KARAOKE</p>
         <p class="jh-home-upcoming-address">VIA IX FEBBRAIO · RAVENNA</p>
         <img class="jh-home-upcoming-thumb" src="/Flyer_iGinGini_ognivenerdi.WEBP" alt="Locandina iGinGini" loading="lazy">
@@ -1051,17 +1051,17 @@ h1{font-weight:900!important;line-height:1.08!important}
     </article>
     <article class="jh-home-upcoming-card">
       <div class="jh-home-upcoming-details">
-        <div class="jh-home-upcoming-date"><span>SABATO</span><strong>31</strong><span>OTTOBRE · 21:00</span></div>
-        <h3>ICE MARINA CLUB</h3><p class="jh-home-upcoming-kind">RISTORANTE PIZZERIA · HALLOWEEN</p>
+        <div class="jh-home-upcoming-date"><span>SABATO</span><strong>31 OTTOBRE</strong><span>21:00</span></div>
+        <h3>ICE MARINA CLUB</h3><p class="jh-home-upcoming-kind">RISTORANTE PIZZERIA</p>
         <p class="jh-home-upcoming-address">VIALE DELLE NAZIONI 196 · MARINA DI RAVENNA</p>
-        <img class="jh-home-upcoming-thumb" src="/flyer-halloween-ice-marina-2026-10-31.jpg.JPG" alt="Locandina Halloween ICE Marina Club" loading="lazy">
+        <img class="jh-home-upcoming-thumb" src="/flyer-halloween-ice-marina-2026-10-31.jpg.JPG" alt="Locandina ICE Marina Club" loading="lazy">
       </div>
       <a class="jh-home-upcoming-cta" href="/eventi.html">SCOPRI L’EVENTO <span aria-hidden="true">→</span></a>
     </article>
     <article class="jh-home-upcoming-card">
       <div class="jh-home-upcoming-details">
-        <div class="jh-home-upcoming-date"><span>DOMENICA</span><strong>1</strong><span>NOVEMBRE · 12:45</span></div>
-        <h3>LA VECCHIA NAPOLI</h3><p class="jh-home-upcoming-kind">RISTORANTE PIZZERIA · SPECIALE RAVENNA SONG FESTIVAL</p>
+        <div class="jh-home-upcoming-date"><span>DOMENICA</span><strong>1 NOVEMBRE</strong><span>12:45</span></div>
+        <h3>LA VECCHIA NAPOLI</h3><p class="jh-home-upcoming-kind">RISTORANTE PIZZERIA</p>
         <p class="jh-home-upcoming-address">PIAZZA BACCARINI 11 · RUSSI (RA)</p>
         <img class="jh-home-upcoming-thumb" src="/VECCHIA1new.JPG" alt="Locandina La Vecchia Napoli" loading="lazy">
       </div>
@@ -1773,3 +1773,17 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
 .jh-home-upcoming-track .jh-home-upcoming-card .jh-home-upcoming-details h3{width:100%!important;max-width:100%!important;white-space:normal!important}
 .jh-home-upcoming-track .jh-home-upcoming-card .jh-home-upcoming-address,.jh-home-upcoming-track .jh-home-upcoming-card .jh-home-upcoming-kind{white-space:normal!important;overflow-wrap:anywhere!important}
 @media(max-width:600px){.jh-home-upcoming-track .jh-home-upcoming-card img.jh-home-upcoming-thumb{width:54px!important;height:54px!important;min-width:54px!important;min-height:54px!important;max-width:54px!important;max-height:54px!important;flex-basis:54px!important}}
+
+/* Homepage events cards — exact requested hierarchy, compact and aligned */
+.jh-home-upcoming-track{display:flex!important;align-items:stretch!important;gap:12px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;scroll-padding-left:2px!important;padding:0 2px 12px!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-x:contain!important;scrollbar-width:thin!important;scrollbar-color:#f02d98 #17171b!important}
+.jh-home-upcoming-track>.jh-home-upcoming-card{box-sizing:border-box!important;flex:0 0 calc((100% - 24px)/3)!important;min-width:0!important;height:auto!important;min-height:0!important;max-height:none!important;align-self:stretch!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important;align-items:stretch!important;gap:16px!important;padding:18px 16px!important;border:1px solid #f02d98!important;border-radius:12px!important;background:#050507!important;overflow:hidden!important;scroll-snap-align:start!important}
+.jh-home-upcoming-track .jh-home-upcoming-details{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:0!important;width:100%!important;max-width:100%!important;min-width:0!important;flex:1 1 auto!important}
+.jh-home-upcoming-track .jh-home-upcoming-date{order:0!important;display:flex!important;align-items:baseline!important;flex-wrap:wrap!important;gap:6px!important;padding:0!important;margin:0 0 14px!important;color:#fff!important;font:800 13px/1.2 'Montserrat',Arial,sans-serif!important;letter-spacing:.02em!important}
+.jh-home-upcoming-track .jh-home-upcoming-date strong{font:900 25px/1 'Montserrat',Arial,sans-serif!important;color:#f02d98!important}
+.jh-home-upcoming-track .jh-home-upcoming-details h3{order:1!important;margin:0 0 9px!important;padding:0!important;color:#fff!important;font:900 clamp(19px,2vw,25px)/1.12 'Montserrat',Arial,sans-serif!important;overflow-wrap:anywhere!important;white-space:normal!important;min-height:0!important}
+.jh-home-upcoming-track .jh-home-upcoming-kind{order:2!important;margin:0 0 9px!important;padding:0!important;color:#f02d98!important;font:800 13px/1.4 'Montserrat',Arial,sans-serif!important;overflow-wrap:anywhere!important;white-space:normal!important;min-height:0!important}
+.jh-home-upcoming-track .jh-home-upcoming-address{order:3!important;margin:0!important;padding:0!important;color:#fff!important;font:700 12px/1.45 'Montserrat',Arial,sans-serif!important;overflow-wrap:anywhere!important;white-space:normal!important;min-height:0!important}
+.jh-home-upcoming-track .jh-home-upcoming-details img.jh-home-upcoming-thumb{order:4!important;display:block!important;position:static!important;float:none!important;flex:0 0 54px!important;width:54px!important;height:54px!important;min-width:54px!important;min-height:54px!important;max-width:54px!important;max-height:54px!important;aspect-ratio:1/1!important;object-fit:cover!important;margin:12px 0 0!important;border:1px solid #343039!important;border-radius:5px!important}
+.jh-home-upcoming-track .jh-home-upcoming-cta{order:5!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;flex:0 0 auto!important;width:100%!important;min-height:44px!important;margin:0!important;padding:10px 8px!important;border:1px solid #fff!important;border-radius:8px!important;background:transparent!important;color:#fff!important;font:900 12px/1.2 'Montserrat',Arial,sans-serif!important;text-align:center!important;text-decoration:none!important;white-space:nowrap!important}
+.jh-home-upcoming-track .jh-home-upcoming-cta span{color:#f02d98!important}
+@media(max-width:600px){.jh-home-upcoming-track{gap:10px!important}.jh-home-upcoming-track>.jh-home-upcoming-card{flex-basis:88%!important;padding:17px 15px!important;gap:14px!important}.jh-home-upcoming-track .jh-home-upcoming-date{font-size:14px!important;margin-bottom:13px!important}.jh-home-upcoming-track .jh-home-upcoming-date strong{font-size:28px!important}.jh-home-upcoming-track .jh-home-upcoming-details h3{font-size:24px!important}.jh-home-upcoming-track .jh-home-upcoming-kind{font-size:14px!important}.jh-home-upcoming-track .jh-home-upcoming-address{font-size:13px!important}.jh-home-upcoming-track .jh-home-upcoming-details img.jh-home-upcoming-thumb{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;max-width:48px!important;max-height:48px!important;flex-basis:48px!important}.jh-home-upcoming-track .jh-home-upcoming-cta{min-height:46px!important;font-size:13px!important}}
