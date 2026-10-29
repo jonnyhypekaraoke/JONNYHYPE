@@ -1703,6 +1703,20 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
  }
 }
 </style>
+
+<style id="jh-final-spacing-and-card-cta">
+@media(max-width:600px){
+ /* Riduce ancora leggermente l'hero senza cambiare il ritaglio o il font. */
+ .hero .photo{height:clamp(205px,55vw,250px)!important;min-height:0!important;max-height:250px!important}
+ /* CTA delle tre schede con posizione e dimensioni uniformi. */
+ .jh-home-upcoming-card{display:flex!important;flex-direction:column!important}
+ .jh-home-upcoming-info{display:flex!important;flex-direction:column!important;flex:1 1 auto!important}
+ .jh-home-upcoming-info h3{min-height:2.25em!important}
+ .jh-home-upcoming-sub{min-height:2.4em!important}
+ .jh-home-upcoming-place{min-height:1.2em!important;margin-bottom:9px!important}
+ .jh-home-upcoming-cta{width:100%!important;min-height:36px!important;height:36px!important;margin-top:auto!important;align-self:stretch!important;box-sizing:border-box!important;font-size:clamp(6.5px,1.5vw,8px)!important}
+}
+</style>
 </body>
 </html>
 
