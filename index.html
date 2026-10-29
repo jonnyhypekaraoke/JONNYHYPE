@@ -1666,6 +1666,27 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
  .jh-home-upcoming-heading h2{font-size:clamp(25px,6.5vw,32px)!important}
 }
 </style>
+
+<style id="jh-event-cta-one-line">
+/* CTA uniformi: SCOPRI L'EVENTO resta su una sola riga in tutte e tre le schede. */
+.jh-home-upcoming-cta{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  white-space:nowrap!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+  gap:3px!important;
+  font-size:clamp(7px,1.65vw,9px)!important;
+  letter-spacing:-.025em!important;
+  padding-left:2px!important;
+  padding-right:2px!important;
+}
+.jh-home-upcoming-cta span{flex:0 0 auto!important}
+@media(max-width:600px){
+ .jh-home-upcoming-grid{gap:7px!important}
+ .jh-home-upcoming-cta{font-size:clamp(6.5px,1.55vw,8.5px)!important;letter-spacing:-.035em!important}
+}
+</style>
 </body>
 </html>
 
