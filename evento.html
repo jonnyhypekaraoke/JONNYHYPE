@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050507">
+<meta name="description" content="Dettagli degli eventi JONNYHYPE: programma, orari, prenotazioni e indicazioni.">
+<title>Evento · JONNYHYPE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#050507;color:#fff;font-family:Montserrat,Arial,sans-serif}
+body{padding:0 0 36px}
+.top{width:min(760px,calc(100% - 32px));margin:24px auto 18px}
+.wordmark{font-size:clamp(28px,7vw,38px);font-weight:900;letter-spacing:-.06em;text-decoration:none;color:#fff}
+.wordmark span{color:#f02d98}
+.back{display:block;margin:18px 0 0;padding:13px 16px;border:2px solid #f02d98;border-radius:14px;color:#fff;text-decoration:none;font-size:14px;font-weight:900}
+.wrap{width:min(760px,calc(100% - 32px));margin:0 auto}
+.event-hero{min-height:190px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid #f02d98;border-radius:22px;background:radial-gradient(ellipse at 50% 45%,rgba(240,45,152,.28),transparent 58%),linear-gradient(145deg,#201622,#08080a);box-shadow:0 0 22px rgba(240,45,152,.16)}
+.event-hero img{width:100%;height:100%;max-height:310px;object-fit:cover;display:block}
+.event-hero strong{padding:28px;text-align:center;font-size:clamp(34px,9vw,58px);font-weight:900;line-height:.98;letter-spacing:-.05em;text-transform:uppercase}
+.details{padding:22px 0 0}
+.date{margin:0 0 10px;color:#f02d98;font-size:clamp(24px,6vw,36px);font-weight:900;line-height:1.08;text-transform:uppercase}
+.time{margin:0 0 18px;font-size:clamp(20px,5vw,28px);font-weight:900;line-height:1.2}
+.kind{margin:0 0 8px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#f02d98}
+.venue{margin:0 0 10px;font-size:clamp(32px,8vw,50px);font-weight:900;line-height:1;letter-spacing:-.05em;text-transform:uppercase;overflow-wrap:anywhere}
+.place{margin:0 0 22px;font-size:17px;font-weight:800;line-height:1.45}
+.place:before{content:"";display:inline-block;width:11px;height:11px;margin:0 9px 1px 0;border-radius:50%;background:#f02d98}
+.actions{display:grid;grid-template-columns:1fr;gap:11px;margin:22px 0 30px}
+.action{min-height:58px;display:flex;align-items:center;justify-content:center;padding:13px 16px;border:2px solid #f02d98;border-radius:15px;background:#f02d98;color:#080809;text-align:center;text-decoration:none;font-size:16px;font-weight:900}
+.action.secondary{background:#050507;color:#fff}
+.info{border-top:2px solid #f02d98;padding:18px 0 20px}
+.info h2{margin:0 0 8px;color:#f02d98;font-size:16px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+.info p{margin:0;font-size:clamp(18px,4.5vw,24px);font-weight:750;line-height:1.45;overflow-wrap:anywhere}
+.info a{color:#fff;text-decoration:underline;text-decoration-color:#f02d98;text-underline-offset:4px}
+.calendar{display:inline-flex;margin-top:22px;padding:12px 16px;border:1px solid #f02d98;border-radius:12px;color:#fff;text-decoration:none;font-size:13px;font-weight:800}
+.status{padding:22px;border:1px solid rgba(240,45,152,.5);border-radius:16px;color:#ddd;text-align:center}
+footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;border-top:1px solid rgba(240,45,152,.35);color:#888;font-size:11px;letter-spacing:.08em;text-align:center}
+@media(min-width:620px){.actions{grid-template-columns:1fr 1fr}.event-hero{min-height:260px}}
+</style>
+</head>
+<body>
+<header class="top">
+<a class="wordmark" href="/">JONNY<span>HYPE</span></a>
+<a class="back" href="/eventi.html">‹ TUTTI GLI EVENTI</a>
+</header>
+<main class="wrap" id="event-detail"><div class="status">Caricamento dettagli evento…</div></main>
+<footer>JONNYHYPE · DJ SET · KARAOKE · EVENTS &amp; MUSIC PRODUCTION</footer>
+<script>
+(function(){
+ const root=document.getElementById('event-detail');
+ const params=new URLSearchParams(location.search);
+ const wantedVenue=(params.get('venue')||'').trim().toUpperCase();
+ const wantedDate=(params.get('date')||'').trim();
+ const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const clean=s=>(s||'').replace(/\s+/g,' ').replace(/· APRI MAPPA/gi,'').trim();
+ const months={GENNAIO:0,FEBBRAIO:1,MARZO:2,APRILE:3,MAGGIO:4,GIUGNO:5,LUGLIO:6,AGOSTO:7,SETTEMBRE:8,OTTOBRE:9,NOVEMBRE:10,DICEMBRE:11};
+ function localDate(card){
+  const st=card.querySelector('.date-stack');if(!st)return '';
+  const p=[...st.querySelectorAll('span,strong')].map(x=>clean(x.textContent).toUpperCase());
+  if(!p[1]||months[p[2]]===undefined)return '';
+  const y=Number(wantedDate.slice(0,4))||new Date().getFullYear();
+  return y+'-'+String(months[p[2]]+1).padStart(2,'0')+'-'+String(Number(p[1])).padStart(2,'0');
+ }
+ fetch('/eventi.html',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error();return r.text()}).then(source=>{
+  const doc=new DOMParser().parseFromString(source,'text/html');
+  const card=[...doc.querySelectorAll('.event-card')].find(c=>{
+   const d=c.querySelector('.event-detail');if(!d)return false;
+   const brand=d.querySelector('.venue-brand');
+   const name=brand?clean(brand.querySelector('strong')?.textContent):clean(d.querySelector(':scope > strong:not(.event-subtitle)')?.textContent);
+   return name.toUpperCase()===wantedVenue&&localDate(c)===wantedDate;
+  });
+  if(!card)throw new Error('Evento non trovato');
+  const d=card.querySelector('.event-detail'),brand=d.querySelector('.venue-brand');
+  const kind=brand?clean(brand.querySelector('span')?.textContent):'';
+  const venue=brand?clean(brand.querySelector('strong')?.textContent):clean(d.querySelector(':scope > strong:not(.event-subtitle)')?.textContent);
+  const subtitle=clean(d.querySelector('.event-subtitle')?.textContent);
+  const time=clean(d.querySelector('.time')?.textContent);
+  const place=clean(d.querySelector('.venue-link')?.textContent);
+  const description=clean(d.querySelector('.event-description')?.textContent);
+  const dateParts=[...card.querySelectorAll('.date-stack span,.date-stack strong')].map(x=>clean(x.textContent));
+  const dateLabel=dateParts.join(' ');
+  const booking=card.querySelector('.whatsapp-cta')?.getAttribute('href')||'';
+  const map=d.querySelector('.venue-link')?.getAttribute('href')||'';
+  const calendar=card.querySelector('.event-actions .event-cta:not(.whatsapp-cta)')?.getAttribute('href')||'';
+  const isIgingini=venue.toUpperCase().includes('IGINGINI');
+  const image=isIgingini?'<img src="/Flyer_iGinGini_ognivenerdi.WEBP" alt="iGinGini · Drink Food Disco">':'';
+  const hero=image?'<div class="event-hero">'+image+'</div>':'<div class="event-hero"><strong>'+esc(venue)+'</strong></div>';
+  const actions=[];
+  if(booking)actions.push('<a class="action" href="'+esc(booking)+'" target="_blank" rel="noopener noreferrer">CHIAMA E PRENOTA</a>');
+  if(map)actions.push('<a class="action secondary" href="'+esc(map)+'" target="_blank" rel="noopener noreferrer">COME ARRIVARE</a>');
+  let sections='';
+  if(description)sections+='<section class="info"><h2>COSA C’È</h2><p>'+esc(description)+'</p></section>';
+  if(time)sections+='<section class="info"><h2>ORARIO</h2><p>'+esc(time)+'</p></section>';
+  if(kind)sections+='<section class="info"><h2>TIPOLOGIA</h2><p>'+esc(kind)+'</p></section>';
+  if(place)sections+='<section class="info"><h2>INDIRIZZO</h2><p>'+esc(place)+'</p></section>';
+  root.innerHTML=hero+'<div class="details"><h1 class="date">'+esc(dateLabel)+'</h1><p class="time">DALLE '+esc(time.split(/[–-]/)[0].trim())+(subtitle?' · '+esc(subtitle):'')+'</p>'+(kind?'<p class="kind">'+esc(kind)+'</p>':'')+'<h2 class="venue">'+esc(venue)+'</h2>'+(place?'<p class="place">'+esc(place)+'</p>':'')+'<div class="actions">'+actions.join('')+'</div>'+sections+(calendar?'<a class="calendar" href="'+esc(calendar)+'" download>AGGIUNGI AL CALENDARIO</a>':'')+'</div>';
+ }).catch(()=>{root.innerHTML='<div class="status">Non riesco a trovare questo evento. Torna all’elenco e seleziona nuovamente l’appuntamento.</div>';});
+})();
+</script>
+</body>
+</html>
