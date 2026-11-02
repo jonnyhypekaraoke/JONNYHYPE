@@ -83,7 +83,7 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   const dateParts=[...card.querySelectorAll('.date-stack span,.date-stack strong')].map(x=>clean(x.textContent));
   const dateLabel=dateParts.join(' ');
   const booking=card.querySelector('.whatsapp-cta')?.getAttribute('href')||'';
-  const phone=clean(card.querySelector('.wa-cta-phone')?.textContent).replace(/\\D/g,'');
+  const phone=clean(card.querySelector('.wa-cta-phone')?.textContent).replace(/\D/g,'');
   const map=d.querySelector('.venue-link')?.getAttribute('href')||'';
   const calendar=card.querySelector('.event-actions .event-cta:not(.whatsapp-cta)')?.getAttribute('href')||'';
   const isIgingini=venue.toUpperCase().includes('IGINGINI');
