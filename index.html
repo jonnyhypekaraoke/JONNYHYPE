@@ -1770,7 +1770,8 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const title=x.venue.toUpperCase();
    const image=title.includes('IGINGINI')?'<img src="/Flyer_iGinGini_ognivenerdi.WEBP" alt="iGinGini · Drink Food Disco" loading="lazy">':'<strong>'+esc(title)+'</strong>';
    const dateLabel=x.dayName+' '+x.day+' '+x.monthName;
-   const localDate=x.date.getFullYear()+'-'+String(x.date.getMonth()+1).padStart(2,'0')+'-'+String(x.date.getDate()).padStart(2,'0');\n   const query=new URLSearchParams({venue:x.venue,date:localDate});
+   const localDate=x.date.getFullYear()+'-'+String(x.date.getMonth()+1).padStart(2,'0')+'-'+String(x.date.getDate()).padStart(2,'0');
+   const query=new URLSearchParams({venue:x.venue,date:localDate});
    return '<a class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div><div class="jh-home-upcoming-time">DALLE '+esc(x.time.split(/[–-]/)[0].trim())+(x.subtitle?' · '+esc(x.subtitle):'')+'</div>'+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.place?'<div class="jh-home-upcoming-place">'+esc(x.place)+'</div>':'')+'<div class="jh-home-upcoming-cta">SCOPRI TUTTO ›</div></div></a>';
   }).join('');
  }).catch(()=>{section.querySelector('.jh-home-upcoming-list').innerHTML='<div class="jh-home-upcoming-empty">Non è stato possibile caricare gli eventi. Consulta la sezione Prossimi Eventi.</div>';});
