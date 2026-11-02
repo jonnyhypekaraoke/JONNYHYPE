@@ -1774,7 +1774,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
   if(!sorted.length){list.innerHTML='<div class="jh-home-upcoming-empty">Al momento non ci sono eventi imminenti da mostrare.</div>';return;}
   list.innerHTML=sorted.map(x=>{
    const title=x.venue.toUpperCase();
-   const image=title.includes('IGINGINI')?'<img class="jh-home-upcoming-logo" src="/IGinGini%20.jpg" alt="iGinGini · Drink Food Disco" loading="lazy">':title.includes('ALCHIMIA')?'<img src="/ALCHIMIA.jpg" alt="Alchimia · sala karaoke" loading="lazy">':title.includes('ICE MARINA')?'<img src="/ICE%20.jpg" alt="ICE Marina Club · sala ristorante" loading="lazy">':'<strong>'+esc(title)+'</strong>';
+   const image=title.includes('IGINGINI')?'<img class="jh-home-upcoming-logo" src="/IGinGini%20.jpg" alt="iGinGini · Drink Food Disco" loading="lazy">':title.includes('ALCHIMIA')?'<img src="/ALCHIMIA.jpg" alt="Alchimia · sala karaoke" loading="lazy">':title.includes('ICE MARINA')?'<img src="/ICE%20.jpg" alt="ICE Marina Club · sala ristorante" loading="lazy">':title.includes('CASABLANCA')?'<img src="/Casablanca.jpg" alt="Casablanca" loading="lazy">':'<strong>'+esc(title)+'</strong>';
    const dateLabel=x.dayName+' '+x.day+' '+x.monthName;
    const localDate=x.date.getFullYear()+'-'+String(x.date.getMonth()+1).padStart(2,'0')+'-'+String(x.date.getDate()).padStart(2,'0');
    const query=new URLSearchParams({venue:x.venue,date:localDate});
