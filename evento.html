@@ -83,13 +83,15 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   const dateParts=[...card.querySelectorAll('.date-stack span,.date-stack strong')].map(x=>clean(x.textContent));
   const dateLabel=dateParts.join(' ');
   const booking=card.querySelector('.whatsapp-cta')?.getAttribute('href')||'';
+  const phone=clean(card.querySelector('.wa-cta-phone')?.textContent).replace(/\\D/g,'');
   const map=d.querySelector('.venue-link')?.getAttribute('href')||'';
   const calendar=card.querySelector('.event-actions .event-cta:not(.whatsapp-cta)')?.getAttribute('href')||'';
   const isIgingini=venue.toUpperCase().includes('IGINGINI');
   const image=isIgingini?'<img src="/Flyer_iGinGini_ognivenerdi.WEBP" alt="iGinGini · Drink Food Disco">':'';
   const hero=image?'<div class="event-hero">'+image+'</div>':'<div class="event-hero"><strong>'+esc(venue)+'</strong></div>';
   const actions=[];
-  if(booking)actions.push('<a class="action" href="'+esc(booking)+'" target="_blank" rel="noopener noreferrer">CHIAMA E PRENOTA</a>');
+  if(phone)actions.push('<a class="action" href="tel:+39'+esc(phone)+'">CHIAMA E PRENOTA</a>');
+  if(booking)actions.push('<a class="action secondary" href="'+esc(booking)+'" target="_blank" rel="noopener noreferrer">PRENOTA SU WHATSAPP</a>');
   if(map)actions.push('<a class="action secondary" href="'+esc(map)+'" target="_blank" rel="noopener noreferrer">COME ARRIVARE</a>');
   let sections='';
   if(description)sections+='<section class="info"><h2>COSA C’È</h2><p>'+esc(description)+'</p></section>';
