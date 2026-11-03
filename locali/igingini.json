@@ -14,7 +14,64 @@
   "description": "Drink · Food · Disco",
   "phone": "",
   "bookingUrl": "",
-  "gallery": [],
+  "gallery": [
+    {
+      "src": "/images/locali/igingini/IMG_2831.jpeg",
+      "alt": "iGinGini – foto 1"
+    },
+    {
+      "src": "/images/locali/igingini/IMG_2832.jpeg",
+      "alt": "iGinGini – foto 2"
+    },
+    {
+      "src": "/images/locali/igingini/Ig12.PNG",
+      "alt": "iGinGini – foto 3"
+    },
+    {
+      "src": "/images/locali/igingini/Igi1.PNG",
+      "alt": "iGinGini – foto 4"
+    },
+    {
+      "src": "/images/locali/igingini/Igi10.PNG",
+      "alt": "iGinGini – foto 5"
+    },
+    {
+      "src": "/images/locali/igingini/Igi11.PNG",
+      "alt": "iGinGini – foto 6"
+    },
+    {
+      "src": "/images/locali/igingini/Igi2.PNG",
+      "alt": "iGinGini – foto 7"
+    },
+    {
+      "src": "/images/locali/igingini/Igi3.PNG",
+      "alt": "iGinGini – foto 8"
+    },
+    {
+      "src": "/images/locali/igingini/Igi4.PNG",
+      "alt": "iGinGini – foto 9"
+    },
+    {
+      "src": "/images/locali/igingini/Igi5.PNG",
+      "alt": "iGinGini – foto 10"
+    },
+    {
+      "src": "/images/locali/igingini/Igi6.PNG",
+      "alt": "iGinGini – foto 11"
+    },
+    {
+      "src": "/images/locali/igingini/Igi7.PNG",
+      "alt": "iGinGini – foto 12"
+    },
+    {
+      "src": "/images/locali/igingini/Igi8.PNG",
+      "alt": "iGinGini – foto 13"
+    },
+    {
+      "src": "/images/locali/igingini/Igi9.PNG",
+      "alt": "iGinGini – foto 14"
+    }
+  ],
   "notes": "Scheda permanente: non cancellare quando termina un evento.",
   "updatedAt": "2026-11-03"
 }
