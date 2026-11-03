@@ -39,19 +39,18 @@ body{padding:0 0 36px}
 .status{padding:22px;border:1px solid rgba(240,45,152,.5);border-radius:16px;color:#ddd;text-align:center}
 footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;border-top:1px solid rgba(240,45,152,.35);color:#888;font-size:11px;letter-spacing:.08em;text-align:center}
 @media(min-width:620px){.actions{grid-template-columns:1fr 1fr}.event-hero{min-height:260px}}
-/* Invito allo scorrimento nella pagina del singolo evento */
+/* Indicatore di scorrimento minimale, coordinato con la home */
 .scroll-detail-hint{
- display:flex;flex-direction:row;align-items:center;justify-content:center;gap:9px;
- width:100%;min-height:54px;margin:3px auto 12px;padding:12px 16px;
- border-radius:14px;background:#f02d98;color:#000!important;
- text-decoration:none;text-align:center;
- font-family:Montserrat,Arial,sans-serif;font-size:15px;
- font-weight:900;letter-spacing:.025em;text-shadow:none;
+ display:flex;align-items:center;justify-content:center;
+ width:100%;min-height:0;margin:0 auto;padding:4px 0 8px;
+ background:transparent;border:0;text-decoration:none;
 }
-.scroll-detail-arrow{display:inline-block;color:#000;font-size:22px;line-height:1;font-weight:700;animation:scroll-detail-bounce 1.35s ease-in-out infinite}
-@keyframes scroll-detail-bounce{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(4px);opacity:1}}
+.scroll-detail-arrow{
+ display:inline-block;color:#f02d98;font-size:25px;line-height:1;font-weight:900;
+ -webkit-text-stroke:.45px rgba(255,255,255,.8);
+ text-shadow:0 0 2px rgba(255,255,255,.55);
+}
 #event-details{scroll-margin-top:18px}
-@media(prefers-reduced-motion:reduce){.scroll-detail-arrow{animation:none}}
 </style>
 </head>
 <body>
@@ -116,7 +115,7 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   if(time)sections+='<section class="info"><h2>ORARIO</h2><p>'+esc(time)+'</p></section>';
   if(kind)sections+='<section class="info"><h2>TIPOLOGIA</h2><p>'+esc(kind)+'</p></section>';
   if(place)sections+='<section class="info"><h2>INDIRIZZO</h2><p>'+esc(place)+'</p></section>';
-  root.innerHTML=hero+'<a class="scroll-detail-hint" href="#event-details" aria-label="Scorri per tutti i dettagli dell’evento"><span>SCORRI PER TUTTI I DETTAGLI</span><span class="scroll-detail-arrow" aria-hidden="true">↓</span></a><div class="details" id="event-details"><h1 class="date">'+esc(dateLabel)+'</h1><p class="time">'+(time==='20:00–03:00'&&venue.toUpperCase().includes('IGINGINI')?'DALLE 20 ALLE 03':'DALLE '+esc(time.split(/[–-]/)[0].trim()))+(subtitle?' · '+esc(subtitle):'')+'</p>'+(kind?'<p class="kind">'+esc(kind)+'</p>':'')+'<h2 class="venue">'+esc(venue)+'</h2>'+(place?'<p class="place">'+esc(place)+'</p>':'')+sections+(calendar?'<a class="calendar" href="'+esc(calendar)+'" download>AGGIUNGI AL CALENDARIO</a>':'')+'<div class="actions">'+actions.join('')+'</div></div>';
+  root.innerHTML=hero+'<a class="scroll-detail-hint" href="#event-details" aria-label="Vai ai dettagli dell’evento"><span class="scroll-detail-arrow" aria-hidden="true">↓</span></a><div class="details" id="event-details"><h1 class="date">'+esc(dateLabel)+'</h1><p class="time">'+(time==='20:00–03:00'&&venue.toUpperCase().includes('IGINGINI')?'DALLE 20 ALLE 03':'DALLE '+esc(time.split(/[–-]/)[0].trim()))+(subtitle?' · '+esc(subtitle):'')+'</p>'+(kind?'<p class="kind">'+esc(kind)+'</p>':'')+'<h2 class="venue">'+esc(venue)+'</h2>'+(place?'<p class="place">'+esc(place)+'</p>':'')+sections+(calendar?'<a class="calendar" href="'+esc(calendar)+'" download>AGGIUNGI AL CALENDARIO</a>':'')+'<div class="actions">'+actions.join('')+'</div></div>';
  }).catch(()=>{root.innerHTML='<div class="status">Non riesco a trovare questo evento. Torna all’elenco e seleziona nuovamente l’appuntamento.</div>';});
 })();
 </script>
