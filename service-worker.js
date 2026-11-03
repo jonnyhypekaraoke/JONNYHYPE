@@ -1,9 +1,10 @@
-const CACHE_NAME = "jonnyhype-site-v22";
+const CACHE_NAME = "jonnyhype-site-v23";
 const CORE_ASSETS = [
   "/",
   "/index.html",
   "/evento.html",
   "/eventi.html",
+  "/Viavai.JPG",
   "/jonnyhype-portrait.jpg",
   "/ravenna-song-festival-2026.png",
   "/mercato-coperto-ravenna.png",
