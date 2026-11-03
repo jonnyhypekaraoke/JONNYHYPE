@@ -1827,8 +1827,8 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    hint.href='#jh-home-upcoming-next';
    hint.setAttribute('aria-label','Vai agli altri eventi');
    hint.innerHTML='<span>ALTRI EVENTI</span><span class="jh-home-scroll-arrow" aria-hidden="true">↓</span>';
-   const nextCard=list.querySelector('#jh-home-upcoming-next');
-   if(nextCard)list.insertBefore(hint,nextCard);
+   const firstCard=list.querySelector('.jh-home-upcoming-card');
+   if(firstCard)list.insertBefore(hint,firstCard);
   }
  }).catch(()=>{section.querySelector('.jh-home-upcoming-list').innerHTML='<div class="jh-home-upcoming-empty">Non è stato possibile caricare gli eventi. Consulta la sezione Prossimi Eventi.</div>';});
 })();
