@@ -839,7 +839,7 @@ html body main .jh-437-label {
  const list=document.querySelector('.event-list');
  if(!list)return;
  const monthMap={GENNAIO:0,FEBBRAIO:1,MARZO:2,APRILE:3,MAGGIO:4,GIUGNO:5,LUGLIO:6,AGOSTO:7,SETTEMBRE:8,OTTOBRE:9,NOVEMBRE:10,DICEMBRE:11};
- const clean=s=>String(s||'').replace(/\\s+/g,' ').replace(/· APRI MAPPA/gi,'').trim();
+ const clean=s=>String(s||'').replace(/\s+/g,' ').replace(/· APRI MAPPA/gi,'').trim();
  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const today=new Date();today.setHours(0,0,0,0);
  const rows=[...list.querySelectorAll('.event-card')].map(card=>{
@@ -858,7 +858,7 @@ html body main .jh-437-label {
   const time=clean(detail.querySelector('.time')?.textContent);
   const placeNode=detail.querySelector('.venue-link');
   const clone=placeNode?.cloneNode(true);clone?.querySelector('.map-label')?.remove();
-  const raw=(clone?.innerHTML||'').replace(/<br\\s*\\/?\\s*>/gi,'|').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\\s+/g,' ').trim();
+  const raw=(clone?.innerHTML||'').replace(/<br\s*\\/?\s*>/gi,'|').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
   const lines=raw.split('|').map(v=>v.trim()).filter(Boolean);
   const base=lines.length>1?lines[lines.length-1]:(lines[0]||'');
   const place=base.split('·').map(v=>v.trim()).filter(Boolean);
@@ -877,7 +877,7 @@ html body main .jh-437-label {
   const localDate=x.date.getFullYear()+'-'+String(x.date.getMonth()+1).padStart(2,'0')+'-'+String(x.date.getDate()).padStart(2,'0');
   const query=new URLSearchParams({venue:x.venue,date:localDate});
   const special=(x.subtitle||'').toUpperCase().includes('SPECIALE');
-  const timeParts=clean(x.time).replace(/^DALLE\\s*/i,'').split(/\\s*(?:-|–|—|A)\\s*/).map(v=>v.trim()).filter(Boolean);
+  const timeParts=clean(x.time).replace(/^DALLE\s*/i,'').split(/\s*(?:-|–|—|A)\s*/).map(v=>v.trim()).filter(Boolean);
   const timeLabel=timeParts.length>1?'DALLE '+timeParts[0]+' ALLE '+timeParts[1]:'DALLE '+timeParts[0];
   const specialBlock=special?'<div class="jh-home-upcoming-special"><span>SPECIALE</span><strong>RAVENNA SONG FESTIVAL</strong></div>':(x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':'');
   const kind=x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'';
