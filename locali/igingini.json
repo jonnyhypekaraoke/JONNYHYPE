@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "igingini",
+  "name": "iGinGini",
+  "aliases": [
+    "IGINGINI",
+    "iGinGini"
+  ],
+  "address": "Via IX Febbraio",
+  "city": "Ravenna",
+  "province": "RA",
+  "map": "https://www.google.com/maps/search/?api=1&query=iGinGini+Via+IX+Febbraio+Ravenna",
+  "logo": "/IGinGini%20.jpg",
+  "description": "Drink · Food · Disco",
+  "phone": "",
+  "bookingUrl": "",
+  "gallery": [],
+  "notes": "Scheda permanente: non cancellare quando termina un evento.",
+  "updatedAt": "2026-11-03"
+}
