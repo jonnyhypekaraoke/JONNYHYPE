@@ -440,7 +440,31 @@ main{width:min(1200px,calc(100% - 64px));margin:0 auto}
 .jh-events-home-list .jh-home-upcoming-address{color:#d5d5da!important;font-size:13px!important;line-height:1.3!important}
 .jh-events-home-list .jh-home-upcoming-address .address-line,.jh-events-home-list .jh-home-upcoming-address .city-line{display:block!important}
 .jh-events-home-list .jh-home-upcoming-cta{min-height:48px!important;margin-top:6px!important;border-radius:11px!important;background:#F02D98!important;color:#050507!important;font-size:15px!important;font-weight:900!important}
-</style></head><body><header class="site-header"><div class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel jh-menu-numbered" aria-label="Menu principale"><a href="/"><span class="jh-menu-number">01</span><span class="jh-menu-label">HOME</span></a><a href="/jonnyhype.html"><span class="jh-menu-number">02</span><span class="jh-menu-label">CHI È JONNYHYPE</span></a><a href="/eventi.html"><span class="jh-menu-number">03</span><span class="jh-menu-label">PROSSIMI EVENTI</span></a><a href="/karaoke.html"><span class="jh-menu-number">04</span><span class="jh-menu-label">PRENOTATI PER CANTARE ORA</span></a><a href="/ravenna-song-festival.html"><span class="jh-menu-number">05</span><span class="jh-menu-label">RAVENNA SONG FESTIVAL</span></a><a href="/karaoke-legends-galleria.html"><span class="jh-menu-number">06</span><span class="jh-menu-label">KARAOKE LEGENDS</span></a><a href="/galleria.html"><span class="jh-menu-number">07</span><span class="jh-menu-label">GALLERIA FOTO E VIDEO</span></a><a href="/community.html"><span class="jh-menu-number">08</span><span class="jh-menu-label">CHAT LIVE • COMMUNITY</span></a></nav></details></div><nav class="social-icons brand-socials" aria-label="Seguimi sui social">
+</style><style id="jh-events-home-layout-hard-fix">
+.event-list.jh-events-home-list{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:20px!important;width:100%!important;max-width:760px!important;margin:0 auto!important;padding:0!important}
+.event-list.jh-events-home-list .jh-home-upcoming-card{display:flex!important;flex-direction:column!important;overflow:hidden!important;width:100%!important;min-width:0!important;border:2px solid #f02d98!important;border-radius:22px!important;background:#050507!important;color:#fff!important;text-decoration:none!important;box-shadow:0 0 18px rgba(240,45,152,.17)!important}
+.event-list.jh-events-home-list .jh-home-upcoming-visual{height:clamp(150px,43vw,270px)!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;background:#08080a!important;border-bottom:1px solid rgba(240,45,152,.45)!important}
+.event-list.jh-events-home-list .jh-home-upcoming-visual img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important}
+.event-list.jh-events-home-list .jh-home-upcoming-visual img.jh-home-upcoming-logo{object-fit:contain!important;padding:16px!important}
+.event-list.jh-events-home-list .jh-home-upcoming-info{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important;padding:17px 18px 19px!important}
+.event-list.jh-events-home-list .jh-home-upcoming-date{margin:0!important;color:#f02d98!important;font-family:Montserrat,Arial,sans-serif!important;font-size:clamp(19px,5vw,28px)!important;font-weight:900!important;line-height:1.08!important}
+.event-list.jh-events-home-list .jh-home-upcoming-time{display:inline-flex!important;justify-self:start!important;margin:0!important;padding:5px 10px!important;border-left:3px solid #f02d98!important;border-radius:0 8px 8px 0!important;background:rgba(255,255,255,.08)!important;color:#fff!important;font-size:clamp(14px,3.7vw,18px)!important;font-weight:800!important}
+.event-list.jh-events-home-list .jh-home-upcoming-venue-panel{display:block!important;margin:2px 0!important;padding:16px 18px!important;border:1px solid rgba(240,45,152,.65)!important;border-radius:16px!important;background:linear-gradient(110deg,rgba(240,45,152,.10),rgba(255,255,255,.025))!important}
+.event-list.jh-events-home-list .jh-home-upcoming-kind{margin:0 0 5px!important;color:#f02d98!important;font-size:13px!important;font-weight:800!important;letter-spacing:.07em!important;text-transform:uppercase!important}
+.event-list.jh-events-home-list .jh-home-upcoming-venue{font-family:Montserrat,Arial,sans-serif!important;font-size:clamp(28px,7.5vw,42px)!important;font-weight:900!important;line-height:1.02!important;letter-spacing:-.04em!important;text-transform:uppercase!important;overflow-wrap:anywhere!important}
+.event-list.jh-events-home-list .jh-home-upcoming-address{margin-top:8px!important;font-size:17px!important;font-weight:800!important;line-height:1.3!important}
+.event-list.jh-events-home-list .jh-home-upcoming-address .address-line,.event-list.jh-events-home-list .jh-home-upcoming-address .city-line{display:block!important}
+.event-list.jh-events-home-list .jh-home-upcoming-address .city-line{margin-top:2px!important;color:#c9c6ce!important;font-size:14px!important}
+.event-list.jh-events-home-list .jh-home-upcoming-special,.event-list.jh-events-home-list .jh-home-upcoming-promo{margin:2px 0!important;padding:11px 13px!important;border:1px solid rgba(240,45,152,.55)!important;border-radius:11px!important;background:linear-gradient(110deg,rgba(240,45,152,.13),rgba(255,255,255,.025))!important}
+.event-list.jh-events-home-list .jh-home-upcoming-special{display:flex!important;flex-direction:column!important;gap:4px!important}
+.event-list.jh-events-home-list .jh-home-upcoming-special span{color:#f02d98!important;font-size:11px!important;font-weight:900!important;letter-spacing:.12em!important}
+.event-list.jh-events-home-list .jh-home-upcoming-special strong{color:#fff!important;font-size:clamp(16px,4vw,20px)!important;font-weight:900!important}
+.event-list.jh-events-home-list .jh-home-upcoming-promo{border-left:3px solid #f02d98!important;color:#eee!important;font-size:13px!important;font-weight:750!important;line-height:1.4!important}
+.event-list.jh-events-home-list .jh-home-upcoming-schedule{display:grid!important;gap:6px!important;color:#fff!important;font-size:14px!important;font-weight:800!important}
+.event-list.jh-events-home-list .jh-home-upcoming-cta{display:flex!important;align-items:center!important;justify-content:center!important;min-height:54px!important;margin-top:7px!important;padding:12px!important;border-radius:14px!important;background:#f02d98!important;color:#080809!important;font-family:Montserrat,Arial,sans-serif!important;font-size:17px!important;font-weight:900!important;text-transform:uppercase!important}
+@media(max-width:600px){.event-list.jh-events-home-list{gap:17px!important}.event-list.jh-events-home-list .jh-home-upcoming-info{padding:15px 16px 17px!important}}
+</style>
+</head><body><header class="site-header"><div class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel jh-menu-numbered" aria-label="Menu principale"><a href="/"><span class="jh-menu-number">01</span><span class="jh-menu-label">HOME</span></a><a href="/jonnyhype.html"><span class="jh-menu-number">02</span><span class="jh-menu-label">CHI È JONNYHYPE</span></a><a href="/eventi.html"><span class="jh-menu-number">03</span><span class="jh-menu-label">PROSSIMI EVENTI</span></a><a href="/karaoke.html"><span class="jh-menu-number">04</span><span class="jh-menu-label">PRENOTATI PER CANTARE ORA</span></a><a href="/ravenna-song-festival.html"><span class="jh-menu-number">05</span><span class="jh-menu-label">RAVENNA SONG FESTIVAL</span></a><a href="/karaoke-legends-galleria.html"><span class="jh-menu-number">06</span><span class="jh-menu-label">KARAOKE LEGENDS</span></a><a href="/galleria.html"><span class="jh-menu-number">07</span><span class="jh-menu-label">GALLERIA FOTO E VIDEO</span></a><a href="/community.html"><span class="jh-menu-number">08</span><span class="jh-menu-label">CHAT LIVE • COMMUNITY</span></a></nav></details></div><nav class="social-icons brand-socials" aria-label="Seguimi sui social">
 <a href="https://www.instagram.com/jonnyhype.official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt=""></a>
 <a href="https://youtube.com/@jonnyhype.official" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/FF0033" alt=""></a>
 <a href="https://open.spotify.com/artist/084BcwC4P7NKvnPsv7lIJW" target="_blank" rel="noopener noreferrer" aria-label="Spotify" title="Spotify"><img src="https://cdn.simpleicons.org/spotify/1DB954" alt=""></a>
@@ -750,34 +774,38 @@ html body main .jh-437-label {
 </script>
 <script id="jh-events-render-home-cards-20261103">
 (function(){
- const section=document.getElementById('calendario-elenco');
- if(!section)return;
+ const section=document.getElementById('calendario-elenco');if(!section)return;
  const source=[...section.querySelectorAll('.event-card')];
  const monthMap={GENNAIO:0,FEBBRAIO:1,MARZO:2,APRILE:3,MAGGIO:4,GIUGNO:5,LUGLIO:6,AGOSTO:7,SETTEMBRE:8,OTTOBRE:9,NOVEMBRE:10,DICEMBRE:11};
  const clean=s=>String(s||'').replace(/\s+/g,' ').replace(/&nbsp;/gi,' ').trim();
  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const today=new Date();today.setHours(0,0,0,0);
  const rows=source.map(card=>{
-  const parts=[...card.querySelectorAll('.date-stack span,.date-stack strong')].map(x=>clean(x.textContent).toUpperCase());
-  const day=Number(parts[1]),month=parts[2]||'';
-  if(!day||monthMap[month]===undefined||day===1&&month==='NOVEMBRE')return null;
+  const stack=card.querySelector('.date-stack');if(!stack)return null;
+  const parts=[...stack.querySelectorAll('span,strong')].map(x=>clean(x.textContent).toUpperCase());
+  const dayName=parts[0]||'',day=Number(parts[1]),monthName=parts[2]||'';
+  if(!day||monthMap[monthName]===undefined||day===1&&monthName==='NOVEMBRE')return null;
+  let date=new Date(2026,monthMap[monthName],day);
+  if(date<today&&monthMap[monthName]<today.getMonth())date=new Date(2027,monthMap[monthName],day);
+  if(date<today)return null;
   const detail=card.querySelector('.event-detail');if(!detail)return null;
   const brand=detail.querySelector('.venue-brand');
   const kind=brand?clean(brand.querySelector('span')?.textContent):'';
   const venue=brand?clean(brand.querySelector('strong')?.textContent):clean(detail.querySelector(':scope > strong:not(.event-subtitle)')?.textContent);
   const subtitle=clean(detail.querySelector('.event-subtitle')?.textContent);
   const time=clean(detail.querySelector('.time')?.textContent);
+  const placeNode=detail.querySelector('.venue-link'),placeClone=placeNode?.cloneNode(true);placeClone?.querySelector('.map-label')?.remove();
+  const placeRaw=(placeClone?.innerHTML||'').replace(/<br\s*\/?\s*>/gi,'|').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
+  const placeLines=placeRaw.split('|').map(v=>v.trim()).filter(Boolean);
+  const placeBase=placeLines.length>1?placeLines[placeLines.length-1]:(placeLines[0]||'');
+  const placeParts=placeBase.split('·').map(v=>v.trim()).filter(Boolean);
   const desc=clean(detail.querySelector('.event-description')?.textContent);
-  const place=detail.querySelector('.venue-link');
-  const clone=place?.cloneNode(true);clone?.querySelector('.map-label')?.remove();
-  const raw=(clone?.innerHTML||'').replace(/<br\s*\\/?\s*>/gi,'|').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
-  const lines=raw.split('|').map(x=>x.trim()).filter(Boolean);
-  const base=lines.length>1?lines[lines.length-1]:(lines[0]||'');
-  const addressParts=base.split('·').map(x=>x.trim()).filter(Boolean);
-  return {dayName:parts[0]||'',day,month,kind,venue,subtitle,time,desc,address:addressParts[0]||'',city:addressParts.slice(1).join(' · ')};
- }).filter(x=>x&&x.venue&&x.time).sort((a,b)=>monthMap[a.month]-monthMap[b.month]||a.day-b.day);
- const monthShort={GENNAIO:'01',FEBBRAIO:'02',MARZO:'03',APRILE:'04',MAGGIO:'05',GIUGNO:'06',LUGLIO:'07',AGOSTO:'08',SETTEMBRE:'09',OTTOBRE:'10',NOVEMBRE:'11',DICEMBRE:'12'};
- const imageFor=name=>{
-  const n=name.toUpperCase();
+  return {date,dayName,day,monthName,kind,venue,subtitle,time,address:placeParts[0]||'',city:placeParts.slice(1).join(' · '),desc};
+ }).filter(x=>x&&x.venue&&x.time);
+ const unique=new Map();rows.forEach(x=>unique.set([x.date.toISOString().slice(0,10),x.venue,x.time].join('|'),x));
+ const sorted=[...unique.values()].sort((a,b)=>a.date-b.date);
+ const monthNum=x=>String(x.date.getMonth()+1).padStart(2,'0');
+ const imageFor=name=>{const n=name.toUpperCase();
   if(n.includes('IGINGINI'))return '<img class="jh-home-upcoming-logo" src="/IGinGini%20.jpg" alt="iGinGini">';
   if(n.includes('ALCHIMIA'))return '<img src="/ALCHIMIA.jpg" alt="Alchimia">';
   if(n.includes('ICE MARINA'))return '<img src="/ICE%20.jpg" alt="ICE Marina Club">';
@@ -786,18 +814,17 @@ html body main .jh-437-label {
   if(n.includes('VIA VAI'))return '<img src="/Viavai.JPG" alt="Via Vai Café">';
   return '<strong>'+esc(name)+'</strong>';
  };
- const list=section.querySelector('.event-list');
- if(!list)return;
+ const list=section.querySelector('.event-list');if(!list)return;
  list.className='event-list jh-events-home-list';
- list.innerHTML=rows.map(x=>{
-  const date='2026-'+monthShort[x.month]+'-'+String(x.day).padStart(2,'0');
+ if(!sorted.length){list.innerHTML='<div class="jh-home-upcoming-empty">Al momento non ci sono eventi imminenti da mostrare.</div>';return;}
+ list.innerHTML=sorted.map(x=>{
+  const date=x.date.getFullYear()+'-'+monthNum(x)+'-'+String(x.day).padStart(2,'0');
   const query=new URLSearchParams({venue:x.venue,date});
-  const isIgingini=x.venue.toUpperCase().includes('IGINGINI')&&x.day===6;
+  const isIgingini=x.venue.toUpperCase().includes('IGINGINI')&&date==='2026-11-06';
   const isSpecial=x.subtitle.toUpperCase().includes('SPECIALE')&&x.venue.toUpperCase().includes('ICE MARINA');
-  const support=isIgingini?'':(x.subtitle||x.desc);
   const rawTime=x.time.replace(/^DALLE\s*/i,'').replace(/\s*(?:-|–|—|A)\s*/i,'|').split('|').map(v=>v.trim()).filter(Boolean);
   const timeLabel=rawTime.length>1?'DALLE '+rawTime[0]+' ALLE '+rawTime[1]:'DALLE '+rawTime[0];
-  return '<a class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(x.dayName)+' '+x.day+' '+esc(x.month)+'"><div class="jh-home-upcoming-visual">'+imageFor(x.venue)+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(x.dayName)+' '+String(x.day).padStart(2,'0')+'.'+monthShort[x.month]+'</div>'+(isIgingini?'':'<div class="jh-home-upcoming-time">'+esc(timeLabel)+'</div>')+(isSpecial?'<div class="jh-home-upcoming-special"><span>SPECIALE</span><strong>RAVENNA SONG FESTIVAL</strong></div>':(x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':''))+'<div class="jh-home-upcoming-venue-panel">'+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+'</div>'+(isIgingini?'<div class="jh-home-upcoming-schedule"><span>20:00 – 23:00 <b>CENA KARAOKE</b></span><span>23:00 – 03:00 <b>DJ SET ’90/’00</b></span></div>':'')+(x.desc&&!isIgingini?'<div class="jh-home-upcoming-promo">'+esc(x.desc)+'</div>':'')+'<div class="jh-home-upcoming-cta">SCOPRI TUTTO ›</div></div></a>';
+  return '<a class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(x.dayName)+' '+x.day+' '+esc(x.monthName)+'"><div class="jh-home-upcoming-visual">'+imageFor(x.venue)+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(x.dayName)+' '+String(x.day).padStart(2,'0')+'.'+monthNum(x)+'</div>'+(isIgingini?'':'<div class="jh-home-upcoming-time">'+esc(timeLabel)+'</div>')+(isSpecial?'<div class="jh-home-upcoming-special"><span>SPECIALE</span><strong>RAVENNA SONG FESTIVAL</strong></div>':(x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':''))+'<div class="jh-home-upcoming-venue-panel">'+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+'</div>'+(isIgingini?'<div class="jh-home-upcoming-schedule"><span>20:00 – 23:00 <b>CENA KARAOKE</b></span><span>23:00 – 03:00 <b>DJ SET ’90/’00</b></span></div>':'')+(x.desc&&!isIgingini?'<div class="jh-home-upcoming-promo">'+esc(x.desc)+'</div>':'')+'<div class="jh-home-upcoming-cta">SCOPRI TUTTO ›</div></div></a>';
  }).join('');
  const featured=document.getElementById('eventi-in-evidenza');if(featured)featured.remove();
 })();
