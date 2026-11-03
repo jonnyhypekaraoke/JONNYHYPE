@@ -1073,6 +1073,14 @@ h1{font-weight:900!important;line-height:1.08!important}
 <style id="jh-home-upcoming-igingini-schedule">
 .jh-home-upcoming-schedule{color:#fff;font-family:Montserrat,Arial,sans-serif;font-size:clamp(13px,3.5vw,16px);font-weight:800;line-height:1.35;white-space:normal}
 </style>
+
+<style id="jh-home-upcoming-spacing-and-address-fix-20261103">
+/* Spaziatura più equilibrata: orario subordinato alla data e indirizzi senza parole isolate. */
+.jh-home-upcoming-info{gap:6px!important;padding-top:17px!important;padding-bottom:18px!important}
+.jh-home-upcoming-date{margin:0!important;line-height:1.04!important}
+.jh-home-upcoming-time{margin:0!important;font-size:clamp(14px,3.7vw,18px)!important;line-height:1.12!important;font-weight:800!important}
+.jh-home-upcoming-place{display:block!important;max-width:100%!important;margin-top:2px!important;font-size:clamp(14px,3.8vw,17px)!important;line-height:1.28!important;overflow-wrap:normal!important;word-break:normal!important;text-wrap:pretty}
+</style>
 </head>
 <body>
 <div class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel jh-menu-numbered" aria-label="Menu principale"><a href="/"><span class="jh-menu-number">01</span><span class="jh-menu-label">HOME</span></a><a href="/jonnyhype.html"><span class="jh-menu-number">02</span><span class="jh-menu-label">CHI È JONNYHYPE</span></a><a href="/eventi.html"><span class="jh-menu-number">03</span><span class="jh-menu-label">PROSSIMI EVENTI</span></a><a href="/karaoke.html"><span class="jh-menu-number">04</span><span class="jh-menu-label">PRENOTATI PER CANTARE ORA</span></a><a href="/ravenna-song-festival.html"><span class="jh-menu-number">05</span><span class="jh-menu-label">RAVENNA SONG FESTIVAL</span></a><a href="/karaoke-legends-galleria.html"><span class="jh-menu-number">06</span><span class="jh-menu-label">KARAOKE LEGENDS</span></a><a href="/galleria.html"><span class="jh-menu-number">07</span><span class="jh-menu-label">GALLERIA FOTO E VIDEO</span></a><a href="/community.html"><span class="jh-menu-number">08</span><span class="jh-menu-label">CHAT LIVE • COMMUNITY</span></a></nav></details></div>
@@ -1783,7 +1791,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const venue=brand?clean(brand.querySelector('strong')?.textContent):clean(detail.querySelector(':scope > strong:not(.event-subtitle)')?.textContent);
    const subtitle=clean(detail.querySelector('.event-subtitle')?.textContent);
    const time=clean(detail.querySelector('.time')?.textContent);
-   const place=clean(detail.querySelector('.venue-link')?.textContent);
+   const place=clean(detail.querySelector('.venue-link')?.textContent).replace(/\b(VIA|VIALE|CORSO|PIAZZA|VICOLO|LARGO)\s+/gi,'$1\u00a0');
    const desc=clean(detail.querySelector('.event-description')?.textContent);
    const booking=card.querySelector('.whatsapp-cta')?.getAttribute('href')||'';
    const map=detail.querySelector('.venue-link')?.getAttribute('href')||'';
