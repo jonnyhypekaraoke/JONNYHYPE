@@ -1818,7 +1818,9 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const localDate=x.date.getFullYear()+'-'+String(x.date.getMonth()+1).padStart(2,'0')+'-'+String(x.date.getDate()).padStart(2,'0');
    const query=new URLSearchParams({venue:x.venue,date:localDate});
    const cardId=index===1?' id="jh-home-upcoming-next"':'';
-   const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div><div class="jh-home-upcoming-time">'+(title.includes('IGINGINI')&&localDate==='2026-11-06'?'DALLE 20 ALLE 03':'DALLE '+esc(x.time.split(/[–-]/)[0].trim()))+'</div>'+(x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':'')+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+(title.includes('IGINGINI')&&localDate==='2026-11-06'?'<div class="jh-home-upcoming-schedule">20 - 23 CENA KARAOKE<br>23 - 03 DJ SET ‘90/‘00</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+'<div class="jh-home-upcoming-cta">SCOPRI TUTTO ›</div></div></a>';
+   const special=(x.subtitle||'').toUpperCase().includes('SPECIALE');
+   const schedule=title.includes('IGINGINI')&&localDate==='2026-11-06';
+   const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div><div class="jh-home-upcoming-time"><span>ORARIO</span>'+ (schedule?'20:00 – 03:00':'DALLE '+esc(x.time.split(/[–-]/)[0].trim()))+'</div>'+(special?'<div class="jh-home-upcoming-special"><span>EVENTO SPECIALE</span><strong>'+esc(x.subtitle)+'</strong></div>':(x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':''))+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(schedule?'<div class="jh-home-upcoming-schedule"><strong>LA SERATA</strong><span>20:00 – 23:00 <b>CENA KARAOKE</b></span><span>23:00 – 03:00 <b>DJ SET ’90/’00</b></span></div>':'')+(x.desc?'<div class="jh-home-upcoming-promo">'+esc(x.desc)+'</div>':'')+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+'<div class="jh-home-upcoming-cta">SCOPRI TUTTO ›</div></div></a>';
    return card;
   }).join('');
  }).catch(()=>{section.querySelector('.jh-home-upcoming-list').innerHTML='<div class="jh-home-upcoming-empty">Non è stato possibile caricare gli eventi. Consulta la sezione Prossimi Eventi.</div>';});
@@ -1884,5 +1886,28 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
  .jh-home-upcoming-info .jh-home-upcoming-venue{font-size:clamp(27px,7.4vw,31px)!important}
 }
 </style>
+
+<style id="jh-home-upcoming-visual-hierarchy-20261103">
+/* Home eventi: livelli distinti, informazioni speciali in evidenza */
+.jh-home-upcoming-info{gap:10px!important;padding:19px 17px 20px!important}
+.jh-home-upcoming-info .jh-home-upcoming-date{font-size:clamp(23px,6.7vw,30px)!important;line-height:1.02!important;margin:0!important}
+.jh-home-upcoming-info .jh-home-upcoming-time{display:flex!important;align-items:center!important;gap:9px!important;width:max-content!important;max-width:100%!important;margin:0 0 2px!important;padding:6px 11px!important;border-left:3px solid #f02d98!important;border-radius:0 7px 7px 0!important;background:rgba(255,255,255,.09)!important;font-size:clamp(17px,4.5vw,21px)!important;line-height:1.1!important}
+.jh-home-upcoming-info .jh-home-upcoming-time span{font-size:9px!important;letter-spacing:.13em!important;color:#c8c4cc!important;font-weight:900!important}
+.jh-home-upcoming-info .jh-home-upcoming-special{display:flex!important;flex-direction:column!important;gap:4px!important;margin:2px 0 1px!important;padding:10px 12px!important;border:1px solid rgba(240,45,152,.72)!important;border-radius:9px!important;background:linear-gradient(105deg,rgba(240,45,152,.19),rgba(240,45,152,.045))!important}
+.jh-home-upcoming-info .jh-home-upcoming-special span{font-family:Montserrat,Arial,sans-serif!important;font-size:9px!important;font-weight:900!important;letter-spacing:.18em!important;color:#f02d98!important}
+.jh-home-upcoming-info .jh-home-upcoming-special strong{font-family:Montserrat,Arial,sans-serif!important;font-size:clamp(15px,4vw,19px)!important;line-height:1.16!important;font-weight:900!important;letter-spacing:.005em!important;color:#fff!important}
+.jh-home-upcoming-info .jh-home-upcoming-subtitle{font-size:13px!important;font-weight:850!important;line-height:1.2!important;color:#fff!important}
+.jh-home-upcoming-info .jh-home-upcoming-kind{width:max-content!important;max-width:100%!important;margin:1px 0 -5px!important;padding:4px 8px!important;border-radius:4px!important;background:rgba(240,45,152,.13)!important;color:#f02d98!important;font-size:10px!important;letter-spacing:.09em!important;line-height:1.15!important}
+.jh-home-upcoming-info .jh-home-upcoming-venue{margin:0!important;font-size:clamp(29px,7.5vw,39px)!important;line-height:1.02!important}
+.jh-home-upcoming-info .jh-home-upcoming-schedule{display:flex!important;flex-direction:column!important;gap:7px!important;margin:2px 0!important;padding:11px 12px!important;border:1px solid rgba(240,45,152,.6)!important;border-radius:9px!important;background:rgba(240,45,152,.09)!important;font-family:Montserrat,Arial,sans-serif!important}
+.jh-home-upcoming-info .jh-home-upcoming-schedule>strong{font-size:9px!important;letter-spacing:.16em!important;color:#f02d98!important}
+.jh-home-upcoming-info .jh-home-upcoming-schedule>span{display:flex!important;flex-wrap:wrap!important;gap:5px 9px!important;align-items:baseline!important;font-size:12px!important;line-height:1.25!important;color:#fff!important;font-weight:800!important}
+.jh-home-upcoming-info .jh-home-upcoming-schedule b{font-size:13px!important;color:#f02d98!important}
+.jh-home-upcoming-info .jh-home-upcoming-promo{margin:2px 0!important;padding:10px 12px!important;border-left:3px solid #f02d98!important;border-radius:0 8px 8px 0!important;background:rgba(255,255,255,.065)!important;color:#eee!important;font-family:Montserrat,Arial,sans-serif!important;font-size:12px!important;font-weight:750!important;line-height:1.45!important}
+.jh-home-upcoming-info .jh-home-upcoming-address{margin:0!important;font-size:12px!important;line-height:1.25!important;color:#d5d2d9!important}
+.jh-home-upcoming-info .jh-home-upcoming-cta{margin-top:8px!important}
+@media(max-width:360px){.jh-home-upcoming-info{gap:8px!important;padding:16px 13px 17px!important}.jh-home-upcoming-info .jh-home-upcoming-special strong{font-size:15px!important}.jh-home-upcoming-info .jh-home-upcoming-promo{font-size:11px!important}}
+</style>
+
 </body>
 </html>
