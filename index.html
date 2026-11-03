@@ -1023,8 +1023,11 @@ h1{font-weight:900!important;line-height:1.08!important}
 <style id="jh-home-vertical-upcoming-20261102">
 /* Prossimi eventi: elenco verticale, schede coerenti con il visual JONNYHYPE */
 .jh-home-upcoming{width:min(760px,calc(100% - 32px));margin:28px auto 30px;text-align:left}
-.jh-home-upcoming-heading{margin:0 0 17px;font-family:Montserrat,Arial,sans-serif;font-size:clamp(24px,6vw,32px);font-weight:900;letter-spacing:-.04em;text-transform:uppercase}
-.jh-home-upcoming-heading span{color:#f02d98}
+.jh-home-upcoming-heading{display:flex;align-items:center;gap:9px;margin:0 0 17px;font-family:Montserrat,Arial,sans-serif;font-size:clamp(24px,6vw,32px);font-weight:900;letter-spacing:-.04em;text-transform:uppercase}
+.jh-home-upcoming-heading>span{color:#f02d98}
+.jh-home-heading-scroll{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;margin-left:2px;padding:0 2px;color:#f02d98;text-decoration:none;line-height:1}
+.jh-home-heading-scroll span{display:block;color:#f02d98;font-size:.9em;font-weight:900;-webkit-text-stroke:.45px rgba(255,255,255,.8);text-shadow:0 0 2px rgba(255,255,255,.55)}
+.jh-home-heading-scroll:focus-visible{outline:2px solid #fff;outline-offset:4px;border-radius:4px}
 .jh-home-upcoming-list{display:grid;grid-template-columns:1fr;gap:20px}
 .jh-home-upcoming-card{display:flex;flex-direction:column;overflow:hidden;min-width:0;border:2px solid #f02d98;border-radius:22px;background:#050507;color:#fff;text-decoration:none;box-shadow:0 0 18px rgba(240,45,152,.17)}
 .jh-home-upcoming-card:focus-visible{outline:3px solid #fff;outline-offset:4px}
@@ -1065,17 +1068,7 @@ h1{font-weight:900!important;line-height:1.08!important}
 </style>
 
 <style id="jh-home-scroll-hint-20261103">
-.jh-home-scroll-hint{
- display:flex;align-items:center;justify-content:center;
- width:100%;min-height:0;margin:0 auto;padding:4px 0 8px;
- background:transparent;border:0;text-decoration:none;
-}
-.jh-home-scroll-arrow{
- display:inline-block;color:#f02d98;font-size:25px;line-height:1;font-weight:900;
- -webkit-text-stroke:.45px rgba(255,255,255,.8);
- text-shadow:0 0 2px rgba(255,255,255,.55);
-}
-#jh-home-upcoming-next{scroll-margin-top:18px}
+#jh-home-upcoming-list{scroll-margin-top:18px}
 </style>
 <style id="jh-home-upcoming-igingini-schedule">
 .jh-home-upcoming-schedule{color:#fff;font-family:Montserrat,Arial,sans-serif;font-size:clamp(13px,3.5vw,16px);font-weight:800;line-height:1.35;white-space:normal}
@@ -1769,7 +1762,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
  const section=document.createElement('section');
  section.className='jh-home-upcoming';
  section.setAttribute('aria-labelledby','jh-home-upcoming-title');
- section.innerHTML='<h2 class="jh-home-upcoming-heading" id="jh-home-upcoming-title">PROSSIMI <span>EVENTI</span></h2><div class="jh-home-upcoming-list" aria-live="polite"><div class="jh-home-upcoming-empty">Caricamento eventi…</div></div>';
+ section.innerHTML='<h2 class="jh-home-upcoming-heading" id="jh-home-upcoming-title">PROSSIMI <span>EVENTI</span><a class="jh-home-heading-scroll" href="#jh-home-upcoming-list" aria-label="Scorri agli eventi"><span aria-hidden="true">↓</span></a></h2><div class="jh-home-upcoming-list" id="jh-home-upcoming-list" aria-live="polite"><div class="jh-home-upcoming-empty">Caricamento eventi…</div></div>';
  host.parentNode.insertBefore(section,host);
  const monthMap={GENNAIO:0,FEBBRAIO:1,MARZO:2,APRILE:3,MAGGIO:4,GIUGNO:5,LUGLIO:6,AGOSTO:7,SETTEMBRE:8,OTTOBRE:9,NOVEMBRE:10,DICEMBRE:11};
  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1814,15 +1807,6 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div><div class="jh-home-upcoming-time">'+(title.includes('IGINGINI')&&localDate==='2026-11-06'?'DALLE 20 ALLE 03':'DALLE '+esc(x.time.split(/[–-]/)[0].trim()))+'</div>'+(x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':'')+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+(title.includes('IGINGINI')&&localDate==='2026-11-06'&&x.desc?'<div class="jh-home-upcoming-schedule">'+esc(x.desc)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.place?'<div class="jh-home-upcoming-place">'+esc(x.place)+'</div>':'')+'<div class="jh-home-upcoming-cta">SCOPRI TUTTO ›</div></div></a>';
    return card;
   }).join('');
-  if(sorted.length>1){
-   const hint=document.createElement('a');
-   hint.className='jh-home-scroll-hint';
-   hint.href='#jh-home-upcoming-next';
-   hint.setAttribute('aria-label','Vai agli altri eventi');
-   hint.innerHTML='<span class="jh-home-scroll-arrow" aria-hidden="true">↓</span>';
-   const firstCard=list.querySelector('.jh-home-upcoming-card');
-   if(firstCard)list.insertBefore(hint,firstCard);
-  }
  }).catch(()=>{section.querySelector('.jh-home-upcoming-list').innerHTML='<div class="jh-home-upcoming-empty">Non è stato possibile caricare gli eventi. Consulta la sezione Prossimi Eventi.</div>';});
 })();
 </script>
