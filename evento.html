@@ -41,14 +41,14 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
 @media(min-width:620px){.actions{grid-template-columns:1fr 1fr}.event-hero{min-height:260px}}
 /* Invito allo scorrimento nella pagina del singolo evento */
 .scroll-detail-hint{
- display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
- width:min(760px,calc(100% - 32px));min-height:82px;margin:5px auto 0;padding:10px 8px;
- color:#ff75c5;text-decoration:none;text-align:center;
- font-family:Montserrat,Arial,sans-serif;font-size:clamp(13px,3.7vw,16px);
- font-weight:900;letter-spacing:.055em;text-shadow:0 0 10px rgba(240,45,152,.55);
+ display:flex;flex-direction:row;align-items:center;justify-content:center;gap:8px;
+ width:min(760px,calc(100% - 32px));min-height:38px;margin:3px auto 0;padding:4px 6px;
+ color:#f02d98;text-decoration:none;text-align:center;
+ font-family:Montserrat,Arial,sans-serif;font-size:12px;
+ font-weight:900;letter-spacing:.045em;text-shadow:0 0 7px rgba(240,45,152,.35);
 }
-.scroll-detail-arrow{display:block;font-size:36px;line-height:1;font-weight:500;animation:scroll-detail-bounce 1.35s ease-in-out infinite}
-@keyframes scroll-detail-bounce{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(8px);opacity:1}}
+.scroll-detail-arrow{display:inline-block;color:#f02d98;font-size:21px;line-height:1;font-weight:600;animation:scroll-detail-bounce 1.35s ease-in-out infinite}
+@keyframes scroll-detail-bounce{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(4px);opacity:1}}
 #event-details{scroll-margin-top:18px}
 @media(prefers-reduced-motion:reduce){.scroll-detail-arrow{animation:none}}
 </style>
