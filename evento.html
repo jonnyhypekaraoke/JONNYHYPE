@@ -107,10 +107,33 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
 
 
 </style>
+
+<style id="jh-event-detail-home-header">
+.top{width:100%;max-width:none;margin:0 auto 18px;padding:0}
+.top>.jh-topbar{position:relative;z-index:50;width:100%;max-width:1120px;min-height:82px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px!important;background:#08090b;border-bottom:1px solid #24242a}
+.top .jh-topbar .jh-logo-link{display:flex;align-items:center;justify-content:flex-start;min-width:0;flex:1;text-decoration:none}
+.top .jh-wordmark{display:inline-flex;align-items:center;white-space:nowrap;font-family:"Manrope","Arial",sans-serif;font-size:clamp(34px,8.8vw,43px);font-weight:900;line-height:1;letter-spacing:-.085em;text-transform:uppercase}
+.top .jh-wordmark-white{color:#fff}.top .jh-wordmark-pink{color:#f02d98}
+.top .jh-menu{position:relative;flex:0 0 auto}
+.top .jh-menu>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;min-width:106px;width:106px;height:52px;padding:0 12px;border:2px solid #f02d98;border-radius:14px;background:#f02d98;color:#fff}
+.top .jh-menu>summary::-webkit-details-marker{display:none}
+.top .jh-menu>summary:after{content:"MENU";font-family:"Manrope",Arial,sans-serif;font-size:14px;font-weight:900;letter-spacing:.12em}
+.top .jh-burger,.top .jh-burger:before,.top .jh-burger:after{display:block;width:23px;height:2.5px;background:#fff;border-radius:3px;position:relative}
+.top .jh-burger:before,.top .jh-burger:after{content:"";position:absolute;left:0}
+.top .jh-burger:before{top:-8px}.top .jh-burger:after{top:8px}
+.top .jh-menu[open] .jh-burger{background:transparent}
+.top .jh-menu[open] .jh-burger:before{top:0;transform:rotate(45deg)}
+.top .jh-menu[open] .jh-burger:after{top:0;transform:rotate(-45deg)}
+.top .jh-menu-panel{position:absolute;right:0;top:60px;z-index:1000;width:min(330px,calc(100vw - 36px));max-height:75vh;overflow:auto;padding:10px;border:2px solid #e83a9b;border-radius:18px;background:#fff;box-shadow:0 18px 45px rgba(0,0,0,.65);display:grid;gap:6px}
+.top .jh-menu-panel a{display:flex;align-items:center;gap:12px;min-height:46px;padding:12px 14px;border:1px solid #d7d7df;border-radius:12px;background:#fff;color:#111;text-decoration:none;font-family:"Manrope",Arial,sans-serif;font-size:13px;font-weight:800;letter-spacing:.045em}
+.top .jh-menu-number{font-weight:900;color:#f02d98}
+.top .back{width:calc(100% - 36px);max-width:760px;margin:12px auto 0}
+@media(min-width:760px){.top>.jh-topbar{padding-left:clamp(18px,4vw,38px)!important;padding-right:clamp(18px,4vw,38px)!important}}
+</style>
 </head>
 <body>
 <header class="top">
-<a class="wordmark" href="/">JONNY<span>HYPE</span></a>
+<div class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel jh-menu-numbered" aria-label="Menu principale"><a href="/"><span class="jh-menu-number">01</span><span class="jh-menu-label">HOME</span></a><a href="/jonnyhype.html"><span class="jh-menu-number">02</span><span class="jh-menu-label">CHI È JONNYHYPE</span></a><a href="/eventi.html"><span class="jh-menu-number">03</span><span class="jh-menu-label">PROSSIMI EVENTI</span></a><a href="/karaoke.html"><span class="jh-menu-number">04</span><span class="jh-menu-label">PRENOTATI PER CANTARE ORA</span></a><a href="/ravenna-song-festival.html"><span class="jh-menu-number">05</span><span class="jh-menu-label">RAVENNA SONG FESTIVAL</span></a><a href="/karaoke-legends-galleria.html"><span class="jh-menu-number">06</span><span class="jh-menu-label">KARAOKE LEGENDS</span></a><a href="/galleria.html"><span class="jh-menu-number">07</span><span class="jh-menu-label">GALLERIA FOTO E VIDEO</span></a><a href="/community.html"><span class="jh-menu-number">08</span><span class="jh-menu-label">CHAT LIVE • COMMUNITY</span></a></nav></details></div>
 <a class="back" href="/eventi.html">‹ TUTTI GLI EVENTI</a>
 </header>
 <main class="wrap" id="event-detail"><div class="status">Caricamento dettagli evento…</div></main>
