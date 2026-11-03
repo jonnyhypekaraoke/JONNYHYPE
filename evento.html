@@ -129,6 +129,7 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
 .top .jh-menu-number{font-weight:900;color:#f02d98}
 .top .back{width:calc(100% - 36px);max-width:760px;margin:12px auto 0}
 @media(min-width:760px){.top>.jh-topbar{padding-left:clamp(18px,4vw,38px)!important;padding-right:clamp(18px,4vw,38px)!important}}
+.detail-map-link{display:inline-flex;align-items:center;justify-content:center;margin-top:9px;padding:8px 13px;border:1px solid #f02d98;border-radius:9px;background:rgba(240,45,152,.10);color:#f02d98;text-decoration:none;font-family:Montserrat,Arial,sans-serif;font-size:12px;font-weight:900;letter-spacing:.04em}.detail-map-link:focus-visible{outline:2px solid #fff;outline-offset:3px}
 </style>
 </head>
 <body>
@@ -197,7 +198,7 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   const actions=[];
   if(phone)actions.push('<a class="action" href="tel:+39'+esc(phone)+'">CHIAMA E PRENOTA</a>');
   if(booking)actions.push('<a class="action secondary" href="'+esc(booking)+'" target="_blank" rel="noopener noreferrer">PRENOTA SU WHATSAPP</a>');
-  if(map)actions.push('<a class="action secondary" href="'+esc(map)+'" target="_blank" rel="noopener noreferrer">COME ARRIVARE</a>');
+
   let sections='';
   if(description){
    const iginginiSchedule=wantedVenue.includes('IGINGINI')&&wantedDate==='2026-11-06'
@@ -206,7 +207,7 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
    sections+='<section class="info"><h2>COSA C’È</h2>'+iginginiSchedule+'</section>';
   }
   /* L'orario è già mostrato sotto la data: non duplicarlo in una seconda sezione. */
-  root.innerHTML=hero+'<div class="details" id="event-details"><h1 class="date">'+esc(dateLabel)+'</h1>'+(wantedVenue.includes('IGINGINI')&&wantedDate==='2026-11-06'?'':(function(){const t=time.replace(/^DALLE\s*/i,'').split(/[–—-]/).map(v=>v.trim()).filter(Boolean);return '<p class="time">DALLE '+esc(t[0]||'')+(t[1]?' ALLE '+esc(t[1]):'')+'</p>'})())+(subtitle.toUpperCase().includes('SPECIALE')?'<div class="detail-special"><strong>SPECIALE</strong><span>RAVENNA SONG FESTIVAL</span></div>':'')+'<div class="detail-venue-panel">'+(kind?'<div class="kind">'+esc(kind)+'</div>':'')+'<h2 class="venue">'+esc(venue)+'</h2>'+(place?'<div class="place"><span class="address-line">'+esc(address)+'</span>'+(city?'<span class="city-line">'+esc(city)+'</span>':'')+'</div>':'')+'</div>'+sections+(calendar?'<a class="calendar" href="'+esc(calendar)+'" download>AGGIUNGI AL CALENDARIO</a>':'')+'<div class="actions">'+actions.join('')+'</div></div>';
+  root.innerHTML=hero+'<div class="details" id="event-details"><h1 class="date">'+esc(dateLabel)+'</h1>'+(wantedVenue.includes('IGINGINI')&&wantedDate==='2026-11-06'?'':(function(){const t=time.replace(/^DALLE\s*/i,'').split(/[–—-]/).map(v=>v.trim()).filter(Boolean);return '<p class="time">DALLE '+esc(t[0]||'')+(t[1]?' ALLE '+esc(t[1]):'')+'</p>'})())+(subtitle.toUpperCase().includes('SPECIALE')?'<div class="detail-special"><strong>SPECIALE</strong><span>RAVENNA SONG FESTIVAL</span></div>':'')+'<div class="detail-venue-panel">'+(kind?'<div class="kind">'+esc(kind)+'</div>':'')+'<h2 class="venue">'+esc(venue)+'</h2>'+(place?'<div class="place"><span class="address-line">'+esc(address)+'</span>'+(city?'<span class="city-line">'+esc(city)+'</span>':'')+(map?'<a class="detail-map-link" href="'+esc(map)+'" target="_blank" rel="noopener noreferrer">COME ARRIVARCI</a>':'')+'</div>':'')+'</div>'+sections+(calendar?'<a class="calendar" href="'+esc(calendar)+'" download>AGGIUNGI AL CALENDARIO</a>':'')+'<div class="actions">'+actions.join('')+'</div></div>';
  }).catch(()=>{root.innerHTML='<div class="status">Non riesco a trovare questo evento. Torna all’elenco e seleziona nuovamente l’appuntamento.</div>';});
 })();
 </script>
