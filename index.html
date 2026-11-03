@@ -1066,23 +1066,16 @@ h1{font-weight:900!important;line-height:1.08!important}
 
 <style id="jh-home-scroll-hint-20261103">
 .jh-home-scroll-hint{
- display:flex;flex-direction:row;align-items:center;justify-content:center;gap:6px;
- width:max-content;max-width:100%;min-height:0;margin:0 auto;padding:8px 12px;
- background:transparent;color:#f02d98!important;border:0;border-radius:0;
- text-decoration:none;text-align:center;
- font-family:Montserrat,Arial,sans-serif;font-size:11px;
- font-weight:900;letter-spacing:.06em;text-shadow:none;
+ display:flex;align-items:center;justify-content:center;
+ width:100%;min-height:0;margin:0 auto;padding:4px 0 8px;
+ background:transparent;border:0;text-decoration:none;
 }
 .jh-home-scroll-arrow{
- display:inline-block;color:#f02d98;font-size:17px;line-height:1;font-weight:900;
- animation:jh-home-scroll-bounce 1.35s ease-in-out infinite;
-}
-@keyframes jh-home-scroll-bounce{
- 0%,100%{transform:translateY(0);opacity:.75}
- 50%{transform:translateY(5px);opacity:1}
+ display:inline-block;color:#f02d98;font-size:25px;line-height:1;font-weight:900;
+ -webkit-text-stroke:.45px rgba(255,255,255,.8);
+ text-shadow:0 0 2px rgba(255,255,255,.55);
 }
 #jh-home-upcoming-next{scroll-margin-top:18px}
-@media(prefers-reduced-motion:reduce){.jh-home-scroll-arrow{animation:none}}
 </style>
 <style id="jh-home-upcoming-igingini-schedule">
 .jh-home-upcoming-schedule{color:#fff;font-family:Montserrat,Arial,sans-serif;font-size:clamp(13px,3.5vw,16px);font-weight:800;line-height:1.35;white-space:normal}
@@ -1826,7 +1819,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    hint.className='jh-home-scroll-hint';
    hint.href='#jh-home-upcoming-next';
    hint.setAttribute('aria-label','Vai agli altri eventi');
-   hint.innerHTML='<span>ALTRI EVENTI</span><span class="jh-home-scroll-arrow" aria-hidden="true">↓</span>';
+   hint.innerHTML='<span class="jh-home-scroll-arrow" aria-hidden="true">↓</span>';
    const firstCard=list.querySelector('.jh-home-upcoming-card');
    if(firstCard)list.insertBefore(hint,firstCard);
   }
