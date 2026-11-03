@@ -111,7 +111,8 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   const imageSrc=venueKey.includes('IGINGINI')?'/IGinGini%20.jpg':
     venueKey.includes('ALCHIMIA')?'/ALCHIMIA.jpg':
     venueKey.includes('ICE MARINA')?'/ICE%20.jpg':
-    venueKey.includes('CASABLANCA')?'/Casablanca.jpg':'';
+    venueKey.includes('CASABLANCA')?'/Casablanca.jpg':
+     venueKey.includes('VECCHIA NAPOLI')?'/Logo%20vecchia%20.jpg':'';
   const image=imageSrc?'<img src="'+imageSrc+'" alt="'+esc(venue)+'">':'';
   const hero=image?'<div class="event-hero">'+image+'</div>':'<div class="event-hero"><strong>'+esc(venue)+'</strong></div>';
   const actions=[];
