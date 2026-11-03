@@ -56,7 +56,7 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
 <style id="jh-event-detail-spacing-and-address-fix-20261103">
 .date{margin-bottom:5px!important;line-height:1.05!important}
 .time{margin:0 0 14px!important;font-size:clamp(16px,4.1vw,20px)!important;line-height:1.12!important}
-.place{line-height:1.32!important;overflow-wrap:normal!important;word-break:normal!important;text-wrap:pretty}
+.place{line-height:1.32!important;overflow-wrap:normal!important;word-break:normal!important;text-wrap:pretty}.place .address-line{display:block;white-space:nowrap;font-size:clamp(12px,3.3vw,16px);letter-spacing:-.02em}.place .city-line{display:block;margin-top:3px;color:#d6d6dc;font-size:.9em;line-height:1.2;white-space:nowrap}
 .venue{overflow-wrap:normal!important;word-break:normal!important;text-wrap:balance}
 .info p{overflow-wrap:normal!important;word-break:normal!important;text-wrap:pretty}
 </style>
@@ -98,7 +98,14 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   const venue=brand?clean(brand.querySelector('strong')?.textContent):clean(d.querySelector(':scope > strong:not(.event-subtitle)')?.textContent);
   const subtitle=clean(d.querySelector('.event-subtitle')?.textContent);
   const time=clean(d.querySelector('.time')?.textContent);
-  const place=clean(d.querySelector('.venue-link')?.textContent).replace(/\b(VIA|VIALE|CORSO|PIAZZA|VICOLO|LARGO)\s+/gi,'$1\u00a0');
+   const placeNode=d.querySelector('.venue-link');
+   const placeClone=placeNode?.cloneNode(true);placeClone?.querySelector('.map-label')?.remove();
+   const placeRaw=(placeClone?.innerHTML||'').replace(/<br\s*\/?\s*>/gi,'|').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
+   const placeLines=placeRaw.split('|').map(v=>v.trim()).filter(Boolean);
+   const placeBase=placeLines.length>1?placeLines[placeLines.length-1]:(placeLines[0]||'');
+   const placeParts=placeBase.split('·').map(v=>v.trim()).filter(Boolean);
+   const address=placeParts[0]||'';const city=placeParts.slice(1).join(' · ');
+   const place=address+(city?'\\n'+city:'');
   const description=clean(d.querySelector('.event-description')?.textContent);
   const dateParts=[...card.querySelectorAll('.date-stack span,.date-stack strong')].map(x=>clean(x.textContent));
   const dateLabel=dateParts.join(' ');
@@ -123,8 +130,8 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   if(description)sections+='<section class="info"><h2>COSA C’È</h2><p>'+esc(description)+'</p></section>';
   if(time)sections+='<section class="info"><h2>ORARIO</h2><p>'+esc(time)+'</p></section>';
   if(kind)sections+='<section class="info"><h2>TIPOLOGIA</h2><p>'+esc(kind)+'</p></section>';
-  if(place)sections+='<section class="info"><h2>INDIRIZZO</h2><p>'+esc(place)+'</p></section>';
-  root.innerHTML=hero+'<a class="scroll-detail-hint" href="#event-details" aria-label="Vai ai dettagli dell’evento"><span class="scroll-detail-arrow" aria-hidden="true">↓</span></a><div class="details" id="event-details"><h1 class="date">'+esc(dateLabel)+'</h1><p class="time">'+(time==='20:00–03:00'&&venue.toUpperCase().includes('IGINGINI')?'DALLE 20 ALLE 03':'DALLE '+esc(time.split(/[–-]/)[0].trim()))+(subtitle?' · '+esc(subtitle):'')+'</p>'+(kind?'<p class="kind">'+esc(kind)+'</p>':'')+'<h2 class="venue">'+esc(venue)+'</h2>'+(place?'<p class="place">'+esc(place)+'</p>':'')+sections+(calendar?'<a class="calendar" href="'+esc(calendar)+'" download>AGGIUNGI AL CALENDARIO</a>':'')+'<div class="actions">'+actions.join('')+'</div></div>';
+  if(place)sections+='<section class="info"><h2>INDIRIZZO</h2><p><span class="address-line">'+esc(address)+'</span>'+(city?'<span class="city-line">'+esc(city)+'</span>':'')+'</p></section>';
+  root.innerHTML=hero+'<a class="scroll-detail-hint" href="#event-details" aria-label="Vai ai dettagli dell’evento"><span class="scroll-detail-arrow" aria-hidden="true">↓</span></a><div class="details" id="event-details"><h1 class="date">'+esc(dateLabel)+'</h1><p class="time">'+(time==='20:00–03:00'&&venue.toUpperCase().includes('IGINGINI')?'DALLE 20 ALLE 03':'DALLE '+esc(time.split(/[–-]/)[0].trim()))+(subtitle?' · '+esc(subtitle):'')+'</p>'+(kind?'<p class="kind">'+esc(kind)+'</p>':'')+'<h2 class="venue">'+esc(venue)+'</h2>'+(place?'<p class="place"><span class="address-line">'+esc(address)+'</span>'+(city?'<span class="city-line">'+esc(city)+'</span>':'')+'</p>':'')+sections+(calendar?'<a class="calendar" href="'+esc(calendar)+'" download>AGGIUNGI AL CALENDARIO</a>':'')+'<div class="actions">'+actions.join('')+'</div></div>';
  }).catch(()=>{root.innerHTML='<div class="status">Non riesco a trovare questo evento. Torna all’elenco e seleziona nuovamente l’appuntamento.</div>';});
 })();
 </script>
