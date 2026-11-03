@@ -60,6 +60,12 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
 .venue{overflow-wrap:normal!important;word-break:normal!important;text-wrap:balance}
 .info p{overflow-wrap:normal!important;word-break:normal!important;text-wrap:pretty}
 </style>
+<style id="jh-igingini-info-schedule-20261103">
+.info-schedule{display:grid;gap:9px;margin:0}
+.info-schedule>div{display:flex;align-items:center;gap:12px;padding:11px 13px;border:1px solid rgba(240,45,152,.58);border-radius:10px;background:linear-gradient(100deg,rgba(240,45,152,.13),rgba(255,255,255,.035))}
+.info-schedule strong{flex:0 0 82px;color:#f02d98;font-size:clamp(18px,4.8vw,23px);font-weight:900;line-height:1.1;font-variant-numeric:tabular-nums}
+.info-schedule span{color:#fff;font-size:clamp(14px,3.8vw,18px);font-weight:900;line-height:1.2}
+</style>
 </head>
 <body>
 <header class="top">
@@ -104,7 +110,8 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
    const placeLines=placeRaw.split('|').map(v=>v.trim()).filter(Boolean);
    const placeBase=placeLines.length>1?placeLines[placeLines.length-1]:(placeLines[0]||'');
    const placeParts=placeBase.split('·').map(v=>v.trim()).filter(Boolean);
-   const address=placeParts[0]||'';const city=placeParts.slice(1).join(' · ');
+   let address=placeParts[0]||'';let city=placeParts.slice(1).join(' · ');
+   if(wantedVenue.includes('IGINGINI')){address='VIA IX FEBBRAIO';city='RAVENNA';}
    const place=address+(city?'\\n'+city:'');
   const description=clean(d.querySelector('.event-description')?.textContent);
   const dateParts=[...card.querySelectorAll('.date-stack span,.date-stack strong')].map(x=>clean(x.textContent));
@@ -127,7 +134,12 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   if(booking)actions.push('<a class="action secondary" href="'+esc(booking)+'" target="_blank" rel="noopener noreferrer">PRENOTA SU WHATSAPP</a>');
   if(map)actions.push('<a class="action secondary" href="'+esc(map)+'" target="_blank" rel="noopener noreferrer">COME ARRIVARE</a>');
   let sections='';
-  if(description)sections+='<section class="info"><h2>COSA C’È</h2><p>'+esc(description)+'</p></section>';
+  if(description){
+   const iginginiSchedule=wantedVenue.includes('IGINGINI')&&wantedDate==='2026-11-06'
+    ?'<div class="info-schedule"><div><strong>20 – 23</strong><span>CENA E KARAOKE</span></div><div><strong>23 – 03</strong><span>DJ SET ’90/’00</span></div></div>'
+    :'<p>'+esc(description)+'</p>';
+   sections+='<section class="info"><h2>COSA C’È</h2>'+iginginiSchedule+'</section>';
+  }
   if(time)sections+='<section class="info"><h2>ORARIO</h2><p>'+esc(time)+'</p></section>';
   if(kind)sections+='<section class="info"><h2>TIPOLOGIA</h2><p>'+esc(kind)+'</p></section>';
   if(place)sections+='<section class="info"><h2>INDIRIZZO</h2><p><span class="address-line">'+esc(address)+'</span>'+(city?'<span class="city-line">'+esc(city)+'</span>':'')+'</p></section>';
