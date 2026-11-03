@@ -188,6 +188,12 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
  .info-schedule span{font-size:14px!important}
 }
 </style>
+<style id="jh-whatsapp-single-cta-white-20261103">
+/* Un solo invito all'azione: WhatsApp, con testo bianco sul fucsia */
+.actions{display:grid!important;grid-template-columns:1fr!important;gap:0!important}
+.actions .action{background:#F02D98!important;border:2px solid #F02D98!important;color:#fff!important}
+.actions .action.secondary{background:#F02D98!important;color:#fff!important}
+</style>
 </style>
 </head>
 <body>
@@ -254,8 +260,7 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   const image=imageSrc?'<img src="'+imageSrc+'" alt="'+esc(venue)+'">':'';
   const hero=image?'<div class="event-hero">'+image+'</div>':'<div class="event-hero"><strong>'+esc(venue)+'</strong></div>';
   const actions=[];
-  if(phone)actions.push('<a class="action" href="tel:+39'+esc(phone)+'">CHIAMA E PRENOTA</a>');
-  if(booking)actions.push('<a class="action secondary" href="'+esc(booking)+'" target="_blank" rel="noopener noreferrer">PRENOTA SU WHATSAPP</a>');
+  if(booking)actions.push('<a class="action" href="'+esc(booking)+'" target="_blank" rel="noopener noreferrer">PRENOTA O CHIEDI INFO SU WHATSAPP</a>');
 
   let sections='';
   if(description){
