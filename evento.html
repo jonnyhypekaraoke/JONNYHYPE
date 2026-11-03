@@ -39,6 +39,18 @@ body{padding:0 0 36px}
 .status{padding:22px;border:1px solid rgba(240,45,152,.5);border-radius:16px;color:#ddd;text-align:center}
 footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;border-top:1px solid rgba(240,45,152,.35);color:#888;font-size:11px;letter-spacing:.08em;text-align:center}
 @media(min-width:620px){.actions{grid-template-columns:1fr 1fr}.event-hero{min-height:260px}}
+/* Invito allo scorrimento nella pagina del singolo evento */
+.scroll-detail-hint{
+ display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+ width:min(760px,calc(100% - 32px));min-height:82px;margin:5px auto 0;padding:10px 8px;
+ color:#ff75c5;text-decoration:none;text-align:center;
+ font-family:Montserrat,Arial,sans-serif;font-size:clamp(13px,3.7vw,16px);
+ font-weight:900;letter-spacing:.055em;text-shadow:0 0 10px rgba(240,45,152,.55);
+}
+.scroll-detail-arrow{display:block;font-size:36px;line-height:1;font-weight:500;animation:scroll-detail-bounce 1.35s ease-in-out infinite}
+@keyframes scroll-detail-bounce{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(8px);opacity:1}}
+#event-details{scroll-margin-top:18px}
+@media(prefers-reduced-motion:reduce){.scroll-detail-arrow{animation:none}}
 </style>
 </head>
 <body>
@@ -103,7 +115,7 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   if(time)sections+='<section class="info"><h2>ORARIO</h2><p>'+esc(time)+'</p></section>';
   if(kind)sections+='<section class="info"><h2>TIPOLOGIA</h2><p>'+esc(kind)+'</p></section>';
   if(place)sections+='<section class="info"><h2>INDIRIZZO</h2><p>'+esc(place)+'</p></section>';
-  root.innerHTML=hero+'<div class="details"><h1 class="date">'+esc(dateLabel)+'</h1><p class="time">DALLE '+esc(time.split(/[–-]/)[0].trim())+(subtitle?' · '+esc(subtitle):'')+'</p>'+(kind?'<p class="kind">'+esc(kind)+'</p>':'')+'<h2 class="venue">'+esc(venue)+'</h2>'+(place?'<p class="place">'+esc(place)+'</p>':'')+'<div class="actions">'+actions.join('')+'</div>'+sections+(calendar?'<a class="calendar" href="'+esc(calendar)+'" download>AGGIUNGI AL CALENDARIO</a>':'')+'</div>';
+  root.innerHTML=hero+'<a class="scroll-detail-hint" href="#event-details" aria-label="Scorri per tutti i dettagli dell’evento"><span>SCORRI PER TUTTI I DETTAGLI</span><span class="scroll-detail-arrow" aria-hidden="true">↓</span></a><div class="details" id="event-details"><h1 class="date">'+esc(dateLabel)+'</h1><p class="time">DALLE '+esc(time.split(/[–-]/)[0].trim())+(subtitle?' · '+esc(subtitle):'')+'</p>'+(kind?'<p class="kind">'+esc(kind)+'</p>':'')+'<h2 class="venue">'+esc(venue)+'</h2>'+(place?'<p class="place">'+esc(place)+'</p>':'')+'<div class="actions">'+actions.join('')+'</div>'+sections+(calendar?'<a class="calendar" href="'+esc(calendar)+'" download>AGGIUNGI AL CALENDARIO</a>':'')+'</div>';
  }).catch(()=>{root.innerHTML='<div class="status">Non riesco a trovare questo evento. Torna all’elenco e seleziona nuovamente l’appuntamento.</div>';});
 })();
 </script>
