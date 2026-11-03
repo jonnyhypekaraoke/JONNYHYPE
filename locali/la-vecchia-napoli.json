@@ -14,7 +14,44 @@
   "description": "",
   "phone": "",
   "bookingUrl": "",
-  "gallery": [],
+  "gallery": [
+    {
+      "src": "/images/locali/la-vecchia-napoli/%20Vecchia2.jpg",
+      "alt": "La Vecchia Napoli – foto 1"
+    },
+    {
+      "src": "/images/locali/la-vecchia-napoli/62104C87-F1A0-4FCB-9355-6EDB23A607A3.png",
+      "alt": "La Vecchia Napoli – foto 2"
+    },
+    {
+      "src": "/images/locali/la-vecchia-napoli/Vecchia%203.PNG",
+      "alt": "La Vecchia Napoli – foto 3"
+    },
+    {
+      "src": "/images/locali/la-vecchia-napoli/Vecchia%206.PNG",
+      "alt": "La Vecchia Napoli – foto 4"
+    },
+    {
+      "src": "/images/locali/la-vecchia-napoli/Vecchia1.PNG",
+      "alt": "La Vecchia Napoli – foto 5"
+    },
+    {
+      "src": "/images/locali/la-vecchia-napoli/Vecchia4.JPG",
+      "alt": "La Vecchia Napoli – foto 6"
+    },
+    {
+      "src": "/images/locali/la-vecchia-napoli/Vecchia5.PNG",
+      "alt": "La Vecchia Napoli – foto 7"
+    },
+    {
+      "src": "/images/locali/la-vecchia-napoli/Vecchia7.PNG",
+      "alt": "La Vecchia Napoli – foto 8"
+    },
+    {
+      "src": "/images/locali/la-vecchia-napoli/Vecchia8.PNG",
+      "alt": "La Vecchia Napoli – foto 9"
+    }
+  ],
   "notes": "Scheda permanente: non cancellare quando termina un evento.",
   "updatedAt": "2026-11-03"
 }
