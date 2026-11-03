@@ -1066,20 +1066,20 @@ h1{font-weight:900!important;line-height:1.08!important}
 
 <style id="jh-home-scroll-hint-20261103">
 .jh-home-scroll-hint{
- display:flex;flex-direction:row;align-items:center;justify-content:center;gap:7px;
- width:80%;min-height:43px;margin:0 auto 10px;padding:9px 13px;
- border-radius:11px;background:#f02d98;color:#fff!important;
+ display:flex;flex-direction:row;align-items:center;justify-content:center;gap:6px;
+ width:max-content;max-width:100%;min-height:0;margin:0 auto;padding:8px 12px;
+ background:transparent;color:#f02d98!important;border:0;border-radius:0;
  text-decoration:none;text-align:center;
- font-family:Montserrat,Arial,sans-serif;font-size:12px;
- font-weight:900;letter-spacing:.025em;text-shadow:none;
+ font-family:Montserrat,Arial,sans-serif;font-size:11px;
+ font-weight:900;letter-spacing:.06em;text-shadow:none;
 }
 .jh-home-scroll-arrow{
- display:inline-block;color:#fff;font-size:18px;line-height:1;font-weight:700;
+ display:inline-block;color:#f02d98;font-size:17px;line-height:1;font-weight:900;
  animation:jh-home-scroll-bounce 1.35s ease-in-out infinite;
 }
 @keyframes jh-home-scroll-bounce{
  0%,100%{transform:translateY(0);opacity:.75}
- 50%{transform:translateY(8px);opacity:1}
+ 50%{transform:translateY(5px);opacity:1}
 }
 #jh-home-upcoming-next{scroll-margin-top:18px}
 @media(prefers-reduced-motion:reduce){.jh-home-scroll-arrow{animation:none}}
@@ -1811,14 +1811,6 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
   if(homeEnd>=0)sorted.splice(homeEnd+1);
   const list=section.querySelector('.jh-home-upcoming-list');
   if(!sorted.length){list.innerHTML='<div class="jh-home-upcoming-empty">Al momento non ci sono eventi imminenti da mostrare.</div>';return;}
-  if(sorted.length>1){
-   const hint=document.createElement('a');
-   hint.className='jh-home-scroll-hint';
-   hint.href='#jh-home-upcoming-next';
-   hint.setAttribute('aria-label','Scorri per vedere gli altri eventi');
-   hint.innerHTML='<span>SCORRI PER ALTRI EVENTI</span><span class="jh-home-scroll-arrow" aria-hidden="true">↓</span>';
-   list.parentNode.insertBefore(hint,list);
-  }
   list.innerHTML=sorted.map((x,index)=>{
    const title=x.venue.toUpperCase();
    const image=title.includes('IGINGINI')?'<img class="jh-home-upcoming-logo" src="/IGinGini%20.jpg" alt="iGinGini · Drink Food Disco" loading="lazy">':title.includes('ALCHIMIA')?'<img src="/ALCHIMIA.jpg" alt="Alchimia · sala karaoke" loading="lazy">':title.includes('ICE MARINA')?'<img src="/ICE%20.jpg" alt="ICE Marina Club · sala ristorante" loading="lazy">':title.includes('CASABLANCA')?'<img src="/Casablanca.jpg" alt="Casablanca" loading="lazy">':'<strong>'+esc(title)+'</strong>';
@@ -1829,6 +1821,15 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div><div class="jh-home-upcoming-time">'+(title.includes('IGINGINI')&&localDate==='2026-11-06'?'DALLE 20 ALLE 03':'DALLE '+esc(x.time.split(/[–-]/)[0].trim()))+'</div>'+(x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':'')+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+(title.includes('IGINGINI')&&localDate==='2026-11-06'&&x.desc?'<div class="jh-home-upcoming-schedule">'+esc(x.desc)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.place?'<div class="jh-home-upcoming-place">'+esc(x.place)+'</div>':'')+'<div class="jh-home-upcoming-cta">SCOPRI TUTTO ›</div></div></a>';
    return card;
   }).join('');
+  if(sorted.length>1){
+   const hint=document.createElement('a');
+   hint.className='jh-home-scroll-hint';
+   hint.href='#jh-home-upcoming-next';
+   hint.setAttribute('aria-label','Vai agli altri eventi');
+   hint.innerHTML='<span>ALTRI EVENTI</span><span class="jh-home-scroll-arrow" aria-hidden="true">↓</span>';
+   const nextCard=list.querySelector('#jh-home-upcoming-next');
+   if(nextCard)list.insertBefore(hint,nextCard);
+  }
  }).catch(()=>{section.querySelector('.jh-home-upcoming-list').innerHTML='<div class="jh-home-upcoming-empty">Non è stato possibile caricare gli eventi. Consulta la sezione Prossimi Eventi.</div>';});
 })();
 </script>
