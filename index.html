@@ -1088,6 +1088,16 @@ h1{font-weight:900!important;line-height:1.08!important}
 .jh-home-all-events:active{transform:scale(.985)}
 .jh-home-all-events:focus-visible{outline:2px solid #fff!important;outline-offset:4px!important}
 </style>
+
+<style id="jh-home-event-info-photo-cta-20261103">
+.jh-home-upcoming-cta{
+ min-height:66px!important;height:auto!important;box-sizing:border-box!important;
+ padding:11px 12px!important;text-align:center!important;white-space:normal!important;
+ line-height:1.16!important;font-family:Montserrat,Arial,sans-serif!important;
+ font-weight:900!important;font-size:clamp(15px,4.2vw,18px)!important;
+}
+.jh-home-upcoming-cta span{display:block!important;color:#050507!important;font-family:Montserrat,Arial,sans-serif!important;font-weight:900!important}
+</style>
 </head>
 <body>
 <div class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel jh-menu-numbered" aria-label="Menu principale"><a href="/"><span class="jh-menu-number">01</span><span class="jh-menu-label">HOME</span></a><a href="/jonnyhype.html"><span class="jh-menu-number">02</span><span class="jh-menu-label">CHI È JONNYHYPE</span></a><a href="/eventi.html"><span class="jh-menu-number">03</span><span class="jh-menu-label">PROSSIMI EVENTI</span></a><a href="/karaoke.html"><span class="jh-menu-number">04</span><span class="jh-menu-label">PRENOTATI PER CANTARE ORA</span></a><a href="/ravenna-song-festival.html"><span class="jh-menu-number">05</span><span class="jh-menu-label">RAVENNA SONG FESTIVAL</span></a><a href="/karaoke-legends-galleria.html"><span class="jh-menu-number">06</span><span class="jh-menu-label">KARAOKE LEGENDS</span></a><a href="/galleria.html"><span class="jh-menu-number">07</span><span class="jh-menu-label">GALLERIA FOTO E VIDEO</span></a><a href="/community.html"><span class="jh-menu-number">08</span><span class="jh-menu-label">CHAT LIVE • COMMUNITY</span></a></nav></details></div>
@@ -1828,7 +1838,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const special=(x.subtitle||'').toUpperCase().includes('SPECIALE');
    const rawTime=clean(x.time).replace(/^DALLE\s*/i,'').replace(/\s*(?:-|–|—|A)\s*/i,'|').split('|').map(v=>v.trim()).filter(Boolean);
    const timeLabel=rawTime.length>1?'DALLE '+rawTime[0]+' ALLE '+rawTime[1]:'DALLE '+rawTime[0];
-   const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div>'+'<div class="jh-home-upcoming-time">'+esc(timeLabel)+'</div>'+(special?'<div class="jh-home-upcoming-special"><span>SPECIALE</span><strong>RAVENNA SONG FESTIVAL</strong></div>':(x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':''))+'<div class="jh-home-upcoming-venue-panel">'+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+'</div>'+(x.desc?'<div class="jh-home-upcoming-promo">'+esc(x.desc)+'</div>':'')+'<div class="jh-home-upcoming-cta">SCOPRI TUTTO ›</div></div></a>';
+   const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div>'+'<div class="jh-home-upcoming-time">'+esc(timeLabel)+'</div>'+(special?'<div class="jh-home-upcoming-special"><span>SPECIALE</span><strong>RAVENNA SONG FESTIVAL</strong></div>':(x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':''))+'<div class="jh-home-upcoming-venue-panel">'+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+'</div>'+(x.desc?'<div class="jh-home-upcoming-promo">'+esc(x.desc)+'</div>':'')+'<div class="jh-home-upcoming-cta"><span>INFO EVENTO<br>E FOTO DEL LOCALE</span></div></div></a>';
    return card;
   }).join('');
  }).catch(()=>{section.querySelector('.jh-home-upcoming-list').innerHTML='<div class="jh-home-upcoming-empty">Non è stato possibile caricare gli eventi. Consulta la sezione Prossimi Eventi.</div>';});
