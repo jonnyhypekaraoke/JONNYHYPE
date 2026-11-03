@@ -68,8 +68,11 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
 </style>
 <style id="jh-event-detail-clean-layout-20261103">
 /* Impostazione unica e compatta per tutte le schede evento */
-.event-hero,.scroll-detail-hint{display:none!important}
-.details{padding:8px 0 0!important}
+.scroll-detail-hint{display:none!important}
+.event-hero{display:flex!important;min-height:clamp(170px,48vw,250px)!important;margin:0 0 18px!important;border:1px solid rgba(240,45,152,.55)!important;border-radius:18px!important;background:#08080a!important;box-shadow:none!important}
+.event-hero img{height:clamp(170px,48vw,250px)!important;max-height:250px!important;object-fit:contain!important;padding:12px!important}
+.event-hero img[src*="ICE"],.event-hero img[src*="ALCHIMIA"],.event-hero img[src*="Casablanca"],.event-hero img[src*="Viavai"]{object-fit:cover!important;padding:0!important}
+.details{padding:0!important}
 .date{color:#F02D98!important;margin:0 0 5px!important;font-size:clamp(25px,6.2vw,35px)!important}
 .time{color:#fff!important;margin:0 0 16px!important;font-size:clamp(18px,4.5vw,22px)!important;font-weight:800!important}
 .kind{color:#d5d5da!important;margin:0 0 6px!important;font-size:12px!important}
@@ -89,6 +92,8 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
 .action{min-height:50px!important;border-radius:10px!important;font-size:14px!important}
 .action:not(.secondary){background:#F02D98!important;color:#050507!important}
 @media(max-width:380px){.place{font-size:14px!important}.info-schedule strong{flex-basis:78px!important}.info-schedule span{font-size:15px!important}}
+</style>
+<style id="jh-detail-hero-and-special-20261103">.detail-special{color:#fff!important;font-size:clamp(16px,4vw,20px)!important;letter-spacing:.01em!important;margin:0 0 9px!important}
 </style>
 </head>
 <body>
@@ -150,7 +155,8 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
     venueKey.includes('ALCHIMIA')?'/ALCHIMIA.jpg':
     venueKey.includes('ICE MARINA')?'/ICE%20.jpg':
     venueKey.includes('CASABLANCA')?'/Casablanca.jpg':
-     venueKey.includes('VECCHIA NAPOLI')?'/Logo%20vecchia%20.jpg':'';
+    venueKey.includes('VECCHIA NAPOLI')?'/Logo%20vecchia%20.jpg':
+    venueKey.includes('VIA VAI')?'/Viavai.JPG':'';
   const image=imageSrc?'<img src="'+imageSrc+'" alt="'+esc(venue)+'">':'';
   const hero=image?'<div class="event-hero">'+image+'</div>':'<div class="event-hero"><strong>'+esc(venue)+'</strong></div>';
   const actions=[];
@@ -167,7 +173,7 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   /* L'orario è già mostrato sotto la data: non duplicarlo in una seconda sezione. */
   if(kind)sections+='<section class="info"><h2>TIPOLOGIA</h2><p>'+esc(kind)+'</p></section>';
   if(place)sections+='<section class="info"><h2>INDIRIZZO</h2><p><span class="address-line">'+esc(address)+'</span>'+(city?'<span class="city-line">'+esc(city)+'</span>':'')+'</p></section>';
-  root.innerHTML='<div class="details" id="event-details"><h1 class="date">'+esc(dateLabel)+'</h1><p class="time">'+(time==='20:00–03:00'&&venue.toUpperCase().includes('IGINGINI')?'DALLE 20 ALLE 03':'DALLE '+esc(time.split(/[–-]/)[0].trim()))+(subtitle?' · '+esc(subtitle):'')+'</p>'+(kind?'<p class="kind">'+esc(kind)+'</p>':'')+'<h2 class="venue">'+esc(venue)+'</h2>'+(place?'<p class="place"><span class="address-line">'+esc(address)+'</span>'+(city?'<span class="city-line">'+esc(city)+'</span>':'')+'</p>':'')+sections+(calendar?'<a class="calendar" href="'+esc(calendar)+'" download>AGGIUNGI AL CALENDARIO</a>':'')+'<div class="actions">'+actions.join('')+'</div></div>';
+  root.innerHTML=hero+'<div class="details" id="event-details"><h1 class="date">'+esc(dateLabel)+'</h1>'+(wantedVenue.includes('IGINGINI')&&wantedDate==='2026-11-06'?'':'<p class="time">DALLE '+esc(time.split(/[–-]/)[0].trim())+(subtitle?' · '+esc(subtitle):'')+'</p>')+(subtitle&&!subtitle.toUpperCase().includes('SPECIALE')?'':'')+(subtitle.toUpperCase().includes('SPECIALE')?'<p class="kind detail-special">'+esc(subtitle)+'</p>':'')+(kind?'<p class="kind">'+esc(kind)+'</p>':'')+'<h2 class="venue">'+esc(venue)+'</h2>'+(place?'<p class="place"><span class="address-line">'+esc(address)+'</span>'+(city?'<span class="city-line">'+esc(city)+'</span>':'')+'</p>':'')+sections+(calendar?'<a class="calendar" href="'+esc(calendar)+'" download>AGGIUNGI AL CALENDARIO</a>':'')+'<div class="actions">'+actions.join('')+'</div></div>';
  }).catch(()=>{root.innerHTML='<div class="status">Non riesco a trovare questo evento. Torna all’elenco e seleziona nuovamente l’appuntamento.</div>';});
 })();
 </script>
