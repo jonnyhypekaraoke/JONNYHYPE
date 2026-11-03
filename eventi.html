@@ -473,7 +473,7 @@ main{width:min(1200px,calc(100% - 64px));margin:0 auto}
 <a href="https://wa.me/393791112344" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt=""></a>
 </nav></header><main>
 <div class="page-intro"><h1 class="display-heading"><span>PROSSIMI</span><span class="accent">EVENTI</span></h1></div>
-<section class="jh-437-hero" aria-label="Totale show live"><div class="jh-437-number" data-count-target="449" aria-label="449 show live">0</div><div class="jh-437-label">SHOW LIVE</div><div class="jh-437-sub">da Ottobre 2024 · giorno e notte</div></section>
+<section class="jh-home-live-counter jh-events-live-counter" aria-label="Eventi live da ottobre 2024"><div class="jh-home-live-copy"><span>EVENTI LIVE DA OTTOBRE 2024</span></div><div class="jh-home-live-number" data-count-target="449" aria-label="449 eventi live">0</div></section>
 <section class="events-project" id="calendario-elenco"><div class="event-list no-flyer-list">
 
 
@@ -515,7 +515,7 @@ main{width:min(1200px,calc(100% - 64px));margin:0 auto}
 </section>
 </main>
 <footer>JONNYHYPE · DJ SET · KARAOKE · EVENTS &amp; MUSIC PRODUCTION</footer><script>
-(()=>{const counter=document.querySelector('.jh-437-number[data-count-target]');if(!counter)return;const target=Number(counter.dataset.countTarget)||443;let started=false;const run=()=>{if(started)return;started=true;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){counter.textContent=String(target);return;}const duration=1900,start=performance.now();const tick=now=>{const p=Math.min((now-start)/duration,1);const eased=1-Math.pow(1-p,4);counter.textContent=String(Math.round(target*eased));if(p<1)requestAnimationFrame(tick);else counter.textContent=String(target);};requestAnimationFrame(tick);};if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){run();observer.disconnect();}},{threshold:.35});observer.observe(counter);}else{run();}})();
+(()=>{const counter=document.querySelector('.jh-events-live-counter .jh-home-live-number[data-count-target]');if(!counter)return;const target=Number(counter.dataset.countTarget)||443;let started=false;const run=()=>{if(started)return;started=true;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){counter.textContent=String(target);return;}const duration=1900,start=performance.now();const tick=now=>{const p=Math.min((now-start)/duration,1);const eased=1-Math.pow(1-p,4);counter.textContent=String(Math.round(target*eased));if(p<1)requestAnimationFrame(tick);else counter.textContent=String(target);};requestAnimationFrame(tick);};if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){run();observer.disconnect();}},{threshold:.35});observer.observe(counter);}else{run();}})();
 </script><script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script>
 <style id="jh-events-calendar-font-correction">
 /* Calendario: una sola famiglia per date, titoli, descrizioni e pulsanti */
@@ -806,11 +806,11 @@ html body main .jh-437-label {
  const sorted=[...unique.values()].sort((a,b)=>a.date-b.date);
  const monthNum=x=>String(x.date.getMonth()+1).padStart(2,'0');
  const imageFor=name=>{const n=name.toUpperCase();
-  if(n.includes('IGINGINI'))return '<img class="jh-home-upcoming-logo" src="/IGinGini%20.jpg" alt="iGinGini">';
+  if(n.includes('IGINGINI'))return '<img class="jh-home-upcoming-logo jh-logo-igingini" src="/IGinGini%20.jpg" alt="iGinGini">';
   if(n.includes('ALCHIMIA'))return '<img src="/ALCHIMIA.jpg" alt="Alchimia">';
   if(n.includes('ICE MARINA'))return '<img src="/ICE%20.jpg" alt="ICE Marina Club">';
   if(n.includes('CASABLANCA'))return '<img src="/Casablanca.jpg" alt="Casablanca">';
-  if(n.includes('VECCHIA NAPOLI'))return '<img class="jh-home-upcoming-logo" src="/Logo%20vecchia%20.jpg" alt="La Vecchia Napoli">';
+  if(n.includes('VECCHIA NAPOLI'))return '<img class="jh-home-upcoming-logo jh-logo-vecchia" src="/Logo%20vecchia%20.jpg" alt="La Vecchia Napoli">';
   if(n.includes('VIA VAI'))return '<img src="/Viavai.JPG" alt="Via Vai Café">';
   return '<strong>'+esc(name)+'</strong>';
  };
@@ -898,4 +898,14 @@ html body main .jh-437-label {
 #calendario-elenco .jh-home-upcoming-time{font-size:clamp(15px,3.8vw,18px)!important;font-weight:800!important;line-height:1.15!important;color:#fff!important;margin:0!important}
 .jh-events-home-list .jh-home-upcoming-date{font-size:clamp(28px,7.2vw,36px)!important;font-weight:950!important;line-height:1.02!important;letter-spacing:-.035em!important;color:#F02D98!important}
 .jh-events-home-list .jh-home-upcoming-time{font-size:clamp(15px,3.8vw,18px)!important;font-weight:800!important}
+</style><style id="jh-events-live-counter-and-logo-alignment-20261103">
+/* Contatore identico al banner Home: numero a destra, messaggio a sinistra. */
+.jh-events-live-counter{box-sizing:border-box!important;width:calc(85% - 49px)!important;max-width:650px!important;min-height:82px!important;margin:15px auto 28px!important;padding:12px 16px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;border:1px solid rgba(240,45,152,.72)!important;border-radius:17px!important;background:radial-gradient(ellipse at 100% 50%,rgba(240,45,152,.13),transparent 48%),linear-gradient(145deg,#17121d,#0c0c10 75%)!important;box-shadow:0 10px 28px rgba(0,0,0,.24)!important;color:#fff!important;font-family:Montserrat,Arial,sans-serif!important}
+.jh-events-live-counter .jh-home-live-copy{display:flex!important;flex:1 1 auto!important;min-width:0!important;flex-direction:column!important;gap:3px!important;font-family:Montserrat,Arial,sans-serif!important;font-size:clamp(13px,3.55vw,17px)!important;font-weight:800!important;line-height:1.12!important;letter-spacing:.015em!important;text-align:left!important}
+.jh-events-live-counter .jh-home-live-number{flex:0 0 auto!important;font-family:Montserrat,Arial,sans-serif!important;font-size:clamp(55px,14vw,72px)!important;font-weight:900!important;line-height:.88!important;letter-spacing:-.065em!important;color:#f02d98!important;font-variant-numeric:tabular-nums!important;text-shadow:0 0 12px rgba(240,45,152,.25),0 0 30px rgba(240,45,152,.14)!important}
+@media(min-width:461px){.jh-events-live-counter{width:85%!important;min-height:104px!important;padding:14px 22px!important;gap:18px!important;border-radius:20px!important}.jh-events-live-counter .jh-home-live-copy{font-size:clamp(15px,3.4vw,25px)!important;letter-spacing:.035em!important}.jh-events-live-counter .jh-home-live-number{font-size:clamp(58px,12vw,92px)!important}}
+/* Loghi centrati nel riquadro e ingranditi senza deformazioni. */
+#calendario-elenco .jh-home-upcoming-visual{display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important}
+#calendario-elenco .jh-home-upcoming-visual img.jh-logo-igingini{width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;padding:0!important;transform:scale(1.08)!important}
+#calendario-elenco .jh-home-upcoming-visual img.jh-logo-vecchia{width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;padding:0!important;transform:scale(1.18)!important}
 </style></body></html>
