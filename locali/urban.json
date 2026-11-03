@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "urban",
+  "name": "Urban",
+  "aliases": [
+    "URBAN",
+    "Cafè Urban",
+    "Cafe Urban"
+  ],
+  "address": "",
+  "city": "",
+  "province": "",
+  "map": "",
+  "logo": "",
+  "description": "",
+  "phone": "",
+  "bookingUrl": "",
+  "gallery": [],
+  "notes": "Scheda permanente: non cancellare quando termina un evento.",
+  "updatedAt": "2026-11-03"
+}
