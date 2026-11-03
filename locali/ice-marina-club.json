@@ -14,7 +14,32 @@
   "description": "",
   "phone": "",
   "bookingUrl": "",
-  "gallery": [],
+  "gallery": [
+    {
+      "src": "/images/locali/ice-marina-club/24CE50AB-5F68-4CD6-BE56-F6505808689B.png",
+      "alt": "ICE Marina Club – foto 1"
+    },
+    {
+      "src": "/images/locali/ice-marina-club/Ice1.PNG",
+      "alt": "ICE Marina Club – foto 2"
+    },
+    {
+      "src": "/images/locali/ice-marina-club/Ice2.PNG",
+      "alt": "ICE Marina Club – foto 3"
+    },
+    {
+      "src": "/images/locali/ice-marina-club/Ice3.PNG",
+      "alt": "ICE Marina Club – foto 4"
+    },
+    {
+      "src": "/images/locali/ice-marina-club/Ice4.PNG",
+      "alt": "ICE Marina Club – foto 5"
+    },
+    {
+      "src": "/images/locali/ice-marina-club/Ice5.PNG",
+      "alt": "ICE Marina Club – foto 6"
+    }
+  ],
   "notes": "Scheda permanente: non cancellare quando termina un evento.",
   "updatedAt": "2026-11-03"
 }
