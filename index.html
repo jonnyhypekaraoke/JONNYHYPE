@@ -1806,6 +1806,9 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
   }).filter(x=>x&&x.venue&&x.time);
   const unique=new Map();rows.forEach(x=>unique.set([x.date.toISOString().slice(0,10),x.venue,x.time].join('|'),x));
   const sorted=[...unique.values()].sort((a,b)=>a.date-b.date);
+  // La sequenza in home termina con ALCHIMIA di domenica 8 novembre 2026.
+  const homeEnd=sorted.findIndex(x=>x.venue.toUpperCase().includes('ALCHIMIA')&&x.date.getFullYear()===2026&&x.date.getMonth()===10&&x.date.getDate()===8);
+  if(homeEnd>=0)sorted.splice(homeEnd+1);
   const list=section.querySelector('.jh-home-upcoming-list');
   if(!sorted.length){list.innerHTML='<div class="jh-home-upcoming-empty">Al momento non ci sono eventi imminenti da mostrare.</div>';return;}
   if(sorted.length>1){
