@@ -52,6 +52,14 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
 }
 #event-details{scroll-margin-top:18px}
 </style>
+
+<style id="jh-event-detail-spacing-and-address-fix-20261103">
+.date{margin-bottom:5px!important;line-height:1.05!important}
+.time{margin:0 0 14px!important;font-size:clamp(16px,4.1vw,20px)!important;line-height:1.12!important}
+.place{line-height:1.32!important;overflow-wrap:normal!important;word-break:normal!important;text-wrap:pretty}
+.venue{overflow-wrap:normal!important;word-break:normal!important;text-wrap:balance}
+.info p{overflow-wrap:normal!important;word-break:normal!important;text-wrap:pretty}
+</style>
 </head>
 <body>
 <header class="top">
@@ -90,7 +98,7 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
   const venue=brand?clean(brand.querySelector('strong')?.textContent):clean(d.querySelector(':scope > strong:not(.event-subtitle)')?.textContent);
   const subtitle=clean(d.querySelector('.event-subtitle')?.textContent);
   const time=clean(d.querySelector('.time')?.textContent);
-  const place=clean(d.querySelector('.venue-link')?.textContent);
+  const place=clean(d.querySelector('.venue-link')?.textContent).replace(/\b(VIA|VIALE|CORSO|PIAZZA|VICOLO|LARGO)\s+/gi,'$1\u00a0');
   const description=clean(d.querySelector('.event-description')?.textContent);
   const dateParts=[...card.querySelectorAll('.date-stack span,.date-stack strong')].map(x=>clean(x.textContent));
   const dateLabel=dateParts.join(' ');
