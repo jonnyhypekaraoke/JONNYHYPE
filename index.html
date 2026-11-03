@@ -1745,7 +1745,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
 .jh-home-upcoming-date strong{font-size:clamp(30px,3.2vw,42px);line-height:1;color:#f02d98}
 .jh-home-upcoming-track .jh-home-upcoming-details h3{font-family:'Montserrat',Arial,sans-serif;font-size:clamp(18px,2vw,25px);font-weight:900;line-height:1.12;color:#fff;margin:14px 0 8px;overflow-wrap:anywhere}
 .jh-home-upcoming-kind{font-family:'Montserrat',Arial,sans-serif;font-size:13px;font-weight:800;line-height:1.35;color:#f02d98;margin:0 0 9px;overflow-wrap:anywhere}
-.jh-home-upcoming-address{font-family:'Montserrat',Arial,sans-serif;font-size:12px;font-weight:700;line-height:1.45;color:#fff;margin:0;overflow-wrap:anywhere}
+.jh-home-upcoming-address{font-family:'Montserrat',Arial,sans-serif;font-size:12px;font-weight:700;line-height:1.35;color:#fff;margin:0;overflow-wrap:normal;word-break:normal}.jh-home-upcoming-address .address-line{display:block;white-space:nowrap;letter-spacing:-.025em;font-size:clamp(10px,2.65vw,12px)}.jh-home-upcoming-address .city-line{display:block;margin-top:2px;font-size:11px;line-height:1.2;color:#d6d6dc;white-space:nowrap}
 .jh-home-upcoming-thumb{display:block;width:66px;height:66px;object-fit:cover;object-position:top center;border:1px solid #343039;border-radius:6px;margin-top:12px}
 .jh-home-upcoming-track .jh-home-upcoming-cta{box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:5px;width:100%;min-height:46px;padding:10px 8px;border:1px solid #fff;border-radius:10px;color:#fff;font-family:'Montserrat',Arial,sans-serif;font-size:12px;font-weight:900;line-height:1.2;text-align:center;text-decoration:none;white-space:nowrap;margin-top:auto}
 .jh-home-upcoming-track .jh-home-upcoming-cta span{color:#f02d98}
@@ -1791,12 +1791,18 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const venue=brand?clean(brand.querySelector('strong')?.textContent):clean(detail.querySelector(':scope > strong:not(.event-subtitle)')?.textContent);
    const subtitle=clean(detail.querySelector('.event-subtitle')?.textContent);
    const time=clean(detail.querySelector('.time')?.textContent);
-   const place=clean(detail.querySelector('.venue-link')?.textContent).replace(/\b(VIA|VIALE|CORSO|PIAZZA|VICOLO|LARGO)\s+/gi,'$1\u00a0');
+    const placeNode=detail.querySelector('.venue-link');
+    const placeClone=placeNode?.cloneNode(true);placeClone?.querySelector('.map-label')?.remove();
+    const placeRaw=(placeClone?.innerHTML||'').replace(/<br\s*\/?\s*>/gi,'|').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
+    const placeLines=placeRaw.split('|').map(v=>v.trim()).filter(Boolean);
+    const placeBase=placeLines.length>1?placeLines[placeLines.length-1]:(placeLines[0]||'');
+    const placeParts=placeBase.split('·').map(v=>v.trim()).filter(Boolean);
+    const address=placeParts[0]||'';const city=placeParts.slice(1).join(' · ');
    const desc=clean(detail.querySelector('.event-description')?.textContent);
    const booking=card.querySelector('.whatsapp-cta')?.getAttribute('href')||'';
    const map=detail.querySelector('.venue-link')?.getAttribute('href')||'';
    const calendar=card.querySelector('.event-actions .event-cta:not(.whatsapp-cta)')?.getAttribute('href')||'';
-   return {date,dayName,day,monthName,kind,venue,subtitle,time,place,desc,booking,map,calendar};
+   return {date,dayName,day,monthName,kind,venue,subtitle,time,address,city,desc,booking,map,calendar};
   }).filter(x=>x&&x.venue&&x.time);
   const unique=new Map();rows.forEach(x=>unique.set([x.date.toISOString().slice(0,10),x.venue,x.time].join('|'),x));
   const sorted=[...unique.values()].sort((a,b)=>a.date-b.date);
@@ -1812,7 +1818,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const localDate=x.date.getFullYear()+'-'+String(x.date.getMonth()+1).padStart(2,'0')+'-'+String(x.date.getDate()).padStart(2,'0');
    const query=new URLSearchParams({venue:x.venue,date:localDate});
    const cardId=index===1?' id="jh-home-upcoming-next"':'';
-   const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div><div class="jh-home-upcoming-time">'+(title.includes('IGINGINI')&&localDate==='2026-11-06'?'DALLE 20 ALLE 03':'DALLE '+esc(x.time.split(/[–-]/)[0].trim()))+'</div>'+(x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':'')+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+(title.includes('IGINGINI')&&localDate==='2026-11-06'?'<div class="jh-home-upcoming-schedule">20 - 23 CENA KARAOKE<br>23 - 03 DJ SET ‘90/‘00</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.place?'<div class="jh-home-upcoming-place">'+esc(x.place)+'</div>':'')+'<div class="jh-home-upcoming-cta">SCOPRI TUTTO ›</div></div></a>';
+   const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div><div class="jh-home-upcoming-time">'+(title.includes('IGINGINI')&&localDate==='2026-11-06'?'DALLE 20 ALLE 03':'DALLE '+esc(x.time.split(/[–-]/)[0].trim()))+'</div>'+(x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':'')+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+(title.includes('IGINGINI')&&localDate==='2026-11-06'?'<div class="jh-home-upcoming-schedule">20 - 23 CENA KARAOKE<br>23 - 03 DJ SET ‘90/‘00</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+'<div class="jh-home-upcoming-cta">SCOPRI TUTTO ›</div></div></a>';
    return card;
   }).join('');
  }).catch(()=>{section.querySelector('.jh-home-upcoming-list').innerHTML='<div class="jh-home-upcoming-empty">Non è stato possibile caricare gli eventi. Consulta la sezione Prossimi Eventi.</div>';});
