@@ -136,6 +136,58 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
 .info h2{display:inline-flex!important;align-items:center!important;margin:0 0 10px!important;padding:5px 10px!important;border-radius:7px!important;background:#f02d98!important;color:#080809!important;font-size:13px!important;font-weight:900!important;letter-spacing:.08em!important}
 .info p{margin:0!important;color:#fff!important;font-size:clamp(17px,4.4vw,22px)!important;font-weight:800!important;line-height:1.38!important}
 .info-schedule>div{border-color:rgba(240,45,152,.65)!important;background:rgba(5,5,7,.45)!important}
+<style id="jh-cosa-ce-schedule-professional-20261103">
+/* Sezione programma: intestazione piena e righe ordinate a griglia */
+.info{
+ margin:8px 0 0!important;
+ padding:17px 16px 16px!important;
+ border:1px solid rgba(240,45,152,.72)!important;
+ border-left:4px solid #F02D98!important;
+ border-radius:14px!important;
+ background:linear-gradient(135deg,#171018 0%,#0a090c 78%)!important;
+ box-shadow:0 8px 24px rgba(0,0,0,.22)!important;
+}
+.info h2{
+ display:flex!important;align-items:center!important;
+ width:100%!important;min-height:34px!important;
+ margin:0 0 13px!important;padding:0 0 10px!important;
+ border:0!important;border-bottom:1px solid rgba(240,45,152,.42)!important;
+ border-radius:0!important;background:transparent!important;
+ color:#F02D98!important;font-size:16px!important;
+ font-weight:900!important;letter-spacing:.09em!important;
+}
+.info-schedule{display:grid!important;gap:10px!important}
+.info-schedule>div{
+ display:grid!important;
+ grid-template-columns:minmax(88px,108px) minmax(0,1fr)!important;
+ align-items:center!important;column-gap:14px!important;
+ min-height:54px!important;padding:10px 12px!important;
+ border:1px solid rgba(255,255,255,.13)!important;
+ border-radius:9px!important;
+ background:rgba(0,0,0,.42)!important;
+}
+.info-schedule strong{
+ display:flex!important;align-items:center!important;
+ justify-content:center!important;flex:initial!important;
+ min-height:32px!important;padding:4px 7px!important;
+ border-right:2px solid #F02D98!important;
+ border-radius:0!important;background:transparent!important;
+ color:#fff!important;font-size:clamp(17px,4.4vw,21px)!important;
+ font-weight:900!important;line-height:1.1!important;
+ font-variant-numeric:tabular-nums!important;white-space:nowrap!important;
+}
+.info-schedule span{
+ display:block!important;min-width:0!important;
+ color:#fff!important;font-size:clamp(14px,3.6vw,18px)!important;
+ font-weight:850!important;line-height:1.25!important;
+}
+@media(max-width:380px){
+ .info{padding:14px 11px!important}
+ .info-schedule>div{grid-template-columns:82px minmax(0,1fr)!important;column-gap:10px!important;padding:9px!important}
+ .info-schedule strong{font-size:16px!important}
+ .info-schedule span{font-size:14px!important}
+}
+</style>
 </style>
 </head>
 <body>
