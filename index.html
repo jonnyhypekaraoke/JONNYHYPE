@@ -1777,7 +1777,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
  const section=document.createElement('section');
  section.className='jh-home-upcoming';
  section.setAttribute('aria-labelledby','jh-home-upcoming-title');
- section.innerHTML='<h2 class="jh-home-upcoming-heading" id="jh-home-upcoming-title">PROSSIMI <span>EVENTI</span><a class="jh-home-heading-scroll" href="#jh-home-upcoming-list" aria-label="Scorri agli eventi"><span aria-hidden="true">↓</span></a></h2><div class="jh-home-upcoming-list" id="jh-home-upcoming-list" aria-live="polite"><div class="jh-home-upcoming-empty">Caricamento eventi…</div></div><a class="jh-home-all-events" href="/eventi.html">VEDI TUTTI GLI EVENTI <span aria-hidden="true">→</span></a>';
+ section.innerHTML='<h2 class="jh-home-upcoming-heading" id="jh-home-upcoming-title">PROSSIMI <span>EVENTI</span></h2><div class="jh-home-upcoming-list" id="jh-home-upcoming-list" aria-live="polite"><div class="jh-home-upcoming-empty">Caricamento eventi…</div></div><a class="jh-home-all-events" href="/eventi.html">VEDI TUTTI GLI EVENTI <span aria-hidden="true">→</span></a>';
  host.parentNode.insertBefore(section,host);
  const monthMap={GENNAIO:0,FEBBRAIO:1,MARZO:2,APRILE:3,MAGGIO:4,GIUGNO:5,LUGLIO:6,AGOSTO:7,SETTEMBRE:8,OTTOBRE:9,NOVEMBRE:10,DICEMBRE:11};
  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1996,6 +1996,26 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
 .jh-home-upcoming-info .jh-home-upcoming-date{font-size:clamp(28px,7.2vw,36px)!important;font-weight:950!important;line-height:1.02!important;letter-spacing:-.035em!important;color:#F02D98!important;margin:0 0 2px!important}
 .jh-home-upcoming-info .jh-home-upcoming-time{font-size:clamp(15px,3.8vw,18px)!important;font-weight:800!important;line-height:1.15!important;color:#fff!important;margin:0!important}
 </style></body>
+
+<style id="jh-home-upcoming-heading-center-size-20261103">
+/* Titolo PROSSIMI EVENTI centrato e più leggibile su mobile e desktop */
+.jh-home-upcoming{ text-align:center!important; }
+.jh-home-upcoming-heading{
+ display:flex!important;
+ justify-content:center!important;
+ align-items:center!important;
+ width:100%!important;
+ text-align:center!important;
+ font-size:clamp(28px,7.2vw,38px)!important;
+ line-height:1.08!important;
+ margin-left:auto!important;
+ margin-right:auto!important;
+}
+.jh-home-heading-scroll{display:none!important}
+@media(max-width:600px){
+ .jh-home-upcoming-heading{font-size:clamp(29px,7.6vw,36px)!important;gap:8px!important}
+}
+</style>
 </html><style id="jh-home-venue-panel-unified-20261103">
 .jh-home-upcoming-info .jh-home-upcoming-venue-panel{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:5px!important;margin:3px 0 2px!important;padding:12px 13px!important;border:1px solid rgba(240,45,152,.58)!important;border-radius:11px!important;background:linear-gradient(110deg,rgba(240,45,152,.10),rgba(255,255,255,.025))!important}
 .jh-home-upcoming-info .jh-home-upcoming-venue-panel .jh-home-upcoming-kind{margin:0!important;padding:0!important;background:none!important;border:0!important;color:#F02D98!important;font-size:11px!important;letter-spacing:.075em!important}
