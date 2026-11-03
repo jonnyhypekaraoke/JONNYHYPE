@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "alchimia",
+  "name": "Alchimia",
+  "aliases": [
+    "ALCHIMIA"
+  ],
+  "address": "",
+  "city": "",
+  "province": "",
+  "map": "",
+  "logo": "",
+  "description": "",
+  "phone": "",
+  "bookingUrl": "",
+  "gallery": [],
+  "notes": "Scheda permanente: non cancellare quando termina un evento.",
+  "updatedAt": "2026-11-03"
+}
