@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "ice-marina-club",
+  "name": "ICE Marina Club",
+  "aliases": [
+    "ICE MARINA CLUB",
+    "Ice Marina Club"
+  ],
+  "address": "",
+  "city": "",
+  "province": "",
+  "map": "",
+  "logo": "",
+  "description": "",
+  "phone": "",
+  "bookingUrl": "",
+  "gallery": [],
+  "notes": "Scheda permanente: non cancellare quando termina un evento.",
+  "updatedAt": "2026-11-03"
+}
