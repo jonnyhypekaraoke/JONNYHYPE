@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "via-vai",
+  "name": "Via Vai",
+  "aliases": [
+    "VIA VAI",
+    "Via Vai CAFÈ",
+    "Via Vai Cafe"
+  ],
+  "address": "",
+  "city": "",
+  "province": "",
+  "map": "",
+  "logo": "",
+  "description": "",
+  "phone": "",
+  "bookingUrl": "",
+  "gallery": [],
+  "notes": "Scheda permanente: non cancellare quando termina un evento.",
+  "updatedAt": "2026-11-03"
+}
