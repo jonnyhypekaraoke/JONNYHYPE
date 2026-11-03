@@ -1103,7 +1103,7 @@ h1{font-weight:900!important;line-height:1.08!important}
 </div>
 
 <section class="jh-home-live-counter" aria-label="Eventi live da ottobre 2024">
-  <div class="jh-home-live-copy"><span>EVENTI LIVE DA</span><span>OTTOBRE 2024</span></div>
+  <div class="jh-home-live-copy"><span>EVENTI LIVE DA OTTOBRE 2024</span></div>
   <div class="jh-home-live-number" data-count-target="449" aria-label="449 eventi live">0</div>
 </section>
 
@@ -1945,6 +1945,51 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
  #jh-home-upcoming-list .jh-home-upcoming-visual img[alt="La Vecchia Napoli"]{
   padding:20px!important;
  }
+}
+</style>
+<style id="jh-home-live-counter-compact-20261103">
+/* Contatore eventi live: banner più compatto in larghezza, numero in evidenza */
+.jh-home-live-counter{
+ width:min(76%,560px)!important;
+ max-width:560px!important;
+ min-height:0!important;
+ margin:18px auto 22px!important;
+ padding:20px 18px 18px!important;
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:center!important;
+ justify-content:center!important;
+ gap:9px!important;
+ text-align:center!important;
+ box-sizing:border-box!important;
+}
+.jh-home-live-number{
+ order:0!important;
+ flex:none!important;
+ font-size:clamp(58px,13vw,88px)!important;
+ line-height:.9!important;
+}
+.jh-home-live-copy{
+ order:1!important;
+ display:block!important;
+ flex:none!important;
+ width:100%!important;
+ min-width:0!important;
+ font-size:clamp(12px,2.9vw,17px)!important;
+ line-height:1.2!important;
+ letter-spacing:.10em!important;
+ text-align:center!important;
+ color:#fff!important;
+}
+@media(max-width:460px){
+ .jh-home-live-counter{
+  width:76%!important;
+  max-width:560px!important;
+  padding:18px 12px 16px!important;
+  gap:8px!important;
+ }
+ .jh-home-live-number{font-size:clamp(56px,13vw,76px)!important}
+ .jh-home-live-copy{font-size:clamp(11px,2.8vw,15px)!important;letter-spacing:.07em!important}
 }
 </style>
 </body>
