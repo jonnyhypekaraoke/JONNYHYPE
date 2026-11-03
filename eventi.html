@@ -739,7 +739,7 @@ html body main .jh-437-label {
  if(!section)return;
  const source=[...section.querySelectorAll('.event-card')];
  const monthMap={GENNAIO:0,FEBBRAIO:1,MARZO:2,APRILE:3,MAGGIO:4,GIUGNO:5,LUGLIO:6,AGOSTO:7,SETTEMBRE:8,OTTOBRE:9,NOVEMBRE:10,DICEMBRE:11};
- const clean=s=>String(s||'').replace(/\\s+/g,' ').replace(/&nbsp;/gi,' ').trim();
+ const clean=s=>String(s||'').replace(/\s+/g,' ').replace(/&nbsp;/gi,' ').trim();
  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const rows=source.map(card=>{
   const parts=[...card.querySelectorAll('.date-stack span,.date-stack strong')].map(x=>clean(x.textContent).toUpperCase());
@@ -754,7 +754,7 @@ html body main .jh-437-label {
   const desc=clean(detail.querySelector('.event-description')?.textContent);
   const place=detail.querySelector('.venue-link');
   const clone=place?.cloneNode(true);clone?.querySelector('.map-label')?.remove();
-  const raw=(clone?.innerHTML||'').replace(/<br\\s*\\/?\\s*>/gi,'|').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\\s+/g,' ').trim();
+  const raw=(clone?.innerHTML||'').replace(/<br\s*\\/?\s*>/gi,'|').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
   const lines=raw.split('|').map(x=>x.trim()).filter(Boolean);
   const base=lines.length>1?lines[lines.length-1]:(lines[0]||'');
   const addressParts=base.split('·').map(x=>x.trim()).filter(Boolean);
