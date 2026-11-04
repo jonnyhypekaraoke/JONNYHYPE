@@ -1875,7 +1875,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    return {date,dayName,day,monthName,kind,venue,subtitle,time,address,city,desc,booking,map,calendar};
   }).filter(x=>x&&x.venue&&x.time);
   const unique=new Map();rows.forEach(x=>unique.set([x.date.toISOString().slice(0,10),x.venue,x.time].join('|'),x));
-  const sorted=[...unique.values()].sort((a,b)=>a.date-b.date);
+  const sorted=[...unique.values()].filter(x=>!(x.venue.toUpperCase().includes('CASABLANCA')&&x.date.getFullYear()===2026&&x.date.getMonth()===10&&x.date.getDate()===5)).sort((a,b)=>a.date-b.date);
   // La sequenza in home termina con ALCHIMIA di domenica 8 novembre 2026.
   const homeEnd=sorted.findIndex(x=>x.venue.toUpperCase().includes('ALCHIMIA')&&x.date.getFullYear()===2026&&x.date.getMonth()===10&&x.date.getDate()===8);
   if(homeEnd>=0)sorted.splice(homeEnd+1);
