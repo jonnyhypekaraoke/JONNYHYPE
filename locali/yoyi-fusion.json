@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "yoyi-fusion",
+  "name": "YOYi Fusion",
+  "aliases": [
+    "YOYi",
+    "YOYi FUSION",
+    "Ristorante YOYi Fusion"
+  ],
+  "address": "Via Faentina 130/B",
+  "city": "Ravenna",
+  "province": "Ravenna",
+  "map": "https://www.google.com/maps/search/?api=1&query=Ristorante+YOYi+Fusion%2C+Via+Faentina+130%2FB%2C+Ravenna",
+  "logo": "/YOYi.jpg.JPG",
+  "description": "",
+  "phone": "",
+  "bookingUrl": "",
+  "gallery": [
+    {
+      "src": "/images/locali/YoYi/3EFA8A03-AE00-4ACA-B21B-25AB0770CAC9.png",
+      "alt": "YOYi Fusion – foto 1"
+    },
+    {
+      "src": "/images/locali/YoYi/79414664-7078-4EEF-98DD-B099BEA7B78C.png",
+      "alt": "YOYi Fusion – foto 2"
+    },
+    {
+      "src": "/images/locali/YoYi/7A3BA5AD-F829-4527-B9E6-89549CA1628C.png",
+      "alt": "YOYi Fusion – foto 3"
+    },
+    {
+      "src": "/images/locali/YoYi/B65CFB66-BF8D-4098-A6B0-0D87E4D26443.png",
+      "alt": "YOYi Fusion – foto 4"
+    },
+    {
+      "src": "/images/locali/YoYi/F35380CF-7B6A-4618-A8BB-0114FDABC230.png",
+      "alt": "YOYi Fusion – foto 5"
+    },
+    {
+      "src": "/images/locali/YoYi/FE0BADEE-2BF1-4B28-A169-4E9013932637.png",
+      "alt": "YOYi Fusion – foto 6"
+    },
+    {
+      "src": "/images/locali/YoYi/IMG_2863.jpeg",
+      "alt": "YOYi Fusion – foto 7"
+    },
+    {
+      "src": "/images/locali/YoYi/IMG_2866.jpeg",
+      "alt": "YOYi Fusion – foto 8"
+    }
+  ],
+  "notes": "Scheda permanente: non cancellare quando termina un evento.",
+  "updatedAt": "2026-11-05"
+}
