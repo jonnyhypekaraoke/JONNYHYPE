@@ -1884,8 +1884,8 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    return {date,dayName,day,monthName,kind,venue,subtitle,time,address,city,desc,booking,map,calendar};
   }).filter(x=>x&&x.venue&&x.time);
   const unique=new Map();rows.forEach(x=>unique.set([x.date.toISOString().slice(0,10),x.venue,x.time].join('|'),x));
-  const sorted=[...unique.values()].filter(x=>!(x.venue.toUpperCase().includes('CASABLANCA')&&x.date.getFullYear()===2026&&x.date.getMonth()===10&&x.date.getDate()===5)).sort((a,b)=>a.date-b.date);
-  // Mostra in home tutti gli eventi futuri presenti nel calendario.
+  const sorted=[...unique.values()].filter(x=>!(x.venue.toUpperCase().includes('CASABLANCA')&&x.date.getFullYear()===2026&&x.date.getMonth()===10&&x.date.getDate()===5)&&x.date<=new Date(2026,10,12,23,59,59,999)).sort((a,b)=>a.date-b.date);
+  // In Home mostra gli eventi futuri solo fino a giovedì 12 novembre 2026.
   const list=section.querySelector('.jh-home-upcoming-list');
   if(!sorted.length){list.innerHTML='<div class="jh-home-upcoming-empty">Al momento non ci sono eventi imminenti da mostrare.</div>';return;}
   list.innerHTML=sorted.map((x,index)=>{
