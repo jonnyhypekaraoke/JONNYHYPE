@@ -16,32 +16,32 @@
   "bookingUrl": "",
   "gallery": [
     {
-      "src": "/images/locali/ice-marina-club/24CE50AB-5F68-4CD6-BE56-F6505808689B.png",
+      "src": "https://media.jonnyhype.it/images/locali/ice-marina-club/24CE50AB-5F68-4CD6-BE56-F6505808689B.png",
       "alt": "ICE Marina Club – foto 1"
     },
     {
       "type": "video",
-      "src": "/images/locali/ice-marina-club/866F9A5A-F57E-4E7C-8499-809E68CEA699.mov",
+      "src": "https://media.jonnyhype.it/images/locali/ice-marina-club/866F9A5A-F57E-4E7C-8499-809E68CEA699.mov",
       "alt": "ICE Marina Club – video"
     },
     {
-      "src": "/images/locali/ice-marina-club/Ice1.PNG",
+      "src": "https://media.jonnyhype.it/images/locali/ice-marina-club/Ice1.PNG",
       "alt": "ICE Marina Club – foto 2"
     },
     {
-      "src": "/images/locali/ice-marina-club/Ice2.PNG",
+      "src": "https://media.jonnyhype.it/images/locali/ice-marina-club/Ice2.PNG",
       "alt": "ICE Marina Club – foto 3"
     },
     {
-      "src": "/images/locali/ice-marina-club/Ice3.PNG",
+      "src": "https://media.jonnyhype.it/images/locali/ice-marina-club/Ice3.PNG",
       "alt": "ICE Marina Club – foto 4"
     },
     {
-      "src": "/images/locali/ice-marina-club/Ice4.PNG",
+      "src": "https://media.jonnyhype.it/images/locali/ice-marina-club/Ice4.PNG",
       "alt": "ICE Marina Club – foto 5"
     },
     {
-      "src": "/images/locali/ice-marina-club/Ice5.PNG",
+      "src": "https://media.jonnyhype.it/images/locali/ice-marina-club/Ice5.PNG",
       "alt": "ICE Marina Club – foto 6"
     }
   ],
