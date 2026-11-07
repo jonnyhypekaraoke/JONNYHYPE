@@ -1192,7 +1192,7 @@ h1{font-weight:900!important;line-height:1.08!important}
 
 
 <div class="links">
-<a class="btn song-request-banner" href="/karaoke.html"><span class="song-request-icon song-request-live-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#fff"/><circle cx="32" cy="32" r="19" fill="none" stroke="#f02d98" stroke-width="2.5"/><circle cx="32" cy="32" r="3.5" fill="#f02d98"/><path d="M23 25a13 13 0 0 0 0 14M41 25a13 13 0 0 1 0 14M18 20a20 20 0 0 0 0 24M46 20a20 20 0 0 1 0 24" fill="none" stroke="#f02d98" stroke-width="2.5" stroke-linecap="round"/><text x="32" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="900" fill="#f02d98">LIVE</text></svg></span><span class="song-request-copy"><strong><span class="jh-btn-white">• LIVE</span></strong><small>PRENOTATI PER CANTARE<br>O SCEGLI UN BRANO DA DEDICARE</small></span><span class="song-request-arrow" aria-hidden="true">→</span></a>
+<a class="btn song-request-banner" href="/karaoke.html"><span class="song-request-icon song-request-live-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#fff"/><circle cx="32" cy="32" r="19" fill="none" stroke="#f02d98" stroke-width="2.5"/><circle cx="32" cy="32" r="3.5" fill="#f02d98"/><path d="M23 25a13 13 0 0 0 0 14M41 25a13 13 0 0 1 0 14M18 20a20 20 0 0 0 0 24M46 20a20 20 0 0 1 0 24" fill="none" stroke="#f02d98" stroke-width="2.5" stroke-linecap="round"/><text x="32" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="900" fill="#f02d98">LIVE</text></svg></span><span class="song-request-copy"><strong><span class="jh-btn-pink">• LIVE</span></strong><small><span class="jh-copy-white">PRENOTATI </span><span class="jh-copy-pink">PER </span><span class="jh-copy-white">CANTARE</span><br><span class="jh-copy-pink">O </span><span class="jh-copy-white">SCEGLI UN BRANO</span><br><span class="jh-copy-pink">DA DEDICARE</span></small></span><span class="song-request-arrow" aria-hidden="true">→</span></a>
 <a class="btn social" href="/eventi.html"><span class="jh-btn-white">PROSSIMI</span> <span class="jh-btn-pink">EVENTI</span> <span class="home-arrow" aria-hidden="true">→</span></a>
 </div>
 
@@ -2465,3 +2465,19 @@ html body details.jh-menu[open] .jh-menu-panel.jh-menu-numbered a:focus-visible{
 }
 </style>
 
+
+
+<style id="jh-home-live-and-heading-spacing-20261107">
+/* Correzione mirata dei due banner HOME: testo e spaziatura, senza cambiare il layout. */
+.hero .content>.links .btn.song-request-banner .song-request-copy strong .jh-btn-pink{color:#F02D98!important}
+.hero .content>.links .btn.song-request-banner .song-request-copy small{font-family:"Montserrat",Arial,sans-serif!important;font-weight:800!important;letter-spacing:0!important;line-height:1.35!important}
+.hero .content>.links .btn.song-request-banner .song-request-copy small .jh-copy-white{color:#fff!important}
+.hero .content>.links .btn.song-request-banner .song-request-copy small .jh-copy-pink{color:#F02D98!important}
+.jh-home-upcoming-heading{justify-content:center!important;gap:3px!important}
+.jh-home-upcoming-heading>span{margin:0!important;padding:0!important}
+@media(max-width:600px){
+ .hero .content>.links .btn.song-request-banner .song-request-copy strong{font-size:clamp(13px,3.7vw,18px)!important}
+ .hero .content>.links .btn.song-request-banner .song-request-copy small{font-size:clamp(9px,2.4vw,11px)!important;line-height:1.28!important}
+ .jh-home-upcoming-heading{gap:2px!important;letter-spacing:-.045em!important}
+}
+</style>
