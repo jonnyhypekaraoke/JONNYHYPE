@@ -2338,6 +2338,47 @@ html body .hero .content>.links>a.btn.social .jh-btn-pink{color:#F02D98!importan
 }
 </style>
 
+
+<style id="jh-home-two-banners-outward-alignment-20261107">
+/* HOME: i due banner si estendono verso i rispettivi lati esterni; testi riallineati. */
+@media(max-width:600px){
+ html body .hero .content>.links{
+  width:88%!important;
+  max-width:520px!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  column-gap:9px!important;
+ }
+ /* Banner sinistro: estensione verso sinistra, senza cambiare la colonna interna. */
+ html body .hero .content>.links>a.btn.song-request-banner{
+  width:calc(100% + 10px)!important;
+  margin-left:-10px!important;
+  margin-right:0!important;
+  justify-self:stretch!important;
+  padding-left:12px!important;padding-right:8px!important;
+ }
+ /* Testo LIVE ordinato e leggibile, mantenendo icona e freccia. */
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy{
+  align-items:flex-start!important;text-align:left!important;
+  justify-content:center!important;min-width:0!important;
+ }
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy strong,
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy small{
+  text-align:left!important;max-width:100%!important;
+ }
+ /* Banner destro: estensione speculare verso destra e scritta centrata. */
+ html body .hero .content>.links>a.btn.social{
+  width:calc(100% + 10px)!important;
+  margin-left:0!important;margin-right:-10px!important;
+  justify-self:stretch!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  text-align:center!important;padding-left:8px!important;padding-right:12px!important;
+ }
+ html body .hero .content>.links>a.btn.social .jh-btn-white,
+ html body .hero .content>.links>a.btn.social .jh-btn-pink{
+  display:inline!important;text-align:center!important;white-space:nowrap!important;
+ }
+}
+</style>
 </body>
 
 <style id="jh-home-upcoming-heading-center-size-20261103">
