@@ -30,7 +30,6 @@ jobs:
             echo "::error::Manca uno o più GitHub Actions Secrets R2."
             exit 1
           fi
-          echo "R2_ENDPOINT=https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" >> "$GITHUB_ENV"
           aws --version
 
       - name: Check media inventory
@@ -45,11 +44,12 @@ jobs:
 
       - name: Upload media to R2 (or simulate)
         env:
-          R2_ENDPOINT: ${{ env.R2_ENDPOINT }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           DRY_RUN: ${{ inputs.dry_run }}
         shell: bash
         run: |
           set -euo pipefail
+          R2_ENDPOINT="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
           args=(--endpoint-url "$R2_ENDPOINT" --region auto)
           if [ "$DRY_RUN" = "true" ]; then
             echo "MODALITÀ SIMULAZIONE: nessun file verrà caricato."
