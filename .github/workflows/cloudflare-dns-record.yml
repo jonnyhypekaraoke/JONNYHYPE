@@ -7,23 +7,39 @@ on:
         description: "Tipo record (TXT, CNAME, MX o SRV)"
         required: true
         type: choice
-        options:
-          - TXT
-          - CNAME
-          - MX
-          - SRV
+        options: [TXT, CNAME, MX, SRV]
       record_name:
-        description: "Nome host (es. @, mail, selector._domainkey)"
+        description: "Nome host per TXT/CNAME/MX; dominio per SRV (es. jonnyhype.it)"
         required: true
         type: string
       record_content:
-        description: "Valore esatto fornito da OVH/Zimbra"
+        description: "Valore esatto per TXT/CNAME/MX; target per SRV"
         required: true
         type: string
       priority:
-        description: "Priorità MX/SRV (lascia 0 per TXT/CNAME)"
+        description: "Priorità MX (o SRV)"
         required: false
         default: "0"
+        type: string
+      srv_service:
+        description: "Solo SRV: servizio senza dominio (es. _autodiscover)"
+        required: false
+        default: "_autodiscover"
+        type: string
+      srv_proto:
+        description: "Solo SRV: protocollo (es. _tcp)"
+        required: false
+        default: "_tcp"
+        type: string
+      srv_weight:
+        description: "Solo SRV: peso"
+        required: false
+        default: "0"
+        type: string
+      srv_port:
+        description: "Solo SRV: porta"
+        required: false
+        default: "443"
         type: string
       ttl:
         description: "TTL in secondi (1 = automatico)"
@@ -38,7 +54,7 @@ jobs:
   add-dns-record:
     runs-on: ubuntu-latest
     steps:
-      - name: Validate and add DNS record without overwriting
+      - name: Valida e aggiungi il record senza sovrascrivere
         env:
           CF_API_TOKEN: ${{ secrets.CLOUDFLARE_DNS_API_TOKEN }}
           CF_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
@@ -46,61 +62,78 @@ jobs:
           RECORD_NAME: ${{ inputs.record_name }}
           RECORD_CONTENT: ${{ inputs.record_content }}
           RECORD_PRIORITY: ${{ inputs.priority }}
+          SRV_SERVICE: ${{ inputs.srv_service }}
+          SRV_PROTO: ${{ inputs.srv_proto }}
+          SRV_WEIGHT: ${{ inputs.srv_weight }}
+          SRV_PORT: ${{ inputs.srv_port }}
           RECORD_TTL: ${{ inputs.ttl }}
         shell: bash
         run: |
           set -euo pipefail
           if [[ -z "$CF_API_TOKEN" || -z "$CF_ZONE_ID" ]]; then
-            echo "::error::Aggiungere i GitHub Secrets CLOUDFLARE_DNS_API_TOKEN e CLOUDFLARE_ZONE_ID."
-            exit 1
-          fi
-          if [[ ! "$RECORD_TYPE" =~ ^(TXT|CNAME|MX|SRV)$ ]]; then
-            echo "::error::Tipo record non consentito."
-            exit 1
-          fi
-          if [[ ! "$RECORD_TTL" =~ ^[0-9]+$ ]] || [[ ! "$RECORD_PRIORITY" =~ ^[0-9]+$ ]]; then
-            echo "::error::TTL e priorità devono essere numerici."
+            echo "::error::Mancano i GitHub Secrets CLOUDFLARE_DNS_API_TOKEN e/o CLOUDFLARE_ZONE_ID."
             exit 1
           fi
           python3 - <<'PY'
-          import json, os
+          import json, os, re
           typ=os.environ["RECORD_TYPE"]
-          name=os.environ["RECORD_NAME"].strip()
-          content=os.environ["RECORD_CONTENT"].strip()
-          if not name or not content:
-              raise SystemExit("Nome e contenuto sono obbligatori.")
+          name=os.environ["RECORD_NAME"].strip().rstrip(".")
+          content=os.environ["RECORD_CONTENT"].strip().rstrip(".")
+          priority=int(os.environ["RECORD_PRIORITY"])
+          ttl=int(os.environ["RECORD_TTL"])
+          if typ not in ("TXT","CNAME","MX","SRV") or not name or not content:
+              raise SystemExit("Tipo, nome o valore non valido.")
+          if ttl < 1 or priority < 0:
+              raise SystemExit("TTL e priorità non validi.")
           if any(c in name+content for c in "\n\r"):
               raise SystemExit("Non sono ammessi ritorni a capo.")
-          payload={"type":typ,"name":name,"content":content,"ttl":int(os.environ["RECORD_TTL"])}
-          if typ in ("MX","SRV"):
-              payload["priority"]=int(os.environ["RECORD_PRIORITY"])
-          if typ in ("TXT","CNAME") and int(os.environ["RECORD_PRIORITY"]) != 0:
-              raise SystemExit("La priorità deve essere 0 per TXT/CNAME.")
+          payload={"type":typ,"ttl":ttl}
+          if typ == "SRV":
+              service=os.environ["SRV_SERVICE"].strip()
+              proto=os.environ["SRV_PROTO"].strip()
+              weight=int(os.environ["SRV_WEIGHT"])
+              port=int(os.environ["SRV_PORT"])
+              if not service.startswith("_") or proto not in ("_tcp","_udp") or not 0 <= weight <= 65535 or not 1 <= port <= 65535:
+                  raise SystemExit("Parametri SRV non validi: controllare servizio, protocollo, peso e porta.")
+              payload.update(name=f"{service}.{proto}.{name}", data={
+                  "service":service, "proto":proto, "name":name,
+                  "priority":priority, "weight":weight, "port":port, "target":content
+              })
+          else:
+              payload.update(name=name, content=content)
+              if typ == "MX":
+                  payload["priority"]=priority
+              elif priority != 0:
+                  raise SystemExit("La priorità deve essere 0 per TXT/CNAME.")
           with open("/tmp/dns-payload.json","w") as f: json.dump(payload,f)
+          with open("/tmp/query-name","w") as f: f.write(payload["name"])
           PY
+          QUERY_NAME="$(cat /tmp/query-name)"
           API="https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/dns_records"
-          curl --fail-with-body --silent --show-error "$API?type=$RECORD_TYPE&name=$RECORD_NAME" \
-            -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" \
-            -o /tmp/existing.json
+          curl --fail-with-body --silent --show-error --get "$API" \
+            --data-urlencode "type=$RECORD_TYPE" --data-urlencode "name=$QUERY_NAME" \
+            -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" -o /tmp/existing.json
           python3 - <<'PY'
           import json
           d=json.load(open("/tmp/existing.json"))
           if not d.get("success"):
-              raise SystemExit("Cloudflare non ha autorizzato la lettura della zona DNS.")
+              raise SystemExit("Lettura DNS Cloudflare non autorizzata o non riuscita.")
           rows=d.get("result",[])
           wanted=json.load(open("/tmp/dns-payload.json"))
           for r in rows:
-              same=(r.get("content")==wanted["content"] and (wanted.get("priority") is None or r.get("priority")==wanted["priority"]))
+              if wanted["type"] == "SRV":
+                  same=(r.get("data")==wanted.get("data"))
+              else:
+                  same=(r.get("content")==wanted.get("content") and
+                        (wanted.get("priority") is None or r.get("priority")==wanted["priority"]))
               if same:
                   print("Record già presente e identico: nessuna modifica necessaria.")
                   open("/tmp/record-already-present","w").close()
                   raise SystemExit(0)
           if rows:
-              raise SystemExit("Esiste già un record dello stesso tipo e nome con valore diverso. Nessuna sovrascrittura eseguita.")
+              raise SystemExit("Esiste già un record dello stesso tipo e nome con valori diversi. Nessuna sovrascrittura eseguita.")
           PY
-          if [[ -f /tmp/record-already-present ]]; then
-            exit 0
-          fi
+          if [[ -f /tmp/record-already-present ]]; then exit 0; fi
           curl --fail-with-body --silent --show-error -X POST "$API" \
             -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" \
             --data-binary @/tmp/dns-payload.json -o /tmp/created.json
@@ -108,7 +141,8 @@ jobs:
           import json
           d=json.load(open("/tmp/created.json"))
           if not d.get("success"):
+              print(json.dumps(d.get("errors",[]),ensure_ascii=False))
               raise SystemExit("Cloudflare ha rifiutato la creazione del record.")
           r=d["result"]
-          print("Record DNS creato:", r["type"], r["name"], "TTL:", r["ttl"])
+          print("Record DNS creato:",r["type"],r["name"],"TTL:",r["ttl"])
           PY
