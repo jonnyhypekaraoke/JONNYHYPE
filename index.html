@@ -1196,8 +1196,8 @@ h1{font-weight:900!important;line-height:1.08!important}
 
 
 <div class="links">
-<a class="btn song-request-banner" href="/karaoke.html"><span class="song-request-icon song-request-live-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#fff"/><circle cx="32" cy="32" r="19" fill="none" stroke="#f02d98" stroke-width="2.5"/><circle cx="32" cy="32" r="3.5" fill="#f02d98"/><path d="M23 25a13 13 0 0 0 0 14M41 25a13 13 0 0 1 0 14M18 20a20 20 0 0 0 0 24M46 20a20 20 0 0 1 0 24" fill="none" stroke="#f02d98" stroke-width="2.5" stroke-linecap="round"/><text x="32" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="900" fill="#f02d98">LIVE</text></svg></span><span class="song-request-copy"><strong><span class="jh-btn-pink">• LIVE</span></strong><small><span class="jh-copy-white">PRENOTATI </span><span class="jh-copy-pink">PER </span><span class="jh-copy-white">CANTARE</span><br><span class="jh-copy-pink">O </span><span class="jh-copy-white">SCEGLI UN BRANO</span><br><span class="jh-copy-pink">DA DEDICARE</span></small></span><span class="song-request-arrow" aria-hidden="true">→</span></a>
-<a class="btn social" href="/eventi.html"><span class="jh-btn-white">PROSSIMI</span><span class="jh-btn-pink">EVENTI</span></a>
+<a class="btn song-request-banner" href="/karaoke.html" aria-label="Richiedi una canzone live"><span class="song-request-copy"><strong><span class="jh-btn-white">RICHIEDI</span><br><span class="jh-btn-pink">UNA CANZONE</span> <span class="jh-btn-white">LIVE</span></strong><small>Prenota ora, la canti sul palco</small></span></a>
+<a class="btn social" href="/eventi.html" aria-label="Prossimi eventi"><span class="jh-btn-white">PROSSIMI</span><span class="jh-btn-pink">EVENTI</span></a>
 </div>
 
 <section class="jh-home-live-counter" aria-label="Eventi live da ottobre 2024">
@@ -2867,3 +2867,52 @@ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy sma
  }
 }
 </style>
+
+
+<style id="jh-home-cta-reference-photo1-final">
+/* Ripristino fedele dei due CTA HOME secondo la schermata approvata (foto 1). */
+@media(max-width:600px){
+ html body .hero .content>.links{
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  width:92%!important;max-width:680px!important;margin:16px auto 14px!important;
+  gap:9px!important;column-gap:9px!important;align-items:stretch!important;
+ }
+ html body .hero .content>.links>a.btn.song-request-banner,
+ html body .hero .content>.links>a.btn.social{
+  box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:none!important;
+  height:76px!important;min-height:76px!important;max-height:76px!important;
+  margin:0!important;padding:8px 9px!important;border:1.5px solid #F02D98!important;
+  border-radius:17px!important;background:#050507!important;box-shadow:none!important;overflow:hidden!important;
+ }
+ html body .hero .content>.links>a.btn.song-request-banner{
+  display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+  justify-content:center!important;text-align:left!important;
+ }
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy{
+  display:block!important;flex:0 1 auto!important;width:100%!important;min-width:0!important;
+  text-align:left!important;gap:0!important;
+ }
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy strong{
+  display:block!important;margin:0!important;padding:0!important;font-family:"Montserrat",Arial,sans-serif!important;
+  font-size:clamp(14px,3.85vw,17px)!important;font-weight:900!important;line-height:1.04!important;
+  letter-spacing:-.045em!important;text-align:left!important;
+ }
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy strong span{display:inline!important;white-space:nowrap!important}
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy small{
+  display:block!important;margin-top:5px!important;font-family:"Montserrat",Arial,sans-serif!important;
+  font-size:clamp(9px,2.65vw,11px)!important;font-weight:600!important;line-height:1.2!important;
+  letter-spacing:0!important;text-align:left!important;white-space:nowrap!important;
+ }
+ html body .hero .content>.links>a.btn.social{
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  gap:0!important;padding:8px 5px!important;text-align:center!important;font-family:"Montserrat",Arial,sans-serif!important;
+  font-size:clamp(19px,5.25vw,23px)!important;font-weight:900!important;line-height:1.02!important;letter-spacing:-.055em!important;
+ }
+ html body .hero .content>.links>a.btn.social .jh-btn-white,
+ html body .hero .content>.links>a.btn.social .jh-btn-pink{
+  display:block!important;margin:0!important;padding:0!important;white-space:nowrap!important;
+  line-height:1.02!important;letter-spacing:-.055em!important;
+ }
+}
+</style>
+
