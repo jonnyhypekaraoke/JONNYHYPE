@@ -93,10 +93,14 @@ jobs:
               same=(r.get("content")==wanted["content"] and (wanted.get("priority") is None or r.get("priority")==wanted["priority"]))
               if same:
                   print("Record già presente e identico: nessuna modifica necessaria.")
+                  open("/tmp/record-already-present","w").close()
                   raise SystemExit(0)
           if rows:
               raise SystemExit("Esiste già un record dello stesso tipo e nome con valore diverso. Nessuna sovrascrittura eseguita.")
           PY
+          if [[ -f /tmp/record-already-present ]]; then
+            exit 0
+          fi
           curl --fail-with-body --silent --show-error -X POST "$API" \
             -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" \
             --data-binary @/tmp/dns-payload.json -o /tmp/created.json
