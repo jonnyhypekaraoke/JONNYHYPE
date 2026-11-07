@@ -44,6 +44,8 @@ jobs:
 
       - name: Upload media to R2 (or simulate)
         env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           DRY_RUN: ${{ inputs.dry_run }}
         shell: bash
