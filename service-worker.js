@@ -4,12 +4,12 @@ const CORE_ASSETS = [
   "/index.html",
   "/evento.html",
   "/eventi.html",
-  "/Viavai.JPG",
-  "/jonnyhype-portrait.jpg",
-  "/ravenna-song-festival-2026.png",
-  "/mercato-coperto-ravenna.png",
-  "/radio-studio-delta.jpeg",
-  "/teleromagna.png",
+  "https://media.jonnyhype.it/Viavai.JPG",
+  "https://media.jonnyhype.it/jonnyhype-portrait.jpg",
+  "https://media.jonnyhype.it/ravenna-song-festival-2026.png",
+  "https://media.jonnyhype.it/mercato-coperto-ravenna.png",
+  "https://media.jonnyhype.it/radio-studio-delta.jpeg",
+  "https://media.jonnyhype.it/teleromagna.png",
   "/manifest.webmanifest"
 ];
 self.addEventListener("install", event => {
