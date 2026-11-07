@@ -2192,6 +2192,44 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
  }
 }
 </style>
+
+<style id="jh-home-banner-precision-20261107">
+/* Correzione esclusiva dei testi nei due banner rettangolari HOME. */
+html body .hero .content>.links>a.btn.social{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:0!important;
+  row-gap:0!important;
+  padding:16px 8px!important;
+  text-align:center!important;
+  line-height:.88!important;
+}
+html body .hero .content>.links>a.btn.social .jh-btn-white,
+html body .hero .content>.links>a.btn.social .jh-btn-pink{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:.88!important;
+  letter-spacing:-.065em!important;
+}
+html body .hero .content>.links>a.btn.song-request-banner .song-request-copy strong{
+  font-size:clamp(25px,6.4vw,30px)!important;
+  line-height:1.02!important;
+}
+html body .hero .content>.links>a.btn.song-request-banner .song-request-copy small{
+  font-size:clamp(15px,3.95vw,17px)!important;
+  line-height:1.32!important;
+  font-weight:800!important;
+  letter-spacing:0!important;
+}
+@media(max-width:420px){
+  html body .hero .content>.links>a.btn.social .jh-btn-white,
+  html body .hero .content>.links>a.btn.social .jh-btn-pink{line-height:.86!important}
+  html body .hero .content>.links>a.btn.song-request-banner .song-request-copy small{font-size:15px!important}
+}
+</style>
 </body>
 
 <style id="jh-home-upcoming-heading-center-size-20261103">
