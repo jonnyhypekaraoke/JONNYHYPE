@@ -1193,7 +1193,7 @@ h1{font-weight:900!important;line-height:1.08!important}
 
 <div class="links">
 <a class="btn song-request-banner" href="/karaoke.html"><span class="song-request-icon song-request-live-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#fff"/><circle cx="32" cy="32" r="19" fill="none" stroke="#f02d98" stroke-width="2.5"/><circle cx="32" cy="32" r="3.5" fill="#f02d98"/><path d="M23 25a13 13 0 0 0 0 14M41 25a13 13 0 0 1 0 14M18 20a20 20 0 0 0 0 24M46 20a20 20 0 0 1 0 24" fill="none" stroke="#f02d98" stroke-width="2.5" stroke-linecap="round"/><text x="32" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="900" fill="#f02d98">LIVE</text></svg></span><span class="song-request-copy"><strong><span class="jh-btn-pink">• LIVE</span></strong><small><span class="jh-copy-white">PRENOTATI </span><span class="jh-copy-pink">PER </span><span class="jh-copy-white">CANTARE</span><br><span class="jh-copy-pink">O </span><span class="jh-copy-white">SCEGLI UN BRANO</span><br><span class="jh-copy-pink">DA DEDICARE</span></small></span><span class="song-request-arrow" aria-hidden="true">→</span></a>
-<a class="btn social" href="/eventi.html"><span class="jh-btn-white">PROSSIMI</span> <span class="jh-btn-pink">EVENTI</span> <span class="home-arrow" aria-hidden="true">→</span></a>
+<a class="btn social" href="/eventi.html"><span class="jh-btn-white">PROSSIMI</span><span class="jh-btn-pink">EVENTI</span></a>
 </div>
 
 <section class="jh-home-live-counter" aria-label="Eventi live da ottobre 2024">
@@ -2510,5 +2510,46 @@ html body details.jh-menu[open] .jh-menu-panel.jh-menu-numbered a:focus-visible{
  .hero .links>a.btn.social{gap:1px!important}
  .hero .links>a.btn.song-request-banner .song-request-copy strong{font-size:18px!important}
  .hero .links>a.btn.song-request-banner .song-request-copy small{font-size:14px!important}
+}
+</style>
+
+
+<style id="jh-home-two-banners-corrected-20261107">
+/* Override finale con specificità superiore alle precedenti regole mobile. */
+html body .hero .content>.links>a.btn.social{
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ gap:0!important;column-gap:0!important;text-align:center!important;
+ font-family:"Montserrat",Arial,sans-serif!important;
+ font-size:clamp(24px,6.1vw,31px)!important;font-weight:900!important;
+ letter-spacing:-.055em!important;line-height:1.02!important;
+ padding:18px 10px!important;
+}
+html body .hero .content>.links>a.btn.social .jh-btn-white,
+html body .hero .content>.links>a.btn.social .jh-btn-pink{
+ display:inline!important;margin:0!important;padding:0!important;
+ line-height:1.02!important;letter-spacing:-.055em!important;
+}
+html body .hero .content>.links>a.btn.social .home-arrow{display:none!important}
+html body .hero .content>.links>a.btn.song-request-banner .song-request-copy strong{
+ font-family:"Montserrat",Arial,sans-serif!important;
+ font-size:clamp(24px,6vw,30px)!important;font-weight:900!important;
+ line-height:1.05!important;letter-spacing:-.025em!important;
+}
+html body .hero .content>.links>a.btn.song-request-banner .song-request-copy small{
+ font-family:"Montserrat",Arial,sans-serif!important;
+ font-size:clamp(14px,3.8vw,17px)!important;font-weight:800!important;
+ line-height:1.35!important;letter-spacing:0!important;
+}
+@media(max-width:600px){
+ html body .hero .content>.links>a.btn.social{
+  font-size:clamp(23px,6vw,27px)!important;letter-spacing:-.06em!important;
+  padding:16px 6px!important;
+ }
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy strong{
+  font-size:clamp(24px,6.2vw,27px)!important;
+ }
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy small{
+  font-size:clamp(14px,3.75vw,15.5px)!important;line-height:1.35!important;
+ }
 }
 </style>
