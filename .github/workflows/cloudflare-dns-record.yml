@@ -1,0 +1,110 @@
+name: Cloudflare DNS - aggiungi record Zimbra
+
+on:
+  workflow_dispatch:
+    inputs:
+      record_type:
+        description: "Tipo record (TXT, CNAME, MX o SRV)"
+        required: true
+        type: choice
+        options:
+          - TXT
+          - CNAME
+          - MX
+          - SRV
+      record_name:
+        description: "Nome host (es. @, mail, selector._domainkey)"
+        required: true
+        type: string
+      record_content:
+        description: "Valore esatto fornito da OVH/Zimbra"
+        required: true
+        type: string
+      priority:
+        description: "Priorità MX/SRV (lascia 0 per TXT/CNAME)"
+        required: false
+        default: "0"
+        type: string
+      ttl:
+        description: "TTL in secondi (1 = automatico)"
+        required: true
+        default: "1"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  add-dns-record:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate and add DNS record without overwriting
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_DNS_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          RECORD_TYPE: ${{ inputs.record_type }}
+          RECORD_NAME: ${{ inputs.record_name }}
+          RECORD_CONTENT: ${{ inputs.record_content }}
+          RECORD_PRIORITY: ${{ inputs.priority }}
+          RECORD_TTL: ${{ inputs.ttl }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$CF_API_TOKEN" || -z "$CF_ZONE_ID" ]]; then
+            echo "::error::Aggiungere i GitHub Secrets CLOUDFLARE_DNS_API_TOKEN e CLOUDFLARE_ZONE_ID."
+            exit 1
+          fi
+          if [[ ! "$RECORD_TYPE" =~ ^(TXT|CNAME|MX|SRV)$ ]]; then
+            echo "::error::Tipo record non consentito."
+            exit 1
+          fi
+          if [[ ! "$RECORD_TTL" =~ ^[0-9]+$ ]] || [[ ! "$RECORD_PRIORITY" =~ ^[0-9]+$ ]]; then
+            echo "::error::TTL e priorità devono essere numerici."
+            exit 1
+          fi
+          python3 - <<'PY'
+          import json, os
+          typ=os.environ["RECORD_TYPE"]
+          name=os.environ["RECORD_NAME"].strip()
+          content=os.environ["RECORD_CONTENT"].strip()
+          if not name or not content:
+              raise SystemExit("Nome e contenuto sono obbligatori.")
+          if any(c in name+content for c in "\n\r"):
+              raise SystemExit("Non sono ammessi ritorni a capo.")
+          payload={"type":typ,"name":name,"content":content,"ttl":int(os.environ["RECORD_TTL"])}
+          if typ in ("MX","SRV"):
+              payload["priority"]=int(os.environ["RECORD_PRIORITY"])
+          if typ in ("TXT","CNAME") and int(os.environ["RECORD_PRIORITY"]) != 0:
+              raise SystemExit("La priorità deve essere 0 per TXT/CNAME.")
+          with open("/tmp/dns-payload.json","w") as f: json.dump(payload,f)
+          PY
+          API="https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/dns_records"
+          curl --fail-with-body --silent --show-error "$API?type=$RECORD_TYPE&name=$RECORD_NAME" \
+            -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" \
+            -o /tmp/existing.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open("/tmp/existing.json"))
+          if not d.get("success"):
+              raise SystemExit("Cloudflare non ha autorizzato la lettura della zona DNS.")
+          rows=d.get("result",[])
+          wanted=json.load(open("/tmp/dns-payload.json"))
+          for r in rows:
+              same=(r.get("content")==wanted["content"] and (wanted.get("priority") is None or r.get("priority")==wanted["priority"]))
+              if same:
+                  print("Record già presente e identico: nessuna modifica necessaria.")
+                  raise SystemExit(0)
+          if rows:
+              raise SystemExit("Esiste già un record dello stesso tipo e nome con valore diverso. Nessuna sovrascrittura eseguita.")
+          PY
+          curl --fail-with-body --silent --show-error -X POST "$API" \
+            -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" \
+            --data-binary @/tmp/dns-payload.json -o /tmp/created.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open("/tmp/created.json"))
+          if not d.get("success"):
+              raise SystemExit("Cloudflare ha rifiutato la creazione del record.")
+          r=d["result"]
+          print("Record DNS creato:", r["type"], r["name"], "TTL:", r["ttl"])
+          PY
