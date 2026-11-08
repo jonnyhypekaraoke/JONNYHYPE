@@ -155,7 +155,7 @@ html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a:visited{
   background:transparent!important;
   color:var(--jh-white)!important;
   font-family:Manrope,Arial,sans-serif!important;
-  font-size:clamp(15px,3.9vw,19px)!important;
+  font-size:clamp(17.25px,4.485vw,21.85px)!important;
   font-style:normal!important;
   font-weight:800!important;
   letter-spacing:0!important;
@@ -223,6 +223,6 @@ html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a:focus-visible{
   html body #jh-menu-master>summary .jh-burger:before,
   html body #jh-menu-master>summary .jh-burger:after{width:21px!important;height:2.3px!important}
   html body #jh-menu-master[open]>.jh-menu-panel.jh-menu-numbered{width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;padding:7px 10px!important;border-radius:18px!important}
-  html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a{min-height:54px!important;padding:7px 8px!important;gap:12px!important;font-size:clamp(15px,4.1vw,18px)!important}
+  html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a{min-height:54px!important;padding:7px 8px!important;gap:12px!important;font-size:clamp(17.25px,4.715vw,20.7px)!important}
   html body #jh-menu-master .jh-menu-panel.jh-menu-numbered .jh-menu-number{flex-basis:36px!important;width:36px!important;min-width:36px!important;height:36px!important;font-size:14px!important}
 }
