@@ -6,12 +6,12 @@
     "ICE MARINA CLUB",
     "Ice Marina Club"
   ],
-  "address": "",
-  "city": "",
-  "province": "",
-  "map": "",
+  "address": "Viale delle Nazioni 196",
+  "city": "Marina di Ravenna",
+  "province": "RA",
+  "map": "https://www.google.com/maps/search/?api=1&query=Viale%20delle%20Nazioni%20196%2C%20Marina%20di%20Ravenna",
   "logo": "",
-  "description": "",
+  "description": "Ristorante Pizzeria ICE Marina Club a Marina di Ravenna. Evento JONNYHYPE con nuovo Chef.",
   "phone": "",
   "bookingUrl": "",
   "gallery": [
@@ -46,5 +46,5 @@
     }
   ],
   "notes": "Scheda permanente: non cancellare quando termina un evento.",
-  "updatedAt": "2026-11-03"
+  "updatedAt": "2026-11-08"
 }
