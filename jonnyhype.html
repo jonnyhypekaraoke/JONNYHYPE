@@ -403,32 +403,24 @@ html body .jh-topbar details.jh-menu[open]>summary .jh-burger:after{top:0!import
 </style>
 
 <script id="jh-about-menu-native-toggle-fix-20261108">
-/* Toggle gestito in fase capture: il tap sul riepilogo non dipende dall'attivazione nativa di Safari. */
+/* Il menu usa il toggle nativo di <details>/<summary>: non intercettare né annullare il click. */
 (()=>{
- const menuSelector='header.jh-topbar details.jh-menu';
- document.addEventListener('click',event=>{
-  const summary=event.target.closest(menuSelector+' > summary');
-  if(!summary) return;
-  const menu=summary.parentElement;
-  event.preventDefault();
-  event.stopPropagation();
-  if(typeof event.stopImmediatePropagation==='function') event.stopImmediatePropagation();
-  menu.open=!menu.open;
+ const menu=document.querySelector('header.jh-topbar details.jh-menu');
+ if(!menu) return;
+ const summary=menu.querySelector(':scope > summary');
+ if(!summary) return;
+ const sync=()=>{
   summary.setAttribute('aria-expanded',String(menu.open));
   summary.setAttribute('aria-label',menu.open?'Chiudi il menu del sito':'Apri il menu del sito');
- },true);
- document.addEventListener('click',event=>{
-  const link=event.target.closest(menuSelector+' .jh-menu-panel a');
-  if(!link) return;
-  document.querySelectorAll(menuSelector+'[open]').forEach(menu=>menu.open=false);
- },true);
+ };
+ sync();
+ menu.addEventListener('toggle',sync);
  document.addEventListener('keydown',event=>{
-  if(event.key!=='Escape') return;
-  const menu=document.querySelector(menuSelector+'[open]');
-  if(!menu) return;
-  menu.open=false;
-  menu.querySelector(':scope > summary')?.focus();
- },true);
+  if(event.key==='Escape' && menu.open){
+   menu.open=false;
+   summary.focus();
+  }
+ });
 })();
 </script>
 </body>
