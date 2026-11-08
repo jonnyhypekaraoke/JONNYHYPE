@@ -248,10 +248,7 @@ html body .jh-topbar details.jh-menu[open]>summary .jh-burger:after{top:0!import
 </style>
 <script id="jh-menu-dismiss-outside">
 (()=>{const menus=()=>document.querySelectorAll('details.jh-menu[open]');document.addEventListener('pointerdown',e=>{menus().forEach(menu=>{if(!menu.contains(e.target))menu.removeAttribute('open')})},true);document.addEventListener('click',e=>{const link=e.target.closest('details.jh-menu a');if(link)menus().forEach(menu=>menu.removeAttribute('open'))},true)})();
-</script>
-<script defer src="/jonnyhype-menu-master.js?v=2"></script>
-<link rel="stylesheet" href="/jonnyhype-menu-master.css?v=3">
-</body>
+</script></body>
 </html>
 
 <style id="jh-menu-master-white-cards-20261106">
@@ -372,6 +369,5 @@ html body .jh-menu .jh-menu-panel.jh-menu-numbered a:focus-visible{
  }
 }
 </style>
-
-
-
+<script defer src="/jonnyhype-menu-master.js?v=2"></script>
+<link rel="stylesheet" href="/jonnyhype-menu-master.css?v=3">
