@@ -3,11 +3,6 @@
    Shared, responsive, high-contrast style for public site pages. */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap');
 :root{--jh-pink:#f02d98;--jh-white:#fff;--jh-muted:#b9b9c2;--jh-bg:#08090b;--jh-panel:#111216;--jh-border:#303038}
-html,body{font-family:'Manrope',Arial,sans-serif!important}
-h1,h2,h3,h4,.page-title,.display-heading,.jh-gallery-main-title,.jh-bicolor-title,.festival-title,.event-detail strong,.event-title,.gallery-category strong,.rsf-final-folder strong,.format-card h3,.event-card h2,.event-card h3,.event-name,.venue,.section-title{font-family:'Montserrat',Arial,sans-serif!important;font-weight:800!important;letter-spacing:-.035em}
-h1,h2,h3{line-height:1.12}
-p,.description,.event-detail,.event-description,.muted{font-family:'Manrope',Arial,sans-serif!important}
-button,.btn,.site-nav a,.jh-menu-panel a,.category-open,.rsf-album-nav a,.rsf-final-folder span{font-family:'Manrope',Arial,sans-serif!important;font-weight:800}
 .gallery-category{background:#f02d98!important;color:#fff!important}
 .gallery-category strong{font-size:clamp(25px,5.4vw,34px)!important;line-height:1.12!important}
 .gallery-category .category-description{display:none!important}
@@ -18,9 +13,6 @@ button,.btn,.site-nav a,.jh-menu-panel a,.category-open,.rsf-album-nav a,.rsf-fi
 
 /* JONNYHYPE MASTER TYPOGRAPHY — reference: KARAOKE LEGENDS title.
    Original JONNYHYPE logo is never targeted by these rules. */
-body,p,li,label,input,textarea,select,.intro,.description,.muted{font-family:'Manrope',Arial,sans-serif!important}
-h1,h2,h3,h4,.page-title,.display-heading,.jh-gallery-main-title,.jh-bicolor-title,.festival-title,.event-detail strong,.event-title,.gallery-category strong,.rsf-final-folder strong,.format-card h3,.event-card h2,.event-card h3,.event-name,.section-title,.folder strong,.gallery-category,.folder{font-family:'Montserrat',Arial,sans-serif!important;font-weight:800!important;letter-spacing:-.035em!important}
-h1{font-weight:900!important;line-height:1.08!important}
 
 
 /* MENU MOBILE — identico al MASTER Manrope ExtraBold, senza override Oswald/sottile. */
