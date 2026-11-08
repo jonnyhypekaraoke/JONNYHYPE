@@ -402,29 +402,23 @@ html body .jh-topbar details.jh-menu[open]>summary .jh-burger:after{top:0!import
 }
 </style>
 
-<script id="jh-about-menu-toggle-fix-20261108">
+<script id="jh-about-menu-native-toggle-fix-20261108">
 (()=> {
-  const menu=document.querySelector('header.jh-topbar details.jh-menu');
-  if(!menu) return;
-  const summary=menu.querySelector(':scope > summary');
-  if(!summary || summary.dataset.jhToggleFixed==='1') return;
-  summary.dataset.jhToggleFixed='1';
-  summary.addEventListener('click',event=>{
-    event.preventDefault();
-    event.stopPropagation();
-    menu.open=!menu.open;
-    summary.setAttribute('aria-label',menu.open?'Chiudi il menu del sito':'Apri il menu del sito');
-    summary.setAttribute('aria-expanded',String(menu.open));
-  });
-  menu.addEventListener('keydown',event=>{
-    if(event.key==='Escape' && menu.open){
-      menu.open=false;
-      summary.focus();
-      summary.setAttribute('aria-label','Apri il menu del sito');
-      summary.setAttribute('aria-expanded','false');
-    }
-  });
-  summary.setAttribute('aria-expanded',String(menu.open));
+ const menu=document.querySelector('header.jh-topbar details.jh-menu');
+ if(!menu) return;
+ const summary=menu.querySelector(':scope > summary');
+ if(!summary) return;
+ summary.setAttribute('aria-expanded',String(menu.open));
+ menu.addEventListener('toggle',()=>{
+   summary.setAttribute('aria-expanded',String(menu.open));
+   summary.setAttribute('aria-label',menu.open?'Chiudi il menu del sito':'Apri il menu del sito');
+ });
+ menu.addEventListener('keydown',event=>{
+   if(event.key==='Escape' && menu.open){
+     menu.open=false;
+     summary.focus();
+   }
+ });
 })();
 </script>
 </body>
@@ -589,6 +583,25 @@ html body details.jh-menu[open] .jh-menu-panel.jh-menu-numbered a:focus-visible{
  html body details.jh-menu[open] .jh-menu-panel.jh-menu-numbered a{min-height:56px!important;padding:9px 11px!important;gap:11px!important;font-size:clamp(14px,3.6vw,17px)!important}
  html body details.jh-menu[open] .jh-menu-panel.jh-menu-numbered .jh-menu-number{flex-basis:29px!important;width:29px!important;font-size:17px!important}
 }
+</style>\n
+<style id="jh-menu-identical-master-20261108">
+/* MENU MASTER IDENTICO SU TUTTE LE PAGINE */
+html body details.jh-menu .jh-menu-panel.jh-menu-numbered a,
+html body details.jh-menu .jh-menu-panel.jh-menu-numbered a .jh-menu-label{
+  font-family:"Montserrat","Manrope",Arial,sans-serif!important;
+  font-size:clamp(14px,3.6vw,18px)!important;
+  font-style:normal!important;
+  font-weight:800!important;
+  letter-spacing:.015em!important;
+  line-height:1.15!important;
+  text-transform:uppercase!important;
+}
+html body details.jh-menu .jh-menu-panel.jh-menu-numbered a .jh-menu-label{
+  font-size:inherit!important;
+}
+html body details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{
+  font-family:"Montserrat","Manrope",Arial,sans-serif!important;
+  font-size:clamp(17px,4.4vw,23px)!important;
+  font-weight:900!important;
+}
 </style>
-
-
