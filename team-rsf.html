@@ -133,6 +133,7 @@ body{margin:0;background:#08080a;color:#fff;font-family:Manrope,Arial,sans-serif
   }
 }
 </style>
+<link rel="stylesheet" href="/menu-master.css?v=1">
 </head>
 <body>
 <div class="wrap">
@@ -249,6 +250,7 @@ html body .jh-topbar details.jh-menu[open]>summary .jh-burger:after{top:0!import
 <script id="jh-menu-dismiss-outside">
 (()=>{const menus=()=>document.querySelectorAll('details.jh-menu[open]');document.addEventListener('pointerdown',e=>{menus().forEach(menu=>{if(!menu.contains(e.target))menu.removeAttribute('open')})},true);document.addEventListener('click',e=>{const link=e.target.closest('details.jh-menu a');if(link)menus().forEach(menu=>menu.removeAttribute('open'))},true)})();
 </script>
+<script src="/menu-master.js?v=1" defer></script>
 </body>
 </html>
 
