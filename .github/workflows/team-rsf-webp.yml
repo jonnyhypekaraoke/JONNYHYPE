@@ -1,0 +1,61 @@
+name: Optimize Team RSF images to WebP
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "images/ospiti/**"
+      - ".github/workflows/team-rsf-webp.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  optimize-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install image tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install Pillow
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      - name: Convert source posters to optimized WebP
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageOps
+          src = Path("images/ospiti")
+          out = Path("webp-output")
+          out.mkdir(exist_ok=True)
+          allowed = {".jpg", ".jpeg", ".png"}
+          for path in sorted(src.iterdir()):
+              if not path.is_file() or path.suffix.lower() not in allowed:
+                  continue
+              try:
+                  with Image.open(path) as original:
+                      im = ImageOps.exif_transpose(original)
+                      if im.mode not in ("RGB", "RGBA"):
+                          im = im.convert("RGBA" if "transparency" in im.info else "RGB")
+                      im.thumbnail((1600, 2200), Image.Resampling.LANCZOS)
+                      target = out / (path.stem + ".webp")
+                      im.save(target, "WEBP", quality=84, method=6)
+                      print(f"{path.name}: {path.stat().st_size} -> {target.stat().st_size} bytes")
+              except Exception as exc:
+                  raise RuntimeError(f"Could not optimize {path}: {exc}")
+          PY
+
+      - name: Upload WebP files to Cloudflare R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+        run: |
+          aws s3 cp webp-output/ s3://jonnyhype-media/images/ospiti/ \
+            --recursive --exclude "*" --include "*.webp" \
+            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
+            --cache-control "public, max-age=31536000, immutable"
