@@ -130,9 +130,6 @@ body{margin:0;background:var(--sb-black);color:#fff;font-family:Arial,Helvetica,
  .sb-section p{font-size:18px!important;line-height:1.62!important}
 }
 </style>
-<link rel="stylesheet" href="/jonnyhype-menu-master.css?v=2">
-<script defer src="/jonnyhype-menu-master.js?v=1"></script>
-
 <style id="sb-jh-master-correction-20261108">
 /* SHOW BATTLE — applicazione del MASTER JONNYHYPE, senza cambiare struttura o contenuti. */
 .sb-hero-subtitle{
@@ -196,7 +193,7 @@ body{margin:0;background:var(--sb-black);color:#fff;font-family:Arial,Helvetica,
 
 </head>
 <body>
-<div class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel jh-menu-numbered" aria-label="Menu principale"><a href="/"><span class="jh-menu-number">01</span><span class="jh-menu-label">HOME</span></a><a href="/eventi.html"><span class="jh-menu-number">02</span><span class="jh-menu-label">PROSSIMI EVENTI</span></a><a href="/karaoke.html"><span class="jh-menu-number">03</span><span class="jh-menu-label">RICHIEDI UNA CANZONE LIVE</span></a><a href="/show-battle.html"><span class="jh-menu-number">04</span><span class="jh-menu-label">SHOW BATTLE</span></a><a href="/ravenna-song-festival.html"><span class="jh-menu-number">05</span><span class="jh-menu-label">RAVENNA SONG FESTIVAL</span></a><a href="/team-rsf.html"><span class="jh-menu-number">06</span><span class="jh-menu-label">TEAM RSF</span></a><a href="/musica.html"><span class="jh-menu-number">07</span><span class="jh-menu-label">PRODUZIONI</span></a><a href="/galleria.html"><span class="jh-menu-number">08</span><span class="jh-menu-label">GALLERY</span></a><a href="/jonnyhype.html"><span class="jh-menu-number">09</span><span class="jh-menu-label">CHI È JONNYHYPE</span></a><a href="/community.html"><span class="jh-menu-number">10</span><span class="jh-menu-label">CHAT / COMMUNITY</span></a><a href="/contatti.html"><span class="jh-menu-number">11</span><span class="jh-menu-label">CONTATTI</span></a></nav></details></div>
+<div id="jh-site-topbar" class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details id="jh-menu-master" class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel jh-menu-numbered" aria-label="Menu principale"><a href="/"><span class="jh-menu-number">01</span><span class="jh-menu-label">HOME</span></a><a href="/eventi.html"><span class="jh-menu-number">02</span><span class="jh-menu-label">PROSSIMI EVENTI</span></a><a href="/karaoke.html"><span class="jh-menu-number">03</span><span class="jh-menu-label">RICHIEDI UNA CANZONE LIVE</span></a><a href="/show-battle.html"><span class="jh-menu-number">04</span><span class="jh-menu-label">SHOW BATTLE</span></a><a href="/ravenna-song-festival.html"><span class="jh-menu-number">05</span><span class="jh-menu-label">RAVENNA SONG FESTIVAL</span></a><a href="/team-rsf.html"><span class="jh-menu-number">06</span><span class="jh-menu-label">TEAM RSF</span></a><a href="/musica.html"><span class="jh-menu-number">07</span><span class="jh-menu-label">PRODUZIONI</span></a><a href="/galleria.html"><span class="jh-menu-number">08</span><span class="jh-menu-label">GALLERY</span></a><a href="/jonnyhype.html"><span class="jh-menu-number">09</span><span class="jh-menu-label">CHI È JONNYHYPE</span></a><a href="/community.html"><span class="jh-menu-number">10</span><span class="jh-menu-label">CHAT / COMMUNITY</span></a><a href="/contatti.html"><span class="jh-menu-number">11</span><span class="jh-menu-label">CONTATTI</span></a></nav></details></div>
 
 
 <main class="sb-wrap">
@@ -295,5 +292,7 @@ body{margin:0;background:var(--sb-black);color:#fff;font-family:Arial,Helvetica,
 <script id="jh-menu-dismiss-outside">
 (()=>{const menus=()=>document.querySelectorAll('details.jh-menu[open]');document.addEventListener('pointerdown',e=>{menus().forEach(menu=>{if(!menu.contains(e.target))menu.removeAttribute('open')})},true);document.addEventListener('click',e=>{const link=e.target.closest('details.jh-menu a');if(link)menus().forEach(menu=>menu.removeAttribute('open'))},true)})();
 </script>
+<script defer src="/jonnyhype-menu-master.js?v=2"></script>
+<link rel="stylesheet" href="/jonnyhype-menu-master.css?v=3">
 </body>
 </html>

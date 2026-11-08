@@ -1,7 +1,7 @@
-/* JONNYHYPE — MASTER UNICO MENU + TIPOGRAFIA
-   Riferimento visivo: menu approvato nello screenshot dell'utente.
-   Palette ufficiale: #050507 / #111216 / #F02D98 / #FFFFFF. */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap');
+/* JONNYHYPE — MASTER MENU UNICO v3
+   Applicato per ultimo su ogni pagina. Palette ufficiale #050507 / #111216 / #F02D98 / #FFFFFF.
+   Unico pulsante, unica struttura, unica tipografia e un unico pannello. */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap');
 
 :root{
   --jh-black:#050507;
@@ -9,82 +9,220 @@
   --jh-pink:#F02D98;
   --jh-white:#FFFFFF;
   --jh-menu-line:#303036;
-  --jh-menu-border:#37373F;
 }
 
-/* Cache version: 2 — MASTER MENU condiviso su tutte le pagine. */
-/* Menu a scomparsa: struttura, proporzioni e contrasto coerenti su ogni pagina. */
-html body details.jh-menu{position:relative!important;flex:0 0 auto!important}
-html body details.jh-menu>summary{
+/* Barra superiore condivisa: il contenuto della pagina resta invariato. */
+html body #jh-site-topbar{
   box-sizing:border-box!important;
-  width:56px!important;height:56px!important;min-width:56px!important;
-  display:flex!important;align-items:center!important;justify-content:center!important;
-  border:1px solid var(--jh-menu-border)!important;border-radius:50%!important;
-  background:#0D0E11!important;color:var(--jh-white)!important;
-  list-style:none!important;cursor:pointer!important;
+  position:relative!important;
+  z-index:1000!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:14px!important;
+  width:100%!important;
+  max-width:1200px!important;
+  min-height:82px!important;
+  margin:0 auto!important;
+  padding:12px clamp(18px,4vw,38px)!important;
+  background:#08090b!important;
+  border-bottom:1px solid #24242a!important;
 }
-html body details.jh-menu>summary::-webkit-details-marker{display:none!important}
-html body details.jh-menu[open]>.jh-menu-panel.jh-menu-numbered{
-  position:absolute!important;z-index:99999!important;
-  top:calc(100% + 8px)!important;right:0!important;left:auto!important;
+html body #jh-site-topbar>.jh-logo-link{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+  width:auto!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+
+/* Unico pulsante menu: rettangolo fucsia arrotondato, icona bianca e dicitura MENU. */
+html body #jh-menu-master{
+  position:relative!important;
+  display:block!important;
+  flex:0 0 auto!important;
+  margin:0!important;
+}
+html body #jh-menu-master>summary{
   box-sizing:border-box!important;
-  display:grid!important;grid-template-columns:minmax(0,1fr)!important;
-  width:min(88vw,740px)!important;max-width:calc(100vw - 28px)!important;
-  max-height:calc(100dvh - 132px)!important;overflow-y:auto!important;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  width:clamp(112px,22vw,170px)!important;
+  min-width:112px!important;
+  height:56px!important;
+  margin:0!important;
+  padding:0 14px!important;
+  border:2px solid var(--jh-pink)!important;
+  border-radius:15px!important;
+  background:var(--jh-pink)!important;
+  color:#fff!important;
+  box-shadow:0 4px 16px rgba(240,45,152,.22)!important;
+  list-style:none!important;
+  cursor:pointer!important;
+}
+html body #jh-menu-master>summary::-webkit-details-marker{display:none!important}
+html body #jh-menu-master>summary:after{
+  content:"MENU"!important;
+  display:block!important;
+  color:#fff!important;
+  font-family:Manrope,Arial,sans-serif!important;
+  font-size:14px!important;
+  font-weight:900!important;
+  letter-spacing:.14em!important;
+  line-height:1!important;
+}
+html body #jh-menu-master[open]>summary:after{content:"CHIUDI"!important;letter-spacing:.08em!important}
+html body #jh-menu-master>summary .jh-burger,
+html body #jh-menu-master>summary .jh-burger:before,
+html body #jh-menu-master>summary .jh-burger:after{
+  box-sizing:border-box!important;
+  display:block!important;
+  position:relative!important;
+  width:23px!important;
+  height:2.5px!important;
+  border:0!important;
+  border-radius:3px!important;
+  background:#fff!important;
+  content:""!important;
+  transition:transform .18s ease,top .18s ease!important;
+}
+html body #jh-menu-master>summary .jh-burger:before,
+html body #jh-menu-master>summary .jh-burger:after{
+  position:absolute!important;
+  left:0!important;
+}
+html body #jh-menu-master>summary .jh-burger:before{top:-8px!important}
+html body #jh-menu-master>summary .jh-burger:after{top:8px!important}
+html body #jh-menu-master[open]>summary .jh-burger{background:transparent!important}
+html body #jh-menu-master[open]>summary .jh-burger:before{top:0!important;transform:rotate(45deg)!important}
+html body #jh-menu-master[open]>summary .jh-burger:after{top:0!important;transform:rotate(-45deg)!important}
+
+/* Unico pannello: fondo nero, bordo fucsia, righe scure, numeri fucsia e testo bianco. */
+html body #jh-menu-master[open]>.jh-menu-panel.jh-menu-numbered{
+  box-sizing:border-box!important;
+  position:absolute!important;
+  z-index:999999!important;
+  top:calc(100% + 9px)!important;
+  right:0!important;
+  left:auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:0!important;
+  width:min(88vw,520px)!important;
+  max-width:calc(100vw - 24px)!important;
+  max-height:calc(100dvh - 112px)!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
   overscroll-behavior:contain!important;
-  padding:8px 16px!important;gap:0!important;
-  border:2px solid var(--jh-menu-border)!important;border-radius:28px!important;
-  background:var(--jh-panel)!important;
-  box-shadow:0 18px 45px rgba(0,0,0,.58)!important;
+  margin:0!important;
+  padding:8px 13px!important;
+  border:2px solid var(--jh-pink)!important;
+  border-radius:20px!important;
+  background:var(--jh-black)!important;
+  box-shadow:0 18px 48px rgba(0,0,0,.72)!important;
 }
-html body details.jh-menu .jh-menu-panel.jh-menu-numbered>a{
-  box-sizing:border-box!important;display:flex!important;flex-direction:row!important;
-  flex-wrap:nowrap!important;align-items:center!important;justify-content:flex-start!important;
-  gap:clamp(14px,2.8vw,24px)!important;
-  width:100%!important;min-width:0!important;min-height:clamp(76px,7.2dvh,112px)!important;
-  height:auto!important;padding:10px clamp(12px,2.8vw,22px)!important;
-  border:0!important;border-bottom:2px solid var(--jh-menu-line)!important;
-  border-radius:0!important;background:transparent!important;
-  color:var(--jh-white)!important;text-decoration:none!important;
-  font-size:clamp(17px,4.05vw,34px)!important;font-weight:800!important;
-  letter-spacing:0!important;line-height:1.12!important;text-transform:uppercase!important;
-  box-shadow:none!important;white-space:normal!important;
+html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a,
+html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a:link,
+html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a:visited{
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:14px!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:58px!important;
+  height:auto!important;
+  margin:0!important;
+  padding:8px 9px!important;
+  border:0!important;
+  border-bottom:1px solid var(--jh-menu-line)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:var(--jh-white)!important;
+  font-family:Manrope,Arial,sans-serif!important;
+  font-size:clamp(15px,3.9vw,19px)!important;
+  font-style:normal!important;
+  font-weight:800!important;
+  letter-spacing:0!important;
+  line-height:1.18!important;
+  text-align:left!important;
+  text-decoration:none!important;
+  text-transform:uppercase!important;
+  white-space:normal!important;
+  box-shadow:none!important;
 }
-html body details.jh-menu .jh-menu-panel.jh-menu-numbered>a:last-child{border-bottom:0!important}
-html body details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{
-  display:inline-flex!important;flex:0 0 clamp(52px,9.6vw,72px)!important;
-  width:clamp(52px,9.6vw,72px)!important;height:clamp(52px,9.6vw,72px)!important;
-  align-items:center!important;justify-content:center!important;
-  border:0!important;border-radius:50%!important;
-  background:var(--jh-pink)!important;color:var(--jh-white)!important;
-  font-size:clamp(18px,4.3vw,34px)!important;font-weight:900!important;
-  letter-spacing:0!important;line-height:1!important;
+html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a:last-child{border-bottom:0!important}
+html body #jh-menu-master .jh-menu-panel.jh-menu-numbered .jh-menu-number{
+  box-sizing:border-box!important;
+  display:inline-flex!important;
+  flex:0 0 38px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:38px!important;
+  min-width:38px!important;
+  height:38px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%!important;
+  background:var(--jh-pink)!important;
+  color:#fff!important;
+  font-family:Manrope,Arial,sans-serif!important;
+  font-size:15px!important;
+  font-style:normal!important;
+  font-weight:900!important;
+  letter-spacing:0!important;
+  line-height:1!important;
 }
-html body details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-label{
-  display:block!important;flex:1 1 auto!important;min-width:0!important;
-  color:var(--jh-white)!important;font-size:inherit!important;font-weight:800!important;
-  letter-spacing:0!important;line-height:1.12!important;text-transform:uppercase!important;
-  white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important;
+html body #jh-menu-master .jh-menu-panel.jh-menu-numbered .jh-menu-label{
+  display:block!important;
+  flex:1 1 auto!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  color:#fff!important;
+  font-family:Manrope,Arial,sans-serif!important;
+  font-size:inherit!important;
+  font-style:normal!important;
+  font-weight:800!important;
+  letter-spacing:0!important;
+  line-height:1.18!important;
+  text-align:left!important;
+  text-transform:uppercase!important;
+  white-space:normal!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
 }
-html body details.jh-menu .jh-menu-panel.jh-menu-numbered>a:hover,
-html body details.jh-menu .jh-menu-panel.jh-menu-numbered>a:focus-visible{
-  background:rgba(240,45,152,.07)!important;outline:2px solid var(--jh-pink)!important;
-  outline-offset:-2px!important;
+html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a:hover,
+html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a:focus-visible{
+  background:rgba(240,45,152,.10)!important;
+  color:#fff!important;
+  outline:1px solid var(--jh-pink)!important;
+  outline-offset:-1px!important;
 }
 @media(max-width:600px){
-  html body details.jh-menu>summary{width:48px!important;height:48px!important;min-width:48px!important}
-  html body details.jh-menu[open]>.jh-menu-panel.jh-menu-numbered{
-    width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;
-    padding:6px 10px!important;border-radius:24px!important;
-  }
-  html body details.jh-menu .jh-menu-panel.jh-menu-numbered>a{
-    min-height:clamp(68px,8.4dvh,96px)!important;
-    padding:8px 10px!important;gap:12px!important;
-    font-size:clamp(16px,4.1vw,24px)!important;
-  }
-  html body details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{
-    flex-basis:clamp(48px,12vw,62px)!important;
-    width:clamp(48px,12vw,62px)!important;height:clamp(48px,12vw,62px)!important;
-    font-size:clamp(17px,4.5vw,25px)!important;
-  }
+  html body #jh-site-topbar{min-height:76px!important;padding:10px 16px!important;gap:10px!important}
+  html body #jh-menu-master>summary{width:clamp(112px,24vw,150px)!important;min-width:112px!important;height:52px!important;padding:0 11px!important;gap:9px!important;border-radius:14px!important}
+  html body #jh-menu-master>summary:after{font-size:13px!important}
+  html body #jh-menu-master>summary .jh-burger,
+  html body #jh-menu-master>summary .jh-burger:before,
+  html body #jh-menu-master>summary .jh-burger:after{width:21px!important;height:2.3px!important}
+  html body #jh-menu-master[open]>.jh-menu-panel.jh-menu-numbered{width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;padding:7px 10px!important;border-radius:18px!important}
+  html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a{min-height:54px!important;padding:7px 8px!important;gap:12px!important;font-size:clamp(15px,4.1vw,18px)!important}
+  html body #jh-menu-master .jh-menu-panel.jh-menu-numbered .jh-menu-number{flex-basis:36px!important;width:36px!important;min-width:36px!important;height:36px!important;font-size:14px!important}
 }

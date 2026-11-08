@@ -16,6 +16,9 @@
   ];
   function applyMenu(){
     document.querySelectorAll('details.jh-menu').forEach(function(details){
+      details.id='jh-menu-master';
+      const topbar=details.closest('.jh-topbar');
+      if(topbar)topbar.id='jh-site-topbar';
       let nav=details.querySelector('nav.jh-menu-panel');
       if(!nav){nav=document.createElement('nav');nav.className='jh-menu-panel jh-menu-numbered';nav.setAttribute('aria-label','Menu principale');details.appendChild(nav);}
       nav.classList.add('jh-menu-numbered');
