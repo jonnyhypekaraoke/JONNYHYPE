@@ -103,3 +103,16 @@ html body details.jh-menu .jh-menu-panel.jh-menu-numbered>a:focus-visible{
     font-size:clamp(17px,4.5vw,25px)!important;
   }
 }
+
+/* Override tipografici finali: Manrope per testi e interfaccia, Montserrat per titoli.
+   Esclusi gli elementi grafici/iconografici e i loghi-immagine. */
+html body *:not(svg):not(path):not(i):not([class*="icon"]):not(.fa):not(.fas):not(.far):not(.fab){
+  font-family:'Manrope',Arial,sans-serif!important;
+}
+html body *:is(h1,h2,h3,h4,h5,h6),
+html body *:is(h1,h2,h3,h4,h5,h6) *{
+  font-family:'Montserrat','Manrope',Arial,sans-serif!important;
+}
+html body .jh-wordmark,html body .jh-wordmark *{
+  font-family:'Manrope',Arial,sans-serif!important;
+}
