@@ -204,6 +204,49 @@ body{margin:0;background:var(--sb-black);color:#fff;font-family:Arial,Helvetica,
 .sb-role p{color:#ededf0!important}
 </style>
 
+
+<style id="sb-mobile-hierarchy-correction-20261108">
+/* Gerarchia mobile: titolo del format in apertura, poster protagonista, descrizione più compatta. */
+.sb-format-title{
+  margin:0 auto 18px!important;
+  color:#fff!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-size:clamp(12px,3.5vw,18px)!important;
+  font-weight:900!important;
+  line-height:1.1!important;
+  letter-spacing:.035em!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+}
+.sb-format-title span{color:#F02D98!important}
+.sb-hero{padding-top:26px!important}
+.sb-hero-logo{margin-bottom:17px!important}
+.sb-hero-subtitle{
+  max-width:720px!important;
+  font-size:clamp(16px,3.7vw,22px)!important;
+  line-height:1.42!important;
+  letter-spacing:-.015em!important;
+  font-weight:800!important;
+}
+.sb-hero-subtitle .sb-brand-white{color:#F02D98!important}
+.sb-hero-subtitle .sb-brand-pink{color:#F02D98!important}
+.sb-section h2{color:#fff!important}
+.sb-section h2 em{color:#F02D98!important}
+.sb-role h3{
+  color:#fff!important;
+  border-bottom:1px solid rgba(240,45,152,.45)!important;
+  padding-bottom:9px!important;
+}
+.sb-role h3::first-letter{color:#fff!important}
+.sb-rules li::before{color:#fff!important}
+@media(max-width:600px){
+  .sb-format-title{font-size:clamp(11px,3.25vw,14px)!important;letter-spacing:.015em!important;margin-bottom:14px!important}
+  .sb-hero-subtitle{font-size:17px!important;line-height:1.42!important}
+  .sb-hero{padding-top:22px!important}
+}
+@media(max-width:350px){.sb-format-title{font-size:10px!important;letter-spacing:0!important}}
+</style>
+
 </head>
 <body>
 <div id="jh-site-topbar" class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details id="jh-menu-master" class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel jh-menu-numbered" aria-label="Menu principale"><a href="/"><span class="jh-menu-number">01</span><span class="jh-menu-label">HOME</span></a><a href="/eventi.html"><span class="jh-menu-number">02</span><span class="jh-menu-label">PROSSIMI EVENTI</span></a><a href="/karaoke.html"><span class="jh-menu-number">03</span><span class="jh-menu-label">RICHIEDI UNA CANZONE LIVE</span></a><a href="/show-battle.html"><span class="jh-menu-number">04</span><span class="jh-menu-label">SHOW BATTLE</span></a><a href="/ravenna-song-festival.html"><span class="jh-menu-number">05</span><span class="jh-menu-label">RAVENNA SONG FESTIVAL</span></a><a href="/team-rsf.html"><span class="jh-menu-number">06</span><span class="jh-menu-label">TEAM RSF</span></a><a href="/musica.html"><span class="jh-menu-number">07</span><span class="jh-menu-label">PRODUZIONI</span></a><a href="/galleria.html"><span class="jh-menu-number">08</span><span class="jh-menu-label">GALLERY</span></a><a href="/jonnyhype.html"><span class="jh-menu-number">09</span><span class="jh-menu-label">CHI È JONNYHYPE</span></a><a href="/community.html"><span class="jh-menu-number">10</span><span class="jh-menu-label">CHAT / COMMUNITY</span></a><a href="/contatti.html"><span class="jh-menu-number">11</span><span class="jh-menu-label">CONTATTI</span></a></nav></details></div>
@@ -211,8 +254,9 @@ body{margin:0;background:var(--sb-black);color:#fff;font-family:Arial,Helvetica,
 
 <main class="sb-wrap">
 <section class="sb-hero">
+<p class="sb-format-title">IL NUOVO FORMAT DI <span>JONNYHYPE</span></p>
 <div class="sb-hero-logo"><img src="/Battleflyer.jpg.JPEG" alt="SHOW BATTLE – La grande sfida tra TEAM RSF e TEAM KARAOKISTI"></div>
-<p class="sb-hero-subtitle">Una sfida a colpi di <span class="sb-brand-pink">KARAOKE</span> tra due squadre tutte da formare: il <span class="sb-brand-white">TEAM RSF</span> e il <span class="sb-brand-pink">TEAM KARAOKISTI</span>. Sarà il pubblico a votare direttamente i propri preferiti. Premiazioni e gran finale in TV nella primavera 2027!</p>
+<p class="sb-hero-subtitle">Una sfida a colpi di <span class="sb-brand-pink">KARAOKE</span> tra due squadre tutte da formare: il <span class="sb-brand-pink">TEAM RSF</span> e il <span class="sb-brand-pink">TEAM KARAOKISTI</span>. Sarà il pubblico a votare direttamente i propri preferiti. Premiazioni e gran finale in TV nella primavera 2027!</p>
 </section>
 
 <section class="sb-section">
