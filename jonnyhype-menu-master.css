@@ -12,6 +12,7 @@
   --jh-menu-border:#37373F;
 }
 
+/* Cache version: 2 — MASTER MENU condiviso su tutte le pagine. */
 /* Menu a scomparsa: struttura, proporzioni e contrasto coerenti su ogni pagina. */
 html body details.jh-menu{position:relative!important;flex:0 0 auto!important}
 html body details.jh-menu>summary{
