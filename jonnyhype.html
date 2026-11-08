@@ -404,21 +404,37 @@ html body .jh-topbar details.jh-menu[open]>summary .jh-burger:after{top:0!import
 
 <script id="jh-about-menu-native-toggle-fix-20261108">
 (()=> {
- const menu=document.querySelector('header.jh-topbar details.jh-menu');
- if(!menu) return;
- const summary=menu.querySelector(':scope > summary');
- if(!summary) return;
- summary.setAttribute('aria-expanded',String(menu.open));
- menu.addEventListener('toggle',()=>{
+ const init=()=>{
+  const menu=document.querySelector('header.jh-topbar details.jh-menu');
+  if(!menu || menu.dataset.jhToggleReady==='1') return;
+  const summary=menu.querySelector(':scope > summary');
+  if(!summary) return;
+  menu.dataset.jhToggleReady='1';
+  const sync=()=>{
    summary.setAttribute('aria-expanded',String(menu.open));
    summary.setAttribute('aria-label',menu.open?'Chiudi il menu del sito':'Apri il menu del sito');
- });
- menu.addEventListener('keydown',event=>{
+  };
+  sync();
+  /* Gestione esplicita del tap su Safari: apertura e chiusura deterministiche. */
+  summary.addEventListener('click',event=>{
+   event.preventDefault();
+   menu.open=!menu.open;
+   sync();
+  });
+  menu.addEventListener('toggle',sync);
+  menu.addEventListener('keydown',event=>{
    if(event.key==='Escape' && menu.open){
-     menu.open=false;
-     summary.focus();
+    menu.open=false;
+    sync();
+    summary.focus();
    }
- });
+  });
+  menu.querySelectorAll('.jh-menu-panel a').forEach(link=>{
+   link.addEventListener('click',()=>{menu.open=false;sync();});
+  });
+ };
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
+ else init();
 })();
 </script>
 </body>
