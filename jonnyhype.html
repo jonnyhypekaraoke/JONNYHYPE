@@ -403,38 +403,32 @@ html body .jh-topbar details.jh-menu[open]>summary .jh-burger:after{top:0!import
 </style>
 
 <script id="jh-about-menu-native-toggle-fix-20261108">
-(()=> {
- const init=()=>{
-  const menu=document.querySelector('header.jh-topbar details.jh-menu');
-  if(!menu || menu.dataset.jhToggleReady==='1') return;
-  const summary=menu.querySelector(':scope > summary');
+/* Toggle gestito in fase capture: il tap sul riepilogo non dipende dall'attivazione nativa di Safari. */
+(()=>{
+ const menuSelector='header.jh-topbar details.jh-menu';
+ document.addEventListener('click',event=>{
+  const summary=event.target.closest(menuSelector+' > summary');
   if(!summary) return;
-  menu.dataset.jhToggleReady='1';
-  const sync=()=>{
-   summary.setAttribute('aria-expanded',String(menu.open));
-   summary.setAttribute('aria-label',menu.open?'Chiudi il menu del sito':'Apri il menu del sito');
-  };
-  sync();
-  /* Gestione esplicita del tap su Safari: apertura e chiusura deterministiche. */
-  summary.addEventListener('click',event=>{
-   event.preventDefault();
-   menu.open=!menu.open;
-   sync();
-  });
-  menu.addEventListener('toggle',sync);
-  menu.addEventListener('keydown',event=>{
-   if(event.key==='Escape' && menu.open){
-    menu.open=false;
-    sync();
-    summary.focus();
-   }
-  });
-  menu.querySelectorAll('.jh-menu-panel a').forEach(link=>{
-   link.addEventListener('click',()=>{menu.open=false;sync();});
-  });
- };
- if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
- else init();
+  const menu=summary.parentElement;
+  event.preventDefault();
+  event.stopPropagation();
+  if(typeof event.stopImmediatePropagation==='function') event.stopImmediatePropagation();
+  menu.open=!menu.open;
+  summary.setAttribute('aria-expanded',String(menu.open));
+  summary.setAttribute('aria-label',menu.open?'Chiudi il menu del sito':'Apri il menu del sito');
+ },true);
+ document.addEventListener('click',event=>{
+  const link=event.target.closest(menuSelector+' .jh-menu-panel a');
+  if(!link) return;
+  document.querySelectorAll(menuSelector+'[open]').forEach(menu=>menu.open=false);
+ },true);
+ document.addEventListener('keydown',event=>{
+  if(event.key!=='Escape') return;
+  const menu=document.querySelector(menuSelector+'[open]');
+  if(!menu) return;
+  menu.open=false;
+  menu.querySelector(':scope > summary')?.focus();
+ },true);
 })();
 </script>
 </body>
