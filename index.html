@@ -3009,3 +3009,29 @@ html body .hero .content .jh-home-live-counter .jh-home-live-number{
   }
 }
 </style>
+
+<style id="jh-home-photo-extended-correctly-20261108">
+/* Correzione richiesta: allunga verso il basso SOLO la foto; i due banner restano alla quota precedente. */
+@media(max-width:600px){
+  .hero>.photo{
+    height:calc(clamp(205px,55vw,250px) + 34px)!important;
+    min-height:0!important;
+    max-height:284px!important;
+  }
+  html body .hero>.content{
+    margin-top:-34px!important;
+    padding-top:34px!important;
+    padding-bottom:8px!important;
+  }
+  html body .hero .content>.links{
+    margin-top:8px!important;
+    margin-bottom:12px!important;
+  }
+  html body .hero .content .jh-home-live-counter{
+    margin-top:0!important;
+  }
+  html body .jh-home-upcoming-heading{
+    display:none!important;
+  }
+}
+</style>
