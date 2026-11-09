@@ -1958,7 +1958,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const brand=detail.querySelector('.venue-brand');
    const kind=brand?clean(brand.querySelector('span')?.textContent):'';
    const venue=brand?clean(brand.querySelector('strong')?.textContent):clean(detail.querySelector(':scope > strong:not(.event-subtitle)')?.textContent);
-   const subtitle=clean(detail.querySelector('.event-subtitle')?.textContent);
+   const subtitle=clean(detail.querySelector('.event-info-subtitle')?.textContent);
    const time=clean(detail.querySelector('.time')?.textContent);
     const placeNode=detail.querySelector('.venue-link');
     const placeClone=placeNode?.cloneNode(true);placeClone?.querySelector('.map-label')?.remove();
@@ -1967,7 +1967,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
     const placeBase=placeLines.length>1?placeLines[placeLines.length-1]:(placeLines[0]||'');
     const placeParts=placeBase.split('·').map(v=>v.trim()).filter(Boolean);
     const address=placeParts[0]||'';const city=placeParts.slice(1).join(' · ');
-   const desc=clean(detail.querySelector('.event-description')?.textContent);
+   const desc=clean(detail.querySelector('.event-info-description')?.textContent);
    const booking=card.querySelector('.whatsapp-cta')?.getAttribute('href')||'';
    const map=detail.querySelector('.venue-link')?.getAttribute('href')||'';
    const calendar=card.querySelector('.event-actions .event-cta:not(.whatsapp-cta)')?.getAttribute('href')||'';
