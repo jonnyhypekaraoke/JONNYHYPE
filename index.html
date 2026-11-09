@@ -1978,7 +1978,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
   // In Home mostra gli eventi futuri fino a sabato 14 novembre 2026.
   const list=section.querySelector('.jh-home-upcoming-list');
   if(!sorted.length){list.innerHTML='<div class="jh-home-upcoming-empty">Al momento non ci sono eventi imminenti da mostrare.</div>';return;}
-  list.innerHTML=sorted.map((x,index)=>{
+  list.innerHTML=sorted.slice(0,4).map((x,index)=>{
    const title=x.venue.toUpperCase();
    const image=title.includes('IGINGINI')?'<img class="jh-home-upcoming-logo" src="https://media.jonnyhype.it/IGinGini%20.jpg" alt="iGinGini · Drink Food Disco" loading="lazy">':title.includes('ALCHIMIA')?'<img src="https://media.jonnyhype.it/ALCHIMIA.jpg" alt="Alchimia · sala karaoke" loading="lazy">':title.includes('ICE MARINA')?'<img src="https://media.jonnyhype.it/ICE%20.jpg" alt="ICE Marina Club · sala ristorante" loading="lazy">':title.includes('CASABLANCA')?'<img src="https://media.jonnyhype.it/Casablanca.PNG" alt="Casablanca" loading="lazy">':title.includes('VECCHIA NAPOLI')?'<img class="jh-home-upcoming-logo" src="https://media.jonnyhype.it/Logo%20vecchia%20.jpg" alt="La Vecchia Napoli" loading="lazy">':title.includes('VIA VAI')?'<img src="https://media.jonnyhype.it/Viavai.JPG" alt="Via Vai Café" loading="lazy">':title.includes('YOYI')?'<img src="https://media.jonnyhype.it/YOYi.jpg.JPG" alt="YOYi Fusion" loading="lazy">':title.includes('URBAN')?'<img src="https://media.jonnyhype.it/images/locali/urban/2C0190D3-54E7-422F-8440-8A355B8416CA.png" alt="Cafè Urban · Urban Padel" loading="lazy">':'<strong>'+esc(title)+'</strong>';
    const dateLabel=x.dayName+' '+String(x.day).padStart(2,'0')+'.'+String(x.date.getMonth()+1).padStart(2,'0');
