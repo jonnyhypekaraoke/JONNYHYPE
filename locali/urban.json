@@ -15,7 +15,36 @@
   "description": "",
   "phone": "",
   "bookingUrl": "",
-  "gallery": [],
+  "gallery": [
+    {
+      "src": "https://media.jonnyhype.it/images/locali/urban/2C0190D3-54E7-422F-8440-8A355B8416CA.png",
+      "alt": "Urban – foto 1"
+    },
+    {
+      "src": "https://media.jonnyhype.it/images/locali/urban/4A91035E-09FE-4EAA-ADC5-32D17D47E32B.png",
+      "alt": "Urban – foto 2"
+    },
+    {
+      "src": "https://media.jonnyhype.it/images/locali/urban/66651326-19ED-4DD0-A2FE-D4C5D1A0CC0C.png",
+      "alt": "Urban – foto 3"
+    },
+    {
+      "src": "https://media.jonnyhype.it/images/locali/urban/B1FF5111-F5D2-4B0E-85BE-DA4C4FAD1E21.png",
+      "alt": "Urban – foto 4"
+    },
+    {
+      "src": "https://media.jonnyhype.it/images/locali/urban/CA7A7202-E705-47DD-BD15-3FE9DB98F49E.png",
+      "alt": "Urban – foto 5"
+    },
+    {
+      "src": "https://media.jonnyhype.it/images/locali/urban/CBB4DC54-C9F0-4252-B7BD-A4A39FB1D666.png",
+      "alt": "Urban – foto 6"
+    },
+    {
+      "src": "https://media.jonnyhype.it/images/locali/urban/DAF9C299-47FC-40D7-B937-826A84B88A04.png",
+      "alt": "Urban – foto 7"
+    }
+  ],
   "notes": "Scheda permanente: non cancellare quando termina un evento.",
-  "updatedAt": "2026-11-03"
+  "updatedAt": "2026-11-09"
 }
