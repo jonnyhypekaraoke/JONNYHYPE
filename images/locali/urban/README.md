@@ -7,3 +7,4 @@ Carica qui le fotografie di Urban.
 - Sono accettati JPG, JPEG, PNG e WEBP.
 - Dopo il caricamento, comunica i nomi dei file: verranno collegati alla scheda `/locali/urban.json`.
 - Non creare cartelle per singole date e non cancellare le foto quando termina un evento.
+- Il caricamento su Cloudflare R2 parte automaticamente quando vengono aggiunti o aggiornati file multimediali nel repository.
