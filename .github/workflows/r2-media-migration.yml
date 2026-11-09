@@ -1,6 +1,18 @@
-name: R2 media migration (safe dry run)
+name: R2 media migration (automatic + manual)
 
 on:
+  push:
+    paths:
+      - 'images/**'
+      - '*.jpg'
+      - '*.jpeg'
+      - '*.png'
+      - '*.webp'
+      - '*.gif'
+      - '*.avif'
+      - '*.mp4'
+      - '*.mov'
+      - '*.webm'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -42,12 +54,12 @@ jobs:
           \) -not -path './.git/*' -print0 |
           python3 -c 'import sys; p=sys.stdin.buffer.read().split(b"\0"); p=[x for x in p if x]; print("File multimediali individuati:", len(p))'
 
-      - name: Upload media to R2 (or simulate)
+      - name: Upload media to R2 (incremental or simulate)
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
-          DRY_RUN: ${{ inputs.dry_run }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
         shell: bash
         run: |
           set -euo pipefail
@@ -57,7 +69,7 @@ jobs:
             echo "MODALITÀ SIMULAZIONE: nessun file verrà caricato."
             args+=(--dryrun)
           else
-            echo "CARICAMENTO REALE: i file saranno copiati in R2 senza cancellare gli originali."
+            echo "CARICAMENTO REALE: trasferimento incrementale dei soli file nuovi o modificati; nessun originale verrà cancellato."
           fi
           aws s3 sync . s3://jonnyhype-media \
             --exclude "*" \
@@ -71,7 +83,6 @@ jobs:
             --include "*.[mM][oO][vV]" \
             --include "*.[wW][eE][bB][mM]" \
             "${args[@]}"
-
 
       - name: Verify objects stored in R2 (read only)
         if: always()
