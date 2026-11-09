@@ -246,7 +246,7 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
 const root=document.getElementById('event-detail'),q=new URLSearchParams(location.search),v=(q.get('venue')||'').trim().toUpperCase(),date=(q.get('date')||'').trim();
 const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clean=s=>(s||'').replace(/\s+/g,' ').replace(/· APRI MAPPA/gi,'').trim(),months={GENNAIO:0,FEBBRAIO:1,MARZO:2,APRILE:3,MAGGIO:4,GIUGNO:5,LUGLIO:6,AGOSTO:7,SETTEMBRE:8,OTTOBRE:9,NOVEMBRE:10,DICEMBRE:11};
-function slug(s){return s.toUpperCase().includes('IGINGINI')?'igingini':s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+function slug(s){const u=s.toUpperCase();return u.includes('IGINGINI')?'igingini':u.includes('URBAN')?'urban':s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
 function dateOf(c){const a=c.querySelector('.date-stack');if(!a)return '';const p=[...a.querySelectorAll('span,strong')].map(x=>clean(x.textContent).toUpperCase());if(!p[1]||months[p[2]]===undefined)return '';return (date.slice(0,4)||new Date().getFullYear())+'-'+String(months[p[2]]+1).padStart(2,'0')+'-'+String(+p[1]).padStart(2,'0')}
 fetch('/eventi.html',{cache:'no-store'}).then(r=>r.text()).then(s=>{
 const doc=new DOMParser().parseFromString(s,'text/html'),card=[...doc.querySelectorAll('.event-card')].find(c=>{const d=c.querySelector('.event-detail');if(!d)return false;const b=d.querySelector('.venue-brand'),n=b?clean(b.querySelector('strong')?.textContent):clean(d.querySelector(':scope > strong:not(.event-subtitle)')?.textContent);return n.toUpperCase()===v&&dateOf(c)===date});
