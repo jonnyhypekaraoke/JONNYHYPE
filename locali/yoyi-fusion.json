@@ -12,7 +12,7 @@
   "province": "Ravenna",
   "map": "https://www.google.com/maps/search/?api=1&query=Ristorante+YOYi+Fusion%2C+Via+Faentina+130%2FB%2C+Ravenna",
   "logo": "https://media.jonnyhype.it/YOYi.jpg.JPG",
-  "description": "",
+  "description": "DJ SET • KARAOKE\nSUSHI • CUCINA GIAPPONESE • CUCINA CINESE",
   "phone": "",
   "bookingUrl": "",
   "gallery": [
@@ -50,5 +50,5 @@
     }
   ],
   "notes": "Scheda permanente: non cancellare quando termina un evento.",
-  "updatedAt": "2026-11-05"
+  "updatedAt": "2026-11-09"
 }
