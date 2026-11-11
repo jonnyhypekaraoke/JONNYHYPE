@@ -1262,6 +1262,30 @@ h1{font-weight:900!important;line-height:1.08!important}
 }
 </style>
 
+
+<style id="jh-capodanno-home-card-redesign-20261111">
+#jh-capodanno-jump{
+ display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+ gap:7px!important;width:min(650px,calc(100% - 42px))!important;min-height:0!important;
+ margin:16px auto 18px!important;padding:18px 14px 15px!important;box-sizing:border-box!important;
+ overflow:hidden!important;position:relative!important;
+ border:2px solid #F02D98!important;border-radius:24px!important;
+ background:radial-gradient(ellipse at 50% 115%,rgba(240,45,152,.22),transparent 58%),linear-gradient(135deg,#111116 0%,#050507 55%,#151019 100%)!important;
+ color:#fff!important;text-align:center!important;text-decoration:none!important;
+ font-family:"Montserrat",Arial,sans-serif!important;box-shadow:0 0 22px rgba(240,45,152,.16),inset 0 0 24px rgba(240,45,152,.06)!important;
+}
+#jh-capodanno-jump:before,#jh-capodanno-jump:after{content:"✦";position:absolute;color:#F02D98;font-size:24px;opacity:.85;text-shadow:0 0 14px #F02D98}
+#jh-capodanno-jump:before{left:13px;top:12px}#jh-capodanno-jump:after{right:13px;top:12px}
+#jh-capodanno-jump .jh-cj-top{font-size:clamp(9px,2.3vw,12px);font-weight:900;letter-spacing:.12em;color:#fff}
+#jh-capodanno-jump .jh-cj-top span{color:#F02D98}
+#jh-capodanno-jump .jh-cj-title{display:block;font-size:clamp(23px,6.5vw,39px);font-weight:900;line-height:1;letter-spacing:-.055em;color:#fff}
+#jh-capodanno-jump .jh-cj-title b{display:block;color:#F02D98;font:inherit}
+#jh-capodanno-jump .jh-cj-sub{display:block;color:#e6e2e8;font-size:clamp(9px,2.5vw,12px);font-weight:900;letter-spacing:.045em;line-height:1.35}
+#jh-capodanno-jump .jh-cj-button{display:flex;align-items:center;justify-content:center;gap:12px;width:min(340px,94%);min-height:43px;margin-top:5px;padding:9px 16px;border-radius:30px;background:#F02D98;color:#050507;font-size:clamp(12px,3.3vw,15px);font-weight:900;letter-spacing:.015em;line-height:1.1}
+#jh-capodanno-jump .jh-cj-button i{font-style:normal;font-size:25px;line-height:.7}
+#jh-capodanno-jump:focus-visible{outline:2px solid #fff;outline-offset:4px}
+</style>
+
 </head>
 <body>
 <div id="jh-site-topbar" class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details id="jh-menu-master" class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel jh-menu-numbered" aria-label="Menu principale"><a href="/"><span class="jh-menu-number">01</span><span class="jh-menu-label">HOME</span></a><a href="/eventi.html"><span class="jh-menu-number">02</span><span class="jh-menu-label">PROSSIMI EVENTI</span></a><a href="/karaoke.html"><span class="jh-menu-number">03</span><span class="jh-menu-label">RICHIEDI UNA CANZONE LIVE</span></a><a href="/show-battle.html"><span class="jh-menu-number">04</span><span class="jh-menu-label">SHOW BATTLE</span></a><a href="/ravenna-song-festival.html"><span class="jh-menu-number">05</span><span class="jh-menu-label">RAVENNA SONG FESTIVAL</span></a><a href="/team-rsf.html"><span class="jh-menu-number">06</span><span class="jh-menu-label">TEAM RSF</span></a><a href="/musica.html"><span class="jh-menu-number">07</span><span class="jh-menu-label">PRODUZIONI</span></a><a href="/galleria.html"><span class="jh-menu-number">08</span><span class="jh-menu-label">GALLERY</span></a><a href="/jonnyhype.html"><span class="jh-menu-number">09</span><span class="jh-menu-label">CHI È JONNYHYPE</span></a><a href="/community.html"><span class="jh-menu-number">10</span><span class="jh-menu-label">CHAT / COMMUNITY</span></a><a href="/contatti.html"><span class="jh-menu-number">11</span><span class="jh-menu-label">CONTATTI</span></a></nav></details></div>
@@ -1285,12 +1309,17 @@ h1{font-weight:900!important;line-height:1.08!important}
 <a class="btn song-request-banner" href="/karaoke.html" aria-label="Richiedi una canzone live"><span class="song-request-copy"><strong><span class="jh-btn-white">RICHIEDI</span><br><span class="jh-btn-pink">UNA CANZONE</span> <span class="jh-btn-white">LIVE</span></strong></span></a>
 <a class="btn social" href="/eventi.html" aria-label="Prossimi eventi"><span class="jh-btn-white">PROSSIMI</span><span class="jh-btn-pink">EVENTI</span></a>
 </div>
-<a id="jh-capodanno-jump" href="#jh-capodanno-home"><strong>CAPODANNO 2027</strong> · SCOPRI IL PROGRAMMA E I MENU <span aria-hidden="true">↓</span></a>
-
 <section class="jh-home-live-counter" aria-label="Eventi live da ottobre 2024">
   <div class="jh-home-live-copy"><span>EVENTI LIVE DA OTTOBRE 2024</span></div>
   <div class="jh-home-live-number" data-count-target="455" aria-label="455 eventi live">0</div>
 </section>
+
+<a id="jh-capodanno-jump" href="#jh-capodanno-home" aria-label="Vai alle informazioni di Capodanno 2027">
+  <span class="jh-cj-top">JONNY<span>HYPE</span> PRESENTA · CAPODANNO 2027</span>
+  <span class="jh-cj-title">ONE NIGHT <b>AROUND THE WORLD</b></span>
+  <span class="jh-cj-sub">14 DESTINAZIONI · 14 COUNTDOWN · 14 VOLTE BUON ANNO</span>
+  <span class="jh-cj-button">INFO E PRENOTAZIONI <i aria-hidden="true">›</i></span>
+</a>
 
 <details class="jh-rsf-disclosure">
 <summary class="jh-rsf-square-cta" aria-label="Apri le informazioni, i due eventi e il Team del Ravenna Song Festival">
