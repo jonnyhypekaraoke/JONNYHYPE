@@ -7,7 +7,8 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-SITE_HOSTS = {"jonnyhype.it", "www.jonnyhype.it", "media.jonnyhype.it"}
+SITE_HOSTS = {"jonnyhype.it", "www.jonnyhype.it"}
+EXTERNAL_MEDIA_HOSTS = {"media.jonnyhype.it"}
 IMAGE_ATTRS = {"src", "poster"}
 IMAGE_TAGS = {"img", "source", "video"}
 CSS_URL = re.compile(r"url\(\s*['\"]?([^'\"\)]+)['\"]?\s*\)", re.I)
@@ -52,7 +53,7 @@ def local_asset_path(ref, page):
         return None
     if parsed.scheme and parsed.scheme not in {"http", "https"}:
         return None
-    if parsed.netloc and parsed.hostname not in SITE_HOSTS:
+    if parsed.netloc and (parsed.hostname not in SITE_HOSTS or parsed.hostname in EXTERNAL_MEDIA_HOSTS):
         return None
     path = unquote(parsed.path)
     if not path:
