@@ -978,7 +978,38 @@ html body header.site-header .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-n
 #calendario-elenco .event-card .event-subtitle,
 #calendario-elenco .event-card .jh-home-upcoming-subtitle{display:none!important}
 </style>
-\n<style id="jh-urban-context-visible-20261109">.event-card.urban-cover-card .event-info-subtitle{display:block!important;grid-column:2!important;margin:5px 0 0!important;color:#d0cbd3!important;font-family:Montserrat,Arial,sans-serif!important;font-size:12px!important;font-weight:800!important;line-height:1.3!important;letter-spacing:.025em!important;text-transform:uppercase!important}</style>\n</body></html>
+\n<style id="jh-urban-context-visible-20261109">.event-card.urban-cover-card .event-info-subtitle{display:block!important;grid-column:2!important;margin:5px 0 0!important;color:#d0cbd3!important;font-family:Montserrat,Arial,sans-serif!important;font-size:12px!important;font-weight:800!important;line-height:1.3!important;letter-spacing:.025em!important;text-transform:uppercase!important}</style>\n<script id="jh-webp-optimizer">
+(function(){
+  const hosts=new Set(['media.jonnyhype.it','jonnyhype.it','www.jonnyhype.it']);
+  function optimize(img){
+    if(!img||img.tagName!=='IMG'||img.dataset.jhWebpTried)return;
+    const raw=img.getAttribute('src');
+    if(!raw||raw.startsWith('data:')||raw.startsWith('blob:'))return;
+    let u;try{u=new URL(raw,location.href)}catch(e){return}
+    if(!hosts.has(u.hostname)||!(/\.(?:jpe?g|png)$/i.test(u.pathname)))return;
+    img.dataset.jhWebpTried='1';
+    img.dataset.jhOriginalSrc=img.src;
+    const original=img.src;
+    u.pathname += '.webp';
+    img.onerror=function(){
+      if(img.dataset.jhFallbackDone)return;
+      img.dataset.jhFallbackDone='1';
+      img.onerror=null;
+      img.src=original;
+    };
+    img.src=u.href;
+    if(!img.hasAttribute('decoding'))img.decoding='async';
+    if(!img.loading&&!img.hasAttribute('fetchpriority'))img.loading='lazy';
+  }
+  function scan(root){
+    if(root&&root.nodeType===1&&root.tagName==='IMG')optimize(root);
+    if(root&&root.querySelectorAll)root.querySelectorAll('img').forEach(optimize);
+  }
+  scan(document);
+  new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(scan))).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+</body></html>
 
 
 
