@@ -1,0 +1,51 @@
+name: Verify website image and media references
+
+on:
+  pull_request:
+    paths:
+      - "**/*.html"
+      - "**/*.htm"
+      - "**/*.css"
+      - "**/*.js"
+      - "**/*.jpg"
+      - "**/*.jpeg"
+      - "**/*.png"
+      - "**/*.webp"
+      - "**/*.gif"
+      - "**/*.avif"
+      - "**/*.mp4"
+      - "**/*.webm"
+      - ".github/scripts/check_media_references.py"
+      - ".github/workflows/verify-media-references.yml"
+  push:
+    branches: [main]
+    paths:
+      - "**/*.html"
+      - "**/*.htm"
+      - "**/*.css"
+      - "**/*.js"
+      - "**/*.jpg"
+      - "**/*.jpeg"
+      - "**/*.png"
+      - "**/*.webp"
+      - "**/*.gif"
+      - "**/*.avif"
+      - "**/*.mp4"
+      - "**/*.webm"
+      - ".github/scripts/check_media_references.py"
+      - ".github/workflows/verify-media-references.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-media:
+    name: Check local image and media paths
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Verify every local image/media reference
+        run: python3 .github/scripts/check_media_references.py
