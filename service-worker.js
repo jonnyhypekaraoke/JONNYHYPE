@@ -1,4 +1,4 @@
-const CACHE_NAME = "jonnyhype-site-v67";
+const CACHE_NAME = "jonnyhype-site-v68";
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -27,13 +27,8 @@ self.addEventListener("fetch", event => {
   }
   const url = new URL(event.request.url);
   if (event.request.mode === "navigate" || url.pathname === "/" || url.pathname.endsWith(".html")) {
-    event.respondWith(fetch(event.request, { cache: "no-store" }).then(response => {
-      if (response && response.ok) {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
-      }
-      return response;
-    }).catch(() => caches.match(event.request).then(cached => cached || caches.match("/index.html"))));
+    // Le pagine HTML devono arrivare sempre dalla rete: niente copie obsolete del sito.
+    event.respondWith(fetch(new Request(event.request, { cache: "no-store" })));
     return;
   }
   event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
