@@ -25,6 +25,11 @@
       "alt": "ICE Marina Club – video"
     },
     {
+      "type": "video",
+      "src": "https://media.jonnyhype.it/images/locali/ice-marina-club/copy_DD00899D-EBB1-405E-BEBA-D0F8686D7B4E.mov",
+      "alt": "ICE Marina Club – video 2"
+    },
+    {
       "src": "https://media.jonnyhype.it/images/locali/ice-marina-club/Ice1.PNG",
       "alt": "ICE Marina Club – foto 2"
     },
@@ -46,5 +51,5 @@
     }
   ],
   "notes": "Scheda permanente: non cancellare quando termina un evento.",
-  "updatedAt": "2026-11-08"
+  "updatedAt": "2026-11-11"
 }
