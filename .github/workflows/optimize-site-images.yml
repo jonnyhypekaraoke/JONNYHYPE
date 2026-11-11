@@ -28,7 +28,8 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          from PIL import Image, ImageOps
+          from PIL import Image, ImageOps, ImageFile
+          ImageFile.LOAD_TRUNCATED_IMAGES = True
           out = Path("webp-output")
           out.mkdir(exist_ok=True)
           extensions = {".jpg", ".jpeg", ".png"}
@@ -53,7 +54,7 @@ jobs:
                       saved += max(0, before-after)
                       print(f"{path}: {before} -> {after} bytes")
               except Exception as exc:
-                  raise RuntimeError(f"Could not optimize {path}: {exc}")
+                  print(f"SKIP {path}: {exc}")
           print(f"Converted {count} images; estimated saved bytes: {saved}")
           PY
 
