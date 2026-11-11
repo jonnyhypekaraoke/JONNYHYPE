@@ -1,0 +1,45 @@
+name: Convert Capodanno Reel for Android
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/convert-capodanno-reel.yml'
+      - 'images/eventi/capodanno-2027.mp4.MOV'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      - name: Convert original Reel to Android-compatible MP4
+        run: |
+          set -euo pipefail
+          input="images/eventi/capodanno-2027.mp4.MOV"
+          output="images/eventi/capodanno-2027.mp4"
+          test -s "$input"
+          ffmpeg -y -i "$input" -map 0:v:0 -map '0:a?' -c:v libx264 -preset fast -crf 22 -pix_fmt yuv420p -profile:v high -level 4.1 -c:a aac -b:a 128k -ar 48000 -movflags +faststart "$output"
+          ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,pix_fmt,width,height -of default=noprint_wrappers=1 "$output"
+          test -s "$output"
+      - name: Commit Android-compatible MP4
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git rebase origin/main
+          git add images/eventi/capodanno-2027.mp4
+          if git diff --cached --quiet; then
+            echo "Converted MP4 is already current"
+          else
+            git commit -m "Convert Capodanno 2027 Reel to Android-compatible MP4"
+            git push
+          fi
