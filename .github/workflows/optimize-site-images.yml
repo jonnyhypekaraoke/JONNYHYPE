@@ -1,0 +1,85 @@
+name: Optimize website images to WebP
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/optimize-site-images.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  optimize-and-upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install image tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install Pillow
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      - name: Generate WebP variants without changing originals
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageOps
+          out = Path("webp-output")
+          out.mkdir(exist_ok=True)
+          extensions = {".jpg", ".jpeg", ".png"}
+          count = 0
+          saved = 0
+          for path in Path(".").rglob("*"):
+              if not path.is_file() or ".git" in path.parts or "webp-output" in path.parts:
+                  continue
+              if path.suffix.lower() not in extensions:
+                  continue
+              try:
+                  with Image.open(path) as original:
+                      im = ImageOps.exif_transpose(original)
+                      if im.mode not in ("RGB", "RGBA"):
+                          im = im.convert("RGBA" if "transparency" in im.info else "RGB")
+                      im.thumbnail((2200, 2200), Image.Resampling.LANCZOS)
+                      target = out / (str(path) + ".webp")
+                      target.parent.mkdir(parents=True, exist_ok=True)
+                      im.save(target, "WEBP", quality=84, method=6)
+                      before, after = path.stat().st_size, target.stat().st_size
+                      count += 1
+                      saved += max(0, before-after)
+                      print(f"{path}: {before} -> {after} bytes")
+              except Exception as exc:
+                  raise RuntimeError(f"Could not optimize {path}: {exc}")
+          print(f"Converted {count} images; estimated saved bytes: {saved}")
+          PY
+
+      - name: Upload optimized variants to Cloudflare R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ] || [ -z "$R2_ACCOUNT_ID" ]; then
+            echo "::error::Manca uno o più GitHub Actions Secrets R2."
+            exit 1
+          fi
+          aws s3 cp webp-output/ s3://jonnyhype-media/ --recursive \
+            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
+            --region auto \
+            --cache-control "public, max-age=31536000, immutable" \
+            --content-type "image/webp"
+
+      - name: Verify optimized variants
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+        run: |
+          aws s3 ls s3://jonnyhype-media/ --recursive \
+            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
+            --region auto | grep -c '\.webp$' || true
