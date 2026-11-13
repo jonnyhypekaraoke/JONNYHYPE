@@ -20,12 +20,19 @@ button{width:100%;min-height:50px;border:0;border-radius:11px;background:var(--p
 button.secondary{background:transparent;border:1px solid var(--pink);color:#fff}
 .small{font-size:11px;color:var(--muted)}.check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:11px;line-height:1.5;color:#ddd}.check input{width:18px;min-height:18px;margin:0;flex:0 0 auto;accent-color:var(--pink)}
 .hidden{display:none!important}#status{min-height:20px;color:var(--pink);font-size:12px;margin-top:15px;white-space:pre-wrap}
-.card{border-radius:22px;padding:24px 18px;background:linear-gradient(145deg,#18151d,#08080b 72%);border:1px solid var(--pink);text-align:center}
-.card-brand{font-size:12px;font-weight:900;letter-spacing:.22em}.card-brand span{color:var(--pink)}
-.card-number{font-size:48px;font-weight:900;letter-spacing:.08em;color:var(--pink);margin:12px 0}
-#qr{width:220px;height:220px;background:#fff;padding:10px;border-radius:14px;margin:18px auto;display:grid;place-items:center}
+.card{position:relative;overflow:hidden;border-radius:22px;padding:20px 17px 15px;background:radial-gradient(ellipse at 50% 0%,#24202a 0,#0a090d 55%,#050507 100%);border:1px solid #aeb0b8;box-shadow:0 0 0 2px #222,0 0 18px #f02d9840,inset 0 0 22px #ffffff0b;text-align:left}
+.card:before{content:"";position:absolute;inset:4px;border:1px solid #F02D98;border-radius:18px;pointer-events:none;box-shadow:inset 0 0 10px #F02D9840}
+.card-top{display:flex;align-items:center;gap:10px;padding:0 5px 12px;border-bottom:1px solid #7777;margin-bottom:14px}
+.headphone{font-size:19px;color:var(--pink)}.equalizer{height:29px;flex:1;display:flex;align-items:end;gap:2px;opacity:.82}.equalizer i{display:block;flex:1;max-width:5px;background:linear-gradient(#ff9ad2,var(--pink));border-radius:2px 2px 0 0}
+.jp-mark{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid #d8dce5;color:#fff;font-size:12px;font-weight:900;background:linear-gradient(135deg,#24232b,#aeb5c3,#33313c);box-shadow:0 0 7px #f02d9860}
+.card-brand{font-size:clamp(25px,7vw,36px);font-weight:900;letter-spacing:-.045em;line-height:1.08;margin:4px 0 16px;color:#fff}.card-brand span{color:var(--pink)}
+.member-layout{display:grid;grid-template-columns:minmax(0,1fr) 112px;gap:10px;align-items:center;border:1px solid #8888;border-radius:15px;padding:13px 10px;background:linear-gradient(110deg,#ffffff08,#00000022)}
+.member-label{font-size:9px;letter-spacing:.22em;color:#eee;margin-bottom:8px}.member-name{font-size:clamp(15px,4.1vw,20px);font-weight:900;line-height:1.25;overflow-wrap:anywhere}.member-name span{color:var(--pink)}.member-id{font-size:20px;font-weight:900;margin-top:18px;letter-spacing:.04em}.member-id span{color:var(--pink)}
+#qr{width:106px;height:106px;background:#fff;padding:5px;border:4px solid #c9cbd2;border-radius:12px;display:grid;place-items:center;box-shadow:0 0 0 2px #222,0 0 12px #f02d9860}
 #qr canvas,#qr img{max-width:100%;height:auto}
-.pill{display:inline-block;border:1px solid #555;border-radius:30px;padding:7px 12px;font-size:10px;letter-spacing:.12em;color:#eee}
+.pill{display:inline-block;border:1px solid #777;border-radius:30px;padding:6px 10px;font-size:9px;letter-spacing:.1em;color:#eee;margin-top:12px}
+.card-footer{display:flex;justify-content:space-between;gap:8px;align-items:center;border-top:1px solid #8888;margin-top:13px;padding:10px 4px 0;font-size:8px;letter-spacing:.13em;color:#eee}.card-footer strong{color:var(--pink);font-weight:900}
+@media(max-width:370px){.member-layout{grid-template-columns:minmax(0,1fr) 94px}#qr{width:90px;height:90px}.card-footer{font-size:7px}}
 a{color:var(--pink)}footer{text-align:center;color:#777;font-size:10px;margin-top:24px}
 </style>
 </head>
@@ -55,12 +62,11 @@ a{color:var(--pink)}footer{text-align:center;color:#777;font-size:10px;margin-to
 
   <section id="member" class="hidden">
     <div class="card">
-      <div class="card-brand">JONNY<span>HYPE</span> CARDS</div>
-      <p>MEMBER CARD</p>
-      <div class="card-number" id="cardNumber">---</div>
-      <div id="qr"><span style="color:#111;font-size:12px">QR in caricamento…</span></div>
+      <div class="card-top"><span class="headphone">♫</span><div class="equalizer" aria-hidden="true"><i style="height:22%"></i><i style="height:35%"></i><i style="height:48%"></i><i style="height:28%"></i><i style="height:65%"></i><i style="height:40%"></i><i style="height:75%"></i><i style="height:52%"></i><i style="height:33%"></i><i style="height:60%"></i><i style="height:88%"></i><i style="height:46%"></i><i style="height:70%"></i><i style="height:37%"></i><i style="height:56%"></i><i style="height:78%"></i><i style="height:42%"></i><i style="height:64%"></i></div><div class="jp-mark">JP</div></div>
+      <div class="card-brand">JONNY<span>HYPE</span></div>
+      <div class="member-layout"><div><div class="member-label">NOME MEMBRO</div><div class="member-name" id="memberName"><span>Nome Cognome</span></div><div class="member-id">ID <span id="cardNumber">---</span></div></div><div id="qr"><span style="color:#111;font-size:10px">QR</span></div></div>
+      <div class="card-footer"><span>LIMITED EDITION <strong id="editionNumber">001/100</strong></span><span>NON TRASFERIBILE</span></div>
       <span class="pill" id="qrTimer">CODICE TEMPORANEO</span>
-      <p id="memberName"></p>
       <p class="small">Mostra questo QR al partner. Il codice cambia automaticamente e può essere utilizzato una sola volta.</p>
     </div>
     <button class="secondary" id="logoutBtn">ESCI</button>
@@ -89,8 +95,11 @@ async function issueCard(session){
   });
   if(error) throw error;
   if(!data?.success) throw new Error(data?.error||"Non è stato possibile creare la tessera.");
-  $("cardNumber").textContent=data.card.card_number;
-  $("memberName").textContent=pending.firstName+" "+pending.lastName;
+  $("cardNumber").textContent=String(data.card.card_number).padStart(3,"0");
+  $("memberName").innerHTML="";
+  $("memberName").append(document.createTextNode(pending.firstName+" "));
+  const surname=document.createElement("span");surname.textContent=pending.lastName;$("memberName").append(surname);
+  $("editionNumber").textContent=String(data.card.card_number).padStart(3,"0")+"/100";
   showMember();
   await refreshQr();
   qrRefresh=setInterval(()=>refreshQr().catch(e=>$("memberStatus").textContent=e.message),45000);
@@ -137,7 +146,10 @@ async function restore(){
   if(!card)return;
   pending.firstName=member.first_name;pending.lastName=member.last_name;
   $("cardNumber").textContent=String(card.card_number).padStart(3,"0");
-  $("memberName").textContent=member.first_name+" "+member.last_name;
+  $("memberName").innerHTML="";
+  $("memberName").append(document.createTextNode(member.first_name+" "));
+  const surname=document.createElement("span");surname.textContent=member.last_name;$("memberName").append(surname);
+  $("editionNumber").textContent=String(card.card_number).padStart(3,"0")+"/100";
   showMember();
   if(card.status==="active"){try{await refreshQr();qrRefresh=setInterval(()=>refreshQr().catch(e=>$("memberStatus").textContent=e.message),45000)}catch(e){$("memberStatus").textContent=e.message}}
   else $("memberStatus").textContent="Tessera non attiva. Contatta l'assistenza.";
