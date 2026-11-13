@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050507">
+<title>JONNYHYPE CARDS</title>
+<style>
+:root{color-scheme:dark;--pink:#F02D98;--bg:#050507;--panel:#111116;--muted:#b9b6bf}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#241020 0,#050507 55%);color:#fff;font-family:Montserrat,Arial,sans-serif;min-height:100vh}
+main{width:min(100% - 32px,520px);margin:0 auto;padding:32px 0 60px}
+.brand{text-align:center;font-weight:900;letter-spacing:.13em;font-size:clamp(24px,7vw,34px);margin:8px 0 5px}.brand span{color:var(--pink)}
+.sub{text-align:center;color:var(--muted);font-size:12px;letter-spacing:.16em;margin:0 0 28px}
+.panel{border:1px solid rgba(240,45,152,.48);border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.018));padding:24px 20px;box-shadow:0 20px 55px #0008}
+h1{font-size:20px;margin:0 0 8px;letter-spacing:.03em}p{color:#d1ced5;line-height:1.55;font-size:13px}
+label{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;margin:17px 0 7px;text-transform:uppercase}
+input{width:100%;min-height:48px;border:1px solid #44404a;border-radius:10px;background:#09090d;color:#fff;padding:12px;font:16px Arial}
+input:focus{outline:2px solid var(--pink);border-color:var(--pink)}
+button{width:100%;min-height:50px;border:0;border-radius:11px;background:var(--pink);color:#09090d;font-weight:900;letter-spacing:.07em;margin-top:18px;padding:12px;cursor:pointer}
+button.secondary{background:transparent;border:1px solid var(--pink);color:#fff}
+.small{font-size:11px;color:var(--muted)}.check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:11px;line-height:1.5;color:#ddd}.check input{width:18px;min-height:18px;margin:0;flex:0 0 auto;accent-color:var(--pink)}
+.hidden{display:none!important}#status{min-height:20px;color:var(--pink);font-size:12px;margin-top:15px;white-space:pre-wrap}
+.card{border-radius:22px;padding:24px 18px;background:linear-gradient(145deg,#18151d,#08080b 72%);border:1px solid var(--pink);text-align:center}
+.card-brand{font-size:12px;font-weight:900;letter-spacing:.22em}.card-brand span{color:var(--pink)}
+.card-number{font-size:48px;font-weight:900;letter-spacing:.08em;color:var(--pink);margin:12px 0}
+#qr{width:220px;height:220px;background:#fff;padding:10px;border-radius:14px;margin:18px auto;display:grid;place-items:center}
+#qr canvas,#qr img{max-width:100%;height:auto}
+.pill{display:inline-block;border:1px solid #555;border-radius:30px;padding:7px 12px;font-size:10px;letter-spacing:.12em;color:#eee}
+a{color:var(--pink)}footer{text-align:center;color:#777;font-size:10px;margin-top:24px}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">JONNY<span>HYPE</span></div>
+  <div class="sub">MEMBERSHIP CARD</div>
+
+  <section id="register" class="panel">
+    <h1>Entra in JONNYHYPE CARDS</h1>
+    <p>La tessera digitale è gratuita. Inserisci i tuoi dati e verifica l'indirizzo email: se le 100 tessere sono ancora disponibili, il sistema te ne assegnerà una automaticamente.</p>
+    <form id="registerForm">
+      <label for="first">Nome</label><input id="first" autocomplete="given-name" maxlength="80" required>
+      <label for="last">Cognome</label><input id="last" autocomplete="family-name" maxlength="80" required>
+      <label for="email">Email</label><input id="email" type="email" autocomplete="email" required>
+      <label class="check"><input id="terms" type="checkbox" required><span>Confermo di aver letto e accettato il regolamento e l'informativa privacy JONNYHYPE CARDS.</span></label>
+      <button type="submit">RICHIEDI IL CODICE EMAIL</button>
+    </form>
+    <div id="otpBox" class="hidden">
+      <label for="otp">Codice di verifica ricevuto via email</label>
+      <input id="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000">
+      <button id="verifyBtn" type="button">VERIFICA EMAIL E CREA LA TESSERA</button>
+    </div>
+    <div id="status" role="status" aria-live="polite"></div>
+    <p class="small">La registrazione non è completata finché l'email non viene verificata. Non condividere il codice ricevuto.</p>
+  </section>
+
+  <section id="member" class="hidden">
+    <div class="card">
+      <div class="card-brand">JONNY<span>HYPE</span> CARDS</div>
+      <p>MEMBER CARD</p>
+      <div class="card-number" id="cardNumber">---</div>
+      <div id="qr"><span style="color:#111;font-size:12px">QR in caricamento…</span></div>
+      <span class="pill" id="qrTimer">CODICE TEMPORANEO</span>
+      <p id="memberName"></p>
+      <p class="small">Mostra questo QR al partner. Il codice cambia automaticamente e può essere utilizzato una sola volta.</p>
+    </div>
+    <button class="secondary" id="logoutBtn">ESCI</button>
+    <div id="memberStatus" class="small" role="status"></div>
+  </section>
+  <footer>JONNYHYPE CARDS · Tessera digitale</footer>
+</main>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+import QRCode from "https://cdn.jsdelivr.net/npm/qrcode@1.5.4/+esm";
+
+const SUPABASE_URL="https://xceywzabnvybjeteletg.supabase.co";
+const SUPABASE_KEY="sb_publishable_wKQ0U1ia1FhcnWcHKgRTHQ_i_Op4Vc4";
+const PRIVACY_VERSION="2026-11-13";
+const supabase=createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
+let pending={firstName:"",lastName:"",email:""};
+let qrTimer=null, qrRefresh=null;
+
+function status(message){$("status").textContent=message}
+function showMember(){ $("register").classList.add("hidden"); $("member").classList.remove("hidden"); }
+async function issueCard(session){
+  const {data,error}=await supabase.functions.invoke("cards-issue",{
+    body:{action:"issue",firstName:pending.firstName,lastName:pending.lastName,termsAccepted:true,privacyNoticeVersion:PRIVACY_VERSION}
+  });
+  if(error) throw error;
+  if(!data?.success) throw new Error(data?.error||"Non è stato possibile creare la tessera.");
+  $("cardNumber").textContent=data.card.card_number;
+  $("memberName").textContent=pending.firstName+" "+pending.lastName;
+  showMember();
+  await refreshQr();
+}
+async function refreshQr(){
+  const {data,error}=await supabase.functions.invoke("cards-qr",{body:{}});
+  if(error) throw error;
+  if(!data?.token) throw new Error(data?.error||"QR non disponibile");
+  await QRCode.toCanvas(document.createElement("canvas"),data.token,{width:200,margin:1,errorCorrectionLevel:"M"}).then(canvas=>{$("qr").replaceChildren(canvas)});
+  let remaining=45;
+  $("qrTimer").textContent="CODICE VALIDO 45 SEC";
+  clearInterval(qrTimer);
+  qrTimer=setInterval(()=>{remaining--; $("qrTimer").textContent=remaining>0?"CODICE VALIDO "+remaining+" SEC":"AGGIORNAMENTO QR…"; if(remaining<=0)clearInterval(qrTimer)},1000);
+}
+$("registerForm").addEventListener("submit",async e=>{
+  e.preventDefault(); status("");
+  pending={firstName:$("first").value.trim(),lastName:$("last").value.trim(),email:$("email").value.trim()};
+  if(!$("terms").checked){status("Per proseguire devi accettare regolamento e informativa.");return}
+  try{
+    const {error}=await supabase.auth.signInWithOtp({email:pending.email,options:{shouldCreateUser:true,data:{first_name:pending.firstName,last_name:pending.lastName}}});
+    if(error)throw error;
+    $("otpBox").classList.remove("hidden");
+    status("Codice richiesto. Controlla la posta in arrivo e anche la cartella spam.");
+  }catch(err){status(err.message||"Errore durante l'invio del codice.")}
+});
+$("verifyBtn").addEventListener("click",async()=>{
+  status("");
+  const token=$("otp").value.trim();
+  if(!/^\d{6}$/.test(token)){status("Inserisci il codice numerico di 6 cifre.");return}
+  try{
+    const {data,error}=await supabase.auth.verifyOtp({email:pending.email,token,type:"email"});
+    if(error)throw error;
+    if(!data.session)throw new Error("Verifica completata ma sessione non disponibile. Accedi nuovamente.");
+    await issueCard(data.session);
+  }catch(err){status(err.message||"Codice non valido o scaduto.")}
+});
+$("logoutBtn").addEventListener("click",async()=>{clearInterval(qrTimer);await supabase.auth.signOut();location.reload()});
+async function restore(){
+  const {data:{session}}=await supabase.auth.getSession();
+  if(!session)return;
+  const {data:member,error}=await supabase.from("members").select("first_name,last_name,cards(card_number,status)").eq("auth_user_id",session.user.id).maybeSingle();
+  if(error||!member)return;
+  const card=Array.isArray(member.cards)?member.cards[0]:member.cards;
+  if(!card)return;
+  pending.firstName=member.first_name;pending.lastName=member.last_name;
+  $("cardNumber").textContent=String(card.card_number).padStart(3,"0");
+  $("memberName").textContent=member.first_name+" "+member.last_name;
+  showMember();
+  if(card.status==="active"){try{await refreshQr();qrRefresh=setInterval(()=>refreshQr().catch(e=>$("memberStatus").textContent=e.message),45000)}catch(e){$("memberStatus").textContent=e.message}}
+  else $("memberStatus").textContent="Tessera non attiva. Contatta l'assistenza.";
+}
+restore();
+</script>
+</body>
+</html>
