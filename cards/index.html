@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050507">
+<title>JONNYHYPE CARDS</title>
+<style>
+:root{color-scheme:dark;--pink:#F02D98;--bg:#050507;--panel:#111116;--muted:#b9b6bf}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#241020 0,#050507 55%);color:#fff;font-family:Montserrat,Arial,sans-serif;min-height:100vh}
+main{width:min(100% - 32px,520px);margin:0 auto;padding:32px 0 60px}
+.brand{text-align:center;font-weight:900;letter-spacing:.13em;font-size:clamp(24px,7vw,34px);margin:8px 0 5px}.brand span{color:var(--pink)}
+.sub{text-align:center;color:var(--muted);font-size:12px;letter-spacing:.16em;margin:0 0 28px}
+.panel{border:1px solid rgba(240,45,152,.48);border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.018));padding:24px 20px;box-shadow:0 20px 55px #0008}
+h1{font-size:20px;margin:0 0 8px;letter-spacing:.03em}p{color:#d1ced5;line-height:1.55;font-size:13px}
+label{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;margin:17px 0 7px;text-transform:uppercase}
+input{width:100%;min-height:48px;border:1px solid #44404a;border-radius:10px;background:#09090d;color:#fff;padding:12px;font:16px Arial}
+input:focus{outline:2px solid var(--pink);border-color:var(--pink)}
+button{width:100%;min-height:50px;border:0;border-radius:11px;background:var(--pink);color:#09090d;font-weight:900;letter-spacing:.07em;margin-top:18px;padding:12px;cursor:pointer}
+button.secondary{background:transparent;border:1px solid var(--pink);color:#fff}
+.small{font-size:11px;color:var(--muted)}.check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:11px;line-height:1.5;color:#ddd}.check input{width:18px;min-height:18px;margin:0;flex:0 0 auto;accent-color:var(--pink)}
+.hidden{display:none!important}#status{min-height:20px;color:var(--pink);font-size:12px;margin-top:15px;white-space:pre-wrap}
+.card{position:relative;overflow:hidden;border-radius:22px;padding:20px 17px 15px;background:radial-gradient(ellipse at 50% 0%,#24202a 0,#0a090d 55%,#050507 100%);border:1px solid #aeb0b8;box-shadow:0 0 0 2px #222,0 0 18px #f02d9840,inset 0 0 22px #ffffff0b;text-align:left}
+.card:before{content:"";position:absolute;inset:4px;border:1px solid #F02D98;border-radius:18px;pointer-events:none;box-shadow:inset 0 0 10px #F02D9840}
+.card-top{display:flex;align-items:center;gap:10px;padding:0 5px 12px;border-bottom:1px solid #7777;margin-bottom:14px}
+.headphone{font-size:19px;color:var(--pink)}.equalizer{height:29px;flex:1;display:flex;align-items:end;gap:2px;opacity:.82}.equalizer i{display:block;flex:1;max-width:5px;background:linear-gradient(#ff9ad2,var(--pink));border-radius:2px 2px 0 0}
+.jp-mark{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid #d8dce5;color:#fff;font-size:12px;font-weight:900;background:linear-gradient(135deg,#24232b,#aeb5c3,#33313c);box-shadow:0 0 7px #f02d9860}
+.card-brand{font-size:clamp(25px,7vw,36px);font-weight:900;letter-spacing:-.045em;line-height:1.08;margin:4px 0 16px;color:#fff}.card-brand span{color:var(--pink)}
+.member-layout{display:grid;grid-template-columns:minmax(0,1fr) 112px;gap:10px;align-items:center;border:1px solid #8888;border-radius:15px;padding:13px 10px;background:linear-gradient(110deg,#ffffff08,#00000022)}
+.member-label{font-size:9px;letter-spacing:.22em;color:#eee;margin-bottom:8px}.member-name{font-size:clamp(15px,4.1vw,20px);font-weight:900;line-height:1.25;overflow-wrap:anywhere}.member-name span{color:var(--pink)}.member-id{font-size:20px;font-weight:900;margin-top:18px;letter-spacing:.04em}.member-id span{color:var(--pink)}
+#qr{width:106px;height:106px;background:#fff;padding:5px;border:4px solid #c9cbd2;border-radius:12px;display:grid;place-items:center;box-shadow:0 0 0 2px #222,0 0 12px #f02d9860}
+#qr canvas,#qr img{max-width:100%;height:auto}
+.pill{display:inline-block;border:1px solid #777;border-radius:30px;padding:6px 10px;font-size:9px;letter-spacing:.1em;color:#eee;margin-top:12px}
+.card-footer{display:flex;justify-content:space-between;gap:8px;align-items:center;border-top:1px solid #8888;margin-top:13px;padding:10px 4px 0;font-size:8px;letter-spacing:.13em;color:#eee}.card-footer strong{color:var(--pink);font-weight:900}
+@media(max-width:370px){.member-layout{grid-template-columns:minmax(0,1fr) 94px}#qr{width:90px;height:90px}.card-footer{font-size:7px}}
+a{color:var(--pink)}footer{text-align:center;color:#777;font-size:10px;margin-top:24px}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">JONNY<span>HYPE</span></div>
+  <div class="sub">MEMBERSHIP CARD</div>
+
+  <section id="register" class="panel">
+    <h1>Entra in JONNYHYPE CARDS</h1>
+    <p>La tessera digitale è gratuita. Inserisci i tuoi dati e verifica l'indirizzo email: se le 100 tessere sono ancora disponibili, il sistema te ne assegnerà una automaticamente.</p>
+    <form id="registerForm">
+      <label for="first">Nome</label><input id="first" autocomplete="given-name" maxlength="80" required>
+      <label for="last">Cognome</label><input id="last" autocomplete="family-name" maxlength="80" required>
+      <label for="email">Email</label><input id="email" type="email" autocomplete="email" required>
+      <label class="check"><input id="terms" type="checkbox" required><span>Confermo di aver letto e accettato il regolamento e l'informativa privacy JONNYHYPE CARDS.</span></label>
+      <button type="submit">RICHIEDI IL CODICE EMAIL</button>
+    </form>
+    <div id="otpBox" class="hidden">
+      <label for="otp">Codice di verifica ricevuto via email</label>
+      <input id="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000">
+      <button id="verifyBtn" type="button">VERIFICA EMAIL E CREA LA TESSERA</button>
+    </div>
+    <div id="status" role="status" aria-live="polite"></div>
+    <p class="small">La registrazione non è completata finché l'email non viene verificata. Non condividere il codice ricevuto.</p>
+  </section>
+
+  <section id="member" class="hidden">
+    <div class="card">
+      <div class="card-top"><span class="headphone">♫</span><div class="equalizer" aria-hidden="true"><i style="height:22%"></i><i style="height:35%"></i><i style="height:48%"></i><i style="height:28%"></i><i style="height:65%"></i><i style="height:40%"></i><i style="height:75%"></i><i style="height:52%"></i><i style="height:33%"></i><i style="height:60%"></i><i style="height:88%"></i><i style="height:46%"></i><i style="height:70%"></i><i style="height:37%"></i><i style="height:56%"></i><i style="height:78%"></i><i style="height:42%"></i><i style="height:64%"></i></div><div class="jp-mark">JP</div></div>
+      <div class="card-brand">JONNY<span>HYPE</span></div>
+      <div class="member-layout"><div><div class="member-label">NOME MEMBRO</div><div class="member-name" id="memberName"><span>Nome Cognome</span></div><div class="member-id">ID <span id="cardNumber">---</span></div></div><div id="qr"><span style="color:#111;font-size:10px">QR</span></div></div>
+      <div class="card-footer"><span>LIMITED EDITION <strong id="editionNumber">001/100</strong></span><span>NON TRASFERIBILE</span></div>
+      <span class="pill" id="qrTimer">CODICE TEMPORANEO</span>
+      <p class="small">Mostra questo QR al partner. Il codice cambia automaticamente e può essere utilizzato una sola volta.</p>
+    </div>
+    <button class="secondary" id="logoutBtn">ESCI</button>
+    <div id="memberStatus" class="small" role="status"></div>
+  </section>
+  <footer>JONNYHYPE CARDS · Tessera digitale</footer>
+</main>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+import QRCode from "https://cdn.jsdelivr.net/npm/qrcode@1.5.4/+esm";
+
+const SUPABASE_URL="https://xceywzabnvybjeteletg.supabase.co";
+const SUPABASE_KEY="sb_publishable_wKQ0U1ia1FhcnWcHKgRTHQ_i_Op4Vc4";
+const PRIVACY_VERSION="2026-11-13";
+const supabase=createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
+let pending={firstName:"",lastName:"",email:""};
+let qrTimer=null, qrRefresh=null;
+
+function status(message){$("status").textContent=message}
+function showMember(){ $("register").classList.add("hidden"); $("member").classList.remove("hidden"); }
+async function issueCard(session){
+  const {data,error}=await supabase.functions.invoke("cards-issue",{
+    body:{action:"issue",firstName:pending.firstName,lastName:pending.lastName,termsAccepted:true,privacyNoticeVersion:PRIVACY_VERSION}
+  });
+  if(error) throw error;
+  if(!data?.success) throw new Error(data?.error||"Non è stato possibile creare la tessera.");
+  $("cardNumber").textContent=String(data.card.card_number).padStart(3,"0");
+  $("memberName").innerHTML="";
+  $("memberName").append(document.createTextNode(pending.firstName+" "));
+  const surname=document.createElement("span");surname.textContent=pending.lastName;$("memberName").append(surname);
+  $("editionNumber").textContent=String(data.card.card_number).padStart(3,"0")+"/100";
+  showMember();
+  await refreshQr();
+  qrRefresh=setInterval(()=>refreshQr().catch(e=>$("memberStatus").textContent=e.message),45000);
+}
+async function refreshQr(){
+  const {data,error}=await supabase.functions.invoke("cards-qr",{body:{}});
+  if(error) throw error;
+  if(!data?.token) throw new Error(data?.error||"QR non disponibile");
+  await QRCode.toCanvas(document.createElement("canvas"),data.token,{width:200,margin:1,errorCorrectionLevel:"M"}).then(canvas=>{$("qr").replaceChildren(canvas)});
+  let remaining=45;
+  $("qrTimer").textContent="CODICE VALIDO 45 SEC";
+  clearInterval(qrTimer);
+  qrTimer=setInterval(()=>{remaining--; $("qrTimer").textContent=remaining>0?"CODICE VALIDO "+remaining+" SEC":"AGGIORNAMENTO QR…"; if(remaining<=0)clearInterval(qrTimer)},1000);
+}
+$("registerForm").addEventListener("submit",async e=>{
+  e.preventDefault(); status("");
+  pending={firstName:$("first").value.trim(),lastName:$("last").value.trim(),email:$("email").value.trim()};
+  if(!$("terms").checked){status("Per proseguire devi accettare regolamento e informativa.");return}
+  try{
+    const {error}=await supabase.auth.signInWithOtp({email:pending.email,options:{shouldCreateUser:true,data:{first_name:pending.firstName,last_name:pending.lastName}}});
+    if(error)throw error;
+    $("otpBox").classList.remove("hidden");
+    status("Codice richiesto. Controlla la posta in arrivo e anche la cartella spam.");
+  }catch(err){status(err.message||"Errore durante l'invio del codice.")}
+});
+$("verifyBtn").addEventListener("click",async()=>{
+  status("");
+  const token=$("otp").value.trim();
+  if(!/^\d{6}$/.test(token)){status("Inserisci il codice numerico di 6 cifre.");return}
+  try{
+    const {data,error}=await supabase.auth.verifyOtp({email:pending.email,token,type:"email"});
+    if(error)throw error;
+    if(!data.session)throw new Error("Verifica completata ma sessione non disponibile. Accedi nuovamente.");
+    await issueCard(data.session);
+  }catch(err){status(err.message||"Codice non valido o scaduto.")}
+});
+$("logoutBtn").addEventListener("click",async()=>{clearInterval(qrTimer);await supabase.auth.signOut();location.reload()});
+async function restore(){
+  const {data:{session}}=await supabase.auth.getSession();
+  if(!session)return;
+  const {data:member,error}=await supabase.from("members").select("first_name,last_name,cards(card_number,status)").eq("auth_user_id",session.user.id).maybeSingle();
+  if(error||!member)return;
+  const card=Array.isArray(member.cards)?member.cards[0]:member.cards;
+  if(!card)return;
+  pending.firstName=member.first_name;pending.lastName=member.last_name;
+  $("cardNumber").textContent=String(card.card_number).padStart(3,"0");
+  $("memberName").innerHTML="";
+  $("memberName").append(document.createTextNode(member.first_name+" "));
+  const surname=document.createElement("span");surname.textContent=member.last_name;$("memberName").append(surname);
+  $("editionNumber").textContent=String(card.card_number).padStart(3,"0")+"/100";
+  showMember();
+  if(card.status==="active"){try{await refreshQr();qrRefresh=setInterval(()=>refreshQr().catch(e=>$("memberStatus").textContent=e.message),45000)}catch(e){$("memberStatus").textContent=e.message}}
+  else $("memberStatus").textContent="Tessera non attiva. Contatta l'assistenza.";
+}
+restore();
+</script>
+</body>
+</html>
