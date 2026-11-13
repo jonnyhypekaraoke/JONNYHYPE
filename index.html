@@ -175,7 +175,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--jh-gold-light);outl
 footer{border-top:1px solid rgba(240,45,152,.14)}
 @media(max-width:600px){.page-intro{padding-top:36px}.page-intro h1{letter-spacing:-.03em}.event-card{box-shadow:0 8px 24px rgba(0,0,0,.16)}.event-description{padding:10px 12px;font-size:13px}}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"><style id="jonnyhype-global-design-system">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"><style id="jonnyhype-global-design-system">
 :root{--jh-bg:#08090b;--jh-panel:#121317;--jh-gold:#f02d98;--jh-gold-light:#f02d98;--jh-pink:#f02d98;--jh-text:#f6f5f3;--jh-muted:#a5a4aa;--jh-line:rgba(240,45,152,.25)}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{background:var(--jh-bg)!important;color:var(--jh-text);font-family:"Manrope","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
@@ -3246,3 +3246,25 @@ html body details.jh-menu .jh-menu-panel.jh-menu-numbered .jh-menu-number{
 </style>
 <script defer src="/jonnyhype-menu-master.js?v=2"></script>
 <link rel="stylesheet" href="/jonnyhype-menu-master.css?v=4">
+
+<style id="jh-events-font-consistency-20261113">
+/* Date e dettagli PROSSIMI EVENTI: font web esplicito e identico su tutti i dispositivi. */
+html body .events .event-card .event-date,
+html body .events .event-card .event-date *,
+html body .events .event-card .event-detail,
+html body .events .event-card .event-detail *,
+html body .events .event-card .event-detail strong {
+  font-family:"Montserrat",Arial,sans-serif!important;
+  font-synthesis:none;
+}
+html body .events .event-card .event-date,
+html body .events .event-card .event-detail,
+html body .events .event-card .event-detail strong {
+  font-style:normal!important;
+}
+html body .events .event-card .event-date {font-weight:800!important}
+html body .events .event-card .event-date strong {font-weight:900!important}
+html body .events .event-card .event-detail {font-weight:600!important}
+html body .events .event-card .event-detail strong {font-weight:800!important}
+</style>
+
