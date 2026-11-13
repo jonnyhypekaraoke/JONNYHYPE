@@ -93,6 +93,7 @@ async function issueCard(session){
   $("memberName").textContent=pending.firstName+" "+pending.lastName;
   showMember();
   await refreshQr();
+  qrRefresh=setInterval(()=>refreshQr().catch(e=>$("memberStatus").textContent=e.message),45000);
 }
 async function refreshQr(){
   const {data,error}=await supabase.functions.invoke("cards-qr",{body:{}});
