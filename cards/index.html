@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050507">
+<title>JONNYHYPE CARDS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap');
+:root{color-scheme:dark;--pink:#F02D98;--bg:#050507;--panel:#111116;--muted:#b9b6bf}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#241020 0,#050507 55%);color:#fff;font-family:'Montserrat',Arial,sans-serif;min-height:100vh}
+main{width:min(100% - 32px,760px);margin:0 auto;padding:32px 0 60px}
+.brand{text-align:center;font-family:'Montserrat',Arial,sans-serif;font-weight:900;letter-spacing:-.055em;font-size:clamp(29px,8vw,40px);line-height:1;margin:8px 0 7px;text-transform:uppercase}.brand span{color:var(--pink)}
+.sub{text-align:center;color:var(--muted);font-size:12px;letter-spacing:.16em;margin:0 0 28px}
+.panel{border:1px solid rgba(240,45,152,.48);border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.018));padding:24px 20px;box-shadow:0 20px 55px #0008}
+h1{font-size:clamp(23px,6vw,29px);line-height:1.16;font-weight:900;margin:0 0 12px;letter-spacing:-.035em}p{color:#d1ced5;line-height:1.55;font-size:13px}
+label{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;margin:17px 0 7px;text-transform:uppercase}
+input{width:100%;min-height:48px;border:1px solid #44404a;border-radius:10px;background:#09090d;color:#fff;padding:12px;font:16px Arial}
+input:focus{outline:2px solid var(--pink);border-color:var(--pink)}
+button{width:100%;min-height:66px;border:0;border-radius:11px;background:var(--pink);color:#09090d;font-family:'Montserrat',Arial,sans-serif;font-size:clamp(15px,4vw,18px);font-weight:900;letter-spacing:.035em;margin-top:20px;padding:15px 12px;cursor:pointer}
+button.secondary{background:transparent;border:1px solid var(--pink);color:#fff}
+.small{font-size:11px;color:var(--muted)}.legal-scroll{max-height:230px;overflow-y:auto;overscroll-behavior:contain;border:1px solid #51404d;border-radius:10px;background:#09090d;padding:14px;margin-top:8px;scrollbar-color:var(--pink) #17131a}.legal-scroll h3{font-size:12px;color:#fff;margin:12px 0 5px}.legal-scroll p{font-size:11px;line-height:1.5;margin:0 0 10px}.check input:disabled{opacity:.45}.check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:11px;line-height:1.5;color:#ddd}.check input{width:18px;min-height:18px;margin:0;flex:0 0 auto;accent-color:var(--pink)}
+.hidden{display:none!important}#status{min-height:20px;color:var(--pink);font-size:12px;margin-top:15px;white-space:pre-wrap}
+.card{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:5/3;width:100%;border-radius:27px;padding:clamp(12px,2.5vw,24px);background:radial-gradient(ellipse at 50% 0%,#29212b 0,#111015 43%,#050507 100%);border:2px solid #c8cbd3;box-shadow:0 0 0 2px #28272c,0 0 24px #f02d9860,inset 0 0 28px #ffffff12;text-align:left;display:flex;flex-direction:column}
+.card:after{content:"";position:absolute;z-index:-1;inset:0;border-radius:25px;background:repeating-linear-gradient(115deg,#ffffff05 0 1px,transparent 1px 4px),radial-gradient(ellipse at 50% 50%,transparent 35%,#0008 100%);opacity:.6;pointer-events:none}
+.card:before{content:"";position:absolute;inset:5px;border:2px solid #F02D98;border-radius:22px;pointer-events:none;box-shadow:0 0 9px #ff8acb,inset 0 0 13px #F02D9860}
+.card-top{display:flex;align-items:center;gap:12px;padding:0 4px clamp(6px,1.3vw,12px);border-bottom:1px solid #aeb0b888;margin-bottom:clamp(7px,1.4vw,13px);flex:0 0 auto}
+.headphone{font-size:clamp(18px,3vw,30px);color:var(--pink);line-height:1}.equalizer{height:clamp(22px,5vw,54px);flex:1;display:flex;align-items:end;gap:3px;opacity:.95;border-bottom:1px solid #f02d9888}.equalizer i{display:block;flex:1;max-width:9px;background:linear-gradient(#ffb5df,var(--pink));border-radius:2px 2px 0 0;box-shadow:0 0 5px #F02D98}
+.jp-mark{width:clamp(34px,7vw,64px);height:clamp(34px,7vw,64px);flex:0 0 auto;border-radius:50%;display:grid;place-items:center;border:2px solid #e3e5eb;color:#fff;font-size:clamp(12px,2vw,22px);font-weight:900;background:linear-gradient(135deg,#17151d,#d3d5dc 48%,#34313d 72%,#09090c);box-shadow:0 0 10px #f02d9860}
+.card-brand{font-size:clamp(27px,7.4vw,76px);font-weight:900;letter-spacing:-.055em;line-height:1;margin:0 0 clamp(8px,1.8vw,17px);color:#fff;white-space:nowrap}.card-brand span{color:var(--pink)}
+.member-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr) clamp(76px,22%,178px);gap:clamp(5px,1.4vw,14px);align-items:center;border:1px solid #b9b9c080;border-radius:20px;padding:clamp(8px,1.7vw,17px) clamp(8px,2.3vw,24px);background:linear-gradient(110deg,#ffffff0a,#00000030);flex:1;min-height:0}
+.member-info{min-width:0}.member-label{font-size:clamp(7px,1.2vw,13px);font-weight:600;letter-spacing:.22em;color:#eee;margin-bottom:clamp(4px,1vw,10px)}.member-name{font-size:clamp(12px,2.8vw,28px);font-weight:900;line-height:1.18;white-space:nowrap;letter-spacing:-.035em}.member-name span{color:var(--pink)}.member-id{font-size:clamp(15px,3.3vw,34px);font-weight:900;margin-top:clamp(8px,2vw,20px);letter-spacing:.015em}.member-id span{color:var(--pink)}
+.member-wave{height:70%;min-height:30px;display:flex;align-items:center;justify-content:center;gap:2px;opacity:.95}.member-wave i{display:block;width:3px;max-width:5px;flex:1;background:linear-gradient(#ffb5df,var(--pink));border-radius:3px;box-shadow:0 0 6px #F02D98}
+#qr{width:100%;aspect-ratio:1;background:#fff;padding:5px;border:5px solid #c9cbd2;border-radius:18px;display:grid;place-items:center;box-shadow:0 0 0 2px #222,0 0 14px #f02d9870;min-width:0}
+#qr canvas,#qr img{display:block;width:100%!important;height:100%!important;object-fit:contain}
+.card-footer{display:flex;justify-content:space-between;gap:8px;align-items:center;border-top:1px solid #bfc0c888;margin-top:clamp(7px,1.4vw,13px);padding:clamp(6px,1.2vw,11px) 4px 0;font-size:clamp(7px,1.25vw,13px);font-weight:600;letter-spacing:.13em;color:#eee;flex:0 0 auto}.card-footer strong{color:var(--pink);font-weight:900}
+.card-extras{margin-top:8px}.pill{display:inline-block;border:1px solid #777;border-radius:30px;padding:6px 10px;font-size:9px;letter-spacing:.1em;color:#eee}.card-note{margin:7px 0 0;font-size:11px}
+@media(max-width:480px){main{width:calc(100% - 24px)}.card{border-radius:19px}.card:before{border-radius:15px}.member-layout{grid-template-columns:minmax(0,1.15fr) minmax(0,.65fr) clamp(66px,22%,100px);gap:5px;padding:7px}.member-name{font-size:clamp(10px,3.1vw,15px)}.member-id{font-size:clamp(13px,3.7vw,19px)}.member-wave{min-height:22px}.card-footer{font-size:clamp(6px,1.8vw,8px);letter-spacing:.08em}.card-brand{font-size:clamp(24px,8vw,38px)}}
+a{color:var(--pink)}footer{text-align:center;color:#777;font-size:10px;margin-top:24px}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">JONNY<span>HYPE</span></div>
+  <div class="sub">MEMBERSHIP CARD</div>
+
+  <section id="register" class="panel">
+    <h1>RICHIEDI LA TUA JONNYHYPE CARD</h1>
+    <p>Entra a far parte dei privilegi esclusivi della JONNYHYPE CARD. Sconti, vantaggi riservati, premi, convenzioni dedicate e omaggi esclusivi. Le prime 100 card sono completamente gratuite. La tessera è digitale e subito attiva. È possibile richiedere anche la versione fisica al costo di 10 euro tutto compreso. Richiedi subito la tua card personale.</p>
+    <form id="registerForm">
+      <label for="first">Nome</label><input id="first" autocomplete="given-name" maxlength="80" required>
+      <label for="last">Cognome</label><input id="last" autocomplete="family-name" maxlength="80" required>
+      <label for="email">Email</label><input id="email" type="email" autocomplete="email" required>
+      <label for="birthDate">Data di nascita</label><input id="birthDate" type="date" required>
+      <p class="small">La JONNYHYPE CARD è riservata a chi ha compiuto 14 anni.</p>
+
+      <label>REGOLAMENTO JONNYHYPE CARD</label>
+      <div class="legal-scroll" id="termsScroll" tabindex="0" aria-label="Regolamento completo, scorri fino in fondo">
+        <h3>1. OGGETTO DEL PROGRAMMA</h3><p>La JONNYHYPE CARD è una tessera personale che consente di accedere a convenzioni, sconti, promozioni, omaggi e vantaggi riservati presso i locali e le attività aderenti al programma. Il programma è ideato e gestito da Jonathan Paladini.</p>
+        <h3>2. RICHIESTA, ATTIVAZIONE E TIPOLOGIE DI CARD</h3><p>La card può essere richiesta da persone che abbiano compiuto 14 anni. La prima edizione prevede 100 tessere digitali gratuite. La tessera viene richiesta tramite il modulo sul sito, con verifica dell'indirizzo e-mail. È possibile richiedere la versione fisica al costo complessivo di 10 euro, tutto compreso. La tessera digitale e quella fisica identificano la stessa iscrizione.</p>
+        <h3>3. TITOLARITÀ E NON TRASFERIBILITÀ</h3><p>La card è personale e non cedibile. Non può essere prestata, venduta, trasferita o utilizzata da persone diverse dall'iscritto. L'iscritto è responsabile della custodia delle proprie credenziali e dei codici di accesso.</p>
+        <h3>4. VANTAGGI E CONVENZIONI</h3><p>Con la JONNYHYPE CARD puoi accedere a sconti, promozioni, omaggi e vantaggi esclusivi presso i locali aderenti. Ogni locale può proporre condizioni e iniziative dedicate, variabili in base all'attività, agli eventi e ai periodi dell'anno. L'elenco dei locali e le convenzioni saranno pubblicati e aggiornati sul sito ufficiale JONNYHYPE.</p>
+        <h3>5. MODALITÀ DI UTILIZZO</h3><p>Per usufruire di una convenzione è necessario presentare la card al personale prima del pagamento o della conclusione dell'operazione. La validità può essere verificata tramite il sistema digitale e il codice QR. L'utilizzo è subordinato alle condizioni pubblicate per ciascun locale.</p>
+        <h3>6. SISTEMA PUNTI E PREMI</h3><p>Presso i locali aderenti al programma punti, il personale autorizzato può assegnare 20, 40, 60 oppure 80 punti in base alla spesa effettuata. I punti vengono registrati sul saldo personale. Il sistema impedisce la duplicazione dello stesso accredito. Conversione, soglie, catalogo premi e modalità di riscatto saranno comunicati successivamente sul sito ufficiale. Non sono stabilite in questa versione scadenze dei punti.</p>
+        <h3>7. LIMITAZIONI, FESTIVITÀ ED ESCLUSIONI</h3><p>I vantaggi non sono automaticamente cumulabili con altre promozioni, salvo diversa indicazione. È consentito un solo vantaggio o sconto al giorno presso lo stesso locale; la card può essere utilizzata in un altro locale aderente nella stessa giornata. Salvo diversa indicazione nella convenzione, i vantaggi non si applicano: 1 gennaio, 6 gennaio, Pasqua, Pasquetta, 25 aprile, 1 maggio, 2 giugno, 15 agosto, 1 novembre, 8 dicembre, 25 dicembre e 26 dicembre. Il gestore può escludere specifiche serate, eventi o periodi; le esclusioni devono essere indicate nella scheda del locale sul sito prima dell'utilizzo. La card non garantisce ingressi gratuiti, prioritari o prenotazioni, salvo indicazione espressa.</p>
+        <h3>8. MODIFICHE DELLE CONVENZIONI E DEL PROGRAMMA</h3><p>Le condizioni delle convenzioni possono essere aggiornate dai singoli locali. L'elenco aggiornato è consultabile sul sito ufficiale JONNYHYPE. Eventuali modifiche al programma saranno comunicate attraverso i canali ufficiali.</p>
+        <h3>9. UTILIZZO IMPROPRIO, SOSPENSIONE E REVOCA</h3><p>È vietato utilizzare la card di un'altra persona, duplicare o falsificare la tessera o i codici, riutilizzare codici QR o ottenere indebitamente vantaggi e punti. In caso di utilizzo improprio l'organizzazione può sospendere o revocare la tessera, previa verifica e nel rispetto della normativa applicabile.</p>
+        <h3>10. TRATTAMENTO DEI DATI PERSONALI</h3><p>I dati sono trattati nel rispetto del GDPR e della normativa italiana. Le informazioni complete sono riportate nell'Informativa Privacy JONNYHYPE CARD.</p>
+        <h3>11. ACCETTAZIONE DEL REGOLAMENTO</h3><p>La richiesta e l'attivazione della card comportano la presa visione e l'accettazione del presente regolamento. Per assistenza: jonnyhype@jonnyhype.it – 379 111 2344.</p>
+      </div>
+      <label class="check"><input id="terms" type="checkbox" required disabled><span>Dichiaro di aver letto e accettato il Regolamento JONNYHYPE CARD.</span></label>
+
+      <label>INFORMATIVA PRIVACY – GDPR</label>
+      <div class="legal-scroll" id="privacyScroll" tabindex="0" aria-label="Informativa privacy completa, scorri fino in fondo">
+        <h3>1. TITOLARE DEL TRATTAMENTO</h3><p>Titolare: Jonathan Paladini. Codice fiscale PLDJTH77T04H199F. Indirizzo: Via Grado, Ravenna (RA). Telefono: 379 111 2344. E-mail: jonnyhype@jonnyhype.it.</p>
+        <h3>2. QUALI DATI VENGONO TRATTATI</h3><p>Dati identificativi (nome e cognome), data di nascita, indirizzo e-mail, informazioni fornite volontariamente, dati di registrazione e attivazione, identificativo della tessera, scansioni presso i locali, vantaggi utilizzati, punti accumulati e informazioni necessarie per assistenza e sicurezza. Il numero di telefono non è obbligatorio per la registrazione.</p>
+        <h3>3. FINALITÀ E BASI GIURIDICHE</h3><p>I dati sono trattati per: registrazione, verifica e attivazione della card; gestione delle convenzioni e dei codici QR; gestione dei punti; sicurezza e prevenzione di utilizzi impropri; assistenza e comunicazioni di servizio; adempimenti di legge e tutela dei diritti. Le basi giuridiche sono, secondo il trattamento, l'esecuzione del rapporto e delle misure richieste, l'obbligo legale o il legittimo interesse del Titolare. Le comunicazioni promozionali saranno gestite separatamente e, quando richiesto, previo consenso facoltativo. Il mancato consenso marketing non impedisce l'iscrizione.</p>
+        <h3>4. MODALITÀ DI TRATTAMENTO</h3><p>Il trattamento avviene con strumenti cartacei, informatici e telematici, mediante misure di sicurezza adeguate. L'accesso è consentito al Titolare e ai soggetti autorizzati o fornitori incaricati nei limiti delle rispettive attività.</p>
+        <h3>5. DESTINATARI DEI DATI</h3><p>I dati possono essere trattati da fornitori informatici, hosting, autenticazione e invio e-mail, assistenza tecnica, locali aderenti limitatamente alla verifica della card e registrazione di vantaggi e punti, consulenti e autorità nei casi previsti dalla legge. I dati non sono diffusi indiscriminatamente.</p>
+        <h3>6. TRASFERIMENTO FUORI DALLO SPAZIO ECONOMICO EUROPEO</h3><p>Alcuni servizi tecnologici potrebbero comportare trasferimenti fuori dallo Spazio Economico Europeo. Se necessari, saranno effettuati nel rispetto delle condizioni e garanzie previste dal GDPR.</p>
+        <h3>7. PERIODO DI CONSERVAZIONE</h3><p>I dati saranno conservati per il tempo necessario a gestire registrazione, attivazione, utilizzo della card, adempimenti e contestazioni. I dati delle operazioni, scansioni e punti saranno conservati per il tempo necessario alla gestione e sicurezza del programma e secondo gli obblighi di legge. Al termine saranno cancellati o resi anonimi, ove possibile.</p>
+        <h3>8. NATURA DEL CONFERIMENTO</h3><p>Il conferimento dei dati obbligatori è necessario per richiedere e attivare la card. Il mancato conferimento impedisce il completamento della registrazione. I dati facoltativi e il consenso marketing non sono condizioni per aderire.</p>
+        <h3>9. DIRITTI DELL'INTERESSATO</h3><p>Nei casi previsti dal GDPR è possibile chiedere accesso, rettifica, cancellazione, limitazione, opposizione e portabilità, nonché revocare eventuali consensi. Le richieste possono essere inviate a jonnyhype@jonnyhype.it. È possibile proporre reclamo al Garante per la protezione dei dati personali.</p>
+        <h3>10. MINORI</h3><p>La JONNYHYPE CARD può essere richiesta esclusivamente da persone che abbiano compiuto 14 anni. Non sono ammesse registrazioni per persone di età inferiore. I dati saranno trattati per le finalità indicate e nel rispetto della normativa vigente. Per i servizi della società dell'informazione offerti direttamente ai minori, il consenso autonomo è previsto dalla normativa italiana a partire dai 14 anni, quando il trattamento si basa sul consenso.</p>
+        <h3>11. AGGIORNAMENTI</h3><p>L'informativa può essere aggiornata in caso di modifiche normative, organizzative o tecniche. La versione aggiornata sarà resa disponibile sul sito ufficiale JONNYHYPE. Ultimo aggiornamento: novembre 2026.</p>
+      </div>
+      <label class="check"><input id="privacy" type="checkbox" required disabled><span>Dichiaro di aver preso visione dell'Informativa Privacy JONNYHYPE CARD.</span></label>
+      <label class="check"><input id="marketing" type="checkbox"><span>Acconsento facoltativamente a ricevere comunicazioni promozionali e offerte JONNYHYPE.</span></label>
+      <button type="submit">RICEVI IL CODICE VIA EMAIL</button>
+    </form>
+    <div id="otpBox" class="hidden">
+      <label for="otp">Codice di verifica ricevuto via email</label>
+      <input id="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="8" pattern="[0-9]{8}" placeholder="00000000">
+      <button id="verifyBtn" type="button">VERIFICA EMAIL E CREA LA TESSERA</button>
+    </div>
+    <div id="status" role="status" aria-live="polite"></div>
+    <p class="small">La registrazione non è completata finché l'email non viene verificata. Non condividere il codice ricevuto.</p>
+  </section>
+
+  <section id="member" class="hidden">
+    <div class="card">
+      <div class="card-top"><span class="headphone">♫</span><div class="equalizer" aria-hidden="true"><i style="height:22%"></i><i style="height:35%"></i><i style="height:48%"></i><i style="height:28%"></i><i style="height:65%"></i><i style="height:40%"></i><i style="height:75%"></i><i style="height:52%"></i><i style="height:33%"></i><i style="height:60%"></i><i style="height:88%"></i><i style="height:46%"></i><i style="height:70%"></i><i style="height:37%"></i><i style="height:56%"></i><i style="height:78%"></i><i style="height:42%"></i><i style="height:64%"></i></div><div class="jp-mark">JP</div></div>
+      <div class="card-brand">JONNY<span>HYPE</span></div>
+      <div class="member-layout"><div class="member-info"><div class="member-label">NOME MEMBRO</div><div class="member-name" id="memberName"><span>Nome Cognome</span></div><div class="member-id">ID <span id="cardNumber">---</span></div></div><div class="member-wave" aria-hidden="true"><i style="height:22%"></i><i style="height:35%"></i><i style="height:48%"></i><i style="height:28%"></i><i style="height:65%"></i><i style="height:40%"></i><i style="height:75%"></i><i style="height:52%"></i><i style="height:33%"></i><i style="height:60%"></i><i style="height:88%"></i><i style="height:46%"></i><i style="height:70%"></i><i style="height:37%"></i><i style="height:56%"></i><i style="height:78%"></i><i style="height:42%"></i></div><div id="qr"><span style="color:#111;font-size:10px">QR</span></div></div>
+      <div class="card-footer"><span>LIMITED EDITION <strong id="editionNumber">001/100</strong></span><span>NON TRASFERIBILE</span></div>
+    </div>
+    <div class="card-extras"><span class="pill" id="qrTimer">CODICE TEMPORANEO</span><p class="small card-note">Mostra questo QR al partner. Il codice cambia automaticamente e può essere utilizzato una sola volta.</p></div>
+    </div>
+    <button class="secondary" id="logoutBtn">ESCI</button>
+    <div id="memberStatus" class="small" role="status"></div>
+  </section>
+  <footer>JONNYHYPE CARDS · Tessera digitale</footer>
+</main>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+import QRCode from "https://cdn.jsdelivr.net/npm/qrcode@1.5.4/+esm";
+
+const SUPABASE_URL="https://xceywzabnvybjeteletg.supabase.co";
+const SUPABASE_KEY="sb_publishable_wKQ0U1ia1FhcnWcHKgRTHQ_i_Op4Vc4";
+const PRIVACY_VERSION="2026-11-15";
+const TERMS_VERSION="2026-11-15";
+const supabase=createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
+let pending={firstName:"",lastName:"",email:"",birthDate:""};
+let qrTimer=null, qrRefresh=null;
+
+function status(message){$("status").textContent=message}
+function showMember(){ $("register").classList.add("hidden"); $("member").classList.remove("hidden"); }
+async function issueCard(session){
+  const {data,error}=await supabase.functions.invoke("cards-issue",{
+    body:{action:"issue",firstName:pending.firstName,lastName:pending.lastName,birthDate:pending.birthDate,termsAccepted:true,termsVersion:TERMS_VERSION,privacyNoticeVersion:PRIVACY_VERSION}
+  });
+  if(error) throw error;
+  if(!data?.success) throw new Error(data?.error||"Non è stato possibile creare la tessera.");
+  $("cardNumber").textContent=String(data.card.card_number).padStart(3,"0");
+  $("memberName").innerHTML="";
+  $("memberName").append(document.createTextNode(pending.firstName+" "));
+  const surname=document.createElement("span");surname.textContent=pending.lastName;$("memberName").append(surname);
+  $("editionNumber").textContent=String(data.card.card_number).padStart(3,"0")+"/100";
+  showMember();
+  await refreshQr();
+  qrRefresh=setInterval(()=>refreshQr().catch(e=>$("memberStatus").textContent=e.message),45000);
+}
+async function refreshQr(){
+  const {data,error}=await supabase.functions.invoke("cards-qr",{body:{}});
+  if(error) throw error;
+  if(!data?.token) throw new Error(data?.error||"QR non disponibile");
+  await QRCode.toCanvas(document.createElement("canvas"),data.token,{width:200,margin:1,errorCorrectionLevel:"M"}).then(canvas=>{$("qr").replaceChildren(canvas)});
+  let remaining=45;
+  $("qrTimer").textContent="CODICE VALIDO 45 SEC";
+  clearInterval(qrTimer);
+  qrTimer=setInterval(()=>{remaining--; $("qrTimer").textContent=remaining>0?"CODICE VALIDO "+remaining+" SEC":"AGGIORNAMENTO QR…"; if(remaining<=0)clearInterval(qrTimer)},1000);
+}
+$("registerForm").addEventListener("submit",async e=>{
+  e.preventDefault(); status("");
+  pending={firstName:$("first").value.trim(),lastName:$("last").value.trim(),email:$("email").value.trim(),birthDate:$("birthDate").value};
+  const born=new Date(pending.birthDate+"T00:00:00");const today=new Date();let age=today.getFullYear()-born.getFullYear();if(today.getMonth()<born.getMonth()||(today.getMonth()===born.getMonth()&&today.getDate()<born.getDate()))age--;
+  if(!pending.birthDate||Number.isNaN(born.getTime())||age<14){status("La JONNYHYPE CARD è riservata a chi ha compiuto 14 anni.");return}
+  if(!$("terms").checked||!$("privacy").checked){status("Per proseguire devi leggere fino in fondo e confermare regolamento e informativa privacy.");return}
+  try{
+    const {error}=await supabase.auth.signInWithOtp({email:pending.email,options:{shouldCreateUser:true,data:{first_name:pending.firstName,last_name:pending.lastName}}});
+    if(error)throw error;
+    $("otpBox").classList.remove("hidden");
+    status("Codice richiesto. Controlla la posta in arrivo e anche la cartella spam.");
+  }catch(err){status(err.message||"Errore durante l'invio del codice.")}
+});
+function unlockAfterReading(containerId,checkboxId){const box=$(containerId),check=$(checkboxId);const update=()=>{if(box.scrollTop+box.clientHeight>=box.scrollHeight-8)check.disabled=false};box.addEventListener("scroll",update);box.addEventListener("keydown",e=>{if(["End","PageDown","ArrowDown"," "].includes(e.key))setTimeout(update,0)});update()}
+unlockAfterReading("termsScroll","terms");
+unlockAfterReading("privacyScroll","privacy");
+$("verifyBtn").addEventListener("click",async()=>{
+  status("");
+  const token=$("otp").value.trim();
+  if(!/^\d{8}$/.test(token)){status("Inserisci il codice numerico di 8 cifre.");return}
+  try{
+    const {data,error}=await supabase.auth.verifyOtp({email:pending.email,token,type:"email"});
+    if(error)throw error;
+    if(!data.session)throw new Error("Verifica completata ma sessione non disponibile. Accedi nuovamente.");
+    await issueCard(data.session);
+  }catch(err){status(err.message||"Codice non valido o scaduto.")}
+});
+$("logoutBtn").addEventListener("click",async()=>{clearInterval(qrTimer);await supabase.auth.signOut();location.reload()});
+async function restore(){
+  const {data:{session}}=await supabase.auth.getSession();
+  if(!session)return;
+  const {data:member,error}=await supabase.from("members").select("first_name,last_name,cards(card_number,status)").eq("auth_user_id",session.user.id).maybeSingle();
+  if(error||!member)return;
+  const card=Array.isArray(member.cards)?member.cards[0]:member.cards;
+  if(!card)return;
+  pending.firstName=member.first_name;pending.lastName=member.last_name;
+  $("cardNumber").textContent=String(card.card_number).padStart(3,"0");
+  $("memberName").innerHTML="";
+  $("memberName").append(document.createTextNode(member.first_name+" "));
+  const surname=document.createElement("span");surname.textContent=member.last_name;$("memberName").append(surname);
+  $("editionNumber").textContent=String(card.card_number).padStart(3,"0")+"/100";
+  showMember();
+  if(card.status==="active"){try{await refreshQr();qrRefresh=setInterval(()=>refreshQr().catch(e=>$("memberStatus").textContent=e.message),45000)}catch(e){$("memberStatus").textContent=e.message}}
+  else $("memberStatus").textContent="Tessera non attiva. Contatta l'assistenza.";
+}
+restore();
+</script>
+</body>
+</html>
