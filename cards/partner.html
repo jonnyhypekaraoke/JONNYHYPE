@@ -5,7 +5,7 @@
 </style></head><body><main>
 <div class="brand">JONNY<span>HYPE</span></div><div class="sub">AREA PARTNER · VERIFICA TESSERE</div>
 <section id="login" class="panel"><h1>Accesso partner</h1><p>Area riservata ai locali convenzionati. Usa l'indirizzo email associato al tuo account partner.</p><label for="email">EMAIL</label><input id="email" type="email" autocomplete="email"><button id="send">INVIA CODICE DI ACCESSO</button><div id="otpBox" class="hidden"><label for="otp">CODICE EMAIL</label><input id="otp" inputmode="numeric" maxlength="6"><button id="verify">ACCEDI</button></div><div id="loginStatus"></div></section>
-<section id="scanner" class="panel hidden"><h1>Verifica tessera</h1><p>Inquadra il QR mostrato dal socio. Ogni codice è temporaneo e utilizzabile una sola volta.</p><button id="start">AVVIA FOTOCAMERA</button><div id="reader"></div><div id="result" class="hidden"></div><div id="scanStatus"></div><button id="logout" class="alt">ESCI</button></section>
+<section id="scanner" class="panel hidden"><h1>Verifica tessera</h1><p>Inquadra il QR mostrato dal socio. Ogni QR è temporaneo e utilizzabile una sola volta. La stessa tessera può ottenere un solo sconto al giorno in questo locale.</p><button id="start">AVVIA FOTOCAMERA</button><div id="reader"></div><div id="result" class="hidden"></div><div id="scanStatus"></div><button id="logout" class="alt">ESCI</button></section>
 </main>
 <script type="module">
 import {createClient} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
