@@ -23,6 +23,7 @@ async function handleToken(token){
   if(error)throw error;
   const box=$("result");box.classList.remove("hidden");
   if(data.valid){
+   currentCardId=data.card_id||null;pointsDone=false;$('pointsBox').classList.toggle('hidden',!currentCardId);
    box.replaceChildren();
    const heading=document.createElement('div');heading.className='small';heading.textContent='TESSERA VALIDA';
    const number=document.createElement('strong');number.textContent='#'+String(data.card_number);
