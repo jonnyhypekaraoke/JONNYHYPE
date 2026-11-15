@@ -164,6 +164,9 @@ $("registerForm").addEventListener("submit",async e=>{
     status("Codice richiesto. Controlla la posta in arrivo e anche la cartella spam.");
   }catch(err){status(err.message||"Errore durante l'invio del codice.")}
 });
+function unlockAfterReading(containerId,checkboxId){const box=$(containerId),check=$(checkboxId);const update=()=>{if(box.scrollTop+box.clientHeight>=box.scrollHeight-8)check.disabled=false};box.addEventListener("scroll",update);box.addEventListener("keydown",e=>{if(["End","PageDown","ArrowDown"," "].includes(e.key))setTimeout(update,0)});update()}
+unlockAfterReading("termsScroll","terms");
+unlockAfterReading("privacyScroll","privacy");
 $("verifyBtn").addEventListener("click",async()=>{
   status("");
   const token=$("otp").value.trim();
