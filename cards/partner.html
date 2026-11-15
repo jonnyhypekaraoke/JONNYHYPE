@@ -14,7 +14,7 @@ const supabase=createClient("https://xceywzabnvybjeteletg.supabase.co","sb_publi
 const $=id=>document.getElementById(id);let scanner=null,busy=false,currentCardId=null,pointsDone=false;
 const setStatus=t=>$("loginStatus").textContent=t;
 $("send").onclick=async()=>{setStatus("");try{const {error}=await supabase.auth.signInWithOtp({email:$("email").value.trim(),options:{shouldCreateUser:false}});if(error)throw error;$("otpBox").classList.remove("hidden");setStatus("Codice inviato. Controlla la posta.");}catch(e){setStatus(e.message)}};
-$("verify").onclick=async()=>{setStatus("");const token=$("otp").value.trim();if(!/^\\d{8}$/.test(token)){setStatus("Inserisci il codice numerico di 8 cifre.");return}try{const {error}=await supabase.auth.verifyOtp({email:$("email").value.trim(),token,type:"email"});if(error)throw error;await showScanner()}catch(e){setStatus(e.message)}};
+$("verify").onclick=async()=>{setStatus("");const token=$("otp").value.trim();if(!/^\d{8}$/.test(token)){setStatus("Inserisci il codice numerico di 8 cifre.");return}try{const {error}=await supabase.auth.verifyOtp({email:$("email").value.trim(),token,type:"email"});if(error)throw error;await showScanner()}catch(e){setStatus(e.message)}};
 async function showScanner(){const {data:{session}}=await supabase.auth.getSession();if(!session)return;$("login").classList.add("hidden");$("scanner").classList.remove("hidden")}
 async function handleToken(token){
  if(busy)return;busy=true;$("scanStatus").textContent="Verifica in corso…";
