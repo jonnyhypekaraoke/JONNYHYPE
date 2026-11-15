@@ -1,0 +1,94 @@
+name: JONNYHYPE CARDS - preview Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - cards-development
+    paths:
+      - 'cards/**'
+      - '.github/workflows/deploy-cards-preview.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: jonnyhype-cards-preview
+  cancel-in-progress: true
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout cards-development
+        uses: actions/checkout@v4
+        with:
+          ref: cards-development
+
+      - name: Verify isolated CARDS output
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f cards/index.html
+          test -f cards/partner.html
+          test -f cards/admin.html
+          echo "Pubblicherò esclusivamente la cartella cards/."
+          echo "La home principale e il CNAME jonnyhype.it resteranno esclusi."
+
+      - name: Ensure isolated Cloudflare Pages project exists
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$CLOUDFLARE_API_TOKEN" || -z "$CLOUDFLARE_ACCOUNT_ID" ]]; then
+            echo "::error::Manca CLOUDFLARE_API_TOKEN oppure R2_ACCOUNT_ID nei GitHub Actions Secrets."
+            exit 1
+          fi
+          PROJECT="jonnyhype-cards-test"
+          API="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$PROJECT"
+          STATUS=$(curl --silent --show-error -o /tmp/pages-project.json -w '%{http_code}' \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" "$API")
+          if [[ "$STATUS" == "200" ]]; then
+            python3 - <<'PY'
+          import json
+          d=json.load(open("/tmp/pages-project.json"))
+          if not d.get("success"):
+              raise SystemExit("Cloudflare non ha confermato la lettura del progetto Pages.")
+          print("Progetto Cloudflare Pages già esistente: riutilizzo quello di test.")
+          PY
+          elif [[ "$STATUS" == "404" ]]; then
+            CREATE_STATUS=$(curl --silent --show-error -o /tmp/pages-create.json -w '%{http_code}' \
+              -X POST "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects" \
+              -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+              -H "Content-Type: application/json" \
+              --data '{"name":"jonnyhype-cards-test","production_branch":"cards-development"}')
+            python3 - "$CREATE_STATUS" <<'PY'
+          import json,sys
+          status=sys.argv[1]
+          d=json.load(open("/tmp/pages-create.json"))
+          if status not in ("200","201") or not d.get("success"):
+              print(json.dumps(d.get("errors",d),ensure_ascii=False))
+              raise SystemExit("Creazione del progetto Cloudflare Pages non riuscita.")
+          print("Creato il progetto isolato jonnyhype-cards-test.")
+          PY
+          else
+            cat /tmp/pages-project.json
+            echo "::error::Cloudflare API ha restituito HTTP $STATUS durante la verifica del progetto."
+            exit 1
+          fi
+
+      - name: Deploy only cards/ to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes wrangler@3 pages deploy ./cards \
+            --project-name=jonnyhype-cards-test \
+            --branch=cards-development \
+            --commit-dirty=true
