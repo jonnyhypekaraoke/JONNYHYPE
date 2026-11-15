@@ -10,14 +10,14 @@
 :root{color-scheme:dark;--pink:#F02D98;--bg:#050507;--panel:#111116;--muted:#b9b6bf}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#241020 0,#050507 55%);color:#fff;font-family:'Montserrat',Arial,sans-serif;min-height:100vh}
 main{width:min(100% - 32px,760px);margin:0 auto;padding:32px 0 60px}
-.brand{text-align:center;font-weight:900;letter-spacing:.13em;font-size:clamp(24px,7vw,34px);margin:8px 0 5px}.brand span{color:var(--pink)}
+.brand{text-align:center;font-family:'Montserrat',Arial,sans-serif;font-weight:900;letter-spacing:-.055em;font-size:clamp(29px,8vw,40px);line-height:1;margin:8px 0 7px;text-transform:uppercase}.brand span{color:var(--pink)}
 .sub{text-align:center;color:var(--muted);font-size:12px;letter-spacing:.16em;margin:0 0 28px}
 .panel{border:1px solid rgba(240,45,152,.48);border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.018));padding:24px 20px;box-shadow:0 20px 55px #0008}
-h1{font-size:20px;margin:0 0 8px;letter-spacing:.03em}p{color:#d1ced5;line-height:1.55;font-size:13px}
+h1{font-size:clamp(23px,6vw,29px);line-height:1.16;font-weight:900;margin:0 0 12px;letter-spacing:-.035em}p{color:#d1ced5;line-height:1.55;font-size:13px}
 label{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;margin:17px 0 7px;text-transform:uppercase}
 input{width:100%;min-height:48px;border:1px solid #44404a;border-radius:10px;background:#09090d;color:#fff;padding:12px;font:16px Arial}
 input:focus{outline:2px solid var(--pink);border-color:var(--pink)}
-button{width:100%;min-height:50px;border:0;border-radius:11px;background:var(--pink);color:#09090d;font-weight:900;letter-spacing:.07em;margin-top:18px;padding:12px;cursor:pointer}
+button{width:100%;min-height:66px;border:0;border-radius:11px;background:var(--pink);color:#09090d;font-family:'Montserrat',Arial,sans-serif;font-size:clamp(15px,4vw,18px);font-weight:900;letter-spacing:.035em;margin-top:20px;padding:15px 12px;cursor:pointer}
 button.secondary{background:transparent;border:1px solid var(--pink);color:#fff}
 .small{font-size:11px;color:var(--muted)}.check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:11px;line-height:1.5;color:#ddd}.check input{width:18px;min-height:18px;margin:0;flex:0 0 auto;accent-color:var(--pink)}
 .hidden{display:none!important}#status{min-height:20px;color:var(--pink);font-size:12px;margin-top:15px;white-space:pre-wrap}
@@ -45,14 +45,14 @@ a{color:var(--pink)}footer{text-align:center;color:#777;font-size:10px;margin-to
   <div class="sub">MEMBERSHIP CARD</div>
 
   <section id="register" class="panel">
-    <h1>Entra in JONNYHYPE CARDS</h1>
-    <p>La tessera digitale è gratuita. Inserisci i tuoi dati e verifica l'indirizzo email: se le 100 tessere sono ancora disponibili, il sistema te ne assegnerà una automaticamente.</p>
+    <h1>IL TUO PASS PER IL JONNYHYPE CLUB</h1>
+    <p>Richiedi gratuitamente la tua JONNYHYPE CARDS. Inserisci i tuoi dati e ricevi via email il codice per attivare la tua tessera. Se una delle 100 card è ancora disponibile, sarà assegnata automaticamente a te.</p>
     <form id="registerForm">
       <label for="first">Nome</label><input id="first" autocomplete="given-name" maxlength="80" required>
       <label for="last">Cognome</label><input id="last" autocomplete="family-name" maxlength="80" required>
       <label for="email">Email</label><input id="email" type="email" autocomplete="email" required>
       <label class="check"><input id="terms" type="checkbox" required><span>Confermo di aver letto e accettato il regolamento e l'informativa privacy JONNYHYPE CARDS.</span></label>
-      <button type="submit">RICHIEDI IL CODICE EMAIL</button>
+      <button type="submit">RICEVI IL CODICE VIA EMAIL</button>
     </form>
     <div id="otpBox" class="hidden">
       <label for="otp">Codice di verifica ricevuto via email</label>
