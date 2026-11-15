@@ -46,7 +46,7 @@ a{color:var(--pink)}footer{text-align:center;color:#777;font-size:10px;margin-to
 
   <section id="register" class="panel">
     <h1>RICHIEDI LA TUA JONNYHYPE CARD</h1>
-    <p>Entra a far parte del JONNYHYPE CLUB e accedi a sconti, promozioni riservate e premi. La card è gratuita: inserisci i tuoi dati e ricevi via email il codice per attivarla. Le prime 100 tessere sono disponibili.</p>
+    <p>Entra a far parte dei privilegi esclusivi della JONNYHYPE CARD. Sconti, vantaggi riservati, premi, convenzioni dedicate e omaggi esclusivi. Le prime 100 card sono completamente gratuite. La tessera è digitale e subito attiva. È possibile richiedere anche la versione fisica al costo di 10 euro tutto compreso. Richiedi subito la tua card personale.</p>
     <form id="registerForm">
       <label for="first">Nome</label><input id="first" autocomplete="given-name" maxlength="80" required>
       <label for="last">Cognome</label><input id="last" autocomplete="family-name" maxlength="80" required>
@@ -153,8 +153,10 @@ async function refreshQr(){
 }
 $("registerForm").addEventListener("submit",async e=>{
   e.preventDefault(); status("");
-  pending={firstName:$("first").value.trim(),lastName:$("last").value.trim(),email:$("email").value.trim()};
-  if(!$("terms").checked){status("Per proseguire devi accettare regolamento e informativa.");return}
+  pending={firstName:$("first").value.trim(),lastName:$("last").value.trim(),email:$("email").value.trim(),birthDate:$("birthDate").value};
+  const born=new Date(pending.birthDate+"T00:00:00");const today=new Date();let age=today.getFullYear()-born.getFullYear();if(today.getMonth()<born.getMonth()||(today.getMonth()===born.getMonth()&&today.getDate()<born.getDate()))age--;
+  if(!pending.birthDate||Number.isNaN(born.getTime())||age<14){status("La JONNYHYPE CARD è riservata a chi ha compiuto 14 anni.");return}
+  if(!$("terms").checked||!$("privacy").checked){status("Per proseguire devi leggere fino in fondo e confermare regolamento e informativa privacy.");return}
   try{
     const {error}=await supabase.auth.signInWithOtp({email:pending.email,options:{shouldCreateUser:true,data:{first_name:pending.firstName,last_name:pending.lastName}}});
     if(error)throw error;
