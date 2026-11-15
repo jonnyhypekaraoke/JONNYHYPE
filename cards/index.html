@@ -119,6 +119,7 @@ import QRCode from "https://cdn.jsdelivr.net/npm/qrcode@1.5.4/+esm";
 const SUPABASE_URL="https://xceywzabnvybjeteletg.supabase.co";
 const SUPABASE_KEY="sb_publishable_wKQ0U1ia1FhcnWcHKgRTHQ_i_Op4Vc4";
 const PRIVACY_VERSION="2026-11-15";
+const TERMS_VERSION="2026-11-15";
 const supabase=createClient(SUPABASE_URL,SUPABASE_KEY);
 const $=id=>document.getElementById(id);
 let pending={firstName:"",lastName:"",email:"",birthDate:""};
@@ -128,7 +129,7 @@ function status(message){$("status").textContent=message}
 function showMember(){ $("register").classList.add("hidden"); $("member").classList.remove("hidden"); }
 async function issueCard(session){
   const {data,error}=await supabase.functions.invoke("cards-issue",{
-    body:{action:"issue",firstName:pending.firstName,lastName:pending.lastName,termsAccepted:true,privacyNoticeVersion:PRIVACY_VERSION}
+    body:{action:"issue",firstName:pending.firstName,lastName:pending.lastName,birthDate:pending.birthDate,termsAccepted:true,termsVersion:TERMS_VERSION,privacyNoticeVersion:PRIVACY_VERSION}
   });
   if(error) throw error;
   if(!data?.success) throw new Error(data?.error||"Non è stato possibile creare la tessera.");
