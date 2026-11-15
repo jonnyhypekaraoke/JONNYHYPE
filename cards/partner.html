@@ -5,7 +5,7 @@
 </style></head><body><main>
 <div class="brand">JONNY<span>HYPE</span></div><div class="sub">AREA PARTNER · VERIFICA TESSERE</div>
 <section id="login" class="panel"><h1>Accesso partner</h1><p>Area riservata ai locali convenzionati. Usa l'indirizzo email associato al tuo account partner.</p><label for="email">EMAIL</label><input id="email" type="email" autocomplete="email"><button id="send">INVIA CODICE DI ACCESSO</button><div id="otpBox" class="hidden"><label for="otp">CODICE EMAIL</label><input id="otp" inputmode="numeric" maxlength="6"><button id="verify">ACCEDI</button></div><div id="loginStatus"></div></section>
-<section id="scanner" class="panel hidden"><h1>Verifica tessera</h1><p>Inquadra il QR mostrato dal socio. Ogni QR è temporaneo e utilizzabile una sola volta. La stessa tessera può ottenere un solo sconto al giorno in questo locale.</p><button id="start">AVVIA FOTOCAMERA</button><div id="reader"></div><div id="result" class="hidden"></div><div id="scanStatus"></div><button id="logout" class="alt">ESCI</button></section>
+<section id="scanner" class="panel hidden"><h1>Verifica tessera</h1><p>Inquadra il QR mostrato dal socio. Ogni QR è temporaneo e utilizzabile una sola volta. Ogni tessera può utilizzare un solo vantaggio al giorno in questo locale.</p><button id="start">AVVIA FOTOCAMERA</button><div id="reader"></div><div id="result" class="hidden"></div><div id="scanStatus"></div><button id="logout" class="alt">ESCI</button></section>
 </main>
 <script type="module">
 import {createClient} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
@@ -23,8 +23,15 @@ async function handleToken(token){
   if(error)throw error;
   const box=$("result");box.classList.remove("hidden");
   if(data.valid){
-   box.innerHTML='<div class="small">TESSERA VALIDA</div><strong>#'+String(data.card_number)+'</strong><div class="discount">'+(data.benefit_available?data.benefit_percent+"%":"—")+'</div><p>'+data.reason+'</p><p class="small">Applica lo sconto solo se previsto dalle condizioni della convenzione.</p>';
-  }else{box.innerHTML='<div class="small">TESSERA NON VALIDA</div><p>'+String(data.reason||"Codice non riconosciuto")+'</p>'}
+   box.replaceChildren();
+   const heading=document.createElement('div');heading.className='small';heading.textContent='TESSERA VALIDA';
+   const number=document.createElement('strong');number.textContent='#'+String(data.card_number);
+   const offer=document.createElement('div');offer.className='discount';offer.style.fontSize='22px';offer.textContent=data.benefit_available?(data.benefit_text||'Vantaggio disponibile'):'NESSUN VANTAGGIO';
+   const reason=document.createElement('p');reason.textContent=data.reason||'';
+   box.append(heading,number,offer,reason);
+   if(data.benefit_available&&data.minimum_spend>0){const min=document.createElement('p');min.className='small';min.textContent='Spesa minima: '+Number(data.minimum_spend).toLocaleString('it-IT',{style:'currency',currency:'EUR'});box.append(min)}
+   if(data.benefit_available){const note=document.createElement('p');note.className='small';note.textContent='Un solo vantaggio al giorno per tessera in questo locale.';box.append(note)}
+  }else{box.textContent='TESSERA NON VALIDA · '+String(data.reason||'Codice non riconosciuto')}
   $("scanStatus").textContent="Controllo completato. Inquadra il prossimo QR.";
  }catch(e){$("scanStatus").textContent=e.message||"Errore di verifica"}
  finally{busy=false}
