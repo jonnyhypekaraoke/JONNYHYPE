@@ -19,7 +19,7 @@ input{width:100%;min-height:48px;border:1px solid #44404a;border-radius:10px;bac
 input:focus{outline:2px solid var(--pink);border-color:var(--pink)}
 button{width:100%;min-height:66px;border:0;border-radius:11px;background:var(--pink);color:#09090d;font-family:'Montserrat',Arial,sans-serif;font-size:clamp(15px,4vw,18px);font-weight:900;letter-spacing:.035em;margin-top:20px;padding:15px 12px;cursor:pointer}
 button.secondary{background:transparent;border:1px solid var(--pink);color:#fff}
-.small{font-size:11px;color:var(--muted)}.check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:11px;line-height:1.5;color:#ddd}.check input{width:18px;min-height:18px;margin:0;flex:0 0 auto;accent-color:var(--pink)}
+.small{font-size:11px;color:var(--muted)}.legal-scroll{max-height:230px;overflow-y:auto;overscroll-behavior:contain;border:1px solid #51404d;border-radius:10px;background:#09090d;padding:14px;margin-top:8px;scrollbar-color:var(--pink) #17131a}.legal-scroll h3{font-size:12px;color:#fff;margin:12px 0 5px}.legal-scroll p{font-size:11px;line-height:1.5;margin:0 0 10px}.check input:disabled{opacity:.45}.check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:11px;line-height:1.5;color:#ddd}.check input{width:18px;min-height:18px;margin:0;flex:0 0 auto;accent-color:var(--pink)}
 .hidden{display:none!important}#status{min-height:20px;color:var(--pink);font-size:12px;margin-top:15px;white-space:pre-wrap}
 .card{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:5/3;width:100%;border-radius:27px;padding:clamp(12px,2.5vw,24px);background:radial-gradient(ellipse at 50% 0%,#29212b 0,#111015 43%,#050507 100%);border:2px solid #c8cbd3;box-shadow:0 0 0 2px #28272c,0 0 24px #f02d9860,inset 0 0 28px #ffffff12;text-align:left;display:flex;flex-direction:column}
 .card:after{content:"";position:absolute;z-index:-1;inset:0;border-radius:25px;background:repeating-linear-gradient(115deg,#ffffff05 0 1px,transparent 1px 4px),radial-gradient(ellipse at 50% 50%,transparent 35%,#0008 100%);opacity:.6;pointer-events:none}
@@ -51,7 +51,41 @@ a{color:var(--pink)}footer{text-align:center;color:#777;font-size:10px;margin-to
       <label for="first">Nome</label><input id="first" autocomplete="given-name" maxlength="80" required>
       <label for="last">Cognome</label><input id="last" autocomplete="family-name" maxlength="80" required>
       <label for="email">Email</label><input id="email" type="email" autocomplete="email" required>
-      <label class="check"><input id="terms" type="checkbox" required><span>Confermo di aver letto e accettato il regolamento e l'informativa privacy JONNYHYPE CARDS.</span></label>
+      <label for="birthDate">Data di nascita</label><input id="birthDate" type="date" required>
+      <p class="small">La JONNYHYPE CARD è riservata a chi ha compiuto 14 anni.</p>
+
+      <label>REGOLAMENTO JONNYHYPE CARD</label>
+      <div class="legal-scroll" id="termsScroll" tabindex="0" aria-label="Regolamento completo, scorri fino in fondo">
+        <h3>1. OGGETTO DEL PROGRAMMA</h3><p>La JONNYHYPE CARD è una tessera personale che consente di accedere a convenzioni, sconti, promozioni, omaggi e vantaggi riservati presso i locali e le attività aderenti al programma. Il programma è ideato e gestito da Jonathan Paladini.</p>
+        <h3>2. RICHIESTA, ATTIVAZIONE E TIPOLOGIE DI CARD</h3><p>La card può essere richiesta da persone che abbiano compiuto 14 anni. La prima edizione prevede 100 tessere digitali gratuite. La tessera viene richiesta tramite il modulo sul sito, con verifica dell'indirizzo e-mail. È possibile richiedere la versione fisica al costo complessivo di 10 euro, tutto compreso. La tessera digitale e quella fisica identificano la stessa iscrizione.</p>
+        <h3>3. TITOLARITÀ E NON TRASFERIBILITÀ</h3><p>La card è personale e non cedibile. Non può essere prestata, venduta, trasferita o utilizzata da persone diverse dall'iscritto. L'iscritto è responsabile della custodia delle proprie credenziali e dei codici di accesso.</p>
+        <h3>4. VANTAGGI E CONVENZIONI</h3><p>Con la JONNYHYPE CARD puoi accedere a sconti, promozioni, omaggi e vantaggi esclusivi presso i locali aderenti. Ogni locale può proporre condizioni e iniziative dedicate, variabili in base all'attività, agli eventi e ai periodi dell'anno. L'elenco dei locali e le convenzioni saranno pubblicati e aggiornati sul sito ufficiale JONNYHYPE.</p>
+        <h3>5. MODALITÀ DI UTILIZZO</h3><p>Per usufruire di una convenzione è necessario presentare la card al personale prima del pagamento o della conclusione dell'operazione. La validità può essere verificata tramite il sistema digitale e il codice QR. L'utilizzo è subordinato alle condizioni pubblicate per ciascun locale.</p>
+        <h3>6. SISTEMA PUNTI E PREMI</h3><p>Presso i locali aderenti al programma punti, il personale autorizzato può assegnare 20, 40, 60 oppure 80 punti in base alla spesa effettuata. I punti vengono registrati sul saldo personale. Il sistema impedisce la duplicazione dello stesso accredito. Conversione, soglie, catalogo premi e modalità di riscatto saranno comunicati successivamente sul sito ufficiale. Non sono stabilite in questa versione scadenze dei punti.</p>
+        <h3>7. LIMITAZIONI, FESTIVITÀ ED ESCLUSIONI</h3><p>I vantaggi non sono automaticamente cumulabili con altre promozioni, salvo diversa indicazione. È consentito un solo vantaggio o sconto al giorno presso lo stesso locale; la card può essere utilizzata in un altro locale aderente nella stessa giornata. Salvo diversa indicazione nella convenzione, i vantaggi non si applicano: 1 gennaio, 6 gennaio, Pasqua, Pasquetta, 25 aprile, 1 maggio, 2 giugno, 15 agosto, 1 novembre, 8 dicembre, 25 dicembre e 26 dicembre. Il gestore può escludere specifiche serate, eventi o periodi; le esclusioni devono essere indicate nella scheda del locale sul sito prima dell'utilizzo. La card non garantisce ingressi gratuiti, prioritari o prenotazioni, salvo indicazione espressa.</p>
+        <h3>8. MODIFICHE DELLE CONVENZIONI E DEL PROGRAMMA</h3><p>Le condizioni delle convenzioni possono essere aggiornate dai singoli locali. L'elenco aggiornato è consultabile sul sito ufficiale JONNYHYPE. Eventuali modifiche al programma saranno comunicate attraverso i canali ufficiali.</p>
+        <h3>9. UTILIZZO IMPROPRIO, SOSPENSIONE E REVOCA</h3><p>È vietato utilizzare la card di un'altra persona, duplicare o falsificare la tessera o i codici, riutilizzare codici QR o ottenere indebitamente vantaggi e punti. In caso di utilizzo improprio l'organizzazione può sospendere o revocare la tessera, previa verifica e nel rispetto della normativa applicabile.</p>
+        <h3>10. TRATTAMENTO DEI DATI PERSONALI</h3><p>I dati sono trattati nel rispetto del GDPR e della normativa italiana. Le informazioni complete sono riportate nell'Informativa Privacy JONNYHYPE CARD.</p>
+        <h3>11. ACCETTAZIONE DEL REGOLAMENTO</h3><p>La richiesta e l'attivazione della card comportano la presa visione e l'accettazione del presente regolamento. Per assistenza: jonnyhype@jonnyhype.it – 379 111 2344.</p>
+      </div>
+      <label class="check"><input id="terms" type="checkbox" required disabled><span>Dichiaro di aver letto e accettato il Regolamento JONNYHYPE CARD.</span></label>
+
+      <label>INFORMATIVA PRIVACY – GDPR</label>
+      <div class="legal-scroll" id="privacyScroll" tabindex="0" aria-label="Informativa privacy completa, scorri fino in fondo">
+        <h3>1. TITOLARE DEL TRATTAMENTO</h3><p>Titolare: Jonathan Paladini. Codice fiscale PLDJTH77T04H199F. Indirizzo: Via Grado, Ravenna (RA). Telefono: 379 111 2344. E-mail: jonnyhype@jonnyhype.it.</p>
+        <h3>2. QUALI DATI VENGONO TRATTATI</h3><p>Dati identificativi (nome e cognome), data di nascita, indirizzo e-mail, informazioni fornite volontariamente, dati di registrazione e attivazione, identificativo della tessera, scansioni presso i locali, vantaggi utilizzati, punti accumulati e informazioni necessarie per assistenza e sicurezza. Il numero di telefono non è obbligatorio per la registrazione.</p>
+        <h3>3. FINALITÀ E BASI GIURIDICHE</h3><p>I dati sono trattati per: registrazione, verifica e attivazione della card; gestione delle convenzioni e dei codici QR; gestione dei punti; sicurezza e prevenzione di utilizzi impropri; assistenza e comunicazioni di servizio; adempimenti di legge e tutela dei diritti. Le basi giuridiche sono, secondo il trattamento, l'esecuzione del rapporto e delle misure richieste, l'obbligo legale o il legittimo interesse del Titolare. Le comunicazioni promozionali saranno gestite separatamente e, quando richiesto, previo consenso facoltativo. Il mancato consenso marketing non impedisce l'iscrizione.</p>
+        <h3>4. MODALITÀ DI TRATTAMENTO</h3><p>Il trattamento avviene con strumenti cartacei, informatici e telematici, mediante misure di sicurezza adeguate. L'accesso è consentito al Titolare e ai soggetti autorizzati o fornitori incaricati nei limiti delle rispettive attività.</p>
+        <h3>5. DESTINATARI DEI DATI</h3><p>I dati possono essere trattati da fornitori informatici, hosting, autenticazione e invio e-mail, assistenza tecnica, locali aderenti limitatamente alla verifica della card e registrazione di vantaggi e punti, consulenti e autorità nei casi previsti dalla legge. I dati non sono diffusi indiscriminatamente.</p>
+        <h3>6. TRASFERIMENTO FUORI DALLO SPAZIO ECONOMICO EUROPEO</h3><p>Alcuni servizi tecnologici potrebbero comportare trasferimenti fuori dallo Spazio Economico Europeo. Se necessari, saranno effettuati nel rispetto delle condizioni e garanzie previste dal GDPR.</p>
+        <h3>7. PERIODO DI CONSERVAZIONE</h3><p>I dati saranno conservati per il tempo necessario a gestire registrazione, attivazione, utilizzo della card, adempimenti e contestazioni. I dati delle operazioni, scansioni e punti saranno conservati per il tempo necessario alla gestione e sicurezza del programma e secondo gli obblighi di legge. Al termine saranno cancellati o resi anonimi, ove possibile.</p>
+        <h3>8. NATURA DEL CONFERIMENTO</h3><p>Il conferimento dei dati obbligatori è necessario per richiedere e attivare la card. Il mancato conferimento impedisce il completamento della registrazione. I dati facoltativi e il consenso marketing non sono condizioni per aderire.</p>
+        <h3>9. DIRITTI DELL'INTERESSATO</h3><p>Nei casi previsti dal GDPR è possibile chiedere accesso, rettifica, cancellazione, limitazione, opposizione e portabilità, nonché revocare eventuali consensi. Le richieste possono essere inviate a jonnyhype@jonnyhype.it. È possibile proporre reclamo al Garante per la protezione dei dati personali.</p>
+        <h3>10. MINORI</h3><p>La JONNYHYPE CARD può essere richiesta esclusivamente da persone che abbiano compiuto 14 anni. Non sono ammesse registrazioni per persone di età inferiore. I dati saranno trattati per le finalità indicate e nel rispetto della normativa vigente. Per i servizi della società dell'informazione offerti direttamente ai minori, il consenso autonomo è previsto dalla normativa italiana a partire dai 14 anni, quando il trattamento si basa sul consenso.</p>
+        <h3>11. AGGIORNAMENTI</h3><p>L'informativa può essere aggiornata in caso di modifiche normative, organizzative o tecniche. La versione aggiornata sarà resa disponibile sul sito ufficiale JONNYHYPE. Ultimo aggiornamento: novembre 2026.</p>
+      </div>
+      <label class="check"><input id="privacy" type="checkbox" required disabled><span>Dichiaro di aver preso visione dell'Informativa Privacy JONNYHYPE CARD.</span></label>
+      <label class="check"><input id="marketing" type="checkbox"><span>Acconsento facoltativamente a ricevere comunicazioni promozionali e offerte JONNYHYPE.</span></label>
       <button type="submit">RICEVI IL CODICE VIA EMAIL</button>
     </form>
     <div id="otpBox" class="hidden">
@@ -84,10 +118,10 @@ import QRCode from "https://cdn.jsdelivr.net/npm/qrcode@1.5.4/+esm";
 
 const SUPABASE_URL="https://xceywzabnvybjeteletg.supabase.co";
 const SUPABASE_KEY="sb_publishable_wKQ0U1ia1FhcnWcHKgRTHQ_i_Op4Vc4";
-const PRIVACY_VERSION="2026-11-13";
+const PRIVACY_VERSION="2026-11-15";
 const supabase=createClient(SUPABASE_URL,SUPABASE_KEY);
 const $=id=>document.getElementById(id);
-let pending={firstName:"",lastName:"",email:""};
+let pending={firstName:"",lastName:"",email:"",birthDate:""};
 let qrTimer=null, qrRefresh=null;
 
 function status(message){$("status").textContent=message}
