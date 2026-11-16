@@ -1,0 +1,108 @@
+/* JONNYHYPE — OFFICIAL BRAND & TYPOGRAPHY MASTER
+   Palette: black #050507 · white #FFFFFF · fuchsia #F02D98
+   Headings: Montserrat ExtraBold/Black · body and interface: Manrope
+   Loaded last on every public HTML page. */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+  --jh-bg:#050507;
+  --jh-white:#FFFFFF;
+  --jh-pink:#F02D98;
+  --jh-text:#E6E6EA;
+  --jh-muted:#B9B9C2;
+  --jh-panel:#111216;
+  --jh-line:#303036;
+}
+html,body{
+  background-color:var(--jh-bg)!important;
+  color:var(--jh-white);
+}
+body,body *{
+  font-family:'Manrope',Arial,sans-serif;
+}
+body{
+  color:var(--jh-white);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3,h4,h5,h6,
+.page-title,.page-intro h1,.section-title,.hero-title,
+.karaoke-main-banner,.sb-format-title,.festival-signup h2{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+  color:var(--jh-white);
+  letter-spacing:-.035em;
+  line-height:1.12;
+}
+h1{font-size:clamp(32px,6.8vw,58px)}
+h2{font-size:clamp(25px,5vw,40px)}
+h3{font-size:clamp(20px,3.8vw,29px)}
+p,li,dd,dt,blockquote,.intro,.description,.page-intro p,.event-description,
+.event-info-description,.artist-info p,.jh-intro,.sb-section p{
+  font-family:'Manrope',Arial,sans-serif!important;
+  font-weight:400;
+  color:var(--jh-text);
+  line-height:1.7;
+}
+strong,b,th,label,legend,.eyebrow,.kicker,.tag,.subtitle{
+  font-family:'Manrope',Arial,sans-serif;
+  font-weight:800;
+}
+input,textarea,select,button{
+  font-family:'Manrope',Arial,sans-serif!important;
+}
+.jh-wordmark,.jh-footer-brand,.jh-title-brand,.jh-title-jonny,.jh-title-hype,
+.jh-seo-brand,.sb-wordmark,.brand,.jh-logo-link,.jh-topbar .jh-logo{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+  font-style:normal!important;
+  letter-spacing:-.075em!important;
+  text-transform:none!important;
+  white-space:nowrap;
+}
+.jh-wordmark-white,.jh-title-jonny,.jh-footer-brand span,
+.jh-title-brand span,.jh-seo-brand-white,.jh-brand-inline__jonny{
+  color:#FFFFFF!important;
+}
+.jh-wordmark-pink,.jh-title-hype,.jh-footer-brand b,
+.jh-title-brand b,.jh-seo-brand-pink,.jh-brand-inline__hype{
+  color:#F02D98!important;
+}
+.jh-brand-inline{
+  display:inline;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.055em!important;
+  white-space:nowrap;
+}
+.jh-brand-inline__jonny{color:#FFFFFF!important}
+.jh-brand-inline__hype{color:#F02D98!important}
+.jh-global-footer,.jh-global-footer *{
+  font-family:'Manrope',Arial,sans-serif!important;
+}
+.jh-global-footer .jh-footer-brand{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+}
+.jh-global-footer .jh-footer-brand span{color:#FFFFFF!important}
+.jh-global-footer .jh-footer-brand b{color:#F02D98!important}
+.jh-topbar .jh-wordmark,.jh-topbar .jh-logo-link,
+.jh-page-header .jh-wordmark,.site-header .jh-wordmark{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+  font-style:normal!important;
+}
+.jh-topbar .jh-wordmark-white,.site-header .jh-wordmark-white{color:#FFFFFF!important}
+.jh-topbar .jh-wordmark-pink,.site-header .jh-wordmark-pink{color:#F02D98!important}
+/* Legacy pseudo-wordmark: keep the split exactly half white / half fuchsia. */
+.site-header>a:first-child:after{
+  background:linear-gradient(90deg,#FFFFFF 0 50%,#F02D98 50% 100%)!important;
+  background-clip:text!important;
+  -webkit-background-clip:text!important;
+  color:transparent!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-style:normal!important;
+  font-weight:900!important;
+  letter-spacing:-.075em!important;
+}
+/* Keep page-specific colors, cards, images, spacing and interactions intact. */
