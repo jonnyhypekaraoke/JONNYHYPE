@@ -27,7 +27,7 @@ html body .jh-topbar::after{
 }
 html body #jh-site-topbar + hr,
 html body .jh-topbar + hr,
-html body body > hr:first-of-type{
+html body > hr:first-of-type,\nhtml body main > hr:first-child{
   display:none!important;
 }
 html body main > :first-child,
@@ -160,4 +160,21 @@ html body .page-intro p{
 @media(max-width:600px){
   html body h1,html body h2,html body h3{ text-wrap:balance!important; }
   html body .sb-format-title{font-size:clamp(17px,4.5vw,25px)!important}
+}
+
+/* Contact CTA: keep the email address visually compact and unbroken. */
+html body .jh-actions a[href^="mailto:"]{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  min-width:0!important;
+  white-space:nowrap!important;
+  word-spacing:0!important;
+  letter-spacing:0!important;
+  overflow-wrap:normal!important;
+  word-break:keep-all!important;
+  font-size:clamp(10px,3.2vw,15px)!important;
+  padding-left:8px!important;
+  padding-right:8px!important;
 }
