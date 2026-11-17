@@ -431,7 +431,7 @@ html body .events-project>a{
 </div>
 </section>
 <section class="events-project" id="events">
-<h2 class="music-section-title">I FORMAT JONNYHYPE</h2>
+<h2 class="music-section-title"><span class="title-white">I FORMAT</span> <span class="title-pink">JONNYHYPE</span></h2>
 <p>Serate musicali, karaoke e progetti speciali ideati per far cantare e divertire il pubblico.</p>
 <div class="format-card format-card-rsf">
 <h3><a href="/ravenna-song-festival.html"><span class="title-white">RAVENNA</span> <span class="title-pink">SONG</span> <span class="title-white">FESTIVAL</span></a></h3>
@@ -816,5 +816,34 @@ html body main .events-project h2.music-section-title{
 html body main .events-project .music-actions{
   max-width:520px!important;
   margin:26px auto 0!important;
+}
+</style>
+
+
+<style id="jh-musica-section-headings-identical-20261117">
+/* Stessa resa tipografica per ogni carattere dei due titoli di sezione. */
+html body main .events-project h2.music-section-title,
+html body main .events-project h2.music-section-title *,
+html body main .events-project h2.music-section-title span,
+html body main .events-project h2.music-section-title .title-white,
+html body main .events-project h2.music-section-title .title-pink{
+  font-family:"Montserrat",Arial,sans-serif!important;
+  font-size:clamp(26px,5.7vw,38px)!important;
+  font-style:normal!important;
+  font-weight:900!important;
+  font-stretch:normal!important;
+  letter-spacing:-.045em!important;
+  line-height:1.12!important;
+  text-transform:uppercase!important;
+  font-variant:normal!important;
+  -webkit-text-stroke:0!important;
+  text-shadow:none!important;
+}
+@media(max-width:600px){
+ html body main .events-project h2.music-section-title,
+ html body main .events-project h2.music-section-title *,
+ html body main .events-project h2.music-section-title span{
+  font-size:clamp(25px,6vw,34px)!important;
+ }
 }
 </style>
