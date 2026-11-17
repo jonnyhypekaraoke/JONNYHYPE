@@ -1,0 +1,163 @@
+/* JONNYHYPE — GLOBAL VISUAL CORRECTION MASTER
+   17 November 2026 — one typography system, no decorative rules at page tops. */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Montserrat:wght@500;600;700;800;900&display=swap');
+
+:root{
+  --jh-bg:#050507;
+  --jh-white:#FFFFFF;
+  --jh-pink:#F02D98;
+  --jh-text:#E6E6EA;
+  --jh-muted:#B9B9C2;
+}
+
+/* Remove the two unnecessary horizontal rules around the shared top header. */
+html body #jh-site-topbar,
+html body .jh-topbar,
+html body header.site-header,
+html body .site-header{
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+html body #jh-site-topbar::before,
+html body #jh-site-topbar::after,
+html body .jh-topbar::before,
+html body .jh-topbar::after{
+  content:none!important;
+  display:none!important;
+}
+html body #jh-site-topbar + hr,
+html body .jh-topbar + hr,
+html body body > hr:first-of-type{
+  display:none!important;
+}
+html body main > :first-child,
+html body main > section:first-child,
+html body main > .page-intro:first-child,
+html body main > .hero:first-child,
+html body main > .sb-hero:first-child{
+  border-top:0!important;
+  box-shadow:none!important;
+}
+
+/* One site-wide font family system. */
+html body,
+html body p,html body li,html body label,html body small,
+html body blockquote,html body input,html body textarea,
+html body select,html body button,html body a{
+  font-family:'Manrope',Arial,sans-serif!important;
+  font-synthesis:none!important;
+  -webkit-font-smoothing:antialiased!important;
+  text-rendering:optimizeLegibility!important;
+}
+html body h1,html body h2,html body h3,html body h4,
+html body h5,html body h6,html body .page-title,
+html body .section-title,html body .hero-title{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+  font-synthesis:none!important;
+  letter-spacing:-.035em!important;
+  line-height:1.13!important;
+  text-wrap:balance!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+}
+html body p,html body li,html body .description,
+html body .intro,html body .subtitle,html body .lead{
+  font-family:'Manrope',Arial,sans-serif!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+  text-wrap:pretty!important;
+  widows:2!important;
+  orphans:2!important;
+  line-height:1.6;
+}
+
+/* The JONNYHYPE wordmark is always one unbroken word: JONNY white + HYPE fuchsia. */
+html body .jh-wordmark,
+html body .jh-brand-inline,
+html body .jh-about-brand,
+html body .jh-title-brand,
+html body .jh-footer-brand,
+html body .jh-seo-brand,
+html body .sb-wordmark,
+html body .brand-wordmark{
+  display:inline-flex!important;
+  flex-flow:row nowrap!important;
+  align-items:baseline!important;
+  white-space:nowrap!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.065em!important;
+  text-transform:none!important;
+}
+html body .jh-wordmark-white,
+html body .jh-brand-inline__jonny,
+html body .jh-title-jonny,
+html body .jh-about-brand .jh-brand-white,
+html body .jh-footer-brand span,
+html body .jh-title-brand span,
+html body .jh-seo-brand-white{color:#FFFFFF!important}
+html body .jh-wordmark-pink,
+html body .jh-brand-inline__hype,
+html body .jh-title-hype,
+html body .jh-about-brand .jh-brand-pink,
+html body .jh-footer-brand b,
+html body .jh-title-brand b,
+html body .jh-seo-brand-pink{color:#F02D98!important}
+html body .jh-wordmark span,
+html body .jh-brand-inline span,
+html body .jh-about-brand span{
+  display:inline!important;
+  white-space:nowrap!important;
+}
+
+/* SHOW BATTLE: keep the full two-tone wordmark together, even on narrow phones. */
+html body .sb-format-title{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:baseline!important;
+  justify-content:center!important;
+  column-gap:.24em!important;
+  row-gap:0!important;
+  max-width:100%!important;
+  white-space:normal!important;
+  text-wrap:balance!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.035em!important;
+  line-height:1.15!important;
+}
+html body .sb-format-title .jh-brand-inline{
+  display:inline-flex!important;
+  flex:0 0 auto!important;
+  flex-wrap:nowrap!important;
+  white-space:nowrap!important;
+  color:inherit!important;
+  letter-spacing:-.065em!important;
+}
+html body .sb-format-title .jh-brand-inline__jonny{color:#FFFFFF!important}
+html body .sb-format-title .jh-brand-inline__hype{color:#F02D98!important}
+
+/* Keep text blocks balanced on mobile; never force a single orphan word. */
+html body .sb-form-section>p,
+html body .sb-hero-subtitle,
+html body .jh-card p,
+html body .format-card p,
+html body .events-project>p,
+html body .page-intro p{
+  max-width:100%;
+  text-wrap:pretty!important;
+  widows:2!important;
+  orphans:2!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+}
+@media(max-width:600px){
+  html body h1,html body h2,html body h3{ text-wrap:balance!important; }
+  html body .sb-format-title{font-size:clamp(17px,4.5vw,25px)!important}
+}
