@@ -340,3 +340,31 @@ html body main > .sb-hero,
 html body main > .sb-hero + section{
   border-top:0!important;
 }
+
+/* Last responsive correction for SHOW BATTLE: text may wrap, the brand may not. */
+html body .sb-format-title{
+ display:block!important;
+ flex:none!important;
+ flex-wrap:initial!important;
+ text-align:center!important;
+ white-space:normal!important;
+ word-break:normal!important;
+ overflow-wrap:normal!important;
+ line-height:1.16!important;
+}
+html body .sb-format-title .jh-brand-inline{
+ display:inline-flex!important;
+ flex-flow:row nowrap!important;
+ white-space:nowrap!important;
+ vertical-align:baseline!important;
+ margin-left:.16em!important;
+}
+html body .sb-format-title .jh-brand-inline__jonny{color:#FFFFFF!important}
+html body .sb-format-title .jh-brand-inline__hype{color:#F02D98!important}
+/* Pages using a plain header (e.g. CARD) also follow the clean top treatment. */
+html body>header:not(.site-header),
+html body main.wrap>section:first-of-type,
+html body main>section:first-child{
+ border-top:0!important;
+ border-bottom:0!important;
+}
