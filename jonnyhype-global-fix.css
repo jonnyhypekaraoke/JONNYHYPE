@@ -276,3 +276,43 @@ html body .jh-social a,html body .social-icons.brand-socials a{
  html body p,html body li{line-height:1.58!important}
  html body .sb-form-section>p{max-width:100%!important;text-wrap:balance!important}
 }
+
+
+/* v3: the only top-of-page lines removed are header and first-content dividers. */
+html body header,html body .site-header,html body #jh-site-topbar,html body .jh-topbar,
+html body .sb-header{border-bottom:0!important;border-top:0!important}
+html body main>.page-intro:first-child,
+html body main>.hero:first-child,
+html body main>.sb-hero:first-child,
+html body main>section:first-child,
+html body main>div:first-child{
+ border-top:0!important;border-bottom:0!important;
+}
+html body main>.page-intro:first-child+section,
+html body main>.hero:first-child+section,
+html body main>div:first-child+section{
+ border-top:0!important;
+}
+html body .sb-format-title .jh-brand-inline{
+ display:inline-flex!important;flex-flow:row nowrap!important;
+ white-space:nowrap!important;flex:0 0 auto!important;
+}
+html body .sb-format-title .jh-brand-inline span{
+ display:inline!important;white-space:nowrap!important;
+}
+html body .sb-format-title{
+ display:flex!important;flex-flow:row wrap!important;
+ align-items:baseline!important;justify-content:center!important;
+ column-gap:.22em!important;row-gap:0!important;
+}
+html body .sb-form-section>p{
+ max-width:650px!important;margin-left:auto!important;margin-right:auto!important;
+ text-wrap:balance!important;line-height:1.58!important;
+}
+html body .jh-card .jh-actions a[href="mailto:jonnyhype@jonnyhype.it"]{
+ display:flex!important;justify-content:center!important;align-items:center!important;
+ width:100%!important;min-width:0!important;box-sizing:border-box!important;
+ padding:12px 6px!important;font-size:clamp(10px,2.9vw,13px)!important;
+ font-weight:800!important;letter-spacing:-.02em!important;word-spacing:0!important;
+ white-space:nowrap!important;overflow-wrap:normal!important;word-break:normal!important;
+}
