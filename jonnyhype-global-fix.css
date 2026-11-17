@@ -316,3 +316,27 @@ html body .jh-card .jh-actions a[href="mailto:jonnyhype@jonnyhype.it"]{
  font-weight:800!important;letter-spacing:-.02em!important;word-spacing:0!important;
  white-space:nowrap!important;overflow-wrap:normal!important;word-break:normal!important;
 }
+
+/* Final cleanup: remove decorative horizontal rules at the top of pages. */
+html body header.site-header,
+html body .site-header,
+html body #jh-site-topbar,
+html body .jh-topbar,
+html body .sb-header{
+  border-top:0!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+html body .site-header::before,
+html body .site-header::after,
+html body .jh-topbar::before,
+html body .jh-topbar::after,
+html body .sb-header::before,
+html body .sb-header::after{display:none!important;content:none!important}
+html body main > .page-intro + section,
+html body main > .page-intro + .jh-home-live-counter,
+html body main > .page-intro + .events-project,
+html body main > .sb-hero,
+html body main > .sb-hero + section{
+  border-top:0!important;
+}
