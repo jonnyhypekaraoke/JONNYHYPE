@@ -27,7 +27,8 @@ html body .jh-topbar::after{
 }
 html body #jh-site-topbar + hr,
 html body .jh-topbar + hr,
-html body > hr:first-of-type,\nhtml body main > hr:first-child{
+html body > hr:first-of-type,
+html body main > hr:first-child{
   display:none!important;
 }
 html body main > :first-child,
