@@ -368,3 +368,68 @@ html body main>section:first-child{
  border-top:0!important;
  border-bottom:0!important;
 }
+
+/* v4 — final cross-page mobile typography: avoid one-word orphan lines. */
+html body p,
+html body li,
+html body blockquote,
+html body .description,
+html body .intro,
+html body .subtitle,
+html body .lead,
+html body .sb-hero-subtitle,
+html body .sb-form-section>p,
+html body .jh-card p,
+html body .format-card p,
+html body .events-project>p,
+html body .page-intro p{
+  text-wrap:pretty!important;
+  widows:2!important;
+  orphans:2!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+}
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6{
+  text-wrap:balance!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+}
+html body .jh-wordmark,
+html body .jh-brand-inline,
+html body .jh-about-brand,
+html body .jh-title-brand,
+html body .jh-footer-brand,
+html body .jh-seo-brand,
+html body .sb-wordmark,
+html body .brand-wordmark,
+html body .sb-format-title .jh-brand-inline{
+  display:inline-flex!important;
+  flex-flow:row nowrap!important;
+  white-space:nowrap!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+}
+html body .sb-format-title{
+  display:block!important;
+  text-align:center!important;
+  text-wrap:balance!important;
+}
+html body .sb-format-title .jh-brand-inline span{
+  display:inline!important;
+  white-space:nowrap!important;
+}
+/* Remove only separators immediately adjoining the page header/hero. */
+html body main>hr:first-child,
+html body main>.page-intro+hr,
+html body main>.hero+hr,
+html body main>.sb-hero+hr,
+html body main>header+hr{
+  display:none!important;
+}
