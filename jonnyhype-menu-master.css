@@ -226,3 +226,61 @@ html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a:focus-visible{
   html body #jh-menu-master .jh-menu-panel.jh-menu-numbered>a{min-height:54px!important;padding:7px 8px!important;gap:12px!important;font-size:clamp(17.25px,4.715vw,20.7px)!important}
   html body #jh-menu-master .jh-menu-panel.jh-menu-numbered .jh-menu-number{flex-basis:36px!important;width:36px!important;min-width:36px!important;height:36px!important;font-size:14px!important}
 }
+
+/* JONNYHYPE — SITE-WIDE TYPOGRAPHY MASTER (2026-11-17)
+   One brand system across every public page. Preserve each page's layout and content. */
+html body,html body p,html body li,html body label,html body small,
+html body blockquote,html body .description,html body .intro,
+html body .subtitle,html body .lead,html body .sb-hero-subtitle{
+  font-family:'Manrope',Arial,sans-serif!important;
+  font-synthesis:none!important;
+  -webkit-font-smoothing:antialiased!important;
+  text-rendering:optimizeLegibility!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+}
+html body h1,html body h2,html body h3,html body h4,html body h5,html body h6,
+html body .page-title,html body .page-intro h1,html body .section-title,
+html body .hero-title,html body .sb-format-title,html body .festival-signup h2{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+  font-synthesis:none!important;
+  letter-spacing:-.035em!important;
+  line-height:1.13!important;
+  text-wrap:balance!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+}
+html body p,html body li,html body .description,html body .intro,
+html body .subtitle,html body .lead,html body .sb-hero-subtitle{
+  text-wrap:pretty!important;
+  widows:2;
+  orphans:2;
+}
+html body .jh-wordmark,html body .jh-footer-brand,html body .jh-title-brand,
+html body .jh-title-jonny,html body .jh-title-hype,html body .jh-seo-brand,
+html body .sb-wordmark,html body .jh-brand-inline,html body .brand-word,
+html body .brand,html body .logo,html body .sb-format-title .jh-brand-inline{
+  white-space:nowrap!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.065em!important;
+}
+html body .jh-brand-inline__jonny,html body .jh-title-jonny,
+html body .jh-wordmark-white,html body .jh-footer-brand span{color:#fff!important}
+html body .jh-brand-inline__hype,html body .jh-title-hype,
+html body .jh-wordmark-pink,html body .jh-footer-brand b{color:#F02D98!important}
+html body .sb-format-title .jh-brand-inline{display:inline!important;vertical-align:baseline!important}
+html body .sb-format-title .jh-brand-inline__jonny{color:#fff!important}
+html body .sb-format-title .jh-brand-inline__hype{color:#F02D98!important}
+html body .sb-form-section>p{
+  max-width:680px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-wrap:balance!important;
+}
+html body .sb-format-title{text-wrap:balance!important}
