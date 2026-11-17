@@ -188,3 +188,91 @@ html body h1:has(.jh-title-jonny) .jh-title-hype{
   display:inline!important;
   white-space:nowrap!important;
 }
+
+
+/* FINAL OVERRIDES v2 — remove decorative top rules and enforce the brand system. */
+html body header,
+html body header.site-header,
+html body .site-header,
+html body #jh-site-topbar,
+html body .jh-topbar,
+html body .sb-header{
+  border-top:0!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+  outline:0!important;
+}
+html body header::before,
+html body header::after,
+html body .site-header::before,
+html body .site-header::after,
+html body #jh-site-topbar::before,
+html body #jh-site-topbar::after,
+html body .jh-topbar::before,
+html body .jh-topbar::after{
+  content:none!important;
+  display:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+html body main,
+html body main>.page-intro:first-child,
+html body main>.hero:first-child,
+html body main>.sb-hero:first-child,
+html body main>section:first-child,
+html body main>div:first-child{
+  border-top:0!important;
+  box-shadow:none!important;
+}
+html body main>.page-intro:first-child::before,
+html body main>.page-intro:first-child::after,
+html body main>.hero:first-child::before,
+html body main>.hero:first-child::after,
+html body main>.sb-hero:first-child::before,
+html body main>.sb-hero:first-child::after{
+  content:none!important;
+  display:none!important;
+}
+html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+  text-wrap:balance!important;
+}
+html body p,html body li,html body .description,html body .subtitle,html body .lead{
+  font-family:'Manrope',Arial,sans-serif!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+  text-wrap:pretty!important;
+  widows:2!important;
+  orphans:2!important;
+}
+html body .jh-wordmark,html body .jh-brand-inline,html body .jh-title-brand,
+html body .jh-footer-brand,html body .jh-seo-brand,html body .jh-logo-link .brand{
+  display:inline-flex!important;
+  flex-wrap:nowrap!important;
+  align-items:baseline!important;
+  white-space:nowrap!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.065em!important;
+}
+html body .jh-wordmark-white,html body .jh-brand-inline__jonny,
+html body .jh-title-brand>span,html body .jh-footer-brand>span{color:#FFFFFF!important}
+html body .jh-wordmark-pink,html body .jh-brand-inline__hype,
+html body .jh-title-brand>b,html body .jh-footer-brand>b{color:#F02D98!important}
+html body .jh-social,html body .social-icons.brand-socials{
+  margin:34px auto 24px!important;
+}
+html body .jh-social a,html body .social-icons.brand-socials a{
+  font-family:'Manrope',Arial,sans-serif!important;
+}
+@media(max-width:600px){
+ html body p,html body li{line-height:1.58!important}
+ html body .sb-form-section>p{max-width:100%!important;text-wrap:balance!important}
+}
