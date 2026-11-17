@@ -284,3 +284,20 @@ html body .sb-form-section>p{
   text-wrap:balance!important;
 }
 html body .sb-format-title{text-wrap:balance!important}
+
+
+/* Keep every two-tone JONNYHYPE lockup on one unbroken line. */
+html body .jh-about-brand,
+html body .jh-about-brand .jh-brand-white,
+html body .jh-about-brand .jh-brand-pink{
+  display:inline-flex!important;
+  flex-wrap:nowrap!important;
+  white-space:nowrap!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+}
+html body .sb-format-title .jh-brand-inline__jonny,
+html body .sb-format-title .jh-brand-inline__hype{
+  display:inline!important;
+  white-space:nowrap!important;
+}
