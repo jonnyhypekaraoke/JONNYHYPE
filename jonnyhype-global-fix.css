@@ -178,3 +178,13 @@ html body .jh-actions a[href^="mailto:"]{
   padding-left:8px!important;
   padding-right:8px!important;
 }
+
+/* Contact heading: keep the two-tone brand as one continuous word after the explicit line break. */
+html body h1:has(.jh-title-jonny){
+  white-space:nowrap!important;
+}
+html body h1:has(.jh-title-jonny) .jh-title-jonny,
+html body h1:has(.jh-title-jonny) .jh-title-hype{
+  display:inline!important;
+  white-space:nowrap!important;
+}
