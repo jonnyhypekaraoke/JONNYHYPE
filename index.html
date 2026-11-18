@@ -1486,6 +1486,9 @@ html body .hero .content>#jh-capodanno-jump{
 <a class="btn song-request-banner" href="/karaoke.html" aria-label="Richiedi una canzone live"><span class="song-request-copy"><strong><span class="jh-btn-white">RICHIEDI</span><br><span class="jh-btn-pink">UNA CANZONE</span> <span class="jh-btn-white">LIVE</span></strong></span></a>
 <a class="btn social" href="/eventi.html" aria-label="Prossimi eventi"><span class="jh-btn-white">PROSSIMI</span><span class="jh-btn-pink">EVENTI</span></a>
 </div>
+<a class="jh-home-showbattle-banner" href="/show-battle.html" aria-label="SHOWBATTLE – La grande sfida di canto">
+  <img src="https://raw.githubusercontent.com/jonnyhypekaraoke/JONNYHYPE/main/ShowBattle.JPEG?v=20261118" alt="SHOWBATTLE – La grande sfida di canto" loading="eager" decoding="async">
+</a>
 <a class="jh-home-card-banner" href="/cards.html" aria-label="JONNYHYPE CARD: scopri tutti i vantaggi">
   <img src="https://raw.githubusercontent.com/jonnyhypekaraoke/JONNYHYPE/main/Banner%20card.JPEG" alt="JONNYHYPE CARD — scopri tutti i vantaggi" loading="eager" decoding="async">
 </a>
@@ -2227,6 +2230,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
   const sorted=[...unique.values()].filter(x=>!(x.venue.toUpperCase().includes('CASABLANCA')&&x.date.getFullYear()===2026&&x.date.getMonth()===10&&x.date.getDate()===5)&&x.date<=new Date(2026,10,30,23,59,59,999)).sort((a,b)=>a.date-b.date);
   // In Home mostra i prossimi eventi, inclusi quelli di domenica 15 novembre 2026.
   const list=section.querySelector('.jh-home-upcoming-list');
+  if(window.matchMedia('(max-width:600px)').matches)list.classList.add('jh-home-upcoming-track');
   if(!sorted.length){list.innerHTML='<div class="jh-home-upcoming-empty">Al momento non ci sono eventi imminenti da mostrare.</div>';return;}
   list.innerHTML=sorted.slice(0,5).map((x,index)=>{
    const title=x.venue.toUpperCase();
@@ -2241,6 +2245,17 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div>'+'<div class="jh-home-upcoming-time">'+esc(timeLabel)+'</div>'+(special?'<div class="jh-home-upcoming-special"><span>SPECIALE</span><strong>RAVENNA SONG FESTIVAL</strong></div>':'')+'<div class="jh-home-upcoming-venue-panel">'+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+'</div>'+'<div class="jh-home-upcoming-cta"><span>INFO EVENTO<br>E FOTO DEL LOCALE</span></div></div></a>';
    return card;
   }).join('');
+  if(list.classList.contains('jh-home-upcoming-track')&&list.children.length>2&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+   let carouselTimer=setInterval(()=>{
+    if(document.hidden||list.matches(':hover')||list.contains(document.activeElement))return;
+    const first=list.querySelector('.jh-home-upcoming-card');if(!first)return;
+    const step=first.getBoundingClientRect().width+12;
+    const max=list.scrollWidth-list.clientWidth;
+    if(list.scrollLeft>=max-4)list.scrollTo({left:0,behavior:'smooth'});
+    else list.scrollBy({left:step,behavior:'smooth'});
+   },4500);
+   list.addEventListener('touchstart',()=>{clearInterval(carouselTimer);},{passive:true,once:true});
+  }
  }).catch(()=>{section.querySelector('.jh-home-upcoming-list').innerHTML='<div class="jh-home-upcoming-empty">Non è stato possibile caricare gli eventi. Consulta la sezione Prossimi Eventi.</div>';});
 })();
 </script>
@@ -3455,4 +3470,48 @@ html body #jh-home-upcoming-list .jh-home-upcoming-visual img {
   object-position:center center!important;
   padding:0!important;
 }
+</style>
+
+<style id="jh-home-mobile-refresh-showbattle-20261118">
+@media(max-width:600px){
+ .hero .content{display:flex!important;flex-direction:column!important;align-items:stretch!important}
+ .hero .content>.links{order:2!important}
+ .hero .content>.jh-home-upcoming{order:1!important;width:calc(100% - 24px)!important;max-width:640px!important;margin:10px auto 14px!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-heading{display:none!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track{
+  display:flex!important;grid-template-columns:none!important;gap:10px!important;width:100%!important;
+  overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;
+  scroll-behavior:smooth!important;scrollbar-width:none!important;-webkit-overflow-scrolling:touch!important;
+  padding:0 1px 7px!important;
+ }
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track::-webkit-scrollbar{display:none!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track>.jh-home-upcoming-card{
+  display:flex!important;flex:0 0 calc((100% - 10px)/2)!important;width:calc((100% - 10px)/2)!important;
+  min-width:0!important;max-width:none!important;scroll-snap-align:start!important;border-width:1px!important;
+  border-radius:12px!important;box-shadow:0 0 10px rgba(240,45,152,.12)!important;
+ }
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-visual{
+  height:auto!important;aspect-ratio:16/9!important;min-height:0!important;max-height:none!important;
+  border-bottom:1px solid rgba(240,45,152,.4)!important;
+ }
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-visual img{width:100%!important;height:100%!important;object-fit:cover!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-info{gap:5px!important;padding:8px 8px 9px!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-date{font-size:clamp(10px,2.8vw,13px)!important;line-height:1.1!important;white-space:normal!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-time{font-size:clamp(9px,2.5vw,12px)!important;white-space:normal!important;line-height:1.15!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-special{padding:6px!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-special strong{font-size:clamp(9px,2.5vw,12px)!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-kind{font-size:9px!important;white-space:normal!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-venue{font-size:clamp(14px,4vw,19px)!important;line-height:1.04!important;overflow-wrap:anywhere!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-address{font-size:10px!important;line-height:1.2!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-promo{font-size:9px!important;padding:6px!important}
+ .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-cta{min-height:30px!important;height:auto!important;margin-top:4px!important;padding:6px 3px!important;font-size:9px!important;white-space:normal!important;line-height:1.1!important}
+ .hero .content>.jh-home-all-events{order:1!important}
+ .hero .content>.jh-home-showbattle-banner{order:3!important;display:block!important;width:calc(100% - 32px)!important;max-width:760px!important;margin:10px auto 16px!important;padding:0!important;border:1px solid rgba(240,45,152,.7)!important;border-radius:13px!important;overflow:hidden!important;line-height:0!important;background:#050507!important}
+ .hero .content>.jh-home-showbattle-banner img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:16/9!important;object-fit:contain!important;margin:0!important}
+ .hero .content>.jh-capodanno-image-banner{order:4!important}
+ .hero .content>.jh-home-card-banner{order:5!important}
+ .hero .content>.jh-rsf-disclosure{order:6!important}
+ .hero .content>.home-nav{order:7!important}
+}
+@media(min-width:601px){.hero .content>.jh-home-showbattle-banner{display:none!important}}
 </style>
