@@ -1096,6 +1096,30 @@ html body #calendario-elenco .jh-home-upcoming-visual img{
  max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;padding:0!important;
 }
 </style>
+
+<style id="jh-final-venue-photo-fix-20261118">
+/* Fix definitivo: copertina 16:9 sempre visibile sotto la data */
+.jh-home-upcoming-card .jh-home-upcoming-date{
+  display:flex!important;flex-direction:row!important;align-items:baseline!important;
+  justify-content:center!important;gap:7px!important;flex:0 0 auto!important;
+  width:100%!important;min-height:0!important;height:auto!important;
+  padding:14px 12px 12px!important;margin:0!important;box-sizing:border-box!important;
+  overflow:visible!important;white-space:normal!important;
+}
+.jh-home-upcoming-card .jh-home-upcoming-visual{
+  display:block!important;position:relative!important;flex:0 0 auto!important;
+  width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;
+  aspect-ratio:16/9!important;overflow:hidden!important;box-sizing:border-box!important;
+  padding:0!important;margin:0!important;background:#050507!important;
+}
+.jh-home-upcoming-card .jh-home-upcoming-visual img{
+  display:block!important;position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+  max-width:none!important;max-height:none!important;object-fit:cover!important;
+  object-position:center center!important;padding:0!important;margin:0!important;
+}
+</style>
+
 </body></html>
 
 
