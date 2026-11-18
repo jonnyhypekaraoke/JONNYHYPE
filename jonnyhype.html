@@ -344,6 +344,66 @@ html body .jh-about-hero h1 .jh-about-brand .jh-brand-pink{color:#F02D98!importa
  html body .jh-about-portrait img,html body .jh-about-feature img{display:block!important;width:100%!important;max-width:100%!important;height:auto!important}
 }
 </style>
+
+<style id="jh-about-compact-heading-final-20261118">
+/* CHI È: titolo e marchio con pari gerarchia, spazi compatti e nessun overflow laterale. */
+html,body{max-width:100%;overflow-x:hidden!important}
+html body .jh-about-wrap{width:min(calc(100% - 30px),900px)!important;max-width:900px!important;margin-left:auto!important;margin-right:auto!important}
+html body .jh-about-hero{
+  width:100%!important;max-width:100%!important;
+  padding:24px 0 14px!important;text-align:center!important;
+}
+html body .jh-about-eyebrow{display:none!important}
+html body .jh-about-hero h1{
+  display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;
+  align-items:center!important;justify-content:center!important;gap:5px!important;
+  width:100%!important;max-width:100%!important;margin:0 auto 16px!important;padding:0!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-size:clamp(32px,8.2vw,58px)!important;font-weight:900!important;
+  line-height:1.02!important;letter-spacing:-.055em!important;text-align:center!important;
+}
+html body .jh-about-hero h1 .jh-about-heading-intro{
+  display:block!important;width:auto!important;margin:0!important;padding:0!important;
+  font-family:'Montserrat',Arial,sans-serif!important;font-size:1em!important;
+  font-weight:900!important;line-height:1.02!important;letter-spacing:-.055em!important;
+  white-space:nowrap!important;color:#fff!important;
+}
+html body .jh-about-hero h1 .jh-about-brand{
+  display:inline-flex!important;flex:0 1 auto!important;flex-flow:row nowrap!important;
+  align-items:baseline!important;justify-content:center!important;gap:0!important;
+  width:auto!important;max-width:100%!important;margin:0!important;padding:0!important;
+  font-family:'Montserrat',Arial,sans-serif!important;font-size:1em!important;
+  font-weight:900!important;line-height:1.02!important;letter-spacing:-.075em!important;
+  white-space:nowrap!important;transform:none!important;
+}
+html body .jh-about-hero h1 .jh-about-brand .jh-brand-white,
+html body .jh-about-hero h1 .jh-about-brand .jh-brand-pink{
+  display:inline!important;flex:0 0 auto!important;width:auto!important;margin:0!important;padding:0!important;
+  font-family:'Montserrat',Arial,sans-serif!important;font-size:1em!important;
+  font-weight:900!important;font-style:normal!important;line-height:1.02!important;
+  letter-spacing:inherit!important;white-space:nowrap!important;
+}
+html body .jh-about-hero h1 .jh-brand-white{color:#fff!important}
+html body .jh-about-hero h1 .jh-brand-pink{color:#F02D98!important}
+html body .jh-about-portrait{
+  width:100%!important;max-width:640px!important;margin:0 auto 30px!important;
+}
+html body .jh-about-portrait img{
+  display:block!important;width:100%!important;max-width:100%!important;height:auto!important;
+}
+@media(max-width:600px){
+  html body .jh-about-hero{padding:20px 0 10px!important}
+  html body .jh-about-hero h1{
+    font-size:clamp(29px,8.1vw,38px)!important;
+    gap:4px!important;margin-bottom:14px!important;
+  }
+  html body .jh-about-hero h1 .jh-about-brand{
+    font-size:1em!important;letter-spacing:-.085em!important;
+  }
+  html body .jh-about-portrait{margin-bottom:24px!important}
+}
+</style>
+
 </head>
 <body>
 <header id="jh-site-topbar" class="jh-topbar">
@@ -352,7 +412,6 @@ html body .jh-about-hero h1 .jh-about-brand .jh-brand-pink{color:#F02D98!importa
 </header>
 <main class="jh-about-wrap">
 <section class="jh-about-hero">
-<p class="jh-about-eyebrow">Jonathan Paladini · Regia · Musica · Eventi</p>
 <h1><span class="jh-about-heading-intro">CHI È</span> <span class="jh-about-brand"><span class="jh-brand-white">JONNY</span><span class="jh-brand-pink">HYPE</span></span></h1>
 </section>
 <section class="jh-about-portrait" aria-label="Foto di Jonathan Paladini">
