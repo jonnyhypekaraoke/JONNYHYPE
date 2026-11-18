@@ -2192,7 +2192,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
  const section=document.createElement('section');
  section.className='jh-home-upcoming';
  section.setAttribute('aria-labelledby','jh-home-upcoming-title');
- section.innerHTML='<h2 class="jh-home-upcoming-heading" id="jh-home-upcoming-title">PROSSIMI <span>EVENTI</span></h2><div class="jh-home-upcoming-list" id="jh-home-upcoming-list" aria-live="polite"><div class="jh-home-upcoming-empty">Caricamento eventi…</div></div><a class="jh-home-all-events" href="/eventi.html">VEDI TUTTI GLI EVENTI <span aria-hidden="true">→</span></a>';
+ section.innerHTML='<h2 class="jh-home-upcoming-heading" id="jh-home-upcoming-title">PROSSIMI <span>EVENTI</span></h2><div class="jh-home-upcoming-list" id="jh-home-upcoming-list" aria-live="polite"><div class="jh-home-upcoming-empty">Caricamento eventi…</div></div>';
  host.parentNode.insertBefore(section,host);
  const monthMap={GENNAIO:0,FEBBRAIO:1,MARZO:2,APRILE:3,MAGGIO:4,GIUGNO:5,LUGLIO:6,AGOSTO:7,SETTEMBRE:8,OTTOBRE:9,NOVEMBRE:10,DICEMBRE:11};
  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
