@@ -2242,7 +2242,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const special=(x.subtitle||'').toUpperCase().includes('SPECIALE');
    const rawTime=clean(x.time).replace(/^DALLE\s*/i,'').replace(/\s*(?:-|–|—|A)\s*/i,'|').split('|').map(v=>v.trim()).filter(Boolean);
    const timeLabel=rawTime.length>1?'DALLE '+rawTime[0]+' ALLE '+rawTime[1]:'DALLE '+rawTime[0];
-   const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div>'+'<div class="jh-home-upcoming-time">'+esc(timeLabel)+'</div>'+(special?'<div class="jh-home-upcoming-special"><span>SPECIALE</span><strong>RAVENNA SONG FESTIVAL</strong></div>':'')+'<div class="jh-home-upcoming-venue-panel">'+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+'</div>'+'<div class="jh-home-upcoming-cta"><span>INFO EVENTO<br>E FOTO DEL LOCALE</span></div></div></a>';
+   const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(dateLabel)+'</div>'+'<div class="jh-home-upcoming-time">'+esc(timeLabel)+'</div>'+(special?'<div class="jh-home-upcoming-special"><span>SPECIALE</span><strong>RAVENNA SONG FESTIVAL</strong></div>':'')+'<div class="jh-home-upcoming-venue-panel">'+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+'</div>'+'<div class="jh-home-upcoming-cta"><span>INFO EVENTO</span></div></div></a>';
    return card;
   }).join('');
   if(list.classList.contains('jh-home-upcoming-track')&&list.children.length>2&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -3577,6 +3577,71 @@ html body #jh-home-upcoming-list .jh-home-upcoming-visual img {
  html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-cta span{
   display:block!important;width:100%!important;min-width:0!important;white-space:normal!important;
   overflow-wrap:normal!important;word-break:normal!important;font-size:inherit!important;line-height:inherit!important;
+ }
+}
+</style>
+
+<style id="jh-home-mobile-event-cards-compact-16x9-20261118">
+@media(max-width:600px){
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track{
+  display:flex!important;flex-wrap:nowrap!important;gap:9px!important;width:100%!important;
+  overflow-x:auto!important;scroll-snap-type:x mandatory!important;padding:0 1px 7px!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track>.jh-home-upcoming-card{
+  box-sizing:border-box!important;display:flex!important;flex-direction:column!important;
+  flex:0 0 calc((100% - 9px)/2)!important;width:calc((100% - 9px)/2)!important;
+  max-width:calc((100% - 9px)/2)!important;min-width:0!important;padding:0!important;
+  margin:0!important;overflow:hidden!important;border:1px solid #f02d98!important;border-radius:11px!important;
+  scroll-snap-align:start!important;box-shadow:0 0 8px rgba(240,45,152,.12)!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-visual{
+  display:block!important;box-sizing:border-box!important;width:100%!important;height:auto!important;
+  aspect-ratio:16/9!important;min-height:0!important;max-height:none!important;overflow:hidden!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-visual img{
+  display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-info{
+  display:flex!important;box-sizing:border-box!important;flex-direction:column!important;align-items:stretch!important;
+  gap:4px!important;width:100%!important;min-width:0!important;padding:7px 7px 8px!important;overflow:hidden!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-date{
+  display:block!important;width:100%!important;font-size:clamp(10px,2.7vw,12px)!important;
+  line-height:1.1!important;white-space:normal!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-time{
+  display:block!important;width:100%!important;font-size:clamp(9px,2.4vw,10px)!important;
+  line-height:1.15!important;white-space:normal!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-special{
+  padding:4px!important;margin:0!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-special strong{
+  font-size:9px!important;line-height:1.1!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-venue-panel{
+  box-sizing:border-box!important;width:100%!important;min-width:0!important;padding:0!important;
+  border:0!important;background:transparent!important;overflow:hidden!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-kind{
+  margin:0 0 3px!important;font-size:8px!important;line-height:1.1!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-venue{
+  width:100%!important;min-width:0!important;margin:0!important;font-size:clamp(12px,3.2vw,15px)!important;
+  line-height:1.08!important;letter-spacing:-.02em!important;overflow-wrap:break-word!important;
+  word-break:normal!important;hyphens:none!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-address{display:none!important}
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-cta{
+  display:flex!important;box-sizing:border-box!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;max-width:100%!important;min-width:0!important;min-height:30px!important;height:auto!important;
+  margin:2px 0 0!important;padding:5px 3px!important;border-radius:7px!important;
+  font-size:clamp(9px,2.4vw,10px)!important;line-height:1.1!important;white-space:normal!important;
+  overflow:hidden!important;text-align:center!important;
+ }
+ html body .hero .content>.jh-home-upcoming .jh-home-upcoming-track .jh-home-upcoming-cta span{
+  display:block!important;width:100%!important;white-space:normal!important;overflow-wrap:normal!important;
+  word-break:normal!important;font-size:inherit!important;line-height:inherit!important;
  }
 }
 </style>
