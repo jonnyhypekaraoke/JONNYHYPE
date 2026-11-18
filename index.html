@@ -2234,7 +2234,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
   if(!sorted.length){list.innerHTML='<div class="jh-home-upcoming-empty">Al momento non ci sono eventi imminenti da mostrare.</div>';return;}
   list.innerHTML=sorted.slice(0,5).map((x,index)=>{
    const title=x.venue.toUpperCase();
-   const image=title.includes('IGINGINI')?'<img class="jh-home-upcoming-logo" src="https://raw.githubusercontent.com/jonnyhypekaraoke/JONNYHYPE/main/IGinGini11.PNG" alt="iGinGini · Drink Food Disco" loading="lazy" decoding="async">':title.includes('ALCHIMIA')?'<img src="https://raw.githubusercontent.com/jonnyhypekaraoke/JONNYHYPE/main/Alchimia11.jpg" alt="Alchimia" loading="lazy" decoding="async">':title.includes('ICE MARINA')?'<img src="https://raw.githubusercontent.com/jonnyhypekaraoke/JONNYHYPE/main/Ice11.jpg" alt="ICE Marina Club" loading="lazy" decoding="async">':title.includes('CASABLANCA')?'<img src="https://raw.githubusercontent.com/jonnyhypekaraoke/JONNYHYPE/main/Casablanca11.PNG" alt="Casablanca" loading="lazy" decoding="async">':title.includes('VECCHIA NAPOLI')?'<img class="jh-home-upcoming-logo" src="https://media.jonnyhype.it/Logo%20vecchia%20.jpg" alt="La Vecchia Napoli" loading="lazy">':title.includes('VIA VAI')?'<img src="https://raw.githubusercontent.com/jonnyhypekaraoke/JONNYHYPE/main/Viavai11.PNG" alt="Via Vai Café" loading="lazy" decoding="async">':title.includes('YOYI')?'<img src="https://media.jonnyhype.it/YOYi.jpg.JPG" alt="YOYi Fusion" loading="lazy">':title.includes('URBAN')?'<img src="https://raw.githubusercontent.com/jonnyhypekaraoke/JONNYHYPE/main/Urban11.PNG" alt="Cafè Urban · Urban Padel" loading="lazy" decoding="async">':'<strong>'+esc(title)+'</strong>';
+   const image='';
    const dateLabel=x.dayName+' '+String(x.day).padStart(2,'0')+'.'+String(x.date.getMonth()+1).padStart(2,'0');
    const localDate=x.date.getFullYear()+'-'+String(x.date.getMonth()+1).padStart(2,'0')+'-'+String(x.date.getDate()).padStart(2,'0');
    const query=new URLSearchParams({venue:x.venue,date:localDate});
@@ -2242,7 +2242,7 @@ html body .jh-rsf-square-bottom .jh-rsf-bottom-info {
    const special=(x.subtitle||'').toUpperCase().includes('SPECIALE');
    const rawTime=clean(x.time).replace(/^DALLE\s*/i,'').replace(/\s*(?:-|–|—|A)\s*/i,'|').split('|').map(v=>v.trim()).filter(Boolean);
    const timeLabel=rawTime.length>1?'DALLE '+rawTime[0]+' ALLE '+rawTime[1]:'DALLE '+rawTime[0];
-   const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-visual">'+image+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date"><span class="jh-home-date-day">'+esc(x.dayName)+'</span><strong>'+esc(String(x.day).padStart(2,'0')+' '+x.monthName)+'</strong></div>'+'<div class="jh-home-upcoming-time">'+esc(timeLabel)+'</div>'+(special?'<div class="jh-home-upcoming-special"><span>SPECIALE</span><strong>RAVENNA SONG FESTIVAL</strong></div>':'')+'<div class="jh-home-upcoming-venue-panel">'+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+'</div>'+'<div class="jh-home-upcoming-cta"><span>INFO EVENTO</span></div></div></a>';
+   const card='<a'+cardId+' class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(dateLabel)+'"><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date"><span class="jh-home-date-day">'+esc(x.dayName)+'</span><strong><span class="jh-home-date-number">'+esc(String(x.day).padStart(2,'0'))+'</span><span class="jh-home-date-month">'+esc(x.monthName)+'</span></strong></div><div class="jh-home-upcoming-time">'+esc(timeLabel)+'</div><div class="jh-home-upcoming-venue-panel"><div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line"> '+esc(x.city)+'</span>':'')+'</div>':'')+'</div></div></a>';
    return card;
   }).join('');
   if(list.classList.contains('jh-home-upcoming-track')&&list.children.length>2&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -2734,6 +2734,101 @@ html body .hero .content>.links>a.btn.social .jh-btn-pink{color:#F02D98!importan
   -webkit-background-clip:text!important;background-clip:text!important;
   color:transparent!important;-webkit-text-fill-color:transparent!important;
   text-shadow:0 1px 0 rgba(255,255,255,.28),0 2px 9px rgba(220,226,238,.22)!important;
+}
+</style>
+
+
+<style id="jh-home-event-cards-final-20261118">
+/* HOME soltanto: schede eventi testuali, senza loghi, con gerarchia JONNYHYPE */
+html body .jh-home-upcoming .jh-home-upcoming-heading{display:none!important}
+html body .jh-home-upcoming .jh-home-upcoming-list{gap:12px!important}
+html body .jh-home-upcoming .jh-home-upcoming-card{
+ box-sizing:border-box!important;display:flex!important;flex-direction:column!important;
+ min-width:0!important;overflow:hidden!important;padding:13px 12px!important;
+ border:1.5px solid #F02D98!important;border-radius:16px!important;
+ background:#08080a!important;box-shadow:0 0 12px rgba(240,45,152,.10)!important;
+}
+html body .jh-home-upcoming .jh-home-upcoming-visual,
+html body .jh-home-upcoming .jh-home-upcoming-kind,
+html body .jh-home-upcoming .jh-home-upcoming-special,
+html body .jh-home-upcoming .jh-home-upcoming-cta{display:none!important}
+html body .jh-home-upcoming .jh-home-upcoming-info{
+ display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+ justify-content:center!important;gap:5px!important;width:100%!important;min-width:0!important;
+ padding:0!important;margin:0!important;overflow:visible!important;text-align:left!important;
+}
+html body .jh-home-upcoming .jh-home-upcoming-date{
+ display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+ gap:2px!important;width:100%!important;margin:0!important;padding:0!important;
+ color:#fff!important;font-family:Montserrat,Arial,sans-serif!important;
+ font-size:clamp(10px,2.8vw,13px)!important;font-weight:900!important;
+ line-height:1.08!important;letter-spacing:.015em!important;white-space:normal!important;
+}
+html body .jh-home-upcoming .jh-home-date-day{display:block!important;color:#fff!important}
+html body .jh-home-upcoming .jh-home-upcoming-date strong{
+ display:flex!important;align-items:baseline!important;gap:5px!important;
+ color:#fff!important;font-size:clamp(15px,4vw,20px)!important;
+ font-weight:900!important;line-height:1.05!important;letter-spacing:-.02em!important;
+}
+html body .jh-home-upcoming .jh-home-date-number{color:#F02D98!important}
+html body .jh-home-upcoming .jh-home-date-month{color:#fff!important}
+html body .jh-home-upcoming .jh-home-upcoming-time{
+ display:block!important;width:100%!important;margin:0!important;padding:0!important;
+ color:#fff!important;font-family:Montserrat,Arial,sans-serif!important;
+ font-size:clamp(10px,2.8vw,13px)!important;font-weight:800!important;
+ line-height:1.15!important;white-space:normal!important;
+}
+html body .jh-home-upcoming .jh-home-upcoming-venue-panel{
+ display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+ gap:3px!important;width:100%!important;min-width:0!important;margin:0!important;padding:0!important;
+ border:0!important;background:transparent!important;overflow:visible!important;
+}
+html body .jh-home-upcoming .jh-home-upcoming-venue{
+ display:block!important;width:100%!important;margin:0!important;padding:0!important;
+ color:#fff!important;font-family:Montserrat,Arial,sans-serif!important;
+ font-size:clamp(14px,3.7vw,19px)!important;font-weight:900!important;
+ line-height:1.05!important;letter-spacing:-.025em!important;
+ overflow-wrap:anywhere!important;word-break:normal!important;
+}
+html body .jh-home-upcoming .jh-home-upcoming-address{
+ display:flex!important;flex-flow:row nowrap!important;align-items:baseline!important;
+ gap:4px!important;width:100%!important;min-width:0!important;margin:0!important;padding:0!important;
+ color:#fff!important;font-family:Montserrat,Arial,sans-serif!important;
+ font-size:clamp(7px,1.9vw,10px)!important;font-weight:750!important;
+ line-height:1.1!important;white-space:nowrap!important;overflow:hidden!important;
+}
+html body .jh-home-upcoming .jh-home-upcoming-address .address-line{
+ display:inline!important;min-width:0!important;color:#fff!important;
+ white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;
+}
+html body .jh-home-upcoming .jh-home-upcoming-address .city-line{
+ display:inline!important;flex:0 0 auto!important;margin:0!important;padding:0!important;
+ color:#F02D98!important;font-size:inherit!important;line-height:inherit!important;
+ white-space:nowrap!important;
+}
+@media(max-width:600px){
+ html body .hero .content>.jh-home-upcoming{
+  width:calc(100% - 26px)!important;margin:12px auto 16px!important;
+ }
+ html body .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track{
+  display:flex!important;flex-flow:row nowrap!important;align-items:stretch!important;
+  gap:9px!important;width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;
+  padding:0 1px 5px!important;scroll-snap-type:x mandatory!important;
+  scrollbar-width:none!important;-webkit-overflow-scrolling:touch!important;
+ }
+ html body .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track::-webkit-scrollbar{display:none!important}
+ html body .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track>.jh-home-upcoming-card{
+  flex:0 0 calc((100% - 9px)/2)!important;width:calc((100% - 9px)/2)!important;
+  max-width:calc((100% - 9px)/2)!important;min-width:0!important;
+  min-height:126px!important;height:auto!important;max-height:none!important;
+  padding:12px 10px!important;scroll-snap-align:start!important;
+ }
+ html body .jh-home-upcoming .jh-home-upcoming-info{gap:5px!important}
+ html body .jh-home-upcoming .jh-home-upcoming-date{font-size:9px!important}
+ html body .jh-home-upcoming .jh-home-upcoming-date strong{font-size:clamp(14px,3.7vw,17px)!important}
+ html body .jh-home-upcoming .jh-home-upcoming-time{font-size:clamp(9px,2.45vw,11px)!important}
+ html body .jh-home-upcoming .jh-home-upcoming-venue{font-size:clamp(12px,3.2vw,15px)!important}
+ html body .jh-home-upcoming .jh-home-upcoming-address{font-size:clamp(6.5px,1.75vw,8px)!important;gap:3px!important}
 }
 </style>
 
