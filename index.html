@@ -3902,3 +3902,62 @@ html body #jh-home-upcoming-list .jh-home-upcoming-visual img {
  }
 }
 </style>
+
+
+<style id="jh-home-mobile-event-cards-readability-fix-20261118">
+/* Correzione mirata: loghi più grandi e testi senza clipping */
+@media(max-width:600px){
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track{
+  gap:9px!important;overflow-x:auto!important;overflow-y:visible!important;
+ }
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track>.jh-home-upcoming-card{
+  box-sizing:border-box!important;flex:0 0 calc((100% - 9px)/2)!important;
+  width:calc((100% - 9px)/2)!important;max-width:calc((100% - 9px)/2)!important;
+  min-width:0!important;height:132px!important;min-height:132px!important;max-height:132px!important;
+  padding:9px!important;gap:8px!important;overflow:hidden!important;
+ }
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-visual{
+  flex:0 0 88px!important;width:88px!important;min-width:88px!important;max-width:88px!important;
+  height:88px!important;min-height:88px!important;max-height:88px!important;
+  padding:0!important;margin:0!important;border:0!important;border-radius:5px!important;
+  overflow:hidden!important;background:#050507!important;clip-path:none!important;mask:none!important;
+ }
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-visual img{
+  display:block!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;
+  padding:0!important;margin:0!important;object-fit:contain!important;object-position:center!important;
+  border:0!important;border-radius:0!important;clip-path:none!important;mask:none!important;transform:none!important;
+ }
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-info{
+  flex:1 1 0!important;width:auto!important;min-width:0!important;max-width:none!important;
+  padding:0 3px 0 0!important;margin:0!important;overflow:visible!important;
+  clip-path:none!important;mask:none!important;transform:none!important;
+  text-align:left!important;align-items:flex-start!important;
+ }
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-date,
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-time,
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-venue-panel,
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-venue,
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-address,
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-address .city-line{
+  box-sizing:border-box!important;position:relative!important;left:auto!important;right:auto!important;
+  transform:none!important;clip-path:none!important;mask:none!important;text-indent:0!important;
+  text-align:left!important;padding-left:3px!important;margin-left:0!important;
+  overflow:visible!important;max-width:100%!important;
+ }
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-venue-panel{
+  width:100%!important;min-width:0!important;gap:2px!important;
+ }
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-venue{
+  width:100%!important;font-size:clamp(10px,2.75vw,12px)!important;
+  line-height:1.12!important;letter-spacing:0!important;white-space:normal!important;
+  overflow-wrap:anywhere!important;word-break:normal!important;hyphens:none!important;
+ }
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-address{
+  width:100%!important;font-size:9px!important;line-height:1.12!important;
+  white-space:normal!important;overflow-wrap:anywhere!important;
+ }
+ html body .hero .content .jh-home-upcoming .jh-home-upcoming-list.jh-home-upcoming-track .jh-home-upcoming-address .city-line{
+  white-space:normal!important;font-size:9px!important;line-height:1.12!important;
+ }
+}
+</style>
