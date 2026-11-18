@@ -249,9 +249,11 @@ footer{width:min(760px,calc(100% - 32px));margin:35px auto 0;padding-top:20px;bo
 </style>
 
 <style id="jh-event-photo-frame-fix-20261118">
-.event-hero,.venue-gallery-item{border:1px solid #F02D98!important;border-radius:14px!important;overflow:hidden!important;background-clip:padding-box!important;-webkit-mask-image:-webkit-radial-gradient(white,black);transform:translateZ(0)}
-.event-hero{border-radius:18px!important}
-.event-hero img,.venue-gallery-item img,.venue-gallery-item video{display:block;border-radius:inherit}
+/* Cornice disegnata dal contenitore: niente maschere o trasformazioni che possano tagliarla su Safari */
+.event-hero,.venue-gallery-item{box-sizing:border-box!important;overflow:hidden!important;background-clip:padding-box!important;-webkit-mask-image:none!important;mask-image:none!important;transform:none!important;outline:1px solid #F02D98!important;outline-offset:-1px!important}
+.event-hero{border:0!important;border-radius:18px!important}
+.venue-gallery-item{border:0!important;border-radius:14px!important}
+.event-hero img,.venue-gallery-item img,.venue-gallery-item video{display:block}
 </style>
 <link rel="stylesheet" href="/jonnyhype-brand-master.css?v=1">
 <script defer src="/jonnyhype-brand-master.js?v=1"></script>
