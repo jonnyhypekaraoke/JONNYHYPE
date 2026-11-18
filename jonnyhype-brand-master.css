@@ -114,7 +114,7 @@ html body .site-header .jh-wordmark{
   align-items:center!important;
   white-space:nowrap!important;
   font-family:"Montserrat","Manrope",Arial,sans-serif!important;
-  font-size:clamp(34px,8.8vw,43px)!important;
+  font-size:clamp(36px,6vw,54px)!important;
   font-weight:900!important;
   line-height:1!important;
   letter-spacing:-.085em!important;
@@ -130,3 +130,24 @@ html body .jh-page-header .jh-wordmark-pink,
 html body .site-header .jh-wordmark-pink{color:#F02D98!important}
 
 /* Keep page-specific colors, cards, images, spacing and interactions intact. */
+
+
+/* Header brand size: identical responsive proportions to the HOME master. */
+@media(max-width:520px){
+ html body .jh-topbar .jh-wordmark,
+ html body #jh-site-topbar .jh-wordmark,
+ html body .jh-page-header .jh-wordmark,
+ html body .site-header .jh-wordmark,
+ html body header .jh-site-wordmark{
+   font-size:clamp(34px,9vw,43px)!important;
+   letter-spacing:-.085em!important;
+ }
+}
+html body header .jh-site-wordmark{
+ display:inline-flex!important;align-items:center!important;white-space:nowrap!important;
+ font-family:"Montserrat",Arial,sans-serif!important;font-size:clamp(36px,6vw,54px)!important;
+ font-weight:900!important;line-height:1!important;letter-spacing:-.085em!important;text-transform:uppercase!important;
+}
+html body .jh-site-wordmark .jh-wordmark-white{color:#FFFFFF!important}
+html body .jh-site-wordmark .jh-wordmark-pink{color:#F02D98!important}
+html body .jh-site-wordmark .jh-wordmark-club{color:#FFFFFF!important;font:inherit!important;letter-spacing:-.085em!important}
