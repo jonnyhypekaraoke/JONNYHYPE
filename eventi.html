@@ -821,14 +821,14 @@ html body main .jh-437-label {
  const sorted=[...unique.values()].sort((a,b)=>a.date-b.date);
  const monthNum=x=>String(x.date.getMonth()+1).padStart(2,'0');
  const imageFor=name=>{const n=name.toUpperCase();
-  if(n.includes('IGINGINI'))return '<img class="jh-home-upcoming-logo jh-logo-igingini" src="https://media.jonnyhype.it/IGinGini%20.jpg" alt="iGinGini">';
-  if(n.includes('ALCHIMIA'))return '<img src="https://media.jonnyhype.it/ALCHIMIA.jpg" alt="Alchimia">';
-  if(n.includes('ICE MARINA'))return '<img src="https://media.jonnyhype.it/ice.jpeg" alt="ICE Marina Club">';
-  if(n.includes('CASABLANCA'))return '<img src="https://media.jonnyhype.it/Casablanca.PNG" alt="Casablanca">';
-  if(n.includes('VECCHIA NAPOLI'))return '<img class="jh-home-upcoming-logo jh-logo-vecchia" src="https://media.jonnyhype.it/Logo%20vecchia%20.jpg" alt="La Vecchia Napoli">';
-  if(n.includes('VIA VAI'))return '<img src="https://media.jonnyhype.it/Viavai.JPG" alt="Via Vai Café">';
-  if(n.includes('YOYI'))return '<img src="https://media.jonnyhype.it/YOYi.jpg.JPG" alt="YOYi Fusion">';
-   if(n.includes('URBAN'))return '<img src="https://media.jonnyhype.it/Urban.JPEG" alt="Cafè Urban">';
+  if(n.includes('IGINGINI'))return '<img src="https://jonnyhype.it/IGinGini%20.jpg" alt="iGinGini" loading="lazy">';
+  if(n.includes('ALCHIMIA'))return '<img src="https://jonnyhype.it/CopertinaAlchimia.PNG" alt="Alchimia" loading="lazy">';
+  if(n.includes('ICE MARINA'))return '<img src="https://jonnyhype.it/Ice16.JPEG" alt="ICE Marina Club" loading="lazy">';
+  if(n.includes('CASABLANCA'))return '<img src="https://jonnyhype.it/Casablanca16.PNG" alt="Casablanca" loading="lazy">';
+  if(n.includes('VECCHIA NAPOLI'))return '<strong>'+esc(name)+'</strong>';
+  if(n.includes('VIA VAI'))return '<img src="https://jonnyhype.it/Viavai16.PNG" alt="Via Vai Café" loading="lazy">';
+  if(n.includes('YOYI'))return '<strong>'+esc(name)+'</strong>';
+  if(n.includes('URBAN'))return '<img src="https://jonnyhype.it/Urban16.PNG" alt="Cafè Urban" loading="lazy">';
   return '<strong>'+esc(name)+'</strong>';
  };
  const list=section.querySelector('.event-list');if(!list)return;
@@ -841,7 +841,8 @@ html body main .jh-437-label {
   const isSpecial=x.subtitle.toUpperCase().includes('SPECIALE')&&x.venue.toUpperCase().includes('ICE MARINA');
   const rawTime=x.time.replace(/^DALLE\s*/i,'').replace(/\s*(?:-|–|—|A)\s*/i,'|').split('|').map(v=>v.trim()).filter(Boolean);
   const timeLabel=rawTime.length>1?'DALLE '+rawTime[0]+' ALLE '+rawTime[1]:'DALLE '+rawTime[0];
-  return '<a class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="Scopri tutto: '+esc(x.venue)+' '+esc(x.dayName)+' '+x.day+' '+esc(x.monthName)+'"><div class="jh-home-upcoming-visual">'+imageFor(x.venue)+'</div><div class="jh-home-upcoming-info"><div class="jh-home-upcoming-date">'+esc(x.dayName)+' '+String(x.day).padStart(2,'0')+'.'+monthNum(x)+'</div>'+'<div class="jh-home-upcoming-time">'+esc(timeLabel)+'</div>'+'<div class="jh-home-upcoming-venue-panel">'+(x.kind?'<div class="jh-home-upcoming-kind">'+esc(x.kind)+'</div>':'')+'<div class="jh-home-upcoming-venue">'+esc(x.venue)+'</div>'+(isSpecial?'<div class="jh-home-upcoming-special"><span>SPECIALE</span><strong>RAVENNA SONG FESTIVAL</strong></div>':(x.subtitle&&!x.venue.toUpperCase().includes('URBAN')?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':''))+(x.address?'<div class="jh-home-upcoming-address"><span class="address-line">'+esc(x.address)+'</span>'+(x.city?'<span class="city-line">'+esc(x.city)+'</span>':'')+'</div>':'')+(x.venue.toUpperCase().includes('URBAN')&&x.subtitle?'<div class="jh-home-upcoming-subtitle">'+esc(x.subtitle)+'</div>':'')+'</div>'+(isIgingini?'<div class="jh-home-upcoming-schedule"><span>20:00 – 23:00 <b>CENA KARAOKE</b></span><span>23:00 – 03:00 <b>DJ SET ’90/’00</b></span></div>':'')+(x.desc&&!isIgingini?'<div class="jh-home-upcoming-promo">'+(x.venue.toUpperCase().includes('YOYI')?esc(x.desc).replace(/KARAOKE\s*CUCINA/i,'KARAOKE<br>CUCINA'):(x.venue.toUpperCase().includes('VIA VAI')&&/^APERICENA:/i.test(x.desc)?'<span class="jh-promo-lead">APERICENA:</span><span class="jh-promo-rest">'+esc(x.desc.replace(/^APERICENA:\s*/i,''))+'</span>':esc(x.desc)))+'</div>':'')+'<div class="jh-home-upcoming-cta"><span>INFO EVENTO<br>E FOTO DEL LOCALE</span></div></div></a>';
+  const dateLabel='<span class="jh-card-day">'+esc(x.dayName)+'</span><span class="jh-card-date-number">'+String(x.day).padStart(2,'0')+'</span><span class="jh-card-month">'+esc(x.monthName)+'</span>';
+  return '<a class="jh-home-upcoming-card" href="/evento.html?'+query.toString()+'" aria-label="'+esc(x.dayName)+' '+String(x.day).padStart(2,'0')+' '+esc(x.monthName)+' - '+esc(x.venue)+'"><div class="jh-home-upcoming-date">'+dateLabel+'</div><div class="jh-home-upcoming-visual">'+imageFor(x.venue)+'</div></a>';
  }).join('');
  const featured=document.getElementById('eventi-in-evidenza');if(featured)featured.remove();
 })();
@@ -1068,6 +1069,31 @@ html body main .jh-events-live-counter .jh-home-live-copy span{
 html body main .jh-events-live-counter .jh-home-live-copy,
 html body main .jh-events-live-counter .jh-home-live-copy span{
   font-size:clamp(14.95px,3.91vw,19.55px)!important;
+}
+</style>
+<style id="jh-official-venue-covers-square-20261118">
+/* PROSSIMI EVENTI: copertina quadrata, data sopra, fotografia panoramica intera sotto. */
+html body #calendario-elenco .jh-home-upcoming-card{
+ display:flex!important;flex-direction:column!important;justify-content:flex-start!important;
+ aspect-ratio:1/1!important;height:auto!important;min-height:0!important;overflow:hidden!important;
+}
+html body #calendario-elenco .jh-home-upcoming-date{
+ flex:0 0 auto!important;display:flex!important;align-items:baseline!important;justify-content:center!important;
+ gap:7px!important;width:100%!important;margin:0!important;padding:12px 8px 9px!important;
+ color:#fff!important;font-family:Montserrat,Arial,sans-serif!important;font-size:clamp(13px,3.4vw,18px)!important;
+ font-weight:900!important;line-height:1.05!important;letter-spacing:.015em!important;white-space:nowrap!important;
+}
+html body #calendario-elenco .jh-home-upcoming-date .jh-card-date-number{color:#F02D98!important;font-size:1.45em!important}
+html body #calendario-elenco .jh-home-upcoming-date .jh-card-day,
+html body #calendario-elenco .jh-home-upcoming-date .jh-card-month{color:#fff!important}
+html body #calendario-elenco .jh-home-upcoming-visual{
+ flex:1 1 auto!important;min-height:0!important;width:100%!important;height:auto!important;aspect-ratio:auto!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;
+ border:0!important;background:#050507!important;
+}
+html body #calendario-elenco .jh-home-upcoming-visual img{
+ display:block!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+ max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;padding:0!important;
 }
 </style>
 </body></html>
