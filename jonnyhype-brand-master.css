@@ -105,4 +105,28 @@ input,textarea,select,button{
   font-weight:900!important;
   letter-spacing:-.075em!important;
 }
+/* Shared topbar wordmark: match the approved HOME header exactly on every page. */
+html body .jh-topbar .jh-wordmark,
+html body #jh-site-topbar .jh-wordmark,
+html body .jh-page-header .jh-wordmark,
+html body .site-header .jh-wordmark{
+  display:inline-flex!important;
+  align-items:center!important;
+  white-space:nowrap!important;
+  font-family:"Montserrat","Manrope",Arial,sans-serif!important;
+  font-size:clamp(34px,8.8vw,43px)!important;
+  font-weight:900!important;
+  line-height:1!important;
+  letter-spacing:-.085em!important;
+  text-transform:uppercase!important;
+}
+html body .jh-topbar .jh-wordmark-white,
+html body #jh-site-topbar .jh-wordmark-white,
+html body .jh-page-header .jh-wordmark-white,
+html body .site-header .jh-wordmark-white{color:#FFFFFF!important}
+html body .jh-topbar .jh-wordmark-pink,
+html body #jh-site-topbar .jh-wordmark-pink,
+html body .jh-page-header .jh-wordmark-pink,
+html body .site-header .jh-wordmark-pink{color:#F02D98!important}
+
 /* Keep page-specific colors, cards, images, spacing and interactions intact. */
