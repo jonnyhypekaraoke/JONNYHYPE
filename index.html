@@ -1519,9 +1519,11 @@ html body .hero .content>#jh-capodanno-jump{
 <a href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a>
 
 
+<div class="jh-home-cta-stack">
+<a class="jh-home-upcoming-tab" href="/eventi.html" aria-label="Prossimi eventi"><span class="jh-btn-white">PROSSIMI</span> <span class="jh-btn-pink">EVENTI</span></a>
 <div class="links">
-<a class="btn song-request-banner" href="/karaoke.html" aria-label="Richiedi un brano e invia foto e video della serata per vederli live"><span class="song-request-copy"><strong><span class="jh-btn-white">RICHIEDI UN BRANO</span><br><span class="jh-btn-pink">E INVIA FOTO E VIDEO</span><br><span class="jh-btn-white">DELLA SERATA PER</span><br><span class="jh-btn-pink">VEDERLI LIVE</span></strong></span></a>
-<a class="btn social" href="/eventi.html" aria-label="Prossimi eventi"><span class="jh-btn-white">PROSSIMI</span><span class="jh-btn-pink">EVENTI</span></a>
+<a class="btn song-request-banner" href="/karaoke.html" aria-label="Richiedi un brano e invia foto e video della serata per vederli live"><span class="song-request-copy"><strong><span class="jh-btn-white">RICHIEDI UN BRANO</span><br><span class="jh-btn-pink">E INVIA FOTO E VIDEO</span> <span class="jh-btn-white">DELLA SERATA PER VEDERLI</span> <span class="jh-btn-pink">LIVE</span></strong></span></a>
+</div>
 </div>
 
 
@@ -2962,6 +2964,111 @@ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy sma
  .jh-home-upcoming-list .jh-home-upcoming-info{padding:15px 16px 17px!important}
 }
 </style>
+
+<style id="jh-home-cta-horizontal-tab-layout-20261122">
+/* HOME: tab PROSSIMI EVENTI sopra il banner richieste, che ora occupa tutta la riga. */
+html body .hero .content>.jh-home-cta-stack{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  width:92%!important;
+  max-width:680px!important;
+  margin:14px auto 14px!important;
+  padding:0!important;
+  gap:8px!important;
+}
+html body .hero .content>.jh-home-cta-stack>.jh-home-upcoming-tab{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  align-self:flex-start!important;
+  width:auto!important;
+  min-width:0!important;
+  min-height:40px!important;
+  height:40px!important;
+  margin:0!important;
+  padding:7px 16px!important;
+  border:1.5px solid #F02D98!important;
+  border-radius:11px!important;
+  background:#050507!important;
+  color:#fff!important;
+  font-family:"Montserrat",Arial,sans-serif!important;
+  font-size:clamp(12px,3.2vw,15px)!important;
+  font-weight:900!important;
+  line-height:1!important;
+  letter-spacing:-.02em!important;
+  text-decoration:none!important;
+  text-transform:uppercase!important;
+  box-shadow:none!important;
+}
+html body .hero .content>.jh-home-cta-stack>.jh-home-upcoming-tab .jh-btn-white,
+html body .hero .content>.jh-home-cta-stack>.jh-home-upcoming-tab .jh-btn-pink{
+  font:inherit!important;
+  line-height:inherit!important;
+}
+html body .hero .content>.jh-home-cta-stack>.links{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  gap:0!important;
+}
+html body .hero .content>.jh-home-cta-stack>.links>a.btn.song-request-banner{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:94px!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:15px 20px!important;
+  border:1.5px solid #F02D98!important;
+  border-radius:17px!important;
+  background:#050507!important;
+  color:#fff!important;
+  text-align:center!important;
+  overflow:visible!important;
+  box-shadow:none!important;
+}
+html body .hero .content>.jh-home-cta-stack>.links>a.btn.song-request-banner .song-request-copy,
+html body .hero .content>.jh-home-cta-stack>.links>a.btn.song-request-banner .song-request-copy strong{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  text-align:center!important;
+  font-family:"Montserrat",Arial,sans-serif!important;
+  font-size:clamp(15px,3.9vw,19px)!important;
+  font-weight:900!important;
+  line-height:1.25!important;
+  letter-spacing:-.025em!important;
+  white-space:normal!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+}
+html body .hero .content>.jh-home-cta-stack>.links>a.btn.song-request-banner .song-request-copy strong span{
+  white-space:normal!important;
+  font:inherit!important;
+  line-height:inherit!important;
+  letter-spacing:inherit!important;
+}
+@media(max-width:600px){
+  html body .hero .content>.jh-home-cta-stack{width:92%!important;margin:12px auto 12px!important;gap:7px!important}
+  html body .hero .content>.jh-home-cta-stack>.jh-home-upcoming-tab{min-height:38px!important;height:38px!important;padding:7px 14px!important;font-size:13px!important}
+  html body .hero .content>.jh-home-cta-stack>.links>a.btn.song-request-banner{min-height:92px!important;padding:13px 12px!important}
+  html body .hero .content>.jh-home-cta-stack>.links>a.btn.song-request-banner .song-request-copy strong{font-size:clamp(15px,4.1vw,18px)!important;line-height:1.23!important}
+}
+@media(max-width:380px){
+  html body .hero .content>.jh-home-cta-stack>.links>a.btn.song-request-banner .song-request-copy strong{font-size:14px!important}
+}
+</style>
+
 </html><style id="jh-home-venue-panel-unified-20261103">
 .jh-home-upcoming-info .jh-home-upcoming-venue-panel{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:5px!important;margin:3px 0 2px!important;padding:12px 13px!important;border:1px solid rgba(240,45,152,.58)!important;border-radius:11px!important;background:linear-gradient(110deg,rgba(240,45,152,.10),rgba(255,255,255,.025))!important}
 .jh-home-upcoming-info .jh-home-upcoming-venue-panel .jh-home-upcoming-kind{margin:0!important;padding:0!important;background:none!important;border:0!important;color:#F02D98!important;font-size:11px!important;letter-spacing:.075em!important}
