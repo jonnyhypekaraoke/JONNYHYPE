@@ -100,7 +100,7 @@
     if(!['video/mp4','video/webm'].includes(mime))throw Error('Formato compresso non supportato.');
     status.textContent='Video ottimizzato: '+(compressed.size/1024/1024).toFixed(1)+' MB. Invio…';
    }catch(compressionError){
-    compressed=file;mime=file.type||(/\\.mov$/i.test(file.name)?'video/quicktime':'video/mp4');
+    compressed=file;mime=file.type||(/\.mov$/i.test(file.name)?'video/quicktime':'video/mp4');
     status.textContent='Compressione non disponibile: invio del file originale, potrebbe richiedere più tempo…';
    }
    const chunkSize=8*1024*1024,totalChunks=Math.ceil(compressed.size/chunkSize),uploadId=(crypto.randomUUID?crypto.randomUUID().replace(/-/g,''):Array.from(crypto.getRandomValues(new Uint8Array(16)),b=>b.toString(16).padStart(2,'0')).join(''));
