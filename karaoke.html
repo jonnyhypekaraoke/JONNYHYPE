@@ -455,8 +455,42 @@ html body main .karaoke-single-heading .photo-upload-section.video-upload-sectio
   }
 }
 </style>
+
+<style id="jh-karaoke-title-live-pink-20261122">
+html body main .karaoke-single-heading .karaoke-main-banner{
+  max-width:980px!important;
+  padding:24px 22px!important;
+  font-size:clamp(30px,4.1vw,44px)!important;
+  line-height:1.12!important;
+  letter-spacing:-.025em!important;
+  font-weight:900!important;
+}
+html body main .karaoke-single-heading .jh-live-pink{
+  color:#f02d98!important;
+  font-family:inherit!important;
+  font-weight:900!important;
+}
+html body main .karaoke-single-heading .photo-upload-section h2{
+  font-size:clamp(25px,3vw,32px)!important;
+  font-weight:900!important;
+}
+@media(max-width:600px){
+  html body main .karaoke-single-heading .karaoke-main-banner{
+    padding:20px 12px!important;
+    margin-bottom:22px!important;
+    font-size:clamp(29px,7.4vw,34px)!important;
+    line-height:1.13!important;
+    letter-spacing:-.035em!important;
+  }
+  html body main .karaoke-single-heading .photo-upload-section h2{
+    font-size:clamp(23px,6vw,27px)!important;
+    line-height:1.12!important;
+  }
+}
+</style>
+
 </head><body><header class="site-header"><div id="jh-site-topbar" class="jh-topbar"><a class="jh-logo-link" href="/" aria-label="JONNYHYPE Home"><span class="jh-wordmark" aria-label="JONNYHYPE"><span class="jh-wordmark-white">JONNY</span><span class="jh-wordmark-pink">HYPE</span></span></a><details id="jh-menu-master" class="jh-menu"><summary aria-label="Apri il menu del sito"><span class="jh-burger"></span></summary><nav class="jh-menu-panel jh-menu-numbered" aria-label="Menu principale"><a href="/"><span class="jh-menu-number">01</span><span class="jh-menu-label">HOME</span></a><a href="/eventi.html"><span class="jh-menu-number">02</span><span class="jh-menu-label">PROSSIMI EVENTI</span></a><a href="/karaoke.html"><span class="jh-menu-number">03</span><span class="jh-menu-label">RICHIEDI UNA CANZONE LIVE</span></a><a href="/show-battle.html"><span class="jh-menu-number">04</span><span class="jh-menu-label">SHOW BATTLE</span></a><a href="/ravenna-song-festival.html"><span class="jh-menu-number">05</span><span class="jh-menu-label">RAVENNA SONG FESTIVAL</span></a><a href="/team-rsf.html"><span class="jh-menu-number">06</span><span class="jh-menu-label">TEAM RSF</span></a><a href="/musica.html"><span class="jh-menu-number">07</span><span class="jh-menu-label">PRODUZIONI</span></a><a href="/galleria.html"><span class="jh-menu-number">08</span><span class="jh-menu-label">GALLERY</span></a><a href="/jonnyhype.html"><span class="jh-menu-number">09</span><span class="jh-menu-label">CHI È JONNYHYPE</span></a><a href="/community.html"><span class="jh-menu-number">10</span><span class="jh-menu-label">CHAT / COMMUNITY</span></a><a href="/contatti.html"><span class="jh-menu-number">11</span><span class="jh-menu-label">CONTATTI</span></a></nav></details></div></header><main><section class="karaoke karaoke-single-heading" id="prenota-canzone">
-<h1 class="karaoke-main-banner">RICHIEDI <span style="color:#f02d98!important">UN BRANO</span> E INVIA <span style="color:#f02d98!important">FOTO E VIDEO</span> DELLA SERATA PER VEDERLI LIVE</h1>
+<h1 class="karaoke-main-banner">RICHIEDI <span style="color:#f02d98!important">UN BRANO</span> E INVIA <span style="color:#f02d98!important">FOTO E VIDEO</span> DELLA SERATA PER VEDERLI <span class="jh-live-pink">LIVE</span></h1>
 
 <form class="booking-form" id="karaoke-booking-form">
 <label>IL TUO NOME<input name="nome" autocomplete="name" maxlength="80" required></label>
@@ -466,7 +500,7 @@ html body main .karaoke-single-heading .photo-upload-section.video-upload-sectio
 <button class="btn karaoke-cta" type="submit">INVIA LA PRENOTAZIONE</button>
 <p id="booking-status" role="status" aria-live="polite"></p>
 </form>
-<section class="photo-upload-section" aria-labelledby="photo-upload-title"><h2 id="photo-upload-title">INVIA LE TUE FOTO LIVE</h2><p>Condividi un momento della serata: le fotografie appariranno nel riquadro FOTO LIVE durante l’evento.</p><form id="photo-upload-form"><label for="photo-files">SELEZIONA LE FOTOGRAFIE (MASSIMO 5)</label><input id="photo-files" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple required><div id="photo-preview" aria-live="polite"></div><label class="photo-consent"><input id="photo-consent" type="checkbox" required><span>Confermo di avere il diritto di condividere queste immagini e autorizzo la loro visualizzazione durante l’evento nel riquadro FOTO LIVE.</span></label><button id="photo-upload-button" type="submit">INVIA LE FOTO</button><p id="photo-upload-status" role="status" aria-live="polite"></p><span class="photo-upload-note">Formati ammessi: JPG, PNG e WEBP. Massimo 8 MB per fotografia. Evita immagini di persone che non hanno acconsentito alla condivisione.</span></form></section>
+<section class="photo-upload-section" aria-labelledby="photo-upload-title"><h2 id="photo-upload-title">INVIA LE TUE FOTO <span class="jh-live-pink">LIVE</span></h2><p>Condividi un momento della serata: le fotografie appariranno nel riquadro FOTO LIVE durante l’evento.</p><form id="photo-upload-form"><label for="photo-files">SELEZIONA LE FOTOGRAFIE (MASSIMO 5)</label><input id="photo-files" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple required><div id="photo-preview" aria-live="polite"></div><label class="photo-consent"><input id="photo-consent" type="checkbox" required><span>Confermo di avere il diritto di condividere queste immagini e autorizzo la loro visualizzazione durante l’evento nel riquadro FOTO LIVE.</span></label><button id="photo-upload-button" type="submit">INVIA LE FOTO</button><p id="photo-upload-status" role="status" aria-live="polite"></p><span class="photo-upload-note">Formati ammessi: JPG, PNG e WEBP. Massimo 8 MB per fotografia. Evita immagini di persone che non hanno acconsentito alla condivisione.</span></form></section>
 </section></main><nav class="social-icons brand-socials" aria-label="Seguimi sui social">
 <a href="https://www.instagram.com/jonnyhype.official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt=""></a>
 <a href="https://youtube.com/@jonnyhype.official" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/FF0033" alt=""></a>
