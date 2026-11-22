@@ -92,11 +92,17 @@
   const player=preview.querySelector('video');if(!player||!Number.isFinite(player.duration)||player.duration<=0||player.duration>60.05){status.textContent='Attendi il controllo della durata oppure seleziona un video entro 1 minuto.';return;}
   button.disabled=true;input.disabled=true;status.textContent='Invio e conversione del video in corso…';
   try{
-   status.textContent='Compressione automatica… 0%';
-   const compressed=await compressVideo(file,p=>{status.textContent='Compressione automatica… '+p+'%';});
-   const mime=(compressed.type||'').split(';')[0].toLowerCase();
-   if(!['video/mp4','video/webm'].includes(mime))throw Error('Il browser ha prodotto un formato video non supportato.');
-   status.textContent='Video ottimizzato: '+(compressed.size/1024/1024).toFixed(1)+' MB. Invio…';
+   let compressed,mime;
+   try{
+    status.textContent='Compressione automatica… 0%';
+    compressed=await compressVideo(file,p=>{status.textContent='Compressione automatica… '+p+'%';});
+    mime=(compressed.type||'').split(';')[0].toLowerCase();
+    if(!['video/mp4','video/webm'].includes(mime))throw Error('Formato compresso non supportato.');
+    status.textContent='Video ottimizzato: '+(compressed.size/1024/1024).toFixed(1)+' MB. Invio…';
+   }catch(compressionError){
+    compressed=file;mime=file.type||(/\\.mov$/i.test(file.name)?'video/quicktime':'video/mp4');
+    status.textContent='Compressione non disponibile: invio del file originale, potrebbe richiedere più tempo…';
+   }
    const chunkSize=8*1024*1024,totalChunks=Math.ceil(compressed.size/chunkSize),uploadId=(crypto.randomUUID?crypto.randomUUID().replace(/-/g,''):Array.from(crypto.getRandomValues(new Uint8Array(16)),b=>b.toString(16).padStart(2,'0')).join(''));
    let result={};
    for(let index=0;index<totalChunks;index++){
