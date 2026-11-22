@@ -42,7 +42,21 @@
    const response=await fetch('https://karaoke.jonnyhype.it/api/videos',{method:'POST',headers:{'Content-Type':mime},body:file});
    let result={};try{result=await response.json();}catch{}
    if(!response.ok)throw Error(result.error||'Invio video non riuscito.');
-   form.reset();clearPreview();status.textContent='Video inviato alla regia! Sarà disponibile nella galleria NOVA.';
+   form.reset();clearPreview();
+   if(result.processing&&result.name){
+    status.textContent='Video ricevuto. La regia sta completando la conversione…';
+    const statusUrl='https://karaoke.jonnyhype.it/api/videos/status?name='+encodeURIComponent(result.name);
+    for(let attempt=0;attempt<120;attempt++){
+     await new Promise(resolve=>setTimeout(resolve,3000));
+     const check=await fetch(statusUrl,{method:'GET',cache:'no-store'});
+     let job={};try{job=await check.json();}catch{}
+     if(!check.ok)throw Error(job.error||'Non riesco a verificare la conversione. Controlla la galleria NOVA tra poco.');
+     if(job.state==='ready'){status.textContent='Video pronto! È disponibile nella galleria NOVA.';break;}
+     if(job.state==='error')throw Error(job.message||'Conversione video non riuscita.');
+     status.textContent='Conversione in corso… non chiudere la pagina ('+(attempt+1)+' / 120).';
+    }
+    if(status.textContent.startsWith('Conversione in corso'))status.textContent='Video ricevuto, ma la conversione richiede ancora tempo. Controlla la galleria NOVA tra poco.';
+   }else status.textContent='Video inviato alla regia!';
   }catch(error){status.textContent=error.message||'Invio non riuscito. Riprova tra poco.';}
   finally{button.disabled=false;input.disabled=false;}
  });
