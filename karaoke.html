@@ -639,9 +639,74 @@ html body header.site-header .jh-topbar details.jh-menu .jh-menu-panel.jh-menu-n
 
 \n
 
-
-
-
-
-
+<style id="jh-karaoke-pink-banner-system-20261122">
+/* Pulsanti della pagina Karaoke: stesso banner fucsia pieno della pagina Prossimi Eventi. */
+html body #karaoke-booking-form button.karaoke-cta,
+html body .photo-upload-section button{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  min-height:58px!important;
+  height:auto!important;
+  box-sizing:border-box!important;
+  padding:14px 20px!important;
+  border:1px solid #F02D98!important;
+  border-radius:12px!important;
+  background:#F02D98!important;
+  color:#fff!important;
+  font-family:"Manrope",Arial,sans-serif!important;
+  font-size:clamp(16px,4.2vw,19px)!important;
+  font-weight:900!important;
+  line-height:1.2!important;
+  letter-spacing:.035em!important;
+  text-align:center!important;
+  text-decoration:none!important;
+  text-transform:uppercase!important;
+  box-shadow:0 7px 22px rgba(240,45,152,.20)!important;
+  cursor:pointer!important;
+}
+html body #karaoke-booking-form button.karaoke-cta:hover,
+html body .photo-upload-section button:hover{
+  background:#FF4EAE!important;
+  border-color:#FF4EAE!important;
+  color:#fff!important;
+}
+html body #karaoke-booking-form button.karaoke-cta:disabled,
+html body .photo-upload-section button:disabled{
+  opacity:.6!important;
+  cursor:wait!important;
+}
+/* Tutto il titolo usa un solo font e un solo peso: le parole fucsia sono identiche a LIVE. */
+html body main .karaoke-single-heading .karaoke-main-banner,
+html body main .karaoke-single-heading .karaoke-main-banner *,
+html body main .karaoke-single-heading .karaoke-main-banner .jh-live-pink{
+  font-family:"Montserrat",Arial,sans-serif!important;
+  font-size:inherit!important;
+  font-weight:900!important;
+  letter-spacing:-.035em!important;
+  line-height:1.15!important;
+  -webkit-font-smoothing:antialiased!important;
+  text-transform:uppercase!important;
+}
+html body main .karaoke-single-heading .karaoke-main-banner{
+  font-size:clamp(25px,6vw,38px)!important;
+  color:#fff!important;
+}
+html body main .karaoke-single-heading .karaoke-main-banner span[style],
+html body main .karaoke-single-heading .karaoke-main-banner .jh-live-pink{
+  color:#F02D98!important;
+}
+@media(max-width:600px){
+  html body #karaoke-booking-form button.karaoke-cta,
+  html body .photo-upload-section button{
+    min-height:58px!important;
+    font-size:17px!important;
+  }
+  html body main .karaoke-single-heading .karaoke-main-banner{
+    font-size:clamp(25px,6.2vw,39px)!important;
+    line-height:1.16!important;
+  }
+}
+</style>
 
