@@ -14,7 +14,7 @@
   <label class="photo-consent"><input id="video-consent" type="checkbox" required><span>Confermo di avere il diritto di condividere questo video e autorizzo la sua visualizzazione durante l'evento nel riquadro FOTO LIVE.</span></label>
   <button id="video-upload-button" type="submit">INVIA IL VIDEO</button>
   <p id="video-upload-status" role="status" aria-live="polite"></p>
-  <span class="photo-upload-note">Formati ammessi: MP4 e MOV. Durata massima 30 secondi. Dimensione massima 100 MB.</span>
+  <span class="photo-upload-note">Formati ammessi: MP4 e MOV. Durata massima 30 secondi. Dimensione massima 300 MB.</span>
  </form>`;
  photoForm.closest('.photo-upload-section').after(section);
  const form=section.querySelector('#video-upload-form'),input=section.querySelector('#video-file'),preview=section.querySelector('#video-preview'),status=section.querySelector('#video-upload-status'),button=section.querySelector('#video-upload-button');
@@ -23,7 +23,7 @@
  function validate(file){
   const type=(file.type||'').toLowerCase(),valid=['video/mp4','application/mp4','video/quicktime'].includes(type)||/\.(mp4|mov)$/i.test(file.name);
   if(!valid)throw Error('Formato non valido. Seleziona un MP4 o MOV.');
-  if(file.size<1024||file.size>100*1024*1024)throw Error('Il video deve pesare al massimo 100 MB.');
+  if(file.size<1024||file.size>300*1024*1024)throw Error('Il video deve pesare al massimo 300 MB.');
  }
  input.addEventListener('change',()=>{
   clearPreview();status.textContent='';const file=input.files&&input.files[0];if(!file)return;
@@ -39,9 +39,18 @@
   button.disabled=true;input.disabled=true;status.textContent='Invio e conversione del video in corso…';
   try{
    const mime=file.type||(/\.mov$/i.test(file.name)?'video/quicktime':'video/mp4');
-   const response=await fetch('https://karaoke.jonnyhype.it/api/videos',{method:'POST',headers:{'Content-Type':mime},body:file});
-   let result={};try{result=await response.json();}catch{}
-   if(!response.ok)throw Error(result.error||'Invio video non riuscito.');
+   const chunkSize=8*1024*1024,totalChunks=Math.ceil(file.size/chunkSize),uploadId=crypto.randomUUID().replace(/-/g,'');
+   let result={};
+   for(let index=0;index<totalChunks;index++){
+    const start=index*chunkSize,end=Math.min(file.size,start+chunkSize),part=file.slice(start,end);
+    const params=new URLSearchParams({upload:uploadId,index:String(index),total:String(totalChunks),size:String(file.size),mime});
+    const response=await fetch('https://karaoke.jonnyhype.it/api/videos/chunk?'+params.toString(),{method:'POST',headers:{'Content-Type':'application/octet-stream'},body:part});
+    try{result=await response.json();}catch{result={};}
+    if(!response.ok)throw Error(result.error||'Invio video non riuscito al blocco '+(index+1)+'.');
+    const sent=Math.min(end,file.size),percent=Math.round(sent/file.size*100);
+    status.textContent=index===totalChunks-1?'Video ricevuto. Avvio conversione…':'Caricamento video… '+percent+'%';
+   }
+   if(!result.processing||!result.name)throw Error('Il video è stato inviato ma la regia non ha confermato la conversione.');
    form.reset();clearPreview();
    if(result.processing&&result.name){
     status.textContent='Video ricevuto. La regia sta completando la conversione…';
