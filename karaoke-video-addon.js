@@ -39,7 +39,7 @@
   button.disabled=true;input.disabled=true;status.textContent='Invio e conversione del video in corso…';
   try{
    const mime=file.type||(/\.mov$/i.test(file.name)?'video/quicktime':'video/mp4');
-   const chunkSize=8*1024*1024,totalChunks=Math.ceil(file.size/chunkSize),uploadId=crypto.randomUUID().replace(/-/g,'');
+   const chunkSize=8*1024*1024,totalChunks=Math.ceil(file.size/chunkSize),uploadId=(crypto.randomUUID?crypto.randomUUID().replace(/-/g,''):Array.from(crypto.getRandomValues(new Uint8Array(16)),b=>b.toString(16).padStart(2,'0')).join(''));
    let result={};
    for(let index=0;index<totalChunks;index++){
     const start=index*chunkSize,end=Math.min(file.size,start+chunkSize),part=file.slice(start,end);
