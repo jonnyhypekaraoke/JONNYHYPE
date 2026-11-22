@@ -3594,3 +3594,39 @@ html body #jh-home-upcoming-list .jh-home-upcoming-visual img {
 }
 </style>
 
+<style id="jh-home-request-banner-desktop-fit-20261122">
+/* HOME desktop: evita il taglio verticale del testo nel banner richiesta canzone.
+   La correzione è limitata agli schermi oltre 600px; iPhone resta invariato. */
+@media(min-width:601px){
+ html body .hero .content>.links>a.btn.song-request-banner{
+  height:auto!important;
+  min-height:108px!important;
+  max-height:none!important;
+  padding:14px 18px!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  text-align:left!important;
+  overflow:visible!important;
+ }
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  text-align:left!important;
+ }
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy strong{
+  display:block!important;
+  width:100%!important;
+  font-family:"Montserrat",Arial,sans-serif!important;
+  font-size:16px!important;
+  font-weight:900!important;
+  line-height:1.12!important;
+  letter-spacing:-.035em!important;
+  text-align:left!important;
+ }
+ html body .hero .content>.links>a.btn.song-request-banner .song-request-copy strong span{
+  white-space:normal!important;
+ }
+}
+</style>
+
